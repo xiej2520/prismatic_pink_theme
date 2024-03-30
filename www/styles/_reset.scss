@@ -1,0 +1,59 @@
+*, *::before, *::after {
+	font: inherit;
+	line-height: 1;
+	tab-size: 4;
+	text-decoration-line: none;
+	text-decoration-thickness: 0;
+
+	margin: 0;
+	padding: 0;
+	border: 0;
+
+	box-sizing: border-box;
+	
+	vertical-align: baseline;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+img,
+picture,
+video,
+canvas,
+svg,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block;
+}
+
+img, picture, video, canvas, svg {
+	max-width: 100%;
+}
+
+button {
+	background-color: transparent;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+dialog {
+	top: auto;
+	bottom: auto;
+	left: auto;
+	right: auto;
+}
