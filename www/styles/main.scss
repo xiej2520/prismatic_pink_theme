@@ -1,0 +1,74 @@
+@use "_reset";
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-size: 20px;
+	font-weight: 400;
+	font-family: sans-serif;
+	font-display: swap;
+	color: #D5C4A1;
+	background-color: #1d2021;
+	
+	margin-left: 20%;
+	margin-right: 20%;
+	display: flex;
+	flex-direction: column;
+}
+
+pre {
+	font-size: 16px;
+	font-family: "Cascadia Code", monospace;
+	line-height: 1.2;
+	tab-size: 4;
+	overflow-x: auto;
+
+	span.italicized {
+		font-style: italic;
+	}
+
+	span.kw, span.primitive {
+		color: #fb5270;
+	}
+	span.fn {
+		color: #839da5;
+	}
+	span.type {
+		color: #91c043;
+	}
+	span.enum {
+		color: #7cc091;
+	}
+	span.generic {
+		color: #bd86d3;
+	}
+	span.var {
+		color: #d5c4a1;
+	}
+	span.comment {
+		color: #928374;
+	}
+	span.punct {
+		color: #a89984;
+	}
+	span.member {
+		color: #c7899a;
+	}
+	span.num, span.char {
+		color: #fe8019;
+	}
+	span.str {
+		color: #fabd2f;
+	}
+	span.goto {
+		color: #91c043;
+	}
+	span.param {
+		color: #aaaaaa;
+	}
+	span.inlay {
+		color: #a89984;
+	}
+}
