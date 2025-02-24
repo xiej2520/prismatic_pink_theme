@@ -1,7 +1,7 @@
 {
-	"name": "theme-pink-candy",
-	"displayName": "Pink Candy Theme",
-	"description": "A vivid colour scheme with a pink accent, in both light and dark variants.",
+	"name": "theme-prismatic-pink",
+	"displayName": "Prismatic Pink Theme",
+	"description": "Color themes using every color of the rainbow and pink accents. Comes in a dark version and a very high contrast, high saturation black background version.",
 	"version": "0.0.1",
 	"publisher": "xiej2520",
 	"contributors": [
@@ -63,27 +63,27 @@
 		],
 		"commands": [
 			{
-				"command": "theme-pink-candy.restoreDefaultConfig",
-				"title": "Pink Candy: Restore default configuration"
+				"command": "theme-prsmatic-pink.restoreDefaultConfig",
+				"title": "Prismatic Pink: Restore default configuration"
 			}
 		],
 		"configuration": {
-			"title": "Pink Candy Theme",
+			"title": "Prismatic Pink Theme",
 			"properties": {
-				"theme-pink-candy.mutedMarkdownPlaintext": {
+				"theme-prismatic-pink.mutedMarkdownPlaintext": {
 					"type": "boolean",
 					"scope": "application",
 					"default": false,
 					"description": "Controls whether markdown plaintext has a muted appearance.",
-					"markdownDeprecationMessage": "Deprecated; use `#theme-pink-candy.markdownSyntaxStyle#` instead.",
-					"deprecationMessage": "Deprecated; use `theme-pink-candy.markdownSyntaxStyle` instead."
+					"markdownDeprecationMessage": "Deprecated; use `#theme-prismatic-pink.markdownSyntaxStyle#` instead.",
+					"deprecationMessage": "Deprecated; use `theme-prismatic-pink.markdownSyntaxStyle` instead."
 				},
-				"theme-pink-candy.markdownSyntaxStyle": {
+				"theme-prismatic-pink.markdownSyntaxStyle": {
 					"type": "string",
 					"scope": "application",
 					"default": "traditional",
-					"markdownDescription": "Controls the syntax colour scheme for markdown.\r\nNote that this overrides the deprecated `#theme-pink-candy.mutedMarkdownPlaintext#` key.",
-					"description": "Controls the syntax colour scheme for markdown. Note that this overrides the deprecated `theme-pink-candy.mutedMarkdownPlaintext` key.",
+					"markdownDescription": "Controls the syntax colour scheme for markdown.\r\nNote that this overrides the deprecated `#theme-prismatic-pink.mutedMarkdownPlaintext#` key.",
+					"description": "Controls the syntax colour scheme for markdown. Note that this overrides the deprecated `theme-prismatic-pink.mutedMarkdownPlaintext` key.",
 					"enum": [
 						"traditional",
 						"mutedPlaintext",
@@ -105,25 +105,25 @@
 						"An alternate colour scheme that emphasizes semantic meaning and de-emphasizes markdown control characters."
 					]
 				},
-				"theme-pink-candy.italicizedComments": {
+				"theme-prismatic-pink.italicizedComments": {
 					"type": "boolean",
 					"scope": "application",
 					"default": false,
 					"description": "Controls whether comments are italicized."
 				},
-				"theme-pink-candy.alternateCurrentLineStyle": {
+				"theme-prismatic-pink.alternateCurrentLineStyle": {
 					"type": "boolean",
 					"scope": "application",
 					"default": false,
 					"description": "Controls whether the current-line uses an alternate appearance (outline rather than transparent background fill)."
 				},
-				"theme-pink-candy.monochromeBracketPairGuides": {
+				"theme-prismatic-pink.monochromeBracketPairGuides": {
 					"type": "boolean",
 					"scope": "application",
 					"default": false,
 					"description": "Controls whether bracket pair guides are monochrome."
 				},
-				"theme-pink-candy.inlayHintStyle": {
+				"theme-prismatic-pink.inlayHintStyle": {
 					"type": "string",
 					"scope": "application",
 					"default": "noBackground",
@@ -153,7 +153,7 @@
 						"An accent colour for the inlay hint text and a lightly shaded background."
 					]
 				},
-				"theme-pink-candy.light.terminalColourScheme": {
+				"theme-prismatic-pink.light.terminalColourScheme": {
 					"type": "string",
 					"scope": "application",
 					"default": "normal+dark",
@@ -180,7 +180,7 @@
 						"Darker (higher contrast) colours for the standard 30-37/40-47 ANSI colours, and normal theme colours for the \"bright\" 90-97 aixterm colours."
 					]
 				},
-				"theme-pink-candy.globalAccent": {
+				"theme-prismatic-pink.globalAccent": {
 					"type": "string",
 					"scope": "application",
 					"default": "default",

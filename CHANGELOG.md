@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.1 - 2025-02-23
+
+### Changed
+
+Forked from kuba_p's theme, changed colors all around for prismatic pink and
+prismatic high contrast. Renamed settings from 'pink-candy' to 'prismatic-pink'.
+
 ## 1.5.0 - 2024-03-06
 ### Added
 - Syntax highlighting for Asciidoc files; most language features are now styled.

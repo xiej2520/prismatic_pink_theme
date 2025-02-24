@@ -5,7 +5,7 @@ import * as vscode from "vscode";
  * Resets all extension settings.
  */
 export const resetCmd = vscode.commands.registerCommand(
-	"theme-pink-candy.restoreDefaultConfig",
+	"theme-prismatic-pink.restoreDefaultConfig",
 	() => {
 		config.resetConfig();
 	}

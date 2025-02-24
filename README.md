@@ -2,7 +2,7 @@
 
 <br>
 <p align="center">
-Color themes for VSCode's IDE and editor, using every color of the rainbow, and
+Color themes for VSCode's IDE and editor, using every color of the rainbow with
 pink accents. Comes in a normal dark version and a <em>very</em> high contrast,
 high saturation black background version.
 

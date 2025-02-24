@@ -33,7 +33,7 @@ export function deactivate() {}
  */
 function onConfigChange(e: vscode.ConfigurationChangeEvent) {
 	// Ignore configuration changes that aren't related to our theme.
-	if (!e.affectsConfiguration("theme-pink-candy")) {
+	if (!e.affectsConfiguration("theme-prismatic-pink")) {
 		return;
 	}
 

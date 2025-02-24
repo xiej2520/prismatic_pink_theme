@@ -64,7 +64,7 @@ To package the extension locally, run the following:
 4. `cd ./package`
 5. `npm run package`
 
-The packaged extension will be located at `./package/theme-pink-candy-${version}.vsix`.
+The packaged extension will be located at `./package/theme-prismatic-pink-${version}.vsix`.
 
 ## ⚠ Publish a new release
 
