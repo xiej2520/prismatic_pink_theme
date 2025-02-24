@@ -32,7 +32,7 @@ if (Test-Path "$WorkingDirectory/package") {
 	Remove-Item -Path "$WorkingDirectory/package" -Recurse -Force
 }
 
-$script:GITHUB_URL = "https://github.com/KubaP/vscode-pink-candy/blob/master/"
+$script:GITHUB_URL = "https://github.com/xiej2520/vscode-pink-candy/blob/master/"
 $script:SOURCE_DIR = Get-Item -Path "$WorkingDirectory/"
 $script:PACKAGE_DIR = New-Item -Path "$WorkingDirectory/" -Name "package" -ItemType Directory -Force -Verbose
 

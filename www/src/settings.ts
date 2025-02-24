@@ -13,7 +13,7 @@ const rustCodeSnippet = `<span class="comment">/// Frobnicates the bar based on 
 const settings = [
 	{
 		name: "Italicized Comments",
-		key: "theme-pink-candy.italicizedComments",
+		key: "theme-prismatic-pink.italicizedComments",
 		type: "boolean",
 		options: ["false", "true"],
 		description: "Controls whether comments are italicized.",

@@ -139,7 +139,7 @@ export class Config {
  * Returns the current configuration of the theme.
  */
 export function getConfig(): Config {
-	const config = vscode.workspace.getConfiguration("theme-pink-candy");
+	const config = vscode.workspace.getConfiguration("theme-prismatic-pink");
 
 	// For details about handling deprecated settings, see: /docs/Design Document.md#configuration-vs-code
 
@@ -235,7 +235,7 @@ export function getConfig(): Config {
  */
 export function resetConfig() {
 	Config.DEFAULT.writeToCache();
-	const config = vscode.workspace.getConfiguration("theme-pink-candy");
+	const config = vscode.workspace.getConfiguration("theme-prismatic-pink");
 	// Note: this should undefine all settings defined in `package.json`.
 	config.update("mutedMarkdownPlaintext", undefined, true);
 	config.update("markdownSyntaxStyle", undefined, true);

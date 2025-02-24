@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.1 - 2025-02-23
+
+### Changed
+
+Forked from kuba_p's theme, changed colors all around for prismatic pink and
+prismatic high contrast. Renamed settings from 'pink-candy' to 'prismatic-pink'.
+
 ## 1.6.0 - 2025-06-17
 ### Added
 - The extension is now published on the [OpenVSX](https://open-vsx.org/extension/kuba-p/theme-pink-candy) marketplace.
