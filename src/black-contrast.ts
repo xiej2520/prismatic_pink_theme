@@ -31,9 +31,9 @@ export const blackContrastSyntax: SyntaxColors = {
 	lightPink: "#EEBBFF",
 	strongPink: "#FF2884",
 
+	boldGreen: "#2ECC4B",
 	boldPink: "#F750AE",
-	boldBlue: "#01AAFA",
-	boldLightBlue: "#87B2C5",
+	boldViolet: "D88AFF",
 	boldFg: "#ABB2BF",
 };
 

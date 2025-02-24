@@ -75,14 +75,14 @@
         }
         const colorSyntax = [
             ['Background',      "primaryBg",     "Background"],
-            ['Foreground',      "fg",            "Lorem Ipsum"],
+            ['Foreground',      "fg",            "var &var"],
             ['Gray',            "gray",          "Gray"],
             ['Faded Gray',      "fadedGray",     "Fade Gray"],
             ['Light Pink',      "lightPink",     "// FIX THIS: "],
             ['Pink',            "pink",          "if else while const"],
-            ['Strong Pink',     "strongPink",    "if else while const"],
+            ['Strong Pink',     "strongPink",    "panic!() println!()"],
             ['Bold Pink',       "boldPink",      "Bold Pink"],
-            ['Red',             "red",           "panic!()"],
+            ['Red',             "red",           "unsafe {} unresolved::reference"],
             ['Orange',          "orange",        "0123456789.0usize '\\n' #[derive()]"],
             ['Yellow',          "yellow",        "\"Hello, World!\""],
             //['Yellowgreen',     "yellowgreen",   "foo()"],
@@ -91,41 +91,61 @@
             ['Green',           "green",         "foo.bar()"],
             //['Turquoise',       "turquoise",     "Foo::bar()"],
             ['Cyan',            "cyan",          "None Some(_)"],
-            ['Sky Blue',        "skyBlue",       "Klass"],
+            ['Sky Blue',        "skyBlue",       "T TypeParameter"],
             ['Blue',            "blue",          "Klass"],
             ['Cornflower',      "cornflower",    "Clone Debug"],
             ['Purple',          "purple",        "'lifetime"],
-            ['Violet',          "violet",        "localVariable"],
+            ['Violet',          "violet",        "fn f(violet, parameter)"],
             ['Light Purple',    "lightPurple",   "self.prop, var.prop"],
             ['Light Blue',      "lightBlue",     "path::to::something"],
             ['Bold Light Blue', "boldLightBlue", "path::to::something"],
             ['Bold Blue',       "boldBlue",      "Bold Blue"],
-            ['Bold Foreground', "boldFg",        "Bold Foreground"],
+            ['Bold Violet',     "boldViolet",    "fn f(mut boldVioletParam)"],
+            ['Bold Foreground', "boldFg",        "mut boldFg, &mut boldFg"],
             ['Mauve',           "mauve",         "Mauve"],
             ['Normal',          "normal", "normal"],
         ];
+        // Pink Candy Dark (Original)
+        // most colors between 5.5-7.5 contrast, slightly less for bold
         const pinkCandyDark = {
             name: "Pink Candy Dark",
+
             primaryBg:      "#22222A",
-            fg:             ["#B9BFCA", "var, &var"],
+            // B9BFCA 8.55 fg: variables, references
+            fg:             ["#B9BFCA", "var &var"],
+            // 828DA0 4.71 gray: punctuation ";", comments, operators
             gray:           ["#828DA0", "; + - * / && // comment"],
 
+            // FF2884 4.42 strongPink: error, unresolved reference
             strongPink:     ["#FF2884", "unknown::name"],
+            // F85EB4 5.45 pink: keywords
             pink:           ["#F85EB4", "for while loop if else mut"],
+            // D177F5 5.77 purple: traits, lifetimes
             purple:         ["#D177F5", "trait PurpleTrait 'lifetime"],
+            // 10B1FE 6.57 blue: functions
             blue:           ["#10B1FE", "fn blueFunction"],
+            // 97BCCD 7.81 lightBlue: parameters (very gray)
             lightBlue:      ["#97BCCD", "fn f(lightBlue)"],
+            // 15C9C5 7.66 cyan: enum members, constants, booleans
             cyan:           ["#15C9C5", "Ok Err CONSTANT false "],
 
+            // 3FC56B 7.07 green: types, type parameters
             green:          ["#3FC56B", "struct GreenType, enum GreenEnum<T>"],
+            // 9ACC12 8.28 lime: labels
             lime:           ["#9ACC12", "'label"],
             yellow:         ["#F9C859", "\"Hello, world!\""],
+            // FF6B66 5.67 orange: numbers, escape sequences, chars, unsafe, derive, hash attributes #[]
             orange:         ["#FF6B66", "1.3f32 '\\n' unsafe, #[derive()]"],
+            // B58E95 5.46 mauve: members/properties
             mauve:          ["#B58E95", "f.mauveProperty"],
 
+            // F750AE 5.04 boldPink: mut "self"
             boldPink:       ["#F750AE", "mut self"],
+            // 01AAFA 6.11 boldBlue: mutable function/method fn boldBlue(&mut)
             boldBlue:       ["#01AAFA", "fn boldBlue(&mut)"],
+            // 87B2C5 6.91 boldLightBlue: mutable reference parameter fn f(boldLightBlue: &mut)
             boldLightBlue:  ["#87B2C5", "fn f(boldLightBlue: &mut)"],
+            // ABB2BF 7.40 boldFg: mutable variable, mutable reference
             boldFg:         ["#ABB2BF", "let mut boldFg, &mut boldFg"]
         };
         const prismaticPink = {
@@ -150,12 +170,11 @@
             skyBlue:       "#5CA2ED",
             blue:          "#10B1FE",
             cornflower:    "#8AA5FF",
-            purple:        "#DD99FF",
-            violet:        "#A177F5",
+            purple:        "#A177F5",
+            violet:        "#DD99FF",
             lightPurple:   "#CFB5E8",
             lightBlue:     "#97BCCD",
-            boldLightBlue: "#87B2C5",
-            boldBlue:      "#01AAFA",
+            boldViolet:    "#D88AFF",
             boldFg:        "#ABB2BF",
             mauve:         "#B58E95",
             normal:        "#E6EEF2",
@@ -179,13 +198,12 @@
             cyan:          "#15C9C5",
             skyBlue:       "#5CA2ED",
             blue:          "#10B1FE",
-            cornflower:   "#A3ACFF",
-            purple:        "#DD99FF",
-            violet:        "#A177F5",
+            cornflower:    "#A3ACFF",
+            purple:        "#A177F5",
+            violet:        "#DD99FF",
             lightPurple:   "#E3CEF2",
             lightBlue:     "#97BCCD",
-            boldLightBlue: "#87B2C5",
-            boldBlue:      "#01AAFA",
+            boldViolet:    "#D88AFF",
             boldFg:        "#ABB2BF",
             mauve:         "#B58E95",
             normal:        "#E6EEF2",

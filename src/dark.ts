@@ -1,32 +1,6 @@
 import { SyntaxColors, UiColors } from "./theme";
 
 export const darkSyntax: SyntaxColors = {
-	// Pink Candy Dark (Original)
-	// most colors between 5.5-7.5 contrast, slightly less for bold
-	// https://webaim.org/resources/contrastchecker/
-	// hex    contrast color
-	// 22222A background
-	// B9BFCA 8.55 fg: variables, references
-	// 828DA0 4.71 gray: punctuation ";", comments, operators
-	// 
-	// FF2884 4.42 strongPink: error, unresolved reference
-	// F85EB4 5.45 pink: keywords
-	// D177F5 5.77 purple: traits, lifetimes
-	// 10B1FE 6.57 blue: functions
-	// 97BCCD 7.81 lightBlue: parameters (very gray)
-	// 15C9C5 7.66 cyan: enum members, constants, booleans
-	//
-	// 3FC56B 7.07 green: types, type parameters
-	// 9ACC12 8.28 lime, labels
-	// F9C859 10.09 yellow: strings
-	// FF6B66 5.67 orange: numbers, escape sequences, chars, unsafe, derive, hash attributes #[]
-	// B58E95 5.46 mauve: members/properties
-	//
-	// F750AE 5.04 boldPink: mut "self"
-	// 01AAFA 6.11 boldBlue: mutable function/method fn boldBlue(&mut)
-	// 87B2C5 6.91 boldLightBlue: mutable reference parameter fn f(boldLightBlue: &mut)
-	// ABB2BF 7.40 boldFg: mutable variable, mutable reference
-
 	// Pink Candy Dark remix with darker, more neutral background #1E1E22
 	// try to keep contrast to 7.5-9, slightly more saturation
 	fg: "#B9BFCA",
@@ -52,16 +26,16 @@ export const darkSyntax: SyntaxColors = {
 	blue: "#10B1FE",
 	cornflower: "#8AA5FF",
 
-	purple: "#DD99FF",
+	purple: "#A177F5",
 	violet: "#DD99FF",
 	lightPurple: "#CFB5E8",
 
 	pink: "#F85EB4",
 	lightPink: "#EEBBFF",
 	strongPink: "#FF2884",
+	boldGreen: "#2ECC4B",
 	boldPink: "#F750AE",
-	boldBlue: "#01AAFA",
-	boldLightBlue: "#5CA2ED",
+	boldViolet: "#D88AFF",
 	boldFg: "#ABB2BF",
 };
 
