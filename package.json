@@ -2,20 +2,24 @@
 	"name": "theme-pink-candy",
 	"displayName": "Pink Candy Theme",
 	"description": "A vivid colour scheme with a pink accent, in both light and dark variants.",
-	"version": "1.6.0",
-	"publisher": "kuba-p",
+	"version": "1.6.1",
+	"publisher": "xiej2520",
+	"contributors": [
+		"kuba_p",
+		"xiej2520"
+	],
 	"author": {
-		"name": "kuba_p"
+		"name": "xiej2520"
 	},
 	"license": "MIT",
 	"icon": "icon.png",
-	"homepage": "https://github.com/KubaP/vscode-pink-candy/blob/master/README.md",
+	"homepage": "https://github.com/xiej2520/vscode-pink-candy/blob/master/README.md",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/KubaP/vscode-pink-candy"
+		"url": "https://github.com/xiej2520/vscode-pink-candy"
 	},
 	"bugs": {
-		"url": "https://github.com/KubaP/vscode-pink-candy/issues"
+		"url": "https://github.com/xiej2520/vscode-pink-candy/issues"
 	},
 	"galleryBanner": {
 		"color": "#1E1E22",
@@ -33,7 +37,6 @@
 		"theme",
 		"color-theme",
 		"highlighting",
-		"light",
 		"dark"
 	],
 	"activationEvents": [
@@ -48,19 +51,19 @@
 	"contributes": {
 		"themes": [
 			{
-				"label": "Pink Candy Dark Remix",
+				"label": "Pink Candy Dark",
 				"uiTheme": "vs-dark",
-				"path": "./themes/pink-candy-dark-remix.json"
+				"path": "./themes/pink-candy-dark.json"
 			},
 			{
-				"label": "Pink Candy Black Contrast Remix",
+				"label": "Prismatic Pink",
 				"uiTheme": "vs-dark",
-				"path": "./themes/pink-candy-black-contrast-remix.json"
+				"path": "./themes/prismatic-pink.json"
 			},
 			{
-				"label": "Pink Candy Dark Warm",
+				"label": "Prismatic Pink High Contrast",
 				"uiTheme": "vs-dark",
-				"path": "./themes/pink-candy-dark-warm.json"
+				"path": "./themes/prismatic-pink-contrast.json"
 			}
 		],
 		"commands": [

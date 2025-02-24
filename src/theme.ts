@@ -12,24 +12,8 @@ import * as path from "path";
  * @param config The current configuration.
  */
 export function createThemes(config: Config) {
-	//createTheme(
-	//	"Pink Candy Light",
-	//	"light",
-	//	"pink-candy-light.json",
-	//	lightColors,
-	//	lightSyntax,
-	//	config
-	//);
-	createTheme("Pink Candy Dark Remix", "dark", "pink-candy-dark-remix.json", darkColors, darkSyntax, config);
-	createTheme("Pink Candy Black Contrast Remix", "dark", "pink-candy-black-contrast-remix.json", blackContrastColors, blackContrastSyntax, config);
-	//createTheme(
-	//	"Pink Candy Dark Warm",
-	//	"dark",
-	//	"pink-candy-dark-warm.json",
-	//	darkWarmColors,
-	//	darkWarmSyntax,
-	//	config
-	//);
+	createTheme("Prismatic Pink", "dark", "prismatic-pink.json", darkColors, darkSyntax, config);
+	createTheme("Prismatic Pink High Contrast", "dark", "prismatic-pink-contrast.json", blackContrastColors, blackContrastSyntax, config);
 }
 
 function createTheme(
@@ -1097,7 +1081,7 @@ function generateTheme(
 			"symbolIcon.fileForeground": color.text.normal,
 			"symbolIcon.folderForeground": color.text.normal,
 			"symbolIcon.functionForeground": syntax.blue,
-			"symbolIcon.interfaceForeground": syntax.purple,
+			"symbolIcon.interfaceForeground": syntax.violet,
 			"symbolIcon.keyForeground": syntax.pink,
 			"symbolIcon.keywordForeground": syntax.pink,
 			"symbolIcon.methodForeground": syntax.blue,
@@ -1318,12 +1302,12 @@ function generateTheme(
 			},
 			"property.static:csharp": {
 				// Cssharp static properties.
-				foreground: syntax.purple,
+				foreground: syntax.violet,
 				fontStyle: "bold underline",
 			},
 			"property.static:typescript": {
 				// Typescript static members.
-				foreground: syntax.purple,
+				foreground: syntax.violet,
 				fontStyle: "underline",
 			},
 			"*.constant": syntax.orange,
@@ -1357,8 +1341,8 @@ function generateTheme(
 			// RUST
 			"operator.controlFlow:rust": syntax.pink,
 			"label:rust": syntax.lime,
-			"lifetime:rust": syntax.purple,
-			"formatSpecifier:rust": syntax.purple,
+			"lifetime:rust": syntax.violet,
+			"formatSpecifier:rust": syntax.violet,
 			"macroBang:rust": syntax.red, // The ! in a macro call.
 			//
 			// REFERENCE
@@ -1465,7 +1449,7 @@ function generateTheme(
 			//
 			// TOML - Even Better TOML only
 			tomlTableKey: syntax.lime,
-			tomlArrayKey: syntax.purple,
+			tomlArrayKey: syntax.violet,
 		},
 		tokenColors: [
 			// BASICS
@@ -1750,7 +1734,7 @@ function generateTheme(
 					"entity.name.type.interface.ts",
 				],
 				settings: {
-					foreground: syntax.purple,
+					foreground: syntax.violet,
 				},
 			},
 			{
@@ -2118,14 +2102,14 @@ function generateTheme(
 					"storage.modifier.lifetime.rust",
 				],
 				settings: {
-					foreground: syntax.purple,
+					foreground: syntax.violet,
 				},
 			},
 			{
 				name: "Format Specifier",
 				scope: ["meta.interpolation.rust", "punctuation.definition.interpolation.rust"],
 				settings: {
-					foreground: syntax.purple,
+					foreground: syntax.violet,
 				},
 			},
 			{
@@ -2170,7 +2154,7 @@ function generateTheme(
 					"punctuation.definition.interpolation.end.cs",
 				],
 				settings: {
-					foreground: syntax.purple,
+					foreground: syntax.violet,
 				},
 			},
 			//
@@ -2204,7 +2188,7 @@ function generateTheme(
 					"variable.language.powershell punctuation.definition.variable.powershell",
 				],
 				settings: {
-					foreground: syntax.purple,
+					foreground: syntax.violet,
 				},
 			},
 			{
@@ -2231,7 +2215,7 @@ function generateTheme(
 					"punctuation.section.embedded.substatement.end.powershell",
 				],
 				settings: {
-					foreground: syntax.purple,
+					foreground: syntax.violet,
 				},
 			},
 			//
@@ -2244,7 +2228,7 @@ function generateTheme(
 					"punctuation.definition.template-expression.end.js",
 				],
 				settings: {
-					foreground: syntax.purple,
+					foreground: syntax.violet,
 				},
 			},
 			{
@@ -2268,7 +2252,7 @@ function generateTheme(
 					"meta.group.assertion.regexp",
 				],
 				settings: {
-					foreground: syntax.purple,
+					foreground: syntax.violet,
 				},
 			},
 			//
@@ -2289,7 +2273,7 @@ function generateTheme(
 				name: "JSX - Attributes",
 				scope: ["entity.other.attribute-name.js"],
 				settings: {
-					foreground: syntax.purple,
+					foreground: syntax.violet,
 					fontStyle: "italic",
 				},
 			},
@@ -2303,7 +2287,7 @@ function generateTheme(
 					"punctuation.definition.template-expression.end.ts",
 				],
 				settings: {
-					foreground: syntax.purple,
+					foreground: syntax.violet,
 				},
 			},
 			//
@@ -2360,7 +2344,7 @@ function generateTheme(
 					"meta.attribute.unrecognized.xmlns.html string.quoted.double.html",
 				],
 				settings: {
-					foreground: syntax.purple,
+					foreground: syntax.violet,
 				},
 			},
 			{
@@ -2455,7 +2439,7 @@ function generateTheme(
 				name: "CSS - Media Query Types",
 				scope: ["support.constant.media.css"],
 				settings: {
-					foreground: syntax.purple,
+					foreground: syntax.violet,
 				},
 			},
 			//
@@ -2520,7 +2504,7 @@ function generateTheme(
 				name: "XML - Doctype",
 				scope: "variable.language.documentroot.xml",
 				settings: {
-					foreground: syntax.purple,
+					foreground: syntax.violet,
 				},
 			},
 			//
@@ -2657,7 +2641,7 @@ function generateTheme(
 					"markup.reference.xref.asciidoc string.unquoted.asciidoc",
 				],
 				settings: {
-					foreground: syntax.purple,
+					foreground: syntax.violet,
 					fontStyle: "underline",
 				},
 			},
@@ -2820,7 +2804,7 @@ function generateTheme(
 					//"variable.key.array.table.toml"
 				],
 				settings: {
-					foreground: syntax.purple,
+					foreground: syntax.violet,
 				},
 			},
 			//
@@ -3031,7 +3015,7 @@ function generateMarkdownColors(syntax: SyntaxColors, muted: boolean): TextMateS
 				"meta.image.reference.markdown constant.other.reference.link.markdown",
 			],
 			settings: {
-				foreground: syntax.purple,
+				foreground: syntax.violet,
 				fontStyle: "underline",
 			},
 		},
@@ -3350,7 +3334,7 @@ function generateAlternateMarkdownColors(syntax: SyntaxColors): TextMateStyle[] 
 				"markup.bold.markdown markup.italic.markdown",
 			],
 			settings: {
-				foreground: syntax.purple,
+				foreground: syntax.violet,
 				fontStyle: "bold italic",
 			},
 		},
@@ -3380,7 +3364,7 @@ function generateAlternateMarkdownColors(syntax: SyntaxColors): TextMateStyle[] 
 				"meta.image.reference.markdown constant.other.reference.link.markdown",
 			],
 			settings: {
-				foreground: syntax.purple,
+				foreground: syntax.violet,
 				fontStyle: "underline",
 			},
 		},
@@ -3448,7 +3432,7 @@ function generateAlternateMarkdownColors(syntax: SyntaxColors): TextMateStyle[] 
 				"markup.strikethrough.markdown markup.italic.markdown markup.bold.markdown",
 			],
 			settings: {
-				foreground: syntax.purple,
+				foreground: syntax.violet,
 				fontStyle: "bold italic strikethrough",
 			},
 		},
@@ -3475,7 +3459,7 @@ function generateAlternateMarkdownColors(syntax: SyntaxColors): TextMateStyle[] 
 				"markup.italic.markdown markup.bold.markdown markup.inline.raw.string.markdown",
 			],
 			settings: {
-				foreground: syntax.purple,
+				foreground: syntax.violet,
 				fontStyle: "bold italic underline",
 			},
 		},
@@ -3515,7 +3499,7 @@ function generateAlternateMarkdownColors(syntax: SyntaxColors): TextMateStyle[] 
 				"markup.bold.markdown markup.italic.markdown markup.inline.raw.string.markdown",
 			],
 			settings: {
-				foreground: syntax.purple,
+				foreground: syntax.violet,
 				fontStyle: "bold italic underline",
 			},
 		},
@@ -3530,7 +3514,7 @@ function generateAlternateMarkdownColors(syntax: SyntaxColors): TextMateStyle[] 
 				"markup.strikethrough.markdown markup.italic.markdown markup.bold.markdown markup.inline.raw.string.markdown",
 			],
 			settings: {
-				foreground: syntax.purple,
+				foreground: syntax.violet,
 				fontStyle: "bold italic strikethrough underline",
 			},
 		},
@@ -3670,32 +3654,36 @@ export interface TextMateStyle {
 }
 
 export interface SyntaxColors {
-	strongPink: string;
-	pink: string;
-	purple: string;
-	lightPurple: string;
-	cornflower: string;
-	blue: string;
-	cyan: string;
-	lightBlue: string;
-	green: string;
-	lime: string;
-	lightGreen: string;
-	yellow: string;
-	orange: string;
-	mauve: string;
 	fg: string;
 	gray: string;
 	fadedGray: string;
+
+	pink: string;
+	strongPink: string;
+
 	red: string;
+	orange: string;
+	yellow: string;
+	lime: string;
+	green: string;
+	cyan: string;
+	cornflower: string;
+	skyBlue: string;
+	blue: string;
+	purple: string;
+	violet: string;
 	// Bold text, due to it's boldness, has a higher contrast. To maintain the same perceptual contrast, a lower
 	// contrast colour must be used instead.
 	boldPink: string;
 	boldBlue: string;
 	boldLightBlue: string;
 	boldFg: string;
+
 	// light colors
 	lightPink: string;
+	lightGreen: string;
+	lightBlue: string;
+	lightPurple: string;
 }
 
 export interface UiColors {
