@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            color: #B9BFCA;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #444;
+        }
+        th {
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Color Table</h1>
+    <table id="colorTable">
+        <thead>
+            <tr>
+                <th>Color Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- JavaScript will populate this -->
+        </tbody>
+    </table>
+
+    <script>
+        
+        // contrast checking from https://webaim.org/resources/contrastchecker/
+        
+        function HexToDec(c) {
+            if (RegExp(/^[a-f|0-9]+$/i).test(c)) {
+                return parseInt(c, 16);
+            }
+        }
+        
+        // Adapted from https://marcodiiga.github.io/rgba-to-rgb-conversion
+        function RGBAtoRGB(fc, bc) {	// fc and bc are hex values, without the leading #
+            const fa = {r:HexToDec(fc.substr(0, 2)), g:HexToDec(fc.substr(2, 2)), b:HexToDec(fc.substr(4, 2)), a:HexToDec(fc.substr(6, 2)) / 255};
+            const ba = {r:HexToDec(bc.substr(0, 2)), g:HexToDec(bc.substr(2, 2)), b:HexToDec(bc.substr(4, 2))};
+            var a = fa.a;
+            if (isNaN(a)) a = 1;
+            var modR = Math.round((1 - a) * ba.r + a * fa.r);
+            var modG = Math.round((1 - a) * ba.g + a * fa.g);
+            var modB = Math.round((1 - a) * ba.b + a * fa.b);
+            var modColor = ('0' + modR.toString(16)).slice(-2) + ('0' + modG.toString(16)).slice(-2) + ('0' + modB.toString(16)).slice(-2);
+            return modColor;
+        }
+        function getsRGB(c) {
+            c = HexToDec(c) / 255;
+            c = (c <= 0.03928) ? c / 12.92 : Math.pow(((c + 0.055) / 1.055), 2.4);
+            return c;
+        }
+        function getL(c) {
+            return (0.2126 * getsRGB(c.substr(0, 2)) + 0.7152 * getsRGB(c.substr(2, 2)) + 0.0722 * getsRGB(c.substr(4, 2)));
+        }
+        function checkContrast(bg, fg) {
+            var fMod = RGBAtoRGB(fg, bg);	//fMod is the color you get when you put color[1] on top of color[0] and take into account the alpha value of color[1]
+            var L1 = getL(fMod), L2 = getL(bg), ratio = (Math.max(L1, L2) + 0.05) / (Math.min(L1, L2) + 0.05);
+            return Math.round(ratio * 100) / 100;
+        }
+        const colorSyntax = [
+            ['Background',      "primaryBg",     "Background"],
+            ['Foreground',      "fg",            "Lorem Ipsum"],
+            ['Gray',            "gray",          "Gray"],
+            ['Faded Gray',      "fadedGray",     "Fade Gray"],
+            ['Light Pink',      "lightPink",     "// FIX THIS: "],
+            ['Pink',            "pink",          "if else while const"],
+            ['Strong Pink',     "strongPink",    "if else while const"],
+            ['Bold Pink',       "boldPink",      "Bold Pink"],
+            ['Red',             "red",           "panic!()"],
+            ['Orange',          "orange",        "0123456789.0usize '\\n' #[derive()]"],
+            ['Yellow',          "yellow",        "\"Hello, World!\""],
+            //['Yellowgreen',     "yellowgreen",   "foo()"],
+            ['Lime',            "lime",          "foo()"],
+            ['Light Green',     "lightGreen",    "+ - * / = == != && || : :: <= >= ~ !"],
+            ['Green',           "green",         "foo.bar()"],
+            //['Turquoise',       "turquoise",     "Foo::bar()"],
+            ['Cyan',            "cyan",          "None Some(_)"],
+            ['Sky Blue',        "skyBlue",       "Klass"],
+            ['Blue',            "blue",          "Klass"],
+            ['Cornflower',      "cornflower",    "Clone Debug"],
+            ['Purple',          "purple",        "'lifetime"],
+            ['Violet',          "violet",        "localVariable"],
+            ['Light Purple',    "lightPurple",   "self.prop, var.prop"],
+            ['Light Blue',      "lightBlue",     "path::to::something"],
+            ['Bold Light Blue', "boldLightBlue", "path::to::something"],
+            ['Bold Blue',       "boldBlue",      "Bold Blue"],
+            ['Bold Foreground', "boldFg",        "Bold Foreground"],
+            ['Mauve',           "mauve",         "Mauve"],
+            ['Normal',          "normal", "normal"],
+        ];
+        const pinkCandyDark = {
+            name: "Pink Candy Dark",
+            primaryBg:      "#22222A",
+            fg:             ["#B9BFCA", "var, &var"],
+            gray:           ["#828DA0", "; + - * / && // comment"],
+
+            strongPink:     ["#FF2884", "unknown::name"],
+            pink:           ["#F85EB4", "for while loop if else mut"],
+            purple:         ["#D177F5", "trait PurpleTrait 'lifetime"],
+            blue:           ["#10B1FE", "fn blueFunction"],
+            lightBlue:      ["#97BCCD", "fn f(lightBlue)"],
+            cyan:           ["#15C9C5", "Ok Err CONSTANT false "],
+
+            green:          ["#3FC56B", "struct GreenType, enum GreenEnum<T>"],
+            lime:           ["#9ACC12", "'label"],
+            yellow:         ["#F9C859", "\"Hello, world!\""],
+            orange:         ["#FF6B66", "1.3f32 '\\n' unsafe, #[derive()]"],
+            mauve:          ["#B58E95", "f.mauveProperty"],
+
+            boldPink:       ["#F750AE", "mut self"],
+            boldBlue:       ["#01AAFA", "fn boldBlue(&mut)"],
+            boldLightBlue:  ["#87B2C5", "fn f(boldLightBlue: &mut)"],
+            boldFg:         ["#ABB2BF", "let mut boldFg, &mut boldFg"]
+        };
+        const darkRemix = {
+            name: "Dark Remix",
+            primaryBg:     "#1E1E22",
+            fg:            "#B9BFCA",
+            gray:          "#828DA0",
+            fadedGray:     "#636D83",
+            lightPink:     "#EEBBFF",
+            pink:          "#F85EB4",
+            strongPink:    "#FF2884",
+            boldPink:      "#F750AE",
+            red:           "#F24646",
+            orange:        "#FF8D5C",
+            yellow:        "#E3C24A",
+            //yellowgreen:   "#9ACC12",
+            lime:          "#72D21A",
+            lightGreen:    "#D6FFD6",
+            green:         "#3CD357",
+            //turquoise:     "#00D595",
+            cyan:          "#15C9C5",
+            //skyBlue:       "#5DADFE",
+            blue:          "#10B1FE",
+            cornflower:    "#8AA5FF",
+            purple:        "#DD99FF",
+            violet:        "#A177F5",
+            lightPurple:   "#CFB5E8",
+            lightBlue:     "#97BCCD",
+            boldLightBlue: "#87B2C5",
+            boldBlue:      "#01AAFA",
+            boldFg:        "#ABB2BF",
+            mauve:         "#B58E95",
+            normal:        "#E6EEF2",
+        };
+        const highContrastBlack = {
+            name: "High Contrast Black",
+            primaryBg:     "#000000",
+            fg:            "#B9BFCA",
+            gray:          "#828DA0",
+            fadedGray:     "#636D83",
+            lightPink:     "#EEBBFF",
+            pink:          "#F85EB4",
+            strongPink:    "#FF2884",
+            boldPink:      "#F750AE",
+            red:           "#F24646",
+            orange:        "#FF9866",
+            yellow:        "#F9C859",
+            lime:          "#89E736",
+            lightGreen:    "#D6FFD6",
+            green:         "#3FC56B",
+            cyan:          "#15C9C5",
+            skyBlue:       "#5CA2ED",
+            blue:          "#10B1FE",
+            cornflower:   "#A3ACFF",
+            purple:        "#DD99FF",
+            violet:        "#A177F5",
+            lightPurple:   "#E3CEF2",
+            lightBlue:     "#97BCCD",
+            boldLightBlue: "#87B2C5",
+            boldBlue:      "#01AAFA",
+            boldFg:        "#ABB2BF",
+            mauve:         "#B58E95",
+            normal:        "#E6EEF2",
+        };
+        
+        const colorThemes = [pinkCandyDark, darkRemix, highContrastBlack]
+        const syntaxMap = new Map(colorSyntax.map(i => [i[1], i[2]]));
+
+        // Function to generate table rows
+        function generateTable() {
+            const headerRow = document.querySelector("#colorTable thead tr");
+            for (const theme of colorThemes) {
+                const headerCell = document.createElement('th');
+                headerCell.style.backgroundColor = theme.primaryBg;
+                headerCell.style.color = theme.fg;
+                headerCell.textContent = `${theme.name}`;
+                headerCell.colSpan = 3;
+                headerRow.append(headerCell);
+            }
+            const tableBody = document.querySelector('#colorTable tbody');
+            colorSyntax.forEach(([colorName, propertyName, sampleText]) => {
+                const row = document.createElement('tr');
+                const nameCell = document.createElement('td');
+                nameCell.textContent = colorName;
+                nameCell.style.color = highContrastBlack[propertyName];
+                if (colorName.toLowerCase().includes("bold")) {
+                    nameCell.style.fontWeight = "bold";
+                }
+                row.appendChild(nameCell);
+
+                for (const theme of colorThemes) {
+                    const sampleTextCell = document.createElement('td');
+                    const colorCodeCell = document.createElement('td');
+                    const contrastCell = document.createElement('td');
+                    sampleTextCell.style.backgroundColor = theme.primaryBg;
+                    colorCodeCell.style.backgroundColor = theme.primaryBg;
+                    contrastCell.style.backgroundColor = theme.primaryBg;
+                    if (propertyName in theme) {
+                        let colorCode;
+
+                        if (Array.isArray(theme[propertyName])) {
+                            sampleTextCell.textContent = theme[propertyName][1];
+                            colorCodeCell.textContent = theme[propertyName][0];
+                            colorCode = theme[propertyName][0];
+                        } else {
+                            sampleTextCell.textContent = sampleText;
+                            colorCodeCell.textContent = theme[propertyName];
+                            colorCode = theme[propertyName];
+                        }
+                        contrastCell.textContent = checkContrast(theme.primaryBg.substr(1), colorCode.substr(1));
+
+                        sampleTextCell.style.color = colorCode;
+                        colorCodeCell.style.color = colorCode;
+                        contrastCell.style.color = colorCode;
+                        //sampleTextCell.textContent = `${sampleText}   ${checkContrast(theme.primaryBg.substr(1), colorCode.substr(1))}`;
+                        if (colorName.toLowerCase().includes("bold")) {
+                            sampleTextCell.style.fontWeight = "bold";
+                            colorCodeCell.style.fontWeight = "bold";
+                            contrastCell.style.fontWeight = "bold";
+                        }
+                    }
+                    row.appendChild(sampleTextCell);
+                    row.appendChild(colorCodeCell);
+                    row.appendChild(contrastCell);
+                }
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Generate the table when the page loads
+        document.addEventListener('DOMContentLoaded', generateTable);
+    </script>
+</body>
+</html>

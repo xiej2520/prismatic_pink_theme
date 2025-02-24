@@ -1,7 +1,8 @@
 import { Config } from "./config";
 import { darkColors, darkSyntax } from "./dark";
-import { darkWarmColors, darkWarmSyntax } from "./dark-warm";
-import { lightColors, lightSyntax } from "./light";
+import { blackContrastColors, blackContrastSyntax } from "./black-contrast";
+//import { darkWarmColors, darkWarmSyntax } from "./dark-warm";
+//import { lightColors, lightSyntax } from "./light";
 import { THEME_FOLDER } from "./paths";
 import * as fs from "fs";
 import * as path from "path";
@@ -11,23 +12,24 @@ import * as path from "path";
  * @param config The current configuration.
  */
 export function createThemes(config: Config) {
-	createTheme(
-		"Pink Candy Light",
-		"light",
-		"pink-candy-light.json",
-		lightColors,
-		lightSyntax,
-		config
-	);
-	createTheme("Pink Candy Dark", "dark", "pink-candy-dark.json", darkColors, darkSyntax, config);
-	createTheme(
-		"Pink Candy Dark Warm",
-		"dark",
-		"pink-candy-dark-warm.json",
-		darkWarmColors,
-		darkWarmSyntax,
-		config
-	);
+	//createTheme(
+	//	"Pink Candy Light",
+	//	"light",
+	//	"pink-candy-light.json",
+	//	lightColors,
+	//	lightSyntax,
+	//	config
+	//);
+	createTheme("Pink Candy Dark Remix", "dark", "pink-candy-dark-remix.json", darkColors, darkSyntax, config);
+	createTheme("Pink Candy Black Contrast Remix", "dark", "pink-candy-black-contrast-remix.json", blackContrastColors, blackContrastSyntax, config);
+	//createTheme(
+	//	"Pink Candy Dark Warm",
+	//	"dark",
+	//	"pink-candy-dark-warm.json",
+	//	darkWarmColors,
+	//	darkWarmSyntax,
+	//	config
+	//);
 }
 
 function createTheme(
@@ -114,23 +116,23 @@ function generateTheme(
 	if (config.italicComments) {
 		commentSemanticStyles = {
 			comment: {
-				foreground: syntax.fadedGray,
+				foreground: syntax.lightPink,
 				fontStyle: "italic",
 			},
 		};
 		commentStyles = {
 			settings: {
-				foreground: syntax.fadedGray,
+				foreground: syntax.lightPink,
 				fontStyle: "italic",
 			},
 		};
 	} else {
 		commentSemanticStyles = {
-			comment: syntax.fadedGray,
+			comment: syntax.lightPink,
 		};
 		commentStyles = {
 			settings: {
-				foreground: syntax.fadedGray,
+				foreground: syntax.lightPink,
 			},
 		};
 	}
@@ -1055,7 +1057,7 @@ function generateTheme(
 			"symbolIcon.enumeratorForeground": syntax.green,
 			"symbolIcon.enumeratorMemberForeground": syntax.cyan,
 			"symbolIcon.eventForeground": color.text.normal,
-			"symbolIcon.fieldForeground": syntax.mauve,
+			"symbolIcon.fieldForeground": syntax.lightPurple,
 			"symbolIcon.fileForeground": color.text.normal,
 			"symbolIcon.folderForeground": color.text.normal,
 			"symbolIcon.functionForeground": syntax.blue,
@@ -1070,7 +1072,7 @@ function generateTheme(
 			"symbolIcon.objectForeground": syntax.green,
 			"symbolIcon.operatorForeground": syntax.gray,
 			"symbolIcon.packageForeground": syntax.fg,
-			"symbolIcon.propertyForeground": syntax.mauve,
+			"symbolIcon.propertyForeground": syntax.lightPurple,
 			"symbolIcon.referenceForeground": syntax.pink,
 			"symbolIcon.snippetForeground": syntax.pink,
 			"symbolIcon.stringForeground": syntax.yellow,
@@ -1206,78 +1208,78 @@ function generateTheme(
 			"controlKeyword:csharp": syntax.pink,
 			//
 			//
-			punctuation: syntax.gray,
-			operator: syntax.gray,
-			arithmetic: syntax.gray,
-			comparison: syntax.gray,
-			logical: syntax.gray,
-			bitwise: syntax.gray,
+			punctuation: syntax.lightGreen,
+			operator: syntax.lightGreen,
+			arithmetic: syntax.lightGreen,
+			comparison: syntax.lightGreen,
+			logical: syntax.lightGreen,
+			bitwise: syntax.lightGreen,
 			//
 			//
-			function: syntax.blue, // Static function.
+			function: syntax.green, // Static function.
 			"member.static:csharp": {
 				// Static function.
-				foreground: syntax.blue,
+				foreground: syntax.green,
 				fontStyle: "underline",
 			},
 			"method.static:typescript": {
 				// Static method.
-				foreground: syntax.blue,
-				fontStyle: "underline",
-			},
-			method: syntax.blue, // Object method.
-			"member:csharp": syntax.blue, // Object method.
-			macro: syntax.blue,
-			namespace: syntax.fg,
-			"type:typescript": syntax.green,
-			struct: syntax.green,
-			class: syntax.green,
-			"class.static:csharp": {
-				// Static class.
 				foreground: syntax.green,
 				fontStyle: "underline",
 			},
-			enum: syntax.green,
-			union: syntax.green,
-			typeAlias: syntax.green,
+			method: syntax.green, // Object method.
+			"member:csharp": syntax.green, // Object method.
+			macro: syntax.red,
+			namespace: syntax.fg,
+			"type:typescript": syntax.blue,
+			struct: syntax.blue,
+			class: syntax.blue,
+			"class.static:csharp": {
+				// Static class.
+				foreground: syntax.blue,
+				fontStyle: "underline",
+			},
+			enum: syntax.blue,
+			union: syntax.blue,
+			typeAlias: syntax.blue,
 			enumMember: syntax.cyan,
-			boolean: syntax.cyan,
+			boolean: syntax.orange,
 			//
 			//
-			interface: syntax.purple, // Rust: `MyTrait`
-			typeParameter: syntax.green, // Generic type annotation, e.g. `T`
+			interface: syntax.cornflower, // Interfaces, e.g. `MyTrait`
+			typeParameter: syntax.lightBlue, // Generic type annotation, e.g. `T`
 			//
 			//
 			variable: syntax.fg,
 			"local:csharp": syntax.fg, // Local variable.
 			parameter: syntax.lightBlue,
-			property: syntax.mauve, // Object members.
-			"field:csharp": syntax.mauve, // Object members.
+			property: syntax.lightPurple, // Object members.
+			"field:csharp": syntax.lightPurple, // Object members.
 			"field.static:csharp": {
 				// Static object members.
-				foreground: syntax.mauve,
+				foreground: syntax.lightPurple,
 				fontStyle: "underline",
 			},
 			"property:csharp": {
 				// Csharp properties.
-				foreground: syntax.mauve,
+				foreground: syntax.lightPurple,
 				fontStyle: "bold",
 			},
 			"property.static:csharp": {
 				// Cssharp static properties.
-				foreground: syntax.mauve,
+				foreground: syntax.purple,
 				fontStyle: "bold underline",
 			},
 			"property.static:typescript": {
 				// Typescript static members.
-				foreground: syntax.mauve,
+				foreground: syntax.purple,
 				fontStyle: "underline",
 			},
-			"*.constant": syntax.cyan,
-			"variable.static:csharp": syntax.cyan, // Constants
-			"variable.readonly:csharp": syntax.cyan, // Constants
-			"variable.readonly:javascript": syntax.cyan, // Constants
-			"variable.readonly:typescript": syntax.cyan, // Constants
+			"*.constant": syntax.orange,
+			"variable.static:csharp": syntax.orange, // Constants
+			"variable.readonly:csharp": syntax.orange, // Constants
+			"variable.readonly:javascript": syntax.orange, // Constants
+			"variable.readonly:typescript": syntax.orange, // Constants
 			//
 			//
 			string: syntax.yellow, // `"string"`
@@ -1306,7 +1308,7 @@ function generateTheme(
 			"label:rust": syntax.lime,
 			"lifetime:rust": syntax.purple,
 			"formatSpecifier:rust": syntax.purple,
-			"macroBang:rust": syntax.blue, // The ! in a macro call.
+			"macroBang:rust": syntax.red, // The ! in a macro call.
 			//
 			// REFERENCE
 			"variable.reference": {
@@ -1331,11 +1333,11 @@ function generateTheme(
 				fontStyle: "bold",
 			},
 			"method.mutable": {
-				foreground: syntax.boldBlue,
+				foreground: syntax.green,
 				fontStyle: "bold",
 			},
 			"function.mutable": {
-				foreground: syntax.boldBlue,
+				foreground: syntax.green,
 				fontStyle: "bold",
 			},
 			"parameter.mutable": {
@@ -1353,11 +1355,11 @@ function generateTheme(
 				fontStyle: "italic bold",
 			},
 			"method.mutable.reference": {
-				foreground: syntax.boldBlue,
+				foreground: syntax.green,
 				fontStyle: "italic bold",
 			},
 			"function.mutable.reference": {
-				foreground: syntax.boldBlue,
+				foreground: syntax.green,
 				fontStyle: "italic bold",
 			},
 			"parameter.mutable.reference": {
@@ -1378,7 +1380,7 @@ function generateTheme(
 			},
 			//
 			// UNSAFE
-			"*.unsafe": syntax.orange,
+			"*.unsafe": syntax.red,
 			"keyword.unsafe": {
 				fontStyle: "bold underline",
 			},
@@ -1540,7 +1542,7 @@ function generateTheme(
 					"punctuation.definition.string.end.json",
 				],
 				settings: {
-					foreground: syntax.gray,
+					foreground: syntax.lightGreen,
 					fontStyle: "",
 				},
 			},
@@ -1776,7 +1778,7 @@ function generateTheme(
 					"variable.other.property.ts",
 				],
 				settings: {
-					foreground: syntax.mauve,
+					foreground: syntax.lightPurple,
 				},
 			},
 			{
@@ -2336,7 +2338,7 @@ function generateTheme(
 					"support.type.property-name.media.css",
 				],
 				settings: {
-					foreground: syntax.mauve,
+					foreground: syntax.lightPurple,
 				},
 			},
 			{
@@ -3620,23 +3622,29 @@ export interface SyntaxColors {
 	strongPink: string;
 	pink: string;
 	purple: string;
+	lightPurple: string;
+	cornflower: string;
 	blue: string;
 	cyan: string;
 	lightBlue: string;
 	green: string;
 	lime: string;
+	lightGreen: string;
 	yellow: string;
 	orange: string;
 	mauve: string;
 	fg: string;
 	gray: string;
 	fadedGray: string;
+	red: string;
 	// Bold text, due to it's boldness, has a higher contrast. To maintain the same perceptual contrast, a lower
 	// contrast colour must be used instead.
 	boldPink: string;
 	boldBlue: string;
 	boldLightBlue: string;
 	boldFg: string;
+	// light colors
+	lightPink: string;
 }
 
 export interface UiColors {

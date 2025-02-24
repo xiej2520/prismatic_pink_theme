@@ -1,25 +1,25 @@
 import { SyntaxColors, UiColors } from "./theme";
 
-export const lightSyntax: SyntaxColors = {
-	fg: "#565869",
-	gray: "#777777",
-	fadedGray: "#ADB1C2",
-	strongPink: "#FF1277",
-	pink: "#F767BB",
-	purple: "#C75AF3",
-	blue: "#09A1ED",
-	lightBlue: "#6F7FB2",
-	cyan: "#27B0AC",
-	green: "#2DAE58",
-	lime: "#85AF1A",
-	yellow: "#C69613",
-	orange: "#FF5C57",
-	mauve: "#A8759A",
-	boldFg: "#6C6E83",
-	boldPink: "#F871C0",
-	boldBlue: "#1DAEf6",
-	boldLightBlue: "#7B8dAE",
-};
+//export const lightSyntax: SyntaxColors = {
+//	fg: "#565869",
+//	gray: "#777777",
+//	fadedGray: "#ADB1C2",
+//	strongPink: "#FF1277",
+//	pink: "#F767BB",
+//	purple: "#C75AF3",
+//	blue: "#09A1ED",
+//	lightBlue: "#6F7FB2",
+//	cyan: "#27B0AC",
+//	green: "#2DAE58",
+//	lime: "#85AF1A",
+//	yellow: "#C69613",
+//	orange: "#FF5C57",
+//	mauve: "#A8759A",
+//	boldFg: "#6C6E83",
+//	boldPink: "#F871C0",
+//	boldBlue: "#1DAEf6",
+//	boldLightBlue: "#7B8dAE",
+//};
 
 export const lightColors: UiColors = {
 	// Note: All non-alpha backgrounds are based on `primaryBg`.

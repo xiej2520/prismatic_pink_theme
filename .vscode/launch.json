@@ -13,7 +13,6 @@
 			"sourceMaps": true,
 			"smartStep": true,
 			"outFiles": ["${workspaceFolder}/out/**/*.js"],
-			"preLaunchTask": "${defaultBuildTask}"
 		}
 	]
 }
