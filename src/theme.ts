@@ -1007,7 +1007,7 @@ function generateTheme(
 			"debugTokenExpression.string": syntax.yellow,
 			"debugTokenExpression.boolean": syntax.cyan,
 			"debugTokenExpression.number": syntax.orange,
-			"debugTokenExpression.error": syntax.strongPink,
+			"debugTokenExpression.error": syntax.red,
 			//
 			// NOTIFICATIONS [x]
 			//"notifications.foreground": "",
@@ -1264,7 +1264,7 @@ function generateTheme(
 			},
 			method: syntax.green, // Object method.
 			"member:csharp": syntax.green, // Object method.
-			macro: syntax.red,
+			macro: syntax.strongPink,
 			namespace: syntax.fg,
 			"type:typescript": syntax.blue,
 			struct: syntax.blue,
@@ -1282,12 +1282,12 @@ function generateTheme(
 			//
 			//
 			interface: syntax.cornflower, // Interfaces, e.g. `MyTrait`
-			typeParameter: syntax.lightBlue, // Generic type annotation, e.g. `T`
+			typeParameter: syntax.skyBlue, // Generic type annotation, e.g. `T`
 			//
 			//
 			variable: syntax.fg,
 			"local:csharp": syntax.fg, // Local variable.
-			parameter: syntax.lightBlue,
+			parameter: syntax.violet,
 			property: syntax.lightPurple, // Object members.
 			"field:csharp": syntax.lightPurple, // Object members.
 			"field.static:csharp": {
@@ -1327,7 +1327,7 @@ function generateTheme(
 			//
 			//attribute: syntax.attribute, // The #[]!() symbols in an attribute.
 			unresolvedReference: {
-				foreground: syntax.strongPink,
+				foreground: syntax.red,
 			},
 			//
 			// CSHARP
@@ -1341,9 +1341,9 @@ function generateTheme(
 			// RUST
 			"operator.controlFlow:rust": syntax.pink,
 			"label:rust": syntax.lime,
-			"lifetime:rust": syntax.violet,
+			"lifetime:rust": syntax.purple,
 			"formatSpecifier:rust": syntax.violet,
-			"macroBang:rust": syntax.red, // The ! in a macro call.
+			"macroBang:rust": syntax.strongPink, // The ! in a macro call.
 			//
 			// REFERENCE
 			"variable.reference": {
@@ -1368,15 +1368,15 @@ function generateTheme(
 				fontStyle: "bold",
 			},
 			"method.mutable": {
-				foreground: syntax.green,
+				foreground: syntax.boldGreen,
 				fontStyle: "bold",
 			},
 			"function.mutable": {
-				foreground: syntax.green,
+				foreground: syntax.boldGreen,
 				fontStyle: "bold",
 			},
 			"parameter.mutable": {
-				foreground: syntax.boldLightBlue,
+				foreground: syntax.boldViolet,
 				fontStyle: "bold",
 			},
 			"selfKeyword.mutable": {
@@ -1390,15 +1390,15 @@ function generateTheme(
 				fontStyle: "italic bold",
 			},
 			"method.mutable.reference": {
-				foreground: syntax.green,
+				foreground: syntax.boldGreen,
 				fontStyle: "italic bold",
 			},
 			"function.mutable.reference": {
-				foreground: syntax.green,
+				foreground: syntax.boldGreen,
 				fontStyle: "italic bold",
 			},
 			"parameter.mutable.reference": {
-				foreground: syntax.boldLightBlue,
+				foreground: syntax.boldViolet,
 				fontStyle: "italic bold",
 			},
 			"selfKeyword.mutable.reference": {
@@ -1795,7 +1795,7 @@ function generateTheme(
 					"variable.parameter.ts",
 				],
 				settings: {
-					foreground: syntax.lightBlue,
+					foreground: syntax.violet,
 				},
 			},
 			{
@@ -2071,7 +2071,7 @@ function generateTheme(
 				name: "Unresolved Symbol",
 				scope: ["invalid", "invalid.illegal"],
 				settings: {
-					foreground: syntax.strongPink,
+					foreground: syntax.red,
 				},
 			},
 			{
@@ -3671,12 +3671,13 @@ export interface SyntaxColors {
 	skyBlue: string;
 	blue: string;
 	purple: string;
+	// idk if I like violet for parameters, maybe light pale green?
 	violet: string;
 	// Bold text, due to it's boldness, has a higher contrast. To maintain the same perceptual contrast, a lower
 	// contrast colour must be used instead.
+	boldGreen: string,
 	boldPink: string;
-	boldBlue: string;
-	boldLightBlue: string;
+	boldViolet: string;
 	boldFg: string;
 
 	// light colors

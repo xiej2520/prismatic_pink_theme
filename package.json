@@ -51,11 +51,6 @@
 	"contributes": {
 		"themes": [
 			{
-				"label": "Pink Candy Dark",
-				"uiTheme": "vs-dark",
-				"path": "./themes/pink-candy-dark.json"
-			},
-			{
 				"label": "Prismatic Pink",
 				"uiTheme": "vs-dark",
 				"path": "./themes/prismatic-pink.json"
