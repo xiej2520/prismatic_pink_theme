@@ -1042,9 +1042,9 @@ function generateTheme(
 			//
 			// WINDOW [x]
 			"titleBar.activeForeground": color.text.normal,
-			"titleBar.activeBackground": color.ui.secondaryBg,
+			"titleBar.activeBackground": color.ui.primaryBg,
 			"titleBar.inactiveForeground": color.text.light,
-			"titleBar.inactiveBackground": color.ui.secondaryBg,
+			"titleBar.inactiveBackground": color.ui.primaryBg,
 			//"titleBar.border": "",
 			...menu,
 			//"window.activeBorder": "",
