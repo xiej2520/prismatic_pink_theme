@@ -48,16 +48,17 @@ export const darkSyntax: SyntaxColors = {
 	//deepBlue: "#5C79ED",
 	cyan: "#15C9C5",
 	lightBlue: "#97BCCD",
+	skyBlue: "#5CA2ED",
 	blue: "#10B1FE",
 	cornflower: "#8AA5FF",
 
 	purple: "#DD99FF",
+	violet: "#DD99FF",
 	lightPurple: "#CFB5E8",
 
 	pink: "#F85EB4",
 	lightPink: "#EEBBFF",
 	strongPink: "#FF2884",
-	mauve: "#B58E95",
 	boldPink: "#F750AE",
 	boldBlue: "#01AAFA",
 	boldLightBlue: "#5CA2ED",

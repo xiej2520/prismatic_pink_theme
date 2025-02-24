@@ -19,17 +19,18 @@ export const blackContrastSyntax: SyntaxColors = {
 	//deepBlue: "#5C79ED",
 	cyan: "#15C9C5",
 	lightBlue: "#97BCCD",
+	skyBlue: "#5CA2ED",
 	blue: "#10B1FE",
 	cornflower: "#A3ACFF",
 
 	purple: "#DD99FF",
 	lightPurple: "#E3CEF2",
+	violet: "A177F5",
 
 	pink: "#F85EB4",
 	lightPink: "#EEBBFF",
 	strongPink: "#FF2884",
 
-	mauve: "#B58E95",
 	boldPink: "#F750AE",
 	boldBlue: "#01AAFA",
 	boldLightBlue: "#87B2C5",
