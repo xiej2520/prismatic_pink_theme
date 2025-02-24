@@ -4,7 +4,7 @@ export const blackContrastSyntax: SyntaxColors = {
 	// aim for >9.5 contrast https://webaim.org/resources/contrastchecker/
 	fg: "#D3D7DE",
 	gray: "#828DA0",
-	fadedGray: "#636D83",
+	fadedGray: "#7A7A8A",
 
 	pink: "#F85EB4",
 	strongPink: "#FF2884",
@@ -39,17 +39,17 @@ export const blackContrastColors: UiColors = {
 	text: {
 		// Most ui text, text editor default text
 		//normal: "#ABB2BF",
-		normal: "#CFD7E6", // brighter, blue tinted
+		normal: "#E8EBF2", // brighter, blue tinted
 
 		// Setting header text
-		bold: "#B9BFCA",
+		bold: "#CFD7E6",
 
 		// Text editor line number, text editor suggestion ghost text, list deemphasized text, tab unfocused title,
 		// (??? x1)
-		muted: "#636D83",
+		muted: "#A0A9C5",
 
 		// Breadcrumb text, general description text, titlebar unfocused text
-		light: "#7C869B",
+		light: "#B0B8CF",
 
 		// Button text, extension button text, status bar when debugging text & icons
 		//
@@ -67,12 +67,12 @@ export const blackContrastColors: UiColors = {
 
 		decoration: {
 			// Text editor whitespace chars, text editor indentation guides, text editor rulers
-			light: "#3D434F",
+			light: "#535B6E",
 
 			// Text editor matching bracket border, text editor corrent indentation guide
 			//
 			// MONO_GUIDES: Bracket match guides
-			dark: "#5A6375",
+			dark: "#F829A0",
 
 			// Codelens
 			//
@@ -96,17 +96,17 @@ export const blackContrastColors: UiColors = {
 		// Text editor folded line, text editor hover over symbol background box
 		//
 		// NORMAL_LINE: Text editor current line background
-		currentLineBgA: "#FFFFFF07",
+		currentLineBgA: "#FFFFFF20",
 		// ALT_LINE: Text editor current line border
-		currentLineBorder: "#FFFFFF10",
+		currentLineBorder: "#FFFFFF20",
 
 		// Text editor selection background box, text editor matching text background box, text editor matching
 		// symbol background box, text editor selection boxes, general selection, input field, terminal selection,
-		selectionBg: "#392735", // FF4C981A on primaryBg
-		selectionBgA: "#FF4C981A",
+		selectionBg: "#FF288440", // FF4C981A on primaryBg
+		selectionBgA: "#FF288440",
 		// Text editor unfocused selection background box, text editor find current range background box, terminal
 		// unfocused selection
-		secondarySelectionBgA: "#FF4C9810",
+		secondarySelectionBgA: "#FF288430",
 
 		// Text editor tabstop background box
 		tabstopBgA: "#FF4C981A",
@@ -140,7 +140,9 @@ export const blackContrastColors: UiColors = {
 		// DISABLED_STATUS_BAR: MINIMAL: status bar remote icon
 		//
 		// MINIMAL: list & command bar matching text, badge text
+		// TODO: split these up, especially sidebar list selected element background
 		primary: "#FF1277",
+
 		primaryHover: "#DA005F",
 		link: "#ff388d",
 		linkHover: "#ff4c98",
@@ -184,7 +186,7 @@ export const blackContrastColors: UiColors = {
 		testQueued: "#018ACC",
 		testFailed: "#FF1277",
 		testUnset: "#E17615",
-		testSkipped: "#636D83",
+		testSkipped: "#7A7A8A",
 	},
 
 	git: {
@@ -194,14 +196,14 @@ export const blackContrastColors: UiColors = {
 		renamed: "#13BBB7",
 		untracked: "#C75AF3",
 		removedOrConflicting: "#FF1277",
-		ignoredOrSubmodule: "#636D83",
+		ignoredOrSubmodule: "#7A7A8A",
 		current: "#31A155",
 		incoming: "#018ACC",
 
 		// Diff viewer line backgrounds, refactor preview text backgrounds
 		insertedBgA: "#31A1552A", // Entire modified line #243a31 Specifically added #264b37
 		removedBgA: "#FF127720", // Entire modified line #3f2234 Specifically removed #58203c
-		diffDiagonal: "#636D8388",
+		diffDiagonal: "#7A7A8A88",
 
 		// Conflict viewer line backgrounds
 		currentBgA: "#31A1552A",
@@ -227,7 +229,7 @@ export const blackContrastColors: UiColors = {
 
 		// Gutter icons
 		breakpoint: "#FF1277",
-		breakpointDisabled: "#636D83",
+		breakpointDisabled: "#7A7A8A",
 
 		// Exception widget background
 		exceptionBg: "#3D412F",
@@ -242,11 +244,11 @@ export const blackContrastColors: UiColors = {
 
 	terminal: {
 		// Command decoration icons
-		default: "#636D83", // +(SetMark sequence)
+		default: "#7A7A8A", // +(SetMark sequence)
 		success: "#31A155",
 		error: "#FF1277",
 
-		foreground: "#ABB2BF", // 0m (foreground)
+		foreground: "#D3D7DE", // 0m (foreground)
 		ansiForeground: "#1C1C1C", //37m (background)
 		ansiContrastForeground: "#FFFFFF", // (technicall 37;1m but vscode also applies this to just bold 1m, hence it's white)
 		ansiBackground: "#FFFFFF", // 30m
@@ -288,37 +290,37 @@ export const blackContrastColors: UiColors = {
 		tertiaryBg: "#FF1277",
 
 		// Breadcrumb, menu, any button which dropdowns
-		dropdownBg: "#1C1C1C",
+		dropdownBg: "#181818",
 
 		// Checkbox, dropdown (+list), input field,
-		inputBg: "#1C1C1C",
+		inputBg: "#181818",
 
 		// Tab group, sidebar pane, panel section, terminal, list
 		primaryDropBg: "#FF4C981A",
 
 		// All borders
-		border: "#3D434F",
+		border: "#404043",
 
 		// Menu separator, command bar group separator, border between pinned and non-pinned tabs, (??? x1)
-		separator: "#3D434F",
+		separator: "#404043",
 
 		// Input field foreground
-		placeholderText: "#646a74",
+		placeholderText: "#B1A3BE",
 
 		// Menu disabled entry foreground, (this is chosen to match `placeholderText` since the disabled text also
 		// has a secondary fade layer)
-		disabledText: "#848A95",
+		disabledText: "#D4C9D9",
 
 		// Little buttons, titlebar menu buttons, editor stick hover
 		//
 		// DISABLED_STATUS_BAR: MINIMAL: Status bar hover/active button overlays
-		hoverBgA: "#FFFFFF1A",
-		activeBgA: "#FFFFFF2A",
+		hoverBgA: "#FF288460",
+		activeBgA: "#FF288480",
 
 		// Lists, command bar hover, notification hover
 		//
 		// MINIMAL: List unfocused selected overlay
-		listHoverBgA: "#FFFFFF10",
+		listHoverBgA: "#FF288440",
 		// DEFAULT: DISABLED_STATUS_BAR: List unfocused selected overlay
 		listInactiveBgA: "#FF4C981A",
 
@@ -332,12 +334,12 @@ export const blackContrastColors: UiColors = {
 		selectedSecondaryBg: "#35343A", // FFFFFF10 on secondaryBg
 
 		// Tree indent guide
-		treeIndent: "#454C59",
+		treeIndent: "#FF1277",
 
 		// Scrollbar/minimap handle overlays
-		scrollBgA: "#FFFFFF10",
-		scrollHoverBgA: "#FFFFFF1F",
-		scrollActiveBgA: "#FFFFFF2F",
+		scrollBgA: "#FFFFFF20",
+		scrollHoverBgA: "#FFFFFF40",
+		scrollActiveBgA: "#FF127760",
 
 		// Shadow whenever some scrollable element is scrolled, shadows around open widgets
 		shadow: "#0000005F",
@@ -350,11 +352,11 @@ export const blackContrastColors: UiColors = {
 		statusHoverBgA: "#FFFFFF2F",
 		statusActiveBgA: "#FFFFFF4F",
 
-		// Tab unfocused indicator
-		unfocusedTab: "#7E3558", // FF4C986A on primaryBg
+		// Tab open but unfocused indicator
+		unfocusedTab: "#FF288080",
 
 		// Activity bar inactive icon
-		activityBarInactive: "#636D83",
+		activityBarInactive: "#7A7A8A",
 		activityBarTopInactive: "#778297",
 
 		// Code actions icon
@@ -401,6 +403,7 @@ export const blackContrastColors: UiColors = {
 		"#9ACC12",
 	],
 
+	// TODO: update with new colors
 	todo: {
 		todo: "#B9BFCA",
 		fixme: "#FF6B66",
