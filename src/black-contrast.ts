@@ -1,40 +1,36 @@
 import { SyntaxColors, UiColors } from "./theme";
 
 export const blackContrastSyntax: SyntaxColors = {
-	fg: "#B9BFCA",
 	// aim for >9.5 contrast https://webaim.org/resources/contrastchecker/
+	fg: "#D3D7DE",
 	gray: "#828DA0",
 	fadedGray: "#636D83",
 
-	red: "#F24646",
-
-	orange: "#FF9866",
-
-	yellow: "#F9C859",
-
-	lime: "#89E736",
-	lightGreen: "#D6FFD6",
-	green: "#3FC56B",
-
-	//deepBlue: "#5C79ED",
-	cyan: "#15C9C5",
-	lightBlue: "#97BCCD",
-	skyBlue: "#5CA2ED",
-	blue: "#10B1FE",
-	cornflower: "#A3ACFF",
-
-	purple: "#DD99FF",
-	lightPurple: "#E3CEF2",
-	violet: "A177F5",
-
 	pink: "#F85EB4",
-	lightPink: "#EEBBFF",
 	strongPink: "#FF2884",
+
+	red: "#F35858",
+	orange: "#FF8142",
+	yellow: "#F9D959",
+	lime: "#89E736",
+	green: "#38CB5E",
+
+	cyan: "#16DAD5",
+	skyBlue: "#77AFEE",
+	blue: "#29BBFF",
+	cornflower: "#A3ACFF",
+	purple: "#B3A4FE",
+	violet: "#CF94FF",
+
+	lightGreen: "#D6FFD6",
+	lightBlue: "#97BCCD",
+	lightPurple: "#E3CEF2",
+	lightPink: "#EEBBFF",
 
 	boldGreen: "#2ECC4B",
 	boldPink: "#F750AE",
-	boldViolet: "D88AFF",
-	boldFg: "#ABB2BF",
+	boldViolet: "#D88AFF",
+	boldFg: "#C5CAD3",
 };
 
 export const blackContrastColors: UiColors = {
