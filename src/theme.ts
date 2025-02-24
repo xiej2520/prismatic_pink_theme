@@ -1288,6 +1288,7 @@ function generateTheme(
 			"xmlDocCommentAttributeValue:csharp": syntax.yellow,
 			//
 			// RUST
+			"keyword.constant": syntax.pink,
 			"operator.controlFlow:rust": syntax.pink,
 			"label:rust": syntax.lime,
 			"lifetime:rust": syntax.purple,
@@ -1400,6 +1401,7 @@ function generateTheme(
 			tomlTableKey: syntax.lime,
 			tomlArrayKey: syntax.violet,
 		},
+		// TextMate grammar token colors
 		tokenColors: [
 			// BASICS
 			{
@@ -1558,7 +1560,7 @@ function generateTheme(
 					"support.function.misc.scss",
 				],
 				settings: {
-					foreground: syntax.blue,
+					foreground: syntax.green,
 				},
 			},
 			{
@@ -1575,7 +1577,7 @@ function generateTheme(
 					"support.function.builtin.zig",
 				],
 				settings: {
-					foreground: syntax.blue,
+					foreground: syntax.strongPink,
 				},
 			},
 			{
@@ -1634,7 +1636,7 @@ function generateTheme(
 					"entity.name.type.class.ts",
 				],
 				settings: {
-					foreground: syntax.green,
+					foreground: syntax.blue,
 				},
 			},
 			{
@@ -1646,26 +1648,13 @@ function generateTheme(
 					"support.enum.core.rust",
 					"entity.name.type.option.rust",
 					"entity.name.type.result.rust",
-					"constant.language.bool.rust",
 					// csharp
 					"entity.name.variable.enum-member.cs",
-					"constant.language.boolean.true.cs",
-					"constant.language.boolean.false.cs",
 					// powershell,
 					"constant.language.powershell",
 					"constant.language.powershell punctuation.definition.variable.powershell",
-					// js
-					"constant.language.boolean.true.js",
-					"constant.language.boolean.false.js",
 					// ts
 					"variable.other.enummember.ts",
-					"constant.language.boolean.true.ts",
-					"constant.language.boolean.false.ts",
-					// yaml
-					"constant.language.boolean.yaml",
-					// toml
-					// Even Better TOML
-					"constant.language.boolean.toml",
 				],
 				settings: {
 					foreground: syntax.cyan,
@@ -1683,7 +1672,7 @@ function generateTheme(
 					"entity.name.type.interface.ts",
 				],
 				settings: {
-					foreground: syntax.violet,
+					foreground: syntax.cornflower,
 				},
 			},
 			{
@@ -1693,7 +1682,7 @@ function generateTheme(
 					"entity.name.type.type-parameter.cs",
 				],
 				settings: {
-					foreground: syntax.green,
+					foreground: syntax.skyBlue,
 				},
 			},
 			//
@@ -1786,7 +1775,32 @@ function generateTheme(
 					"constant.other.boolean.toml",
 				],
 				settings: {
-					foreground: syntax.cyan,
+					foreground: syntax.orange,
+				},
+			},
+			{
+				name: "Booleans",
+				scope: [
+					"constant.language.bool",
+					// rust
+					"constant.language.bool.rust",
+					// csharp
+					"constant.language.boolean.true.cs",
+					"constant.language.boolean.false.cs",
+					// js
+					"constant.language.boolean.true.js",
+					"constant.language.boolean.false.js",
+					// ts
+					"constant.language.boolean.true.ts",
+					"constant.language.boolean.false.ts",
+					// yaml
+					"constant.language.boolean.yaml",
+					// toml
+					// Even Better TOML
+					"constant.language.boolean.toml",
+				],
+				settings: {
+					foreground: syntax.orange,
 				},
 			},
 			//
@@ -2051,14 +2065,14 @@ function generateTheme(
 					"storage.modifier.lifetime.rust",
 				],
 				settings: {
-					foreground: syntax.violet,
+					foreground: syntax.purple,
 				},
 			},
 			{
 				name: "Format Specifier",
 				scope: ["meta.interpolation.rust", "punctuation.definition.interpolation.rust"],
 				settings: {
-					foreground: syntax.violet,
+					foreground: syntax.purple,
 				},
 			},
 			{
@@ -2147,7 +2161,7 @@ function generateTheme(
 					"keyword.operator.logical.powershell",
 				],
 				settings: {
-					foreground: syntax.pink,
+					foreground: syntax.lightGreen,
 				},
 			},
 			{
@@ -2381,7 +2395,7 @@ function generateTheme(
 					"keyword.operator.logical.only.media.css",
 				],
 				settings: {
-					foreground: syntax.pink,
+					foreground: syntax.lightGreen,
 				},
 			},
 			{

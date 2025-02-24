@@ -74,7 +74,7 @@ export const darkColors: UiColors = {
 
 		decoration: {
 			// Text editor whitespace chars, text editor indentation guides, text editor rulers
-			light: "#3D434F",
+			light: "#51576C",
 
 			// Text editor matching bracket border, text editor corrent indentation guide
 			//
