@@ -3,8 +3,8 @@
 <br>
 <p align="center">
 Color themes for VSCode's IDE and editor, using every color of the rainbow, and
-pink accents. Comes in a normal dark version and a <em>very</em> high contrast
-black background version.
+pink accents. Comes in a normal dark version and a <em>very</em> high contrast,
+high saturation black background version.
 
 Forked from [Pink Candy by kuba_p](https://marketplace.visualstudio.com/items?itemName=kuba-p.theme-pink-candy).
 </p>
