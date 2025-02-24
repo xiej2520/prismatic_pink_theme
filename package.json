@@ -18,7 +18,7 @@
 		"url": "https://github.com/KubaP/vscode-pink-candy/issues"
 	},
 	"galleryBanner": {
-		"color": "#22222A",
+		"color": "#1E1E22",
 		"theme": "dark"
 	},
 	"markdown": "github",
@@ -48,14 +48,14 @@
 	"contributes": {
 		"themes": [
 			{
-				"label": "Pink Candy Light",
-				"uiTheme": "vs",
-				"path": "./themes/pink-candy-light.json"
+				"label": "Pink Candy Dark Remix",
+				"uiTheme": "vs-dark",
+				"path": "./themes/pink-candy-dark-remix.json"
 			},
 			{
-				"label": "Pink Candy Dark",
+				"label": "Pink Candy Black Contrast Remix",
 				"uiTheme": "vs-dark",
-				"path": "./themes/pink-candy-dark.json"
+				"path": "./themes/pink-candy-black-contrast-remix.json"
 			},
 			{
 				"label": "Pink Candy Dark Warm",

@@ -1,47 +1,18 @@
 import { SyntaxColors, UiColors } from "./theme";
 
-export const darkSyntax: SyntaxColors = {
-	// Pink Candy Dark (Original)
-	// most colors between 5.5-7.5 contrast, slightly less for bold
-	// https://webaim.org/resources/contrastchecker/
-	// hex    contrast color
-	// 22222A background
-	// B9BFCA 8.55 fg: variables, references
-	// 828DA0 4.71 gray: punctuation ";", comments, operators
-	// 
-	// FF2884 4.42 strongPink: error, unresolved reference
-	// F85EB4 5.45 pink: keywords
-	// D177F5 5.77 purple: traits, lifetimes
-	// 10B1FE 6.57 blue: functions
-	// 97BCCD 7.81 lightBlue: parameters (very gray)
-	// 15C9C5 7.66 cyan: enum members, constants, booleans
-	//
-	// 3FC56B 7.07 green: types, type parameters
-	// 9ACC12 8.28 lime, labels
-	// F9C859 10.09 yellow: strings
-	// FF6B66 5.67 orange: numbers, escape sequences, chars, unsafe, derive, hash attributes #[]
-	// B58E95 5.46 mauve: members/properties
-	//
-	// F750AE 5.04 boldPink: mut "self"
-	// 01AAFA 6.11 boldBlue: mutable function/method fn boldBlue(&mut)
-	// 87B2C5 6.91 boldLightBlue: mutable reference parameter fn f(boldLightBlue: &mut)
-	// ABB2BF 7.40 boldFg: mutable variable, mutable reference
-
-	// Pink Candy Dark remix with darker, more neutral background #1E1E22
-	// try to keep contrast to 7.5-9, slightly more saturation
+export const blackContrastSyntax: SyntaxColors = {
 	fg: "#B9BFCA",
+	// aim for >9.5 contrast https://webaim.org/resources/contrastchecker/
 	gray: "#828DA0",
 	fadedGray: "#636D83",
 
 	red: "#F24646",
 
-	orange: "#FF8D5C",
+	orange: "#FF9866",
 
-	// go for warmer yellow
-	yellow: "#E3C24A",
+	yellow: "#F9C859",
 
 	lime: "#89E736",
-	// operators are short, extremely high contrast but low saturation should be fine
 	lightGreen: "#D6FFD6",
 	green: "#3FC56B",
 
@@ -49,22 +20,23 @@ export const darkSyntax: SyntaxColors = {
 	cyan: "#15C9C5",
 	lightBlue: "#97BCCD",
 	blue: "#10B1FE",
-	cornflower: "#8AA5FF",
+	cornflower: "#A3ACFF",
 
 	purple: "#DD99FF",
-	lightPurple: "#CFB5E8",
+	lightPurple: "#E3CEF2",
 
 	pink: "#F85EB4",
 	lightPink: "#EEBBFF",
 	strongPink: "#FF2884",
+
 	mauve: "#B58E95",
 	boldPink: "#F750AE",
 	boldBlue: "#01AAFA",
-	boldLightBlue: "#5CA2ED",
+	boldLightBlue: "#87B2C5",
 	boldFg: "#ABB2BF",
 };
 
-export const darkColors: UiColors = {
+export const blackContrastColors: UiColors = {
 	// Note: All non-alpha backgrounds are based on `primaryBg`.
 
 	text: {
@@ -77,8 +49,7 @@ export const darkColors: UiColors = {
 
 		// Text editor line number, text editor suggestion ghost text, list deemphasized text, tab unfocused title,
 		// (??? x1)
-		// TODO: separate line number color
-		muted: "#8F9199",
+		muted: "#636D83",
 
 		// Breadcrumb text, general description text, titlebar unfocused text
 		light: "#7C869B",
@@ -104,7 +75,7 @@ export const darkColors: UiColors = {
 			// Text editor matching bracket border, text editor corrent indentation guide
 			//
 			// MONO_GUIDES: Bracket match guides
-			dark: "#F829A0",
+			dark: "#5A6375",
 
 			// Codelens
 			//
@@ -128,17 +99,17 @@ export const darkColors: UiColors = {
 		// Text editor folded line, text editor hover over symbol background box
 		//
 		// NORMAL_LINE: Text editor current line background
-		currentLineBgA: "#FFFFFF10",
+		currentLineBgA: "#FFFFFF07",
 		// ALT_LINE: Text editor current line border
 		currentLineBorder: "#FFFFFF10",
 
 		// Text editor selection background box, text editor matching text background box, text editor matching
 		// symbol background box, text editor selection boxes, general selection, input field, terminal selection,
-		selectionBg: "#FF288440",
-		selectionBgA: "#FF288440",
+		selectionBg: "#392735", // FF4C981A on primaryBg
+		selectionBgA: "#FF4C981A",
 		// Text editor unfocused selection background box, text editor find current range background box, terminal
 		// unfocused selection
-		secondarySelectionBgA: "#FF288420",
+		secondarySelectionBgA: "#FF4C9810",
 
 		// Text editor tabstop background box
 		tabstopBgA: "#FF4C981A",
@@ -146,12 +117,12 @@ export const darkColors: UiColors = {
 		// Text editor & search sidebar find match background box, text editor match line background, peek view
 		// match background box, list filter widget background, list filter match background, terminal find match
 		// background box, (??? x1)
-		matchBg: "#CCD00C3C",
-		matchBgA: "#CCD00C3C", // yellow
+		matchBg: "#4E522B",
+		matchBgA: "#CCD00C3A",
 
 		// Text editor & search sidebar find match border, peek view match border, list filter match border,
 		// terminal find match border,
-		matchBorder: "#31A1558A",
+		matchBorder: "#31A155",
 		matchBorderA: "#31A1558A",
 	},
 
@@ -279,7 +250,7 @@ export const darkColors: UiColors = {
 		error: "#FF1277",
 
 		foreground: "#ABB2BF", // 0m (foreground)
-		ansiForeground: "#22222A", //37m (background)
+		ansiForeground: "#1C1C1C", //37m (background)
 		ansiContrastForeground: "#FFFFFF", // (technicall 37;1m but vscode also applies this to just bold 1m, hence it's white)
 		ansiBackground: "#FFFFFF", // 30m
 		ansiContrastBackground: "#666666", // 30;1m
@@ -305,9 +276,8 @@ export const darkColors: UiColors = {
 		// background
 		//
 		// MINIMAL: Badge background,
-		// pure gray feels warmer, add slight blue tint
+		primaryBg: "#000000",
 		//primaryBg: "#22222A",
-		primaryBg: "#1E1E22",
 
 		// Widgets, hover widget status bar, peek view list, tab row background, tab row empty background, tab
 		// inactive background, tab unfocused background, sidebar background, panel section header background,
@@ -315,16 +285,16 @@ export const darkColors: UiColors = {
 		// code-block background, keybind table header backgrounds, keybind table even row background
 		//
 		// DISABLED_STATUS_BAR: MINIMAL: Status bar background, status bar remote icon background,
-		secondaryBg: "#1C1C20",
+		secondaryBg: "#101010",
 
 		// Sidebar section header background
-		tertiaryBg: "#121218",
+		tertiaryBg: "#FF1277",
 
 		// Breadcrumb, menu, any button which dropdowns
-		dropdownBg: "#1E1E22",
+		dropdownBg: "#1C1C1C",
 
 		// Checkbox, dropdown (+list), input field,
-		inputBg: "#1E1E22",
+		inputBg: "#1C1C1C",
 
 		// Tab group, sidebar pane, panel section, terminal, list
 		primaryDropBg: "#FF4C981A",
@@ -336,12 +306,11 @@ export const darkColors: UiColors = {
 		separator: "#3D434F",
 
 		// Input field foreground
-		// make faded text readable
-		placeholderText: "#B1A3BE",
+		placeholderText: "#646a74",
 
 		// Menu disabled entry foreground, (this is chosen to match `placeholderText` since the disabled text also
 		// has a secondary fade layer)
-		disabledText: "#D4C9D9",
+		disabledText: "#848A95",
 
 		// Little buttons, titlebar menu buttons, editor stick hover
 		//
@@ -366,12 +335,12 @@ export const darkColors: UiColors = {
 		selectedSecondaryBg: "#35343A", // FFFFFF10 on secondaryBg
 
 		// Tree indent guide
-		treeIndent: "#FF1277",
+		treeIndent: "#454C59",
 
 		// Scrollbar/minimap handle overlays
-		scrollBgA: "#FFFFFF20",
-		scrollHoverBgA: "#FFFFFF40",
-		scrollActiveBgA: "#FF127760",
+		scrollBgA: "#FFFFFF10",
+		scrollHoverBgA: "#FFFFFF1F",
+		scrollActiveBgA: "#FFFFFF2F",
 
 		// Shadow whenever some scrollable element is scrolled, shadows around open widgets
 		shadow: "#0000005F",
@@ -384,8 +353,8 @@ export const darkColors: UiColors = {
 		statusHoverBgA: "#FFFFFF2F",
 		statusActiveBgA: "#FFFFFF4F",
 
-		// Tab open but unfocused indicator
-		unfocusedTab: "#FF4C9880",
+		// Tab unfocused indicator
+		unfocusedTab: "#7E3558", // FF4C986A on primaryBg
 
 		// Activity bar inactive icon
 		activityBarInactive: "#636D83",
@@ -413,7 +382,6 @@ export const darkColors: UiColors = {
 		preformatText: "#09A1ED",
 	},
 
-	// TODO: Update with new colors
 	brackets: {
 		one: "#3FC56B",
 		two: "#10B1FE",
