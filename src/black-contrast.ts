@@ -24,10 +24,10 @@ export const blackContrastSyntax: SyntaxColors = {
 
 	lightGreen: "#D6FFD6",
 	lightBlue: "#97BCCD",
-	lightPurple: "#E3CEF2",
+	lightPurple: "#D3C3EF",
 	lightPink: "#EEBBFF",
 
-	boldGreen: "#2ECC4B",
+	boldGreen: "#2BBF46",
 	boldPink: "#F750AE",
 	boldViolet: "#D88AFF",
 	boldFg: "#C5CAD3",
@@ -77,7 +77,7 @@ export const blackContrastColors: UiColors = {
 			// Codelens
 			//
 			// DEFAULT_INLAY: Inlay hint text
-			codelens: "#9C9C9C",
+			codelens: "#9C9CA4",
 
 			// BCKG_INLAY: Inlay hint text
 			alt1Inlay: "#9099AB",
@@ -272,7 +272,7 @@ export const blackContrastColors: UiColors = {
 		// editor minimap, breacrumbs, hover widget, peek view text editor, peek view text gutter, tab empty group,
 		// tab drop-into promp, tab active background, tab hover background, tab zen mode sides, activity bar
 		// background, welcome page background, panel background, notification background, command center
-		// background
+		// background, titlebar
 		//
 		// MINIMAL: Badge background,
 		primaryBg: "#000000",
@@ -280,17 +280,17 @@ export const blackContrastColors: UiColors = {
 
 		// Widgets, hover widget status bar, peek view list, tab row background, tab row empty background, tab
 		// inactive background, tab unfocused background, sidebar background, panel section header background,
-		// debug toolbar background & border, notification centre header, titlebar, block quote background,
+		// debug toolbar background & border, notification centre header, block quote background,
 		// code-block background, keybind table header backgrounds, keybind table even row background
 		//
 		// DISABLED_STATUS_BAR: MINIMAL: Status bar background, status bar remote icon background,
 		secondaryBg: "#101010",
 
 		// Sidebar section header background
-		tertiaryBg: "#FF1277",
+		tertiaryBg: "#000000",
 
 		// Breadcrumb, menu, any button which dropdowns
-		dropdownBg: "#181818",
+		dropdownBg: "#000000",
 
 		// Checkbox, dropdown (+list), input field,
 		inputBg: "#181818",
@@ -299,7 +299,7 @@ export const blackContrastColors: UiColors = {
 		primaryDropBg: "#FF4C981A",
 
 		// All borders
-		border: "#404043",
+		border: "#222228",
 
 		// Menu separator, command bar group separator, border between pinned and non-pinned tabs, (??? x1)
 		separator: "#404043",
@@ -381,6 +381,7 @@ export const blackContrastColors: UiColors = {
 		preformatText: "#09A1ED",
 	},
 
+	// TODO: update with new colors
 	brackets: {
 		one: "#3FC56B",
 		two: "#10B1FE",
@@ -403,7 +404,6 @@ export const blackContrastColors: UiColors = {
 		"#9ACC12",
 	],
 
-	// TODO: update with new colors
 	todo: {
 		todo: "#B9BFCA",
 		fixme: "#FF6B66",
