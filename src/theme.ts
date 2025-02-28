@@ -1329,6 +1329,51 @@ function generateTheme(
 			unresolvedReference: {
 				foreground: syntax.red,
 			},
+			// C
+			"macro:c": {
+				fontStyle: "underline"
+			},
+			// might be too annoying
+			"variable:c": {
+				fontStyle: "bold"
+			},
+			"variable.readonly:c": {
+				fontStyle: ""
+			},
+			"parameter:c": {
+				fontStyle: "bold"
+			},
+			"parameter.readonly:c": {
+				fontStyle: ""
+			},
+			// C++
+			"macro:cpp": {
+				fontStyle: "underline"
+			},
+			"variable:cpp": {
+				fontStyle: "bold"
+			},
+			"variable.readonly:cpp": {
+				fontStyle: ""
+			},
+			"parameter:cpp": {
+				fontStyle: "bold"
+			},
+			"parameter.readonly:cpp": {
+				fontStyle: ""
+			},
+			"property:cpp": {
+				fontStyle: "bold"
+			},
+			"property.readonly:cpp": {
+				fontStyle: ""
+			},
+			"method:cpp": {
+				fontStyle: "bold"
+			},
+			"method.readonly:cpp": {
+				fontStyle: ""
+			},
 			//
 			// CSHARP
 			xmlDocCommentText: syntax.fg,
@@ -1547,7 +1592,9 @@ function generateTheme(
 				scope: [
 					"punctuation",
 					"keyword.operator",
-					//
+					// c++
+					"entity.name.operator.cpp",
+					// rust
 					"keyword.operator.sigil.rust",
 					"keyword.operator.access.dot.rust",
 					"keyword.operator.key-value.rust",
@@ -1632,6 +1679,18 @@ function generateTheme(
 				},
 			},
 			{
+				// Macros in C/C++
+				name: "Macros in C/C++",
+				scope: [
+					"entity.name.function.preprocessor.c",
+					"entity.name.function.preprocessor.cpp",
+				],
+				settings: {
+					foreground: syntax.strongPink,
+					fontStyle: "underline"
+				}
+			},
+			{
 				name: "Non-primitive Types",
 				scope: [
 					"support.type",
@@ -1649,6 +1708,7 @@ function generateTheme(
 					"storage.type.object.array.java",
 					"storage.type.c",
 					"storage.type.built-in.c",
+					"storage.type.built-in.primitive.c",
 					"meta.function.definition.parameters.c",
 					"storage.type.built-in.cpp",
 					"storage.type.built-in.primitive.cpp",
@@ -1668,6 +1728,10 @@ function generateTheme(
 					"basicTypes.nim",
 					"meta.class.stanza.dune",
 					"storage.type.cs",
+					// c++
+					"entity.name.type.cpp",
+					"entity.name.type.parameter.cpp",
+					"entity.name.type.enum.cpp",
 					// rust
 					"entity.name.type.rust",
 					"entity.name.type.struct.rust",
@@ -1729,6 +1793,8 @@ function generateTheme(
 			{
 				name: "Type Parameters",
 				scope: [
+					// c++
+					"entity.name.type.template.cpp",
 					// rust
 					"entity.name.type.type-parameter.cs",
 				],
@@ -1808,6 +1874,7 @@ function generateTheme(
 			{
 				name: "Constants",
 				scope: [
+					"constant",
 					// rust
 					"constant.other.caps.rust",
 					// csharp
