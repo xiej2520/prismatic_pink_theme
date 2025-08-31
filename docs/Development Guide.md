@@ -117,6 +117,7 @@ When adding a new file or directory at the repository root, make sure to update
 Using `JetBrains/colorSchemeTool` to export `.icls` themes for Intellij.
 
 `build/prismatic-pink.icls`, `build/prismatic-pink-contrast.icls`.
+`build/Prismatic_pink.icls` is manual Intellij configured theme export.
 
 For Zed, in Zed project:
 ```sh
