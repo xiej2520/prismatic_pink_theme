@@ -2771,7 +2771,7 @@ function generateTheme(
 				name: "JSON - Key",
 				scope: "support.type.property-name.json",
 				settings: {
-					foreground: syntax.pink,
+					foreground: syntax.lightPurple,
 				},
 			},
 			{

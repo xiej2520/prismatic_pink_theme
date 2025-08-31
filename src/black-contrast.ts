@@ -307,9 +307,8 @@ export const blackContrastColors: UiColors = {
 		// Input field foreground
 		placeholderText: "#B1A3BE",
 
-		// Menu disabled entry foreground, (this is chosen to match `placeholderText` since the disabled text also
-		// has a secondary fade layer)
-		disabledText: "#D4C9D9",
+		// Menu disabled entry foreground
+		disabledText: "#B499B9",
 
 		// Little buttons, titlebar menu buttons, editor stick hover
 		//

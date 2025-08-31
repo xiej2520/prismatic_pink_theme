@@ -28,7 +28,7 @@ export const darkSyntax: SyntaxColors = {
 
 	purple: "#A177F5",
 	violet: "#DD99FF",
-	lightPurple: "#CFB5E8",
+	lightPurple: "#D5C0E9",
 
 	pink: "#F85EB4",
 	lightPink: "#EEBBFF",
@@ -314,9 +314,8 @@ export const darkColors: UiColors = {
 		// make faded text readable
 		placeholderText: "#B1A3BE",
 
-		// Menu disabled entry foreground, (this is chosen to match `placeholderText` since the disabled text also
-		// has a secondary fade layer)
-		disabledText: "#D4C9D9",
+		// Menu disabled entry foreground
+		disabledText: "#B499B9",
 
 		// Little buttons, titlebar menu buttons, editor stick hover
 		//
