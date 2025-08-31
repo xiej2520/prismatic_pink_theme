@@ -1285,7 +1285,13 @@ function generateTheme(
 			typeParameter: syntax.skyBlue, // Generic type annotation, e.g. `T`
 			//
 			//
-			variable: syntax.fg,
+			variable: {
+				foreground: syntax.fg,
+				fontStyle: "bold"
+			},
+			"variable.readonly": {
+				fontStyle: ""
+			},
 			"local:csharp": syntax.fg, // Local variable.
 			parameter: syntax.violet,
 			property: syntax.lightPurple, // Object members.
@@ -1313,8 +1319,6 @@ function generateTheme(
 			"*.constant": syntax.orange,
 			"variable.static:csharp": syntax.orange, // Constants
 			"variable.readonly:csharp": syntax.orange, // Constants
-			"variable.readonly:javascript": syntax.orange, // Constants
-			"variable.readonly:typescript": syntax.orange, // Constants
 			//
 			//
 			string: syntax.yellow, // `"string"`
@@ -1851,6 +1855,7 @@ function generateTheme(
 				],
 				settings: {
 					foreground: syntax.violet,
+					fontStyle: "bold",
 				},
 			},
 			{
@@ -2236,6 +2241,20 @@ function generateTheme(
 				],
 				settings: {
 					foreground: syntax.violet,
+				},
+			},
+			//
+			// JAVA
+			//
+			{
+				name: "Java - this",
+				scope: [
+					"variable.language.this.java",
+					"variable.language.java", // super
+				],
+				settings: {
+					foreground: syntax.pink,
+					fontStyle: "bold"
 				},
 			},
 			//

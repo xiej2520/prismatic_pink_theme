@@ -2,8 +2,10 @@
 
 ## 0.1.0 - 2025-08-31
 ### Changed
-- Change lightPurple to be less saturated
-- JSON keys now use lightPurple
+- Change lightPurple to be less saturated.
+- JSON keys now use lightPurple.
+- Mutable variables and parameters bold by default.
+- Java `this` and `super` are pink.
 
 
 ## 0.0.1 - 2025-02-23
