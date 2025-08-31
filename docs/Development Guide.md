@@ -111,3 +111,15 @@ When adding a new file or directory at the repository root, make sure to update
 - [ ] Add the new setting to the `resetConfig()` function. **Don't remove** the deprecated setting.
 - [ ] Replace the existing subsection in `/Configuration.md` to explain the
   new setting. Include a note as to how the deprecated setting is migrated to the new one.
+
+## Converting
+
+Using `JetBrains/colorSchemeTool` to export `.icls` themes for Intellij.
+
+`build/prismatic-pink.icls`, `build/prismatic-pink-contrast.icls`.
+
+For Zed, in Zed project:
+```sh
+cargo run -p theme_importer -- prismatic-pink.json --output prismatic-pink-zed.json
+cargo run -p theme_importer -- prismatic-pink-contrast.json --output prismatic-pink-contrast-zed.json
+```
