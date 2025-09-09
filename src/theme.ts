@@ -1292,6 +1292,9 @@ function generateTheme(
 			"variable.readonly": {
 				fontStyle: ""
 			},
+			"variable:toml": {
+				fontStyle: ""
+			},
 			"local:csharp": syntax.fg, // Local variable.
 			parameter: syntax.violet,
 			property: syntax.lightPurple, // Object members.
@@ -1498,8 +1501,8 @@ function generateTheme(
 			"parenthesis.attribute:rust": syntax.orange,
 			//
 			// TOML - Even Better TOML only
-			tomlTableKey: syntax.lime,
-			tomlArrayKey: syntax.violet,
+			tomlTableKey: syntax.blue,
+			tomlArrayKey: syntax.lime,
 		},
 		// TextMate grammar token colors
 		tokenColors: [
@@ -2812,7 +2815,7 @@ function generateTheme(
 				name: "YAML - Keys",
 				scope: ["entity.name.tag.yaml"],
 				settings: {
-					foreground: syntax.pink,
+					foreground: syntax.lightPurple,
 				},
 			},
 			{
@@ -2826,14 +2829,14 @@ function generateTheme(
 				name: "YAML - Null Values",
 				scope: ["constant.language.null.yaml"],
 				settings: {
-					foreground: syntax.pink,
+					foreground: syntax.orange,
 				},
 			},
 			{
 				name: "YAML - Types",
 				scope: ["storage.type.tag-handle.yaml"],
 				settings: {
-					foreground: syntax.pink,
+					foreground: syntax.blue,
 				},
 			},
 			{
@@ -2861,7 +2864,7 @@ function generateTheme(
 					//"variable.key.toml"
 				],
 				settings: {
-					foreground: syntax.pink,
+					foreground: syntax.lightPurple,
 				},
 			},
 			{
@@ -2891,7 +2894,7 @@ function generateTheme(
 					//"variable.key.table.toml"
 				],
 				settings: {
-					foreground: syntax.lime,
+					foreground: syntax.blue,
 				},
 			},
 			{
@@ -2904,7 +2907,7 @@ function generateTheme(
 					//"variable.key.array.table.toml"
 				],
 				settings: {
-					foreground: syntax.violet,
+					foreground: syntax.lime,
 				},
 			},
 			//

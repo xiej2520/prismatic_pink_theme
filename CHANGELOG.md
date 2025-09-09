@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.1 - 2025-09-08
+### Changed
+- Change yaml: lightPurple keys, orange null, blue types
+- TOML: lightPurple keys, blue table keys, lime array keys
+
 ## 0.1.0 - 2025-08-31
 ### Changed
 - Change lightPurple to be less saturated.
