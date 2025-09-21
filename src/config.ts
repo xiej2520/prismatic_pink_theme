@@ -52,6 +52,7 @@ export class Config {
 	inlayStyle: InlayHintStyle;
 	lightTerminalColourScheme: LightTerminalColourScheme;
 	globalAccent: GlobalAccent;
+	boldDefaultMutableVariables: boolean;
 
 	constructor(
 		markdownSyntaxStyle: MarkdownSyntaxStyle,
@@ -60,7 +61,8 @@ export class Config {
 		monochromeBracketGuides: boolean,
 		inlayStyle: InlayHintStyle,
 		lightTerminalColourScheme: LightTerminalColourScheme,
-		globalAccent: GlobalAccent
+		globalAccent: GlobalAccent,
+		boldDefaultMutableVariables: boolean,
 	) {
 		this.markdownSyntaxStyle = markdownSyntaxStyle;
 		this.italicComments = italicComments;
@@ -69,6 +71,7 @@ export class Config {
 		this.monochromeBracketGuides = monochromeBracketGuides;
 		this.lightTerminalColourScheme = lightTerminalColourScheme;
 		this.globalAccent = globalAccent;
+		this.boldDefaultMutableVariables = boldDefaultMutableVariables;
 	}
 
 	/**
@@ -83,7 +86,8 @@ export class Config {
 		false,
 		"noBackground",
 		"normal+dark",
-		"default"
+		"default",
+		false,
 	);
 
 	/**
@@ -218,6 +222,8 @@ export function getConfig(): Config {
 		globalAccent = "default";
 	}
 
+	const boldDefaultMutableVariables: boolean = config.get("boldDefaultMutableVariables") ?? false;
+
 	return new Config(
 		markdownSyntaxStyle,
 		italicComments,
@@ -225,7 +231,8 @@ export function getConfig(): Config {
 		monochromeBracketGuides,
 		inlayStyle,
 		lightTerminalColourScheme,
-		globalAccent
+		globalAccent,
+		boldDefaultMutableVariables,
 	);
 }
 

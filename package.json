@@ -2,7 +2,7 @@
 	"name": "theme-prismatic-pink",
 	"displayName": "Prismatic Pink Theme",
 	"description": "Color themes using every color of the rainbow and pink accents. Comes in a dark version and a very high contrast, high saturation black background version.",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"publisher": "xiej2520",
 	"contributors": [
 		"kuba_p",
@@ -110,6 +110,12 @@
 					"scope": "application",
 					"default": false,
 					"description": "Controls whether comments are italicized."
+				},
+				"theme-prismatic-pink.boldDefaultMutableVariables": {
+					"type": "boolean",
+					"scope": "application",
+					"default": false,
+					"description": "Controls whether mutable variables are bold in languages where they default to mutable, i.e. C++, Java."
 				},
 				"theme-prismatic-pink.alternateCurrentLineStyle": {
 					"type": "boolean",

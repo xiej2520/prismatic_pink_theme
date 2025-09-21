@@ -1285,16 +1285,7 @@ function generateTheme(
 			typeParameter: syntax.skyBlue, // Generic type annotation, e.g. `T`
 			//
 			//
-			variable: {
-				foreground: syntax.fg,
-				fontStyle: "bold"
-			},
-			"variable.readonly": {
-				fontStyle: ""
-			},
-			"variable:toml": {
-				fontStyle: ""
-			},
+			variable: syntax.fg,
 			"local:csharp": syntax.fg, // Local variable.
 			parameter: syntax.violet,
 			property: syntax.lightPurple, // Object members.
@@ -1340,15 +1331,14 @@ function generateTheme(
 			"macro:c": {
 				fontStyle: "underline"
 			},
-			// might be too annoying
 			"variable:c": {
-				fontStyle: "bold"
+				fontStyle: config.boldDefaultMutableVariables ? "bold" : "",
 			},
 			"variable.readonly:c": {
 				fontStyle: ""
 			},
 			"parameter:c": {
-				fontStyle: "bold"
+				fontStyle: config.boldDefaultMutableVariables ? "bold" : "",
 			},
 			"parameter.readonly:c": {
 				fontStyle: ""
@@ -1358,25 +1348,25 @@ function generateTheme(
 				fontStyle: "underline"
 			},
 			"variable:cpp": {
-				fontStyle: "bold"
+				fontStyle: config.boldDefaultMutableVariables ? "bold" : "",
 			},
 			"variable.readonly:cpp": {
-				fontStyle: ""
+				fontStyle: "",
 			},
 			"parameter:cpp": {
-				fontStyle: "bold"
+				fontStyle: config.boldDefaultMutableVariables ? "bold" : "",
 			},
 			"parameter.readonly:cpp": {
 				fontStyle: ""
 			},
 			"property:cpp": {
-				fontStyle: "bold"
+				fontStyle: config.boldDefaultMutableVariables ? "bold" : "",
 			},
 			"property.readonly:cpp": {
 				fontStyle: ""
 			},
 			"method:cpp": {
-				fontStyle: "bold"
+				fontStyle: config.boldDefaultMutableVariables ? "bold" : "",
 			},
 			"method.readonly:cpp": {
 				fontStyle: ""
@@ -1489,6 +1479,64 @@ function generateTheme(
 			},
 			"method.mutable.reference.unsafe": {
 				fontStyle: "bold underline italic",
+			},
+			// JS
+			"variable:javascript": {
+				fontStyle: "bold",
+			},
+			"parameter:javascript": {
+				fontStyle: "bold",
+			},
+			"property:javascript": {
+				fontStyle: "bold",
+			},
+			"variable.readonly:javascript": {
+				fontStyle: "",
+			},
+			"parameter.readonly:javascript": {
+				fontStyle: "",
+			},
+			"property.readonly:javascript": {
+				fontStyle: "",
+			},
+			// TS
+			"variable:typescript": {
+				fontStyle: "bold",
+			},
+			"parameter:typescript": {
+				fontStyle: "bold",
+			},
+			"property:typescript": {
+				fontStyle: "bold",
+			},
+			"variable.readonly:typescript": {
+				fontStyle: "",
+			},
+			"parameter.readonly:typescript": {
+				fontStyle: "",
+			},
+			"property.readonly:typescript": {
+				fontStyle: "",
+			},
+			//
+			// JAVA
+			"variable:java": {
+				fontStyle: config.boldDefaultMutableVariables ? "bold" : "",
+			},
+			"parameter:java": {
+				fontStyle: config.boldDefaultMutableVariables ? "bold" : "",
+			},
+			"property:java": {
+				fontStyle: config.boldDefaultMutableVariables ? "bold" : "",
+			},
+			"variable.readonly:java": {
+				fontStyle: "",
+			},
+			"parameter.readonly:java": {
+				fontStyle: "",
+			},
+			"property.readonly:java": {
+				fontStyle: "",
 			},
 			//
 			// ATTRIBUTES
@@ -1735,6 +1783,7 @@ function generateTheme(
 					"basicTypes.nim",
 					"meta.class.stanza.dune",
 					"storage.type.cs",
+					"entity.name.type",
 					// c++
 					"entity.name.type.cpp",
 					"entity.name.type.parameter.cpp",
@@ -1756,6 +1805,8 @@ function generateTheme(
 					"support.class.component.js",
 					// ts
 					"entity.name.type.class.ts",
+					// java
+					"entity.other.inherited-class.java"
 				],
 				settings: {
 					foreground: syntax.blue,
@@ -1858,12 +1909,12 @@ function generateTheme(
 				],
 				settings: {
 					foreground: syntax.violet,
-					fontStyle: "bold",
 				},
 			},
 			{
 				name: "Members",
 				scope: [
+					"variable.other.object.property",
 					// csharp
 					"entity.name.variable.field.cs",
 					"variable.other.object.property.cs",
@@ -2258,6 +2309,19 @@ function generateTheme(
 				settings: {
 					foreground: syntax.pink,
 					fontStyle: "bold"
+				},
+			},
+			{
+				name: "Java - mutable",
+				scope: [
+					"variables.language.java",
+					"variable.other.definition.java",
+					"variable.other.object.java",
+					"variable.other.object.property.java",
+					"variable.parameter.java",
+				],
+				settings: {
+					fontStyle: config.boldDefaultMutableVariables ? "bold" : "",
 				},
 			},
 			//

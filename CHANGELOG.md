@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2 - 2025-09-21
+### Changed
+- Add `boldDefaultMutableVariables` config option, make variables non-bold by default.
+
 ## 0.1.1 - 2025-09-08
 ### Changed
 - Change yaml: lightPurple keys, orange null, blue types

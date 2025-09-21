@@ -47,3 +47,6 @@ Controls where the accent colours are used.
 ![AccentNoStatus](./img/options/accentNoStatus.png)
 
 ![AccentMinimal](./img/options/accentMinimal.png)
+
+### Bold Default Mutable Variables
+Controls whether mutable variables are bold in languages where they default to mutable, currently C++, Java.

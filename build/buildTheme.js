@@ -34,6 +34,7 @@ const config = {
 	inlayStyle: "noBackground",
 	lightTerminalColourScheme: "normal+dark",
 	globalAccent: "default",
+	boldMutableDefaultVariables: false,
 };
 
 fs.writeFileSync(path.join(folder, "cached_config.json"), JSON.stringify(config));
