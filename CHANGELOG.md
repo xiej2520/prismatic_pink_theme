@@ -1,5 +1,7 @@
 # Changelog
 
+- Change "git.blame.editorDecorationForeground" to gray.
+
 ## 0.1.2 - 2025-09-21
 ### Changed
 - Add `boldDefaultMutableVariables` config option, make variables non-bold by default.

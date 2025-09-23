@@ -1162,7 +1162,7 @@ function generateTheme(
 			"gitDecoration.ignoredResourceForeground": color.git.ignoredOrSubmodule,
 			"gitDecoration.conflictingResourceForeground": color.git.removedOrConflicting,
 			"gitDecoration.submoduleResourceForeground": color.git.ignoredOrSubmodule,
-			"git.blame.editorDecorationForeground": color.text.faded,
+			"git.blame.editorDecorationForeground": syntax.gray,
 			// SCM GRAPH [x]
 			"scmGraph.foreground1": color.gitGraph[2],
 			"scmGraph.foreground2": color.gitGraph[3],
