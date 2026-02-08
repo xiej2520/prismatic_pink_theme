@@ -1,118 +1,292 @@
 import { Config } from "../config";
 import { SyntaxColors } from ".";
 
-export function generateSemanticTheme(
-	syntax: SyntaxColors,
-	config: Config
-) {
-	// Configure comment styles.
-	let commentSemanticStyles;
-	if (config.italicComments) {
-		commentSemanticStyles = {
-			comment: {
-				foreground: syntax.lightPink,
-				fontStyle: "italic",
-			},
-		};
-	} else {
-		commentSemanticStyles = {
-			comment: syntax.lightPink,
-		};
-	}
+/// https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide#semantic-token-classification
+export interface StandardTokenTypeColors {
+  namespace: string;
+  class: string;
+  enum: string;
+  interface: string;
+  struct: string;
+  typeParameter: string;
+  type: string; // usually primitive type eg `bool`, `i32`
+  parameter: string;
+  variable: string;
+  property: string;
+  enumMember: string;
+  decorator: string;
+  event: string; // ???
+  function: string;
+  method: string;
+  macro: string;
+  label: string;
+  comment: string;
+  string: string;
+  regexp: string;
+  operator: string;
+}
+// standard token modifiers
+// declaration
+// definition
+// readonly
+// static
+// deprecated
+// abstract
+// async
+// modification
+// documentation
+// defaultLibrary
 
-  const semanticTokenColors = {
-    keyword: syntax.pink,
+// custom colors
+export interface SemanticThemeColors extends StandardTokenTypeColors {
+  keyword: string,
+  type: string, // usually primitive type eg `bool`, `i32`
+  builtinType: string,
+  selfKeyword: string,
+  newOperator: string,
+
+  punctuation: string,
+  operator: string,
+  arithmetic: string,
+  comparison: string,
+  logical: string,
+  bitwise: string,
+
+  function: string,
+  mutFunction: string,
+  method: string,
+  mutMethod: string,
+  decorator: string,
+  attribute: string,
+  macro: string,
+
+  lifetime: string,
+  label: string,
+  namespace: string,
+
+  struct: string,
+  class: string,
+  typeAlias: string,
+
+  enum: string,
+  union: string,
+  enumMember: string,
+
+  interface: string, // `MyTrait`
+  typeParameter: string, // `<T> T`
+
+  variable: string,
+  mutVariable: string,
+  parameter: string,
+  mutParameter: string,
+  property: string, // Object members
+
+  constant: string,
+  boolean: string,
+  number: string,
+  escapeSequence: string, // `\n`
+  character: string, // `'b'`
+
+  string: string, // `"string"`
+  regexp: string,
+  formatSpecifier: string,
+  
+  comment: string,
+  
+  unsafe: string,
+
+  error: string, // unresolvedReference
+
+  text: string,
+}
+
+export function generateSemanticThemeColors(
+  syntax: SyntaxColors,
+): SemanticThemeColors {
+  const colors: StandardTokenTypeColors = {
     type: syntax.pink,
+
+    operator: syntax.lightGreen,
+
+    function: syntax.green,
+    method: syntax.green,
+    decorator: syntax.green,
+    macro: syntax.strongPink,
+
+    namespace: syntax.fg,
+
+    struct: syntax.blue,
+    class: syntax.blue,
+    enum: syntax.blue,
+
+    enumMember: syntax.cyan,
+
+    interface: syntax.cornflower,
+    typeParameter: syntax.skyBlue,
+
+    variable: syntax.fg,
+    parameter: syntax.violet,
+    property: syntax.lightPurple,
+
+    label: syntax.lime,
+
+    string: syntax.yellow,
+
+    comment: syntax.lightPink,
+
+    event: syntax.lime,
+    regexp: syntax.orange,
+  }
+  
+  const constant = syntax.orange;
+
+  return {
+    keyword: syntax.pink,
+    type: colors.type,
     builtinType: syntax.pink,
     selfKeyword: syntax.pink,
     newOperator: syntax.pink,
-    "plainKeyword:csharp": syntax.pink,
-    "controlKeyword:csharp": syntax.pink,
+
+    punctuation: colors.operator,
+    operator: colors.operator,
+    arithmetic: colors.operator,
+    comparison: colors.operator,
+    logical: colors.operator,
+    bitwise: colors.operator,
+
+    function: colors.function,
+    mutFunction: syntax.boldGreen,
+    method: colors.method,
+    mutMethod: syntax.boldGreen,
+    decorator: colors.decorator,
+    attribute: constant,
+    macro: colors.macro,
+
+    lifetime: syntax.purple,
+    label: colors.label,
+    namespace: colors.namespace,
+
+    struct: colors.struct,
+    class: colors.class,
+    typeAlias: colors.struct,
+
+    enum: colors.enum,
+    union: colors.enum,
+    enumMember: colors.enumMember,
+
+    interface: colors.interface,
+    typeParameter: colors.typeParameter,
+
+    variable: colors.variable,
+    mutVariable: syntax.boldFg,
+    parameter: colors.parameter,
+    mutParameter: syntax.boldViolet,
+    property: colors.property,
+
+    constant,
+    boolean: constant,
+    number: constant,
+    escapeSequence: constant,
+    character: constant,
+
+    string: colors.string,
+    regexp: colors.regexp,
+    formatSpecifier: syntax.purple,
+    
+    comment: colors.comment,
+
+    event: colors.event,
+    
+    unsafe: syntax.red,
+
+    error: syntax.red,
+
+    text: syntax.fg,
+  };
+}
+
+
+export function generateSemanticTheme(
+	semantic: SemanticThemeColors,
+	config: Config
+): Record<string, any> {
+
+	// Configure comment styles
+  const commentSemanticStyle = config.italicComments ? {
+    comment: {
+      foreground: semantic.comment,
+      fontStyle: "italic",
+    },
+  } : { comment: semantic.comment, };
+
+
+  return {
+    ...semantic,
+    // keyword
+    "plainKeyword:csharp": semantic.keyword,
+    "controlKeyword:csharp": semantic.keyword,
     //
+    // operators
     //
-    punctuation: syntax.lightGreen,
-    operator: syntax.lightGreen,
-    arithmetic: syntax.lightGreen,
-    comparison: syntax.lightGreen,
-    logical: syntax.lightGreen,
-    bitwise: syntax.lightGreen,
-    //
-    //
-    function: syntax.green, // Static function.
+    // functions
     "member.static:csharp": {
       // Static function.
-      foreground: syntax.green,
+      foreground: semantic.function,
       fontStyle: "underline",
     },
     "method.static:typescript": {
       // Static method.
-      foreground: syntax.green,
+      foreground: semantic.method,
       fontStyle: "underline",
     },
-    method: syntax.green, // Object method.
-    "member:csharp": syntax.green, // Object method.
-    macro: syntax.strongPink,
-    namespace: syntax.fg,
-    "type:typescript": syntax.blue,
-    struct: syntax.blue,
-    class: syntax.blue,
+    "member:csharp": semantic.method, // Object method.
+    "type:typescript": semantic.type,
+    // types
     "class.static:csharp": {
       // Static class.
-      foreground: syntax.blue,
+      foreground: semantic.type,
       fontStyle: "underline",
     },
-    enum: syntax.blue,
-    union: syntax.blue,
-    typeAlias: syntax.blue,
-    enumMember: syntax.cyan,
-    boolean: syntax.orange,
+    // enums
     //
     //
-    interface: syntax.cornflower, // Interfaces, e.g. `MyTrait`
-    typeParameter: syntax.skyBlue, // Generic type annotation, e.g. `T`
+    // interfaces
     //
     //
-    variable: syntax.fg,
-    "local:csharp": syntax.fg, // Local variable.
-    parameter: syntax.violet,
-    property: syntax.lightPurple, // Object members.
-    "field:csharp": syntax.lightPurple, // Object members.
+    "local:csharp": semantic.variable, // Local variable
+    "field:csharp": semantic.property, // Object members
     "field.static:csharp": {
       // Static object members.
-      foreground: syntax.lightPurple,
+      foreground: semantic.property,
       fontStyle: "underline",
     },
     "property:csharp": {
       // Csharp properties.
-      foreground: syntax.lightPurple,
+      foreground: semantic.property,
       fontStyle: "bold",
     },
     "property.static:csharp": {
       // Cssharp static properties.
-      foreground: syntax.violet,
+      foreground: semantic.property,
       fontStyle: "bold underline",
     },
     "property.static:typescript": {
       // Typescript static members.
-      foreground: syntax.violet,
+      foreground: semantic.property,
       fontStyle: "underline",
     },
-    "*.constant": syntax.orange,
-    "variable.static:csharp": syntax.orange, // Constants
-    "variable.readonly:csharp": syntax.orange, // Constants
+    "*.constant": semantic.constant,
+    "variable.static:csharp": semantic.constant, // Constants
+    "variable.readonly:csharp": semantic.constant, // Constants
     //
     //
-    string: syntax.yellow, // `"string"`
-    "stringVerbatim:csharp": syntax.yellow,
-    escapeSequence: syntax.orange, // `\n`
-    character: syntax.orange, // `'b'`
-    number: syntax.orange,
-    ...commentSemanticStyles,
+    "stringVerbatim:csharp": semantic.string,
+    ...commentSemanticStyle,
     //
     //
     //attribute: syntax.attribute, // The #[]!() symbols in an attribute.
     unresolvedReference: {
-      foreground: syntax.red,
+      foreground: semantic.error,
     },
     // C
     "macro:c": {
@@ -160,20 +334,20 @@ export function generateSemanticTheme(
     },
     //
     // CSHARP
-    xmlDocCommentText: syntax.fg,
-    "xmlDocCommentName:csharp": syntax.fadedGray,
-    "xmlDocCommentDelimiter:csharp": syntax.fadedGray,
-    "xmlDocCommentAttributeName:csharp": syntax.orange,
-    "xmlDocCommentAttributeQuotes:csharp": syntax.yellow,
-    "xmlDocCommentAttributeValue:csharp": syntax.yellow,
+    xmlDocCommentText: semantic.text,
+    "xmlDocCommentName:csharp": semantic.comment,
+    "xmlDocCommentDelimiter:csharp": semantic.comment,
+    "xmlDocCommentAttributeName:csharp": semantic.attribute,
+    "xmlDocCommentAttributeQuotes:csharp": semantic.string,
+    "xmlDocCommentAttributeValue:csharp": semantic.string,
     //
     // RUST
-    "keyword.constant": syntax.pink,
-    "operator.controlFlow:rust": syntax.pink,
-    "label:rust": syntax.lime,
-    "lifetime:rust": syntax.purple,
-    "formatSpecifier:rust": syntax.violet,
-    "macroBang:rust": syntax.strongPink, // The ! in a macro call.
+    "keyword.constant": semantic.keyword,
+    "operator.controlFlow:rust": semantic.keyword,
+    "label:rust": semantic.label,
+    "lifetime:rust": semantic.lifetime,
+    "formatSpecifier:rust": semantic.formatSpecifier,
+    "macroBang:rust": semantic.macro, // The ! in a macro call.
     //
     // REFERENCE
     "variable.reference": {
@@ -194,47 +368,47 @@ export function generateSemanticTheme(
     //
     // MUTABLE
     "variable.mutable": {
-      foreground: syntax.boldFg,
+      foreground: semantic.mutVariable,
       fontStyle: "bold",
     },
     "method.mutable": {
-      foreground: syntax.boldGreen,
+      foreground: semantic.mutMethod,
       fontStyle: "bold",
     },
     "function.mutable": {
-      foreground: syntax.boldGreen,
+      foreground: semantic.mutFunction,
       fontStyle: "bold",
     },
     "parameter.mutable": {
-      foreground: syntax.boldViolet,
+      foreground: semantic.mutParameter,
       fontStyle: "bold",
     },
-    "selfKeyword.mutable": {
-      foreground: syntax.boldPink,
-      fontStyle: "bold",
-    },
+    //"selfKeyword.mutable": {
+    //  foreground: syntax.boldPink,
+    //  fontStyle: "bold",
+    //},
     //
     // MUTABLE REFERENCE
     "variable.mutable.reference": {
-      foreground: syntax.boldFg,
+      foreground: semantic.mutVariable,
       fontStyle: "italic bold",
     },
     "method.mutable.reference": {
-      foreground: syntax.boldGreen,
+      foreground: semantic.mutMethod,
       fontStyle: "italic bold",
     },
     "function.mutable.reference": {
-      foreground: syntax.boldGreen,
+      foreground: semantic.mutFunction,
       fontStyle: "italic bold",
     },
     "parameter.mutable.reference": {
-      foreground: syntax.boldViolet,
+      foreground: semantic.mutParameter,
       fontStyle: "italic bold",
     },
-    "selfKeyword.mutable.reference": {
-      foreground: syntax.boldPink,
-      fontStyle: "italic bold",
-    },
+    //"selfKeyword.mutable.reference": {
+    //  foreground: syntax.boldPink,
+    //  fontStyle: "italic bold",
+    //},
     // Unset the underline effect, since something like `+=` would otherwise be underlined.
     "arithmetic.mutable": {
       fontStyle: "",
@@ -245,7 +419,7 @@ export function generateSemanticTheme(
     },
     //
     // UNSAFE
-    "*.unsafe": syntax.red,
+    "*.unsafe": semantic.unsafe,
     "keyword.unsafe": {
       fontStyle: "bold underline",
     },
@@ -327,19 +501,18 @@ export function generateSemanticTheme(
     },
     //
     // ATTRIBUTES
-    "attributeBracket.attribute:rust": syntax.orange,
-    "builtinAttribute.attribute:rust": syntax.orange,
-    "toolModule.attribute:rust": syntax.orange,
-    "decorator.attribute:rust": syntax.orange,
-    "derive.attribute:rust": syntax.orange,
-    "generic.attribute:rust": syntax.orange,
-    "parenthesis.attribute:rust": syntax.orange,
+    "attributeBracket.attribute:rust": semantic.attribute,
+    "builtinAttribute.attribute:rust": semantic.attribute,
+    "toolModule.attribute:rust": semantic.attribute,
+    "decorator.attribute:rust": semantic.attribute,
+    "derive.attribute:rust": semantic.attribute,
+    "generic.attribute:rust": semantic.attribute,
+    "parenthesis.attribute:rust": semantic.attribute,
     //
     // TOML - Even Better TOML only
-    tomlTableKey: syntax.blue,
-    tomlArrayKey: syntax.lime,
+    tomlTableKey: semantic.enum, // ?? blue
+    tomlArrayKey: semantic.label, // ?? lime
   };
-  return semanticTokenColors;
 }
 
 

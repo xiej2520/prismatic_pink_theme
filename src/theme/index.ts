@@ -8,7 +8,7 @@ import * as fs from "fs";
 import * as path from "path";
 import { generateEditorTheme } from "./editor";
 import { generateTerminalTheme } from "./terminal";
-import { generateSemanticTheme } from "./semantic";
+import { generateSemanticTheme, generateSemanticThemeColors } from "./semantic";
 import { generateTextMateTheme } from "./textmate";
 
 /**
@@ -43,6 +43,7 @@ function generateTheme(
 	type: "light" | "dark",
 	config: Config
 ) {
+	const semanticThemeColors = generateSemanticThemeColors(syntax);
 	return {
 		name: name,
 		type: type,
@@ -51,7 +52,7 @@ function generateTheme(
 			...generateTerminalTheme(color, syntax, name, type, config),
 		},
 		semanticHighlighting: true,
-		semanticTokenColors: generateSemanticTheme(syntax, config),
+		semanticTokenColors: generateSemanticTheme(semanticThemeColors, config),
 		...generateTextMateTheme(syntax, config),
 	};
 }
