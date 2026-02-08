@@ -1,25 +1,38 @@
 <scheme name="Prismatic-pink" version="142" parent_scheme="Darcula">
   <metaInfo>
-    <property name="ide">Idea</property>
-    <property name="ideVersion">2025.1.2.0.0</property>
+    <property name="ide">idea</property>
+    <property name="ideVersion">2025.3.1.0.0</property>
     <property name="originalScheme">Prismatic-pink</property>
   </metaInfo>
   <colors>
+    <option name="ADDED_LINES_COLOR" value="62BA62" />
     <option name="CARET_COLOR" value="FF1277" />
     <option name="CARET_ROW_COLOR" value="2C2C2F" />
     <option name="CONSOLE_BACKGROUND_KEY" value="1E1E22" />
+    <option name="DELETED_LINES_COLOR" value="C03C3C" />
     <option name="GUTTER_BACKGROUND" value="1E1E22" />
+    <option name="IGNORED_ADDED_LINES_BORDER_COLOR" value="4D944D" />
+    <option name="IGNORED_DELETED_LINES_BORDER_COLOR" value="9E7777" />
+    <option name="IGNORED_MODIFIED_LINES_BORDER_COLOR" value="5F8ABA" />
     <option name="INDENT_GUIDE" value="51576C" />
     <option name="LINE_NUMBERS_COLOR" value="8F9199" />
     <option name="LINE_NUMBER_ON_CARET_ROW_COLOR" value="FF1277" />
+    <option name="MODIFIED_LINES_COLOR" value="407ABA" />
     <option name="SELECTED_INDENT_GUIDE" value="51576C" />
     <option name="SELECTION_BACKGROUND" value="56203A" />
     <option name="WHITESPACES" value="51576C" />
+    <option name="WHITESPACES_MODIFIED_LINES_COLOR" value="5F8ABA" />
   </colors>
   <attributes>
     <option name="ABSTRACT_CLASS_NAME_ATTRIBUTES">
       <value>
         <option name="FOREGROUND" value="8aa5ff" />
+      </value>
+    </option>
+    <option name="ABSTRACT_METHOD_ATTRIBUTES">
+      <value>
+        <option name="FOREGROUND" value="3fc56b" />
+        <option name="FONT_TYPE" value="2" />
       </value>
     </option>
     <option name="BAD_CHARACTER">
@@ -252,14 +265,38 @@
         <option name="FOREGROUND" value="eebbff" />
       </value>
     </option>
+    <option name="CONSOLE_BLACK_OUTPUT">
+      <value>
+        <option name="FOREGROUND" value="b1012" />
+        <option name="BACKGROUND" value="0" />
+      </value>
+    </option>
+    <option name="CONSOLE_BLUE_BRIGHT_OUTPUT">
+      <value>
+        <option name="FOREGROUND" value="417dff" />
+        <option name="BACKGROUND" value="1778bd" />
+      </value>
+    </option>
     <option name="CONSOLE_BLUE_OUTPUT">
       <value>
-        <option name="FOREGROUND" value="c7c7ff" />
+        <option name="FOREGROUND" value="5d88f0" />
+      </value>
+    </option>
+    <option name="CONSOLE_CYAN_BRIGHT_OUTPUT">
+      <value>
+        <option name="FOREGROUND" value="2eebeb" />
+        <option name="BACKGROUND" value="6e6e" />
       </value>
     </option>
     <option name="CONSOLE_CYAN_OUTPUT">
       <value>
-        <option name="FOREGROUND" value="6b8b8" />
+        <option name="FOREGROUND" value="40d0d0" />
+      </value>
+    </option>
+    <option name="CONSOLE_DARKGRAY_OUTPUT">
+      <value>
+        <option name="FOREGROUND" value="777777" />
+        <option name="BACKGROUND" value="424242" />
       </value>
     </option>
     <option name="CONSOLE_ERROR_OUTPUT">
@@ -269,17 +306,29 @@
     </option>
     <option name="CONSOLE_GRAY_OUTPUT">
       <value>
-        <option name="FOREGROUND" value="a7a7a7" />
+        <option name="FOREGROUND" value="f0f0f0" />
+      </value>
+    </option>
+    <option name="CONSOLE_GREEN_BRIGHT_OUTPUT">
+      <value>
+        <option name="FOREGROUND" value="70f648" />
+        <option name="BACKGROUND" value="458500" />
       </value>
     </option>
     <option name="CONSOLE_GREEN_OUTPUT">
       <value>
-        <option name="FOREGROUND" value="68e868" />
+        <option name="FOREGROUND" value="60d455" />
+      </value>
+    </option>
+    <option name="CONSOLE_MAGENTA_BRIGHT_OUTPUT">
+      <value>
+        <option name="FOREGROUND" value="d85cf8" />
+        <option name="BACKGROUND" value="b247b2" />
       </value>
     </option>
     <option name="CONSOLE_MAGENTA_OUTPUT">
       <value>
-        <option name="FOREGROUND" value="ff2eff" />
+        <option name="FOREGROUND" value="d85ccf" />
       </value>
     </option>
     <option name="CONSOLE_NORMAL_OUTPUT">
@@ -287,9 +336,15 @@
         <option name="FOREGROUND" value="ffffff" />
       </value>
     </option>
+    <option name="CONSOLE_RED_BRIGHT_OUTPUT">
+      <value>
+        <option name="FOREGROUND" value="ff5050" />
+        <option name="BACKGROUND" value="b82421" />
+      </value>
+    </option>
     <option name="CONSOLE_RED_OUTPUT">
       <value>
-        <option name="FOREGROUND" value="ff6667" />
+        <option name="FOREGROUND" value="e05555" />
       </value>
     </option>
     <option name="CONSOLE_SYSTEM_OUTPUT">
@@ -303,9 +358,15 @@
         <option name="FONT_TYPE" value="2" />
       </value>
     </option>
+    <option name="CONSOLE_YELLOW_BRIGHT_OUTPUT">
+      <value>
+        <option name="FOREGROUND" value="f4dd28" />
+        <option name="BACKGROUND" value="a87b00" />
+      </value>
+    </option>
     <option name="CONSOLE_YELLOW_OUTPUT">
       <value>
-        <option name="FOREGROUND" value="754200" />
+        <option name="FOREGROUND" value="f0cc60" />
       </value>
     </option>
     <option name="CSS.COMMENT">
@@ -943,6 +1004,12 @@
         <option name="EFFECT_COLOR" value="343434" />
         <option name="ERROR_STRIPE_COLOR" value="ffffcc" />
         <option name="EFFECT_TYPE" value="2" />
+      </value>
+    </option>
+    <option name="INHERITED_METHOD_ATTRIBUTES">
+      <value>
+        <option name="FOREGROUND" value="3fc56b" />
+        <option name="FONT_TYPE" value="2" />
       </value>
     </option>
     <option name="INJECTED_LANGUAGE_FRAGMENT">
