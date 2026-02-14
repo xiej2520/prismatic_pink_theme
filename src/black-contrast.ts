@@ -2,7 +2,7 @@ import { SyntaxColors, UiColors } from "./theme";
 
 export const blackContrastSyntax: SyntaxColors = {
 	// aim for >9.5 contrast https://webaim.org/resources/contrastchecker/
-	fg: "#D3D7DE",
+	fg: "#D6DAE0",
 	gray: "#828DA0",
 	fadedGray: "#7A7A8A",
 
@@ -30,7 +30,7 @@ export const blackContrastSyntax: SyntaxColors = {
 	boldGreen: "#2BBF46",
 	boldPink: "#F750AE",
 	boldViolet: "#D88AFF",
-	boldFg: "#C5CAD3",
+	boldFg: "#C8CCD6",
 };
 
 export const blackContrastColors: UiColors = {
@@ -248,7 +248,7 @@ export const blackContrastColors: UiColors = {
 		success: "#31A155",
 		error: "#FF1277",
 
-		foreground: "#D3D7DE", // 0m (foreground)
+		foreground: "#D6DAE0", // 0m (foreground)
 		ansiForeground: "#1C1C1C", //37m (background)
 		ansiContrastForeground: "#FFFFFF", // (technicall 37;1m but vscode also applies this to just bold 1m, hence it's white)
 		ansiBackground: "#FFFFFF", // 30m
@@ -284,7 +284,7 @@ export const blackContrastColors: UiColors = {
 		// code-block background, keybind table header backgrounds, keybind table even row background
 		//
 		// DISABLED_STATUS_BAR: MINIMAL: Status bar background, status bar remote icon background,
-		secondaryBg: "#101010",
+		secondaryBg: "#040406",
 
 		// Sidebar section header background
 		tertiaryBg: "#000000",
@@ -313,13 +313,13 @@ export const blackContrastColors: UiColors = {
 		// Little buttons, titlebar menu buttons, editor stick hover
 		//
 		// DISABLED_STATUS_BAR: MINIMAL: Status bar hover/active button overlays
-		hoverBgA: "#FF288460",
-		activeBgA: "#FF288480",
+		hoverBgA: "#FF2884A0",
+		activeBgA: "#FF2884C0",
 
 		// Lists, command bar hover, notification hover
 		//
 		// MINIMAL: List unfocused selected overlay
-		listHoverBgA: "#FF288440",
+		listHoverBgA: "#FF288460",
 		// DEFAULT: DISABLED_STATUS_BAR: List unfocused selected overlay
 		listInactiveBgA: "#FF4C981A",
 
@@ -336,9 +336,9 @@ export const blackContrastColors: UiColors = {
 		treeIndent: "#FF1277",
 
 		// Scrollbar/minimap handle overlays
-		scrollBgA: "#FFFFFF20",
-		scrollHoverBgA: "#FFFFFF40",
-		scrollActiveBgA: "#FF127760",
+		scrollBgA: "#FFFFFF40",
+		scrollHoverBgA: "#FFFFFF60",
+		scrollActiveBgA: "#FF127780",
 
 		// Shadow whenever some scrollable element is scrolled, shadows around open widgets
 		shadow: "#0000005F",

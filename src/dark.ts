@@ -3,7 +3,7 @@ import { SyntaxColors, UiColors } from "./theme";
 export const darkSyntax: SyntaxColors = {
 	// Pink Candy Dark remix with darker, more neutral background #1E1E22
 	// try to keep contrast to 7.5-9, slightly more saturation
-	fg: "#B9BFCA",
+	fg: "#C0C4D0",
 	gray: "#828DA0",
 	fadedGray: "#636D83",
 
@@ -36,7 +36,7 @@ export const darkSyntax: SyntaxColors = {
 	boldGreen: "#2ECC4B",
 	boldPink: "#F750AE",
 	boldViolet: "#D88AFF",
-	boldFg: "#ABB2BF",
+	boldFg: "#B2B6C4",
 };
 
 export const darkColors: UiColors = {
@@ -48,7 +48,7 @@ export const darkColors: UiColors = {
 		normal: "#CFD7E6", // brighter, blue tinted
 
 		// Setting header text
-		bold: "#B9BFCA",
+		bold: "#C0C4D0",
 
 		// Text editor line number, text editor suggestion ghost text, list deemphasized text, tab unfocused title,
 		// (??? x1)
@@ -253,7 +253,7 @@ export const darkColors: UiColors = {
 		success: "#31A155",
 		error: "#FF1277",
 
-		foreground: "#ABB2BF", // 0m (foreground)
+		foreground: "#B2B6C4", // 0m (foreground)
 		ansiForeground: "#22222A", //37m (background)
 		ansiContrastForeground: "#FFFFFF", // (technicall 37;1m but vscode also applies this to just bold 1m, hence it's white)
 		ansiBackground: "#FFFFFF", // 30m

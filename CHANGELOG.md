@@ -1,6 +1,7 @@
 # Changelog
 
 - Change "git.blame.editorDecorationForeground" to gray.
+- Slightly higher contrast fg color, higher contrast ui for contrast theme.
 
 ## 0.1.2 - 2025-09-21
 ### Changed
