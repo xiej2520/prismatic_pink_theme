@@ -30,6 +30,7 @@ Prerequisites:
 
 The extension manifest defines the following npm scripts:
 
+- `build` - Builds the typescript project and theme files.
 - `buildTheme` - Builds the theme files.
 - `buildTs` - Build the typescript project.
 - `watchTs` - Watch the typescript project.
@@ -45,23 +46,24 @@ configuration. This will build the extension and launch the VS Code Extension
 Development Host with the extension preloaded.
 
 When the Extension Host is running, after making a change to the theme script,
-run the `buildTheme` task. This will rebuild the theme files and the Extension
-Host will automatically update and reload the theme colours. This runs the
-`build/buildTheme.js` script, which builds the theme files according to the
+run the `buildTheme` task. This will rebuild the theme files with `build/buildTheme.js`
+and the Extension Host will update and reload the theme colours according to the
 defined `config` type, which uses the *default* setting values. If you're
 working on the theme colours for a non-default setting value, modify this type
 to suit, **but don't** commit the changes. The type should reflect the default
 setting values.
 
+Modifying the typescript code requires it to be rebuilt, run `npm run buildTs`,
+or `npm run build` to both build the ts and rebuild the theme files.
+
 ### Packaging the extension (not publishing)
 
 To package the extension locally, run the following:
 
-1. `npm run buildTs`
-2. `npm run buildTheme`
-3. `./build/Pre-Package.ps1 -WorkingDirectory ./`
-4. `cd ./package`
-5. `npm run package`
+1. `npm run build`
+2. `./build/Pre-Package.ps1 -WorkingDirectory ./`
+3. `cd ./package`
+4. `npm run package`
 
 The packaged extension will be located at `./package/theme-prismatic-pink-${version}.vsix`.
 

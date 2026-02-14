@@ -18,6 +18,17 @@
 		},
 		{
 			"type": "npm",
+			"script": "build",
+			"isBackground": true,
+			"presentation": {
+				"reveal": "silent"
+			},
+			"group": {
+				"kind": "build"
+			}
+		},
+		{
+			"type": "npm",
 			"script": "buildTheme",
 			"isBackground": true,
 			"presentation": {

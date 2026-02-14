@@ -216,6 +216,7 @@
 		}
 	},
 	"scripts": {
+		"build": "tsc -p ./ && node ./build/buildTheme.js",
 		"buildTheme": "node ./build/buildTheme.js",
 		"buildTs": "tsc -p ./",
 		"watchTs": "tsc -watch -p ./",
