@@ -7,6 +7,7 @@
 ### Changed
 - Changed markdown color scheme
 - Made "Disabled on status bar" the default option for Global Accent
+- Add `mutedComments` option
 
 ## 0.1.2 - 2025-09-21
 ### Changed

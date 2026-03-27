@@ -1,4 +1,5 @@
 # Design Document
+***OUT OF DATE***
 This is a design document for the project. It both states information about the project, such as describing schemas, but also explains important/noteworthy design decisions.
 
 ## Commands (VS Code)

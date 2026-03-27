@@ -47,6 +47,7 @@ function isValidGlobalAccent(str: string): str is GlobalAccent {
 export class Config {
 	markdownSyntaxStyle: MarkdownSyntaxStyle;
 	italicComments: boolean;
+	mutedComments: boolean;
 	altCurrentLine: boolean;
 	monochromeBracketGuides: boolean;
 	inlayStyle: InlayHintStyle;
@@ -57,6 +58,7 @@ export class Config {
 	constructor(
 		markdownSyntaxStyle: MarkdownSyntaxStyle,
 		italicComments: boolean,
+		mutedComments: boolean,
 		altCurrentLine: boolean,
 		monochromeBracketGuides: boolean,
 		inlayStyle: InlayHintStyle,
@@ -66,6 +68,7 @@ export class Config {
 	) {
 		this.markdownSyntaxStyle = markdownSyntaxStyle;
 		this.italicComments = italicComments;
+		this.mutedComments = mutedComments;
 		this.altCurrentLine = altCurrentLine;
 		this.inlayStyle = inlayStyle;
 		this.monochromeBracketGuides = monochromeBracketGuides;
@@ -81,6 +84,7 @@ export class Config {
 	 */
 	static DEFAULT: Config = new Config(
 		"traditional",
+		false,
 		false,
 		false,
 		false,
@@ -178,6 +182,11 @@ export function getConfig(): Config {
 		italicComments = false;
 	}
 
+	let mutedComments: boolean | undefined = config.get("mutedComments");
+	if (mutedComments === undefined) {
+		mutedComments = false;
+	}
+
 	let altCurrentLine: boolean | undefined = config.get("alternateCurrentLineStyle");
 	if (altCurrentLine === undefined) {
 		altCurrentLine = false;
@@ -227,6 +236,7 @@ export function getConfig(): Config {
 	return new Config(
 		markdownSyntaxStyle,
 		italicComments,
+		mutedComments,
 		altCurrentLine,
 		monochromeBracketGuides,
 		inlayStyle,

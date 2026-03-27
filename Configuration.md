@@ -1,4 +1,7 @@
 # Configuration
+
+***OUT OF DATE***
+
 The theme has a number of configuration options. The illustrations below present these in the light theme, but this applies to the dark theme too.
 
 ⚠ *Note:* Because of a limitation of VS Code, the window must be reloaded in order to see the effects of changing the settings below. A notification will pop-up whenever a change is detected to prompt you.

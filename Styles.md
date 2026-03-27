@@ -1,5 +1,7 @@
 # Styles
 
+***OUT OF DATE***
+
 View this document inside of a text editor with hex colour highlighting support, otherwise you won't be able to see the colours in each sub-heading. For vscode, the [colorize](https://marketplace.visualstudio.com/items?itemName=kamikillerto.vscode-colorize) extension is a good one.
 
 - `- s:` represent *Semantic Highlighting* scopes.

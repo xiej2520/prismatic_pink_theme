@@ -15,16 +15,17 @@ export function generateTextMateTheme(
 	syntax: SyntaxColors,
 	config: Config
 ) {
+  const commentColor = config.mutedComments ? syntax.fadedGray : syntax.lightPink;
 	const commentStyles = config.italicComments ?
     {
 			settings: {
-				foreground: syntax.lightPink,
+				foreground: commentColor,
 				fontStyle: "italic",
 			},
 		} :
     {
 			settings: {
-				foreground: syntax.lightPink,
+				foreground: commentColor,
 			},
 		};
 

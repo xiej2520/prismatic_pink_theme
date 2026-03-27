@@ -81,7 +81,7 @@ export interface SemanticThemeColors extends StandardTokenTypeColors {
   mutParameter: string,
   property: string, // Object members
 
-  constant: string,
+  constant: string, // compile time constant
   boolean: string,
   number: string,
   escapeSequence: string, // `\n`
@@ -98,6 +98,7 @@ export interface SemanticThemeColors extends StandardTokenTypeColors {
   error: string, // unresolvedReference
 
   text: string,
+  faded: string,
 }
 
 export function generateSemanticThemeColors(
@@ -202,6 +203,7 @@ export function generateSemanticThemeColors(
     error: syntax.red,
 
     text: syntax.fg,
+    faded: syntax.fadedGray,
   };
 }
 
@@ -212,12 +214,13 @@ export function generateSemanticTheme(
 ): Record<string, any> {
 
 	// Configure comment styles
+  const commentColor = config.mutedComments ? semantic.faded : semantic.comment;
   const commentSemanticStyle = config.italicComments ? {
     comment: {
-      foreground: semantic.comment,
+      foreground: commentColor,
       fontStyle: "italic",
     },
-  } : { comment: semantic.comment, };
+  } : { comment: commentColor, };
 
 
   return {
