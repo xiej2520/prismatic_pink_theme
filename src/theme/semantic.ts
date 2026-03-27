@@ -515,6 +515,9 @@ export function generateSemanticTheme(
     // TOML - Even Better TOML only
     tomlTableKey: semantic.enum, // ?? blue
     tomlArrayKey: semantic.label, // ?? lime
+    // NIX - use a different color scheme for nix, otherwise everything is pinkish-purple
+    "parameter:nix": semantic.function,
+    "property:nix": semantic.struct,
   };
 }
 

@@ -1,7 +1,6 @@
 {
-  description = "vscode pink candy";
-
-  inputs.nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
+  description = "Prismatic Pink Theme";
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
   outputs =
     inputs:
@@ -19,26 +18,20 @@
           f {
             pkgs = import inputs.nixpkgs {
               inherit system;
-              overlays = [ inputs.self.overlays.default ];
             };
           }
         );
+
+      #packageJson = builtins.fromJSON (builtins.readFile ./package.json);
     in
     {
-      overlays.default = final: prev: rec {
-        nodejs = prev.nodejs;
-        yarn = (prev.yarn.override { inherit nodejs; });
-      };
-
       devShells = forEachSupportedSystem (
         { pkgs }:
         {
           default = pkgs.mkShell {
             packages = with pkgs; [
-              node2nix
               nodejs
               nodePackages.pnpm
-              yarn
             ];
           };
         }

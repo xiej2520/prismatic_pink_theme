@@ -29,11 +29,21 @@ been hand-tweaked and tested on:
 - Yaml
 - Toml
 - INI
+- Nix
 
 ## Overriding Syntax Styles
 
 See [Overriding_Syntax.md](./Overriding_Syntax.md) for a step-by-step guide on
 how to override syntax highlighting styles to your liking.
+
+## Building
+
+See [Development Guide](./docs/Development%20Guide.md).
+```bash
+npm install
+npm run build
+npm run package
+```
 
 ## License
 
