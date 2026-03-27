@@ -3,6 +3,11 @@
 - Change "git.blame.editorDecorationForeground" to gray.
 - Slightly higher contrast fg color, higher contrast ui for contrast theme.
 
+## 0.1.3 - 2026-03-27
+### Changed
+- Changed markdown color scheme
+- Made "Disabled on status bar" the default option for Global Accent
+
 ## 0.1.2 - 2025-09-21
 ### Changed
 - Add `boldDefaultMutableVariables` config option, make variables non-bold by default.

@@ -1,5 +1,5 @@
 import { Config } from "../config";
-import { generateMarkdownColors, generateAlternateMarkdownColors } from "./markdown";
+import { generateMarkdownColors, generateAlternateMarkdownColors as generateMutedPunctuationMarkdownColors } from "./markdown";
 import { SyntaxColors, UiColors } from ".";
 
 export interface TextMateStyle {
@@ -37,8 +37,8 @@ export function generateTextMateTheme(
 		case "mutedPlaintext":
 			mdStyles = generateMarkdownColors(syntax, true);
 			break;
-		case "alternate":
-			mdStyles = generateAlternateMarkdownColors(syntax);
+		case "mutedPunctuation":
+			mdStyles = generateMutedPunctuationMarkdownColors(syntax);
 			break;
 	}
 

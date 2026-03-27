@@ -138,7 +138,7 @@ export function generateEditorTheme(
 			"errorLens.errorGutterIconColor": color.diag.error,
 		};
 	}
-	if (config.globalAccent == "default") {
+	if (config.globalAccent == "everywhere") {
 		errorLensStatusBar = {
 			"errorLens.statusBarHintForeground": color.text.inverse,
 			"errorLens.statusBarInfoForeground": color.text.inverse,

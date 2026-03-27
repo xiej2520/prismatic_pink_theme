@@ -7,9 +7,9 @@ import * as vscode from "vscode";
 /**
  * Valid markdown syntax styles.
  */
-type MarkdownSyntaxStyle = "traditional" | "mutedPlaintext" | "alternate";
+type MarkdownSyntaxStyle = "traditional" | "mutedPlaintext" | "mutedPunctuation";
 function isValidMarkdownSyntaxStyle(str: String): str is MarkdownSyntaxStyle {
-	return str == "traditional" || str == "mutedPlaintext" || str == "alternate";
+	return str == "traditional" || str == "mutedPlaintext" || str == "mutedPunctuation";
 }
 
 /**
@@ -36,9 +36,9 @@ function isValidLightTerminalColourScheme(str: string): str is LightTerminalColo
 /**
  * Valid global accent options.
  */
-type GlobalAccent = "default" | "disabledStatusBar" | "minimal";
+type GlobalAccent = "everywhere" | "disabledStatusBar" | "minimal";
 function isValidGlobalAccent(str: string): str is GlobalAccent {
-	return str == "default" || str == "disabledStatusBar" || str == "minimal";
+	return str == "everywhere" || str == "disabledStatusBar" || str == "minimal";
 }
 
 /**
@@ -86,7 +86,7 @@ export class Config {
 		false,
 		"noBackground",
 		"normal+dark",
-		"default",
+		"disabledStatusBar",
 		false,
 	);
 
@@ -219,7 +219,7 @@ export function getConfig(): Config {
 	if (isValidGlobalAccent(globalAccentRaw)) {
 		globalAccent = globalAccentRaw;
 	} else {
-		globalAccent = "default";
+		globalAccent = "disabledStatusBar";
 	}
 
 	const boldDefaultMutableVariables: boolean = config.get("boldDefaultMutableVariables") ?? false;
