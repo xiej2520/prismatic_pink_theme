@@ -122,6 +122,12 @@ export function generateMarkdownColors(syntax: SyntaxColors, muted: boolean): Te
 			},
 		];
 	}
+	
+	const boldColor = syntax.boldGreen;
+	const italicColor = syntax.lightPink;
+	const boldItalicColor = syntax.boldPink;
+	const boldItalicStrikethroughColor = syntax.strongPink;
+	const strikethroughColor = syntax.fadedGray;
 
 	return [
 		...text,
@@ -132,7 +138,7 @@ export function generateMarkdownColors(syntax: SyntaxColors, muted: boolean): Te
 				"markup.bold.markdown punctuation.definition.bold.markdown",
 			],
 			settings: {
-				foreground: syntax.orange,
+				foreground: boldColor,
 				fontStyle: "bold",
 			},
 		},
@@ -143,7 +149,7 @@ export function generateMarkdownColors(syntax: SyntaxColors, muted: boolean): Te
 				"markup.italic.markdown punctuation.definition.italic.markdown",
 			],
 			settings: {
-				foreground: syntax.blue,
+				foreground: italicColor,
 				fontStyle: "italic",
 			},
 		},
@@ -154,57 +160,11 @@ export function generateMarkdownColors(syntax: SyntaxColors, muted: boolean): Te
 				"markup.strikethrough.markdown punctuation.definition.strikethrough.markdown",
 			],
 			settings: {
-				foreground: syntax.fadedGray,
+				foreground: strikethroughColor,
 				fontStyle: "strikethrough",
 			},
 		},
 		...inlineCode,
-		{
-			name: "Markdown - Url $inline Link",
-			scope: [
-				"meta.link.email.lt-gt.markdown markup.underline.link.markdown",
-				"meta.link.inet.markdown markup.underline.link.markdown",
-				"meta.link.inline.markdown markup.underline.link.markdown",
-				"meta.link.reference.markdown constant.other.reference.link.markdown",
-				"meta.link.reference.def.markdown markup.underline.link.markdown",
-				"meta.image.inline.markdown markup.underline.link.image.markdown",
-				"meta.image.reference.markdown constant.other.reference.link.markdown",
-			],
-			settings: {
-				foreground: syntax.violet,
-				fontStyle: "underline",
-			},
-		},
-		{
-			name: "Markdown - Url $inline Title",
-			scope: [
-				"meta.link.inline.markdown string.other.link.title.markdown",
-				"meta.link.reference.markdown string.other.link.title.markdown",
-				"meta.link.reference.def.markdown constant.other.reference.link.markdown",
-				"meta.image.inline.markdown string.other.link.description.markdown",
-				"meta.image.reference.markdown string.other.link.description.markdown",
-			],
-			settings: {
-				foreground: syntax.green,
-			},
-		},
-		{
-			name: "Markdown - Url $inline Descrption",
-			scope: [
-				"meta.link.inline.markdown string.other.link.description.title.markdown",
-				"meta.image.inline.markdown string.other.link.description.title.markdown",
-			],
-			settings: {
-				foreground: syntax.yellow,
-			},
-		},
-		{
-			name: "Markdown - Escape $inline",
-			scope: ["constant.character.escape.markdown"],
-			settings: {
-				foreground: syntax.orange,
-			},
-		},
 		// #region: inline permutations
 		{
 			name: "Markdown - Bold > Italic $inline",
@@ -213,7 +173,7 @@ export function generateMarkdownColors(syntax: SyntaxColors, muted: boolean): Te
 				"markup.bold.markdown markup.italic.markdown punctuation.definition.italic.markdown",
 			],
 			settings: {
-				foreground: syntax.blue,
+				foreground: boldItalicColor,
 				fontStyle: "italic bold",
 			},
 		},
@@ -224,7 +184,7 @@ export function generateMarkdownColors(syntax: SyntaxColors, muted: boolean): Te
 				"markup.italic.markdown markup.bold.markdown punctuation.definition.bold.markdown",
 			],
 			settings: {
-				foreground: syntax.orange,
+				foreground: boldItalicColor,
 				fontStyle: "italic bold",
 			},
 		},
@@ -235,7 +195,7 @@ export function generateMarkdownColors(syntax: SyntaxColors, muted: boolean): Te
 				"markup.bold.markdown markup.strikethrough.markdown punctuation.definition.strikethrough.markdown",
 			],
 			settings: {
-				foreground: syntax.fadedGray,
+				foreground: boldColor,
 				fontStyle: "bold strikethrough",
 			},
 		},
@@ -247,7 +207,7 @@ export function generateMarkdownColors(syntax: SyntaxColors, muted: boolean): Te
 				"markup.strikethrough.markdown markup.bold.markdown punctuation.definition.bold.markdown",
 			],
 			settings: {
-				foreground: syntax.orange,
+				foreground: boldColor,
 				fontStyle: "bold strikethrough",
 			},
 		},
@@ -258,7 +218,7 @@ export function generateMarkdownColors(syntax: SyntaxColors, muted: boolean): Te
 				"markup.italic.markdown markup.strikethrough.markdown punctuation.definition.strikethrough.markdown",
 			],
 			settings: {
-				foreground: syntax.fadedGray,
+				foreground: strikethroughColor,
 				fontStyle: "italic strikethrough",
 			},
 		},
@@ -269,7 +229,7 @@ export function generateMarkdownColors(syntax: SyntaxColors, muted: boolean): Te
 				"markup.strikethrough.markdown markup.italic.markdown punctuation.definition.italic.markdown",
 			],
 			settings: {
-				foreground: syntax.blue,
+				foreground: italicColor,
 				fontStyle: "italic strikethrough",
 			},
 		},
@@ -280,7 +240,7 @@ export function generateMarkdownColors(syntax: SyntaxColors, muted: boolean): Te
 				"markup.bold.markdown markup.italic.markdown markup.strikethrough.markdown punctuation.definition.strikethrough.markdown",
 			],
 			settings: {
-				foreground: syntax.fadedGray,
+				foreground: boldItalicStrikethroughColor,
 				fontStyle: "bold italic strikethrough",
 			},
 		},
@@ -291,29 +251,29 @@ export function generateMarkdownColors(syntax: SyntaxColors, muted: boolean): Te
 				"markup.bold.markdown markup.strikethrough.markdown markup.italic.markdown punctuation.definition.italic.markdown",
 			],
 			settings: {
-				foreground: syntax.blue,
+				foreground: boldItalicStrikethroughColor,
 				fontStyle: "bold italic strikethrough",
 			},
 		},
 		{
-			name: "Markdown -  Italic > Bold > Strikethrough $inline",
+			name: "Markdown - Italic > Bold > Strikethrough $inline",
 			scope: [
 				"markup.italic.markdown markup.bold.markdown markup.strikethrough.markdown",
 				"markup.italic.markdown markup.bold.markdown markup.strikethrough.markdown punctuation.definition.strikethrough.markdown",
 			],
 			settings: {
-				foreground: syntax.fadedGray,
+				foreground: boldItalicStrikethroughColor,
 				fontStyle: "bold italic strikethrough",
 			},
 		},
 		{
-			name: "Markdown -  Italic > Strikethrough > Bold $inline",
+			name: "Markdown - Italic > Strikethrough > Bold $inline",
 			scope: [
 				"markup.italic.markdown markup.strikethrough.markdown markup.bold.markdown",
 				"markup.italic.markdown markup.strikethrough.markdown markup.bold.markdown punctuation.definition.bold.markdown",
 			],
 			settings: {
-				foreground: syntax.orange,
+				foreground: boldItalicStrikethroughColor,
 				fontStyle: "bold italic strikethrough",
 			},
 		},
@@ -324,7 +284,7 @@ export function generateMarkdownColors(syntax: SyntaxColors, muted: boolean): Te
 				"markup.strikethrough.markdown markup.bold.markdown markup.italic.markdown punctuation.definition.italic.markdown",
 			],
 			settings: {
-				foreground: syntax.blue,
+				foreground: boldItalicStrikethroughColor,
 				fontStyle: "bold italic strikethrough",
 			},
 		},
@@ -333,9 +293,9 @@ export function generateMarkdownColors(syntax: SyntaxColors, muted: boolean): Te
 			scope: [
 				"markup.strikethrough.markdown markup.italic.markdown markup.bold.markdown",
 				"markup.strikethrough.markdown markup.italic.markdown markup.bold.markdown punctuation.definition.bold.markdown",
-			],
+				],
 			settings: {
-				foreground: syntax.orange,
+				foreground: boldItalicStrikethroughColor,
 				fontStyle: "bold italic strikethrough",
 			},
 		},
@@ -346,7 +306,7 @@ export function generateMarkdownColors(syntax: SyntaxColors, muted: boolean): Te
 				"markup.bold.markdown markup.inline.raw.string.markdown punctuation.definition.raw.markdown",
 			],
 			settings: {
-				foreground: syntax.fg,
+				foreground: syntax.boldFg,
 				fontStyle: "bold",
 			},
 		},
@@ -374,6 +334,53 @@ export function generateMarkdownColors(syntax: SyntaxColors, muted: boolean): Te
 		},
 		// #endregion: inline permutations
 		{
+			name: "Markdown - Url $inline Link",
+			scope: [
+				"meta.link.email.lt-gt.markdown markup.underline.link.markdown",
+				"meta.link.inet.markdown markup.underline.link.markdown",
+				"meta.link.inline.markdown markup.underline.link.markdown",
+				"meta.link.reference.markdown constant.other.reference.link.markdown",
+				"meta.link.reference.def.markdown markup.underline.link.markdown",
+				"meta.image.inline.markdown markup.underline.link.image.markdown",
+				"meta.image.reference.markdown constant.other.reference.link.markdown",
+			],
+			settings: {
+				foreground: syntax.cornflower,
+				fontStyle: "underline",
+			},
+		},
+		{
+			name: "Markdown - Url $inline Title",
+			scope: [
+				"meta.link.inline.markdown string.other.link.title.markdown",
+				"meta.link.reference.markdown string.other.link.title.markdown",
+				"meta.link.reference.def.markdown constant.other.reference.link.markdown",
+				"meta.image.inline.markdown string.other.link.description.markdown",
+				"meta.image.reference.markdown string.other.link.description.markdown",
+			],
+			settings: {
+				foreground: syntax.blue,
+			},
+		},
+		// [hobbit-hole](https://en.wikipedia.org/wiki/Hobbit#Lifestyle "inline Description")
+		{
+			name: "Markdown - Url $inline Description",
+			scope: [
+				"meta.link.inline.markdown string.other.link.description.title.markdown",
+				"meta.image.inline.markdown string.other.link.description.title.markdown",
+			],
+			settings: {
+				foreground: syntax.yellow,
+			},
+		},
+		{
+			name: "Markdown - Escape $inline",
+			scope: ["constant.character.escape.markdown"],
+			settings: {
+				foreground: syntax.lime,
+			},
+		},
+		{
 			name: "Markdown - Math Delimiter $inline/$block",
 			scope: [
 				"markup.math.inline.markdown punctuation.definition.math.begin.markdown",
@@ -382,7 +389,7 @@ export function generateMarkdownColors(syntax: SyntaxColors, muted: boolean): Te
 				"markup.math.block.markdown punctuation.definition.math.end.markdown",
 			],
 			settings: {
-				foreground: syntax.lime,
+				foreground: syntax.orange,
 			},
 		},
 		{
@@ -417,18 +424,26 @@ export function generateMarkdownColors(syntax: SyntaxColors, muted: boolean): Te
 			name: "Markdown - Separator",
 			scope: ["meta.separator.markdown"],
 			settings: {
-				foreground: syntax.fg,
+				foreground: syntax.pink,
 				fontStyle: "bold",
 			},
 		},
 		{
-			name: "Markdown - List Point",
+			name: "Markdown - Unordered List Point",
 			scope: [
-				"markup.list.numbered.markdown punctuation.definition.list.begin.markdown",
 				"markup.list.unnumbered.markdown punctuation.definition.list.begin.markdown",
 			],
 			settings: {
 				foreground: syntax.cyan,
+			},
+		},
+		{
+			name: "Markdown - Ordered List Point",
+			scope: [
+				"markup.list.numbered.markdown punctuation.definition.list.begin.markdown",
+			],
+			settings: {
+				foreground: syntax.orange,
 			},
 		},
 		{
@@ -452,13 +467,38 @@ export function generateMarkdownColors(syntax: SyntaxColors, muted: boolean): Te
 				"meta.image.reference.markdown punctuation.definition.constant.markdown",
 			],
 			settings: {
-				foreground: syntax.gray,
+				foreground: syntax.lightGreen,
+			},
+		},
+		{
+			name: "Markdown - Punctuation - Table Definition",
+			scope: [
+				"punctuation.definition.table.markdown",
+				"punctuation.separator.table.markdown", // header separator
+			],
+			settings: {
+				foreground: syntax.lime,
+			},
+		},
+		{
+			name: "Markdown - Table Text",
+			scope: [
+				"markup.table.markdown",
+			],
+			settings: {
+				foreground: syntax.fg,
 			},
 		},
 	];
 }
 
 export function generateAlternateMarkdownColors(syntax: SyntaxColors): TextMateStyle[] {
+	const boldColor = syntax.boldGreen;
+	const italicColor = syntax.lightPink;
+	const boldItalicColor = syntax.boldPink;
+	const boldItalicStrikethroughColor = syntax.strongPink;
+	const strikethroughColor = syntax.fadedGray;
+
 	return [
 		{
 			name: "Markdown - Text",
@@ -471,7 +511,7 @@ export function generateAlternateMarkdownColors(syntax: SyntaxColors): TextMateS
 			name: "Markdown - Bold $inline",
 			scope: ["markup.bold.markdown"],
 			settings: {
-				foreground: syntax.orange,
+				foreground: boldColor,
 				fontStyle: "bold",
 			},
 		},
@@ -479,7 +519,7 @@ export function generateAlternateMarkdownColors(syntax: SyntaxColors): TextMateS
 			name: "Markdown - Italic $inline",
 			scope: ["markup.italic.markdown"],
 			settings: {
-				foreground: syntax.blue,
+				foreground: italicColor,
 				fontStyle: "italic",
 			},
 		},
@@ -490,7 +530,7 @@ export function generateAlternateMarkdownColors(syntax: SyntaxColors): TextMateS
 				"markup.bold.markdown markup.italic.markdown",
 			],
 			settings: {
-				foreground: syntax.violet,
+				foreground: boldItalicColor,
 				fontStyle: "bold italic",
 			},
 		},
@@ -520,7 +560,7 @@ export function generateAlternateMarkdownColors(syntax: SyntaxColors): TextMateS
 				"meta.image.reference.markdown constant.other.reference.link.markdown",
 			],
 			settings: {
-				foreground: syntax.violet,
+				foreground: syntax.cornflower,
 				fontStyle: "underline",
 			},
 		},
@@ -534,7 +574,7 @@ export function generateAlternateMarkdownColors(syntax: SyntaxColors): TextMateS
 				"meta.image.reference.markdown string.other.link.description.markdown",
 			],
 			settings: {
-				foreground: syntax.green,
+				foreground: syntax.blue,
 			},
 		},
 		{
@@ -551,7 +591,7 @@ export function generateAlternateMarkdownColors(syntax: SyntaxColors): TextMateS
 			name: "Markdown - Escape $inline",
 			scope: ["constant.character.escape.markdown"],
 			settings: {
-				foreground: syntax.orange,
+				foreground: syntax.lime,
 			},
 		},
 		// #region: inline permutations
@@ -562,7 +602,7 @@ export function generateAlternateMarkdownColors(syntax: SyntaxColors): TextMateS
 				"markup.strikethrough.markdown markup.bold.markdown",
 			],
 			settings: {
-				foreground: syntax.orange,
+				foreground: strikethroughColor,
 				fontStyle: "bold strikethrough",
 			},
 		},
@@ -573,7 +613,7 @@ export function generateAlternateMarkdownColors(syntax: SyntaxColors): TextMateS
 				"markup.strikethrough.markdown markup.italic.markdown",
 			],
 			settings: {
-				foreground: syntax.blue,
+				foreground: strikethroughColor,
 				fontStyle: "italic strikethrough",
 			},
 		},
@@ -588,7 +628,7 @@ export function generateAlternateMarkdownColors(syntax: SyntaxColors): TextMateS
 				"markup.strikethrough.markdown markup.italic.markdown markup.bold.markdown",
 			],
 			settings: {
-				foreground: syntax.violet,
+				foreground: boldItalicStrikethroughColor,
 				fontStyle: "bold italic strikethrough",
 			},
 		},
@@ -596,7 +636,7 @@ export function generateAlternateMarkdownColors(syntax: SyntaxColors): TextMateS
 			name: "Markdown - Bold > Inline code $inline",
 			scope: ["markup.bold.markdown markup.inline.raw.string.markdown"],
 			settings: {
-				foreground: syntax.orange,
+				foreground: boldColor,
 				fontStyle: "bold underline",
 			},
 		},
@@ -604,7 +644,7 @@ export function generateAlternateMarkdownColors(syntax: SyntaxColors): TextMateS
 			name: "Markdown - Italic > Inline code $inline",
 			scope: ["markup.italic.markdown markup.inline.raw.string.markdown"],
 			settings: {
-				foreground: syntax.blue,
+				foreground: italicColor,
 				fontStyle: "italic underline",
 			},
 		},
@@ -615,7 +655,7 @@ export function generateAlternateMarkdownColors(syntax: SyntaxColors): TextMateS
 				"markup.italic.markdown markup.bold.markdown markup.inline.raw.string.markdown",
 			],
 			settings: {
-				foreground: syntax.violet,
+				foreground: boldItalicColor,
 				fontStyle: "bold italic underline",
 			},
 		},
@@ -633,7 +673,7 @@ export function generateAlternateMarkdownColors(syntax: SyntaxColors): TextMateS
 				"markup.strikethrough.markdown markup.bold.markdown markup.inline.raw.string.markdown",
 			],
 			settings: {
-				foreground: syntax.orange,
+				foreground: boldColor,
 				fontStyle: "bold strikethrough underline",
 			},
 		},
@@ -644,7 +684,7 @@ export function generateAlternateMarkdownColors(syntax: SyntaxColors): TextMateS
 				"markup.strikethrough.markdown markup.italic.markdown markup.inline.raw.string.markdown",
 			],
 			settings: {
-				foreground: syntax.blue,
+				foreground: italicColor,
 				fontStyle: "italic strikethrough underline",
 			},
 		},
@@ -655,7 +695,7 @@ export function generateAlternateMarkdownColors(syntax: SyntaxColors): TextMateS
 				"markup.bold.markdown markup.italic.markdown markup.inline.raw.string.markdown",
 			],
 			settings: {
-				foreground: syntax.violet,
+				foreground: boldItalicColor,
 				fontStyle: "bold italic underline",
 			},
 		},
@@ -670,7 +710,7 @@ export function generateAlternateMarkdownColors(syntax: SyntaxColors): TextMateS
 				"markup.strikethrough.markdown markup.italic.markdown markup.bold.markdown markup.inline.raw.string.markdown",
 			],
 			settings: {
-				foreground: syntax.violet,
+				foreground: boldItalicStrikethroughColor,
 				fontStyle: "bold italic strikethrough underline",
 			},
 		},
@@ -731,17 +771,25 @@ export function generateAlternateMarkdownColors(syntax: SyntaxColors): TextMateS
 			name: "Markdown - Separator",
 			scope: ["meta.separator.markdown"],
 			settings: {
-				foreground: syntax.lime,
+				foreground: syntax.pink,
 			},
 		},
 		{
-			name: "Markdown - List Point",
+			name: "Markdown - Unordered List Point",
 			scope: [
-				"markup.list.numbered.markdown punctuation.definition.list.begin.markdown",
 				"markup.list.unnumbered.markdown punctuation.definition.list.begin.markdown",
 			],
 			settings: {
 				foreground: syntax.cyan,
+			},
+		},
+		{
+			name: "Markdown - Ordered List Point",
+			scope: [
+				"markup.list.numbered.markdown punctuation.definition.list.begin.markdown",
+			],
+			settings: {
+				foreground: syntax.orange,
 			},
 		},
 		{
