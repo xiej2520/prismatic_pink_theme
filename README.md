@@ -12,6 +12,8 @@ Forked from [Pink Candy by kuba_p](https://marketplace.visualstudio.com/items?it
 
 ## Screenshots
 
+![Rust/Markdown](./img/example_prism_1.png)
+
 ## Overview
 
 This theme supports both *'Semantic'* and *'Textmate'* highlighting, so it should
