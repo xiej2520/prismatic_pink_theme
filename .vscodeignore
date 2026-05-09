@@ -2,3 +2,12 @@
 .vscode-test/**
 .gitignore
 vsc-extension-quickstart.md
+
+# Ignore All
+**
+
+# Keep
+!LICENSE
+!icon.png
+!CHANGELOG.md
+!out/**/*.js
