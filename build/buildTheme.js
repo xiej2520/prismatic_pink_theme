@@ -29,12 +29,13 @@ if (!fs.existsSync(folder)) {
 const config = {
 	markdownSyntaxStyle: "traditional",
 	italicComments: false,
+  mutedComments: false,
 	altCurrentLine: false,
 	monochromeBracketGuides: false,
 	inlayStyle: "noBackground",
 	lightTerminalColourScheme: "normal+dark",
 	globalAccent: "default",
-	boldMutableDefaultVariables: false,
+	boldDefaultMutableVariables: false,
 };
 
 fs.writeFileSync(path.join(folder, "cached_config.json"), JSON.stringify(config));

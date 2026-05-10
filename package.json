@@ -224,6 +224,7 @@
 	"scripts": {
 		"build": "tsc -p ./ && node ./build/buildTheme.js",
 		"buildTheme": "node ./build/buildTheme.js",
+		"buildZedTheme": "tsx ./build/buildZedTheme.ts",
 		"buildTs": "tsc -p ./",
 		"watchTs": "tsc -watch -p ./",
 		"package": "vsce package",
@@ -243,6 +244,7 @@
 		"jimp": "^0.16.1",
 		"mocha": "^9.1.1",
 		"ovsx": "^0.10.4",
+		"tsx": "^4.21.0",
 		"typescript": "^4.4.3"
 	}
 }
