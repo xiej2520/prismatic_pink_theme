@@ -11,3 +11,5 @@ vsc-extension-quickstart.md
 !icon.png
 !CHANGELOG.md
 !out/**/*.js
+!themes/prismatic-pink.json
+!themes/prismatic-pink-contrast.json

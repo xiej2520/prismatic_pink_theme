@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.5 - 2026-05-11
+- Fix not including the actual theme json
+
 ## 0.1.4 - 2026-05-09
 - Change "git.blame.editorDecorationForeground" to gray.
 - Slightly higher contrast fg color, higher contrast ui for contrast theme.
