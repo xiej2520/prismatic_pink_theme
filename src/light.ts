@@ -1,25 +1,56 @@
-import { UiColors } from "./theme";
+import type { SyntaxColors, UiColors } from "./theme";
 
-//export const lightSyntax: SyntaxColors = {
-//	fg: "#565869",
-//	gray: "#777777",
-//	fadedGray: "#ADB1C2",
-//	strongPink: "#FF1277",
-//	pink: "#F767BB",
-//	purple: "#C75AF3",
-//	blue: "#09A1ED",
-//	lightBlue: "#6F7FB2",
-//	cyan: "#27B0AC",
-//	green: "#2DAE58",
-//	lime: "#85AF1A",
-//	yellow: "#C69613",
-//	orange: "#FF5C57",
-//	mauve: "#A8759A",
-//	boldFg: "#6C6E83",
-//	boldPink: "#F871C0",
-//	boldBlue: "#1DAEf6",
-//	boldLightBlue: "#7B8dAE",
-//};
+ //export const lightSyntax: SyntaxColors = {
+ //	fg: "#565869",
+ //	gray: "#777777",
+ //	fadedGray: "#ADB1C2",
+ //	strongPink: "#FF1277",
+ //	pink: "#F767BB",
+ //	purple: "#C75AF3",
+ //	blue: "#09A1ED",
+ //	lightBlue: "#6F7FB2",
+ //	cyan: "#27B0AC",
+ //	green: "#2DAE58",
+ //	lime: "#85AF1A",
+ //	yellow: "#C69613",
+ //	orange: "#FF5C57",
+ //	mauve: "#A8759A",
+ //	boldFg: "#6C6E83",
+ //	boldPink: "#F871C0",
+ //	boldBlue: "#1DAEf6",
+ //	boldLightBlue: "#7B8dAE",
+ //};
+
+export const lightSyntax: SyntaxColors = {
+	fg: "#565869",
+	gray: "#777777",
+	fadedGray: "#ADB1C2",
+
+	pink: "#F767BB",
+	strongPink: "#FF1277",
+
+	red: "#E5484D",
+	orange: "#FF5C57",
+	yellow: "#C69613",
+	lime: "#85AF1A",
+	green: "#2DAE58",
+	cyan: "#27B0AC",
+	cornflower: "#3E5FC0",
+	skyBlue: "#2E7DC4",
+	blue: "#09A1ED",
+	purple: "#C75AF3",
+	violet: "#9040C4",
+
+	boldGreen: "#178040",
+	boldPink: "#F871C0",
+	boldViolet: "#7C34C0",
+	boldFg: "#6C6E83",
+
+	lightPink: "#946E8A",
+	lightGreen: "#5E8A5E",
+	lightBlue: "#97BCCD",
+	lightPurple: "#7E5EA6",
+};
 
 export const lightColors: UiColors = {
 	// Note: All non-alpha backgrounds are based on `primaryBg`.

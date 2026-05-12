@@ -59,6 +59,11 @@
 				"label": "Prismatic Pink High Contrast",
 				"uiTheme": "vs-dark",
 				"path": "./themes/prismatic-pink-contrast.json"
+			},
+			{
+				"label": "Prismatic Pink Light",
+				"uiTheme": "vs",
+				"path": "./themes/prismatic-pink-light.json"
 			}
 		],
 		"commands": [
