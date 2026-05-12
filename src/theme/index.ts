@@ -49,7 +49,7 @@ function generateTheme(
 		type: type,
 		colors: {
 			...generateEditorTheme(color, syntax, type, config),
-			...generateTerminalTheme(color, syntax, name, type, config),
+			...generateTerminalTheme(color, type, config),
 		},
 		semanticHighlighting: true,
 		semanticTokenColors: generateSemanticTheme(semanticThemeColors, config),

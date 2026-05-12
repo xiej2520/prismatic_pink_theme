@@ -8,6 +8,7 @@ vsc-extension-quickstart.md
 
 # Keep
 !LICENSE
+!README.md
 !icon.png
 !CHANGELOG.md
 !out/**/*.js

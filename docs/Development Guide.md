@@ -30,13 +30,19 @@ Prerequisites:
 
 The extension manifest defines the following npm scripts:
 
+- `clean` - Removes `out/` build directory
 - `build` - Builds the typescript project and theme files.
 - `buildTheme` - Builds the theme files.
+- `buildZedTheme` - Builds the Zed theme `build/prismatic-pink-zed.json`.
 - `buildTs` - Build the typescript project.
 - `watchTs` - Watch the typescript project.
+- `typecheck` - Type-check `src/`, `build/`, and `test/`.
+- `test` - Run `node:test` unit tests in `test/`.
+- `vscode:prepublish`: Runs `build` for `vsce package`.
 - `package` - Package the extension into an `.vsix` file.
 - `publishMS` - Publish the extension to the Microsoft marketplace.
 - `publishOVSX` - Publish the extension to the OpenVSX marketplace.
+- `test` - Runs `node:test` unit tests in `test/`.
 - `getVersion` - A script that outputs the extension's version number in a specific format for azure pipelines purposes.
 
 ### Building the extension for debugging/testing
@@ -58,12 +64,8 @@ or `npm run build` to both build the ts and rebuild the theme files.
 
 ### Packaging the extension (not publishing)
 
-To package the extension locally, run the following:
-
-1. `npm run build`
-2. `./build/Pre-Package.ps1 -WorkingDirectory ./`
-3. `cd ./package`
-4. `npm run package`
+To package the extension locally, run `npm run package`.
+Package contents are determined by `.vscodeignore` allow-list.
 
 The packaged extension will be located at `./package/theme-prismatic-pink-${version}.vsix`.
 
@@ -77,7 +79,7 @@ The packaged extension will be located at `./package/theme-prismatic-pink-${vers
 ## ⚠ Adding a new root file/directory
 
 When adding a new file or directory at the repository root, make sure to update
-`/build/Pre-Package.ps1` to add it to the exclusion list.
+`.vscodeignore` and `/build/Pre-Package.ps1` to add it to the exclusion list.
 
 ## Adding a new setting
 

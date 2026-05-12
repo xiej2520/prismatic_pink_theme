@@ -1,4 +1,4 @@
-import { SyntaxColors, UiColors } from "./theme";
+import { UiColors } from "./theme";
 
 //export const lightSyntax: SyntaxColors = {
 //	fg: "#565869",

@@ -1,6 +1,6 @@
 import { Config } from "../config";
 import { generateMarkdownColors, generateAlternateMarkdownColors as generateMutedPunctuationMarkdownColors } from "./markdown";
-import { SyntaxColors, UiColors } from ".";
+import { SyntaxColors } from ".";
 
 export interface TextMateStyle {
 	name: string;

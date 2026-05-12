@@ -22,7 +22,7 @@ export function activate(context: vscode.ExtensionContext) {
 		showReloadOnLoadConfirmation();
 	}
 
-	vscode.workspace.onDidChangeConfiguration(onConfigChange);
+	context.subscriptions.push(vscode.workspace.onDidChangeConfiguration(onConfigChange));
 }
 
 // This method is called when your extension is deactivated.

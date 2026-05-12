@@ -3,7 +3,7 @@
 This is a design document for the project. It both states information about the project, such as describing schemas, but also explains important/noteworthy design decisions.
 
 ## Commands (VS Code)
-The extension registers one command (`theme-pink-candy.restoreDefaultConfig`) that resets the extension's configuration and cached configuration.
+The extension registers one command (`theme-prismatic-pink.restoreDefaultConfig`) that resets the extension's configuration and cached configuration.
 
 ### Commands to toggle options (UNIMPLEMENTABLE)
 I attempted to implement commands that change the individual configuration settings, but it turned out to be infeasable because the implementation exhibits a race condition, (due to a bug in VS Code).

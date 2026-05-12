@@ -12,6 +12,10 @@ Controls whether comments are italicized.
 ![Comments](./img/options/Italics.png)
 ---
 
+### Muted Comments
+Controls whether comments use a muted gray color instead of the default accent color.
+---
+
 ### Markdown Syntax Style
 Controls the syntax colour scheme for markdown.
 

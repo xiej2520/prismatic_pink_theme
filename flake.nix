@@ -31,7 +31,7 @@
           default = pkgs.mkShell {
             packages = with pkgs; [
               nodejs
-              nodePackages.pnpm
+              pnpm
             ];
           };
         }

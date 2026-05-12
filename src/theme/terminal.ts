@@ -1,10 +1,8 @@
 import { Config } from "../config";
-import { SyntaxColors, UiColors } from ".";
+import { UiColors } from ".";
 
 export function generateTerminalTheme(
 	color: UiColors,
-	syntax: SyntaxColors,
-	name: string,
 	type: "light" | "dark",
 	config: Config
 ) {
