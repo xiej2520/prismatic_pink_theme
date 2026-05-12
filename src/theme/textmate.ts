@@ -1,4 +1,4 @@
-import { Config } from "../config";
+import type { Config } from "../config";
 import { generateMarkdownColors, generateAlternateMarkdownColors as generateMutedPunctuationMarkdownColors } from "./markdown";
 import { SyntaxColors } from ".";
 
@@ -9,6 +9,17 @@ export interface TextMateStyle {
 		foreground?: string;
 		fontStyle?: string;
 	};
+}
+
+function tok(name: string, scope: string | string[], foreground?: string, fontStyle?: string): TextMateStyle {
+  const settings: TextMateStyle["settings"] = {};
+  if (foreground !== undefined) {
+    settings.foreground = foreground;
+  }
+  if (fontStyle !== undefined) {
+    settings.fontStyle = fontStyle;
+  }
+  return { name, scope, settings };
 }
 
 export function generateTextMateTheme(
@@ -97,8 +108,8 @@ export function generateTextMateTheme(
           "keyword.operator.expression.infer.ts",
           "keyword.control.import.ts",
           "keyword.control.as.ts",
-          "keyword.contorl.from.ts",
-          "keyword.contorl.export.ts",
+          "keyword.control.from.ts",
+          "keyword.control.export.ts",
           "storage.type.ts",
           "storage.type.class.ts",
           "storage.type.enum.ts",
@@ -288,7 +299,6 @@ export function generateTextMateTheme(
           "entity.name.type.union.rust",
           "entity.name.type.declaration.rust",
           // csharp
-          "storage.type.cs",
           "entity.name.type.class.cs",
           "entity.name.type.struct.cs",
           "entity.name.type.enum.cs",
@@ -346,7 +356,7 @@ export function generateTextMateTheme(
         scope: [
           // c++
           "entity.name.type.template.cpp",
-          // rust
+          // csharp
           "entity.name.type.type-parameter.cs",
         ],
         settings: {
@@ -375,7 +385,8 @@ export function generateTextMateTheme(
           "variable.other.readwrite.js",
           "variable.other.constant.js",
           // ts
-          "",
+          "variable.other.readwrite.ts",
+          "variable.other.constant.ts",
           // css
           "variable.css",
           "variable.argument.css",
@@ -820,90 +831,65 @@ export function generateTextMateTheme(
       //
       // POWERSHELL
       //
-      {
-        name: "Powershell Variables",
-        scope: [
+      tok("Powershell Variables",
+        [
           "variable.other.readwrite.powershell",
           "punctuation.definition.variable.powershell",
           "storage.modifier.scope.powershell",
         ],
-        settings: {
-          foreground: syntax.green,
-        },
-      },
-      {
-        name: "Powershell Variable/Storage Scopes",
-        scope: ["storage.modifier.scope.powershell", "support.variable.drive.powershell"],
-        settings: {
-          foreground: syntax.green,
-          fontStyle: "underline",
-        },
-      },
-      {
-        name: "Powershell Special/Built-In Variables",
-        scope: [
+        syntax.green,
+      ),
+      tok("Powershell Variable/Storage Scopes",
+        ["storage.modifier.scope.powershell", "support.variable.drive.powershell"],
+        syntax.green,
+        "underline",
+      ),
+      tok("Powershell Special/Built-In Variables",
+        [
           "support.variable.automatic.powershell",
           "support.variable.automatic.powershell punctuation.definition.variable.powershell",
           "variable.language.powershell",
           "variable.language.powershell punctuation.definition.variable.powershell",
         ],
-        settings: {
-          foreground: syntax.violet,
-        },
-      },
-      {
-        name: "Powershell Operators",
-        scope: [
+        syntax.violet,
+      ),
+      tok("Powershell Operators",
+        [
           "keyword.operator.comparison.powershell",
           "keyword.operator.logical.powershell",
         ],
-        settings: {
-          foreground: syntax.lightGreen,
-        },
-      },
-      {
-        name: "Powershell Comment Keywords",
-        scope: "keyword.operator.documentation.powershell",
-        settings: {
-          foreground: syntax.fg,
-        },
-      },
-      {
-        name: "Powershell String Interpolation",
-        scope: [
+        syntax.lightGreen,
+      ),
+      tok("Powershell Comment Keywords",
+        "keyword.operator.documentation.powershell",
+        syntax.fg,
+      ),
+      tok("Powershell String Interpolation",
+        [
           "punctuation.section.embedded.substatement.begin.powershell",
           "punctuation.section.embedded.substatement.end.powershell",
         ],
-        settings: {
-          foreground: syntax.violet,
-        },
-      },
+        syntax.violet,
+      ),
       //
       // JS
       //
-      {
-        name: "JS - String Interpolation",
-        scope: [
+      tok("JS - String Interpolation",
+        [
           "punctuation.definition.template-expression.begin.js",
           "punctuation.definition.template-expression.end.js",
         ],
-        settings: {
-          foreground: syntax.violet,
-        },
-      },
-      {
-        name: "JS - Regexp Group",
-        scope: [
+        syntax.violet,
+      ),
+      tok("JS - Regexp Group",
+        [
           "punctuation.definition.group.regexp",
           "punctuation.definition.group.no-capture.regexp",
         ],
-        settings: {
-          foreground: syntax.fg,
-        },
-      },
-      {
-        name: "JS - Regexp Characters",
-        scope: [
+        syntax.fg,
+      ),
+      tok("JS - Regexp Characters",
+        [
           "constant.other.character-class.regexp",
           "keyword.operator.quantifier.regexp",
           "keyword.control.anchor.regexp",
@@ -911,158 +897,97 @@ export function generateTextMateTheme(
           "meta.assertion.look-ahead.regexp",
           "meta.group.assertion.regexp",
         ],
-        settings: {
-          foreground: syntax.violet,
-        },
-      },
+        syntax.violet,
+      ),
       //
       // JSX REACT
       //
-      {
-        name: "JSX - Embedded Code",
-        scope: [
+      tok("JSX - Embedded Code",
+        [
           "punctuation.section.embedded.begin.js",
           "punctuation.section.embedded.end.js",
         ],
-        settings: {
-          foreground: syntax.orange,
-          fontStyle: "bold",
-        },
-      },
-      {
-        name: "JSX - Attributes",
-        scope: ["entity.other.attribute-name.js"],
-        settings: {
-          foreground: syntax.violet,
-          fontStyle: "italic",
-        },
-      },
+        syntax.orange,
+        "bold",
+      ),
+      tok("JSX - Attributes",
+        "entity.other.attribute-name.js",
+        syntax.violet,
+        "italic",
+      ),
       //
       // TS
       //
-      {
-        name: "TS - String Interpolation",
-        scope: [
+      tok("TS - String Interpolation",
+        [
           "punctuation.definition.template-expression.begin.ts",
           "punctuation.definition.template-expression.end.ts",
         ],
-        settings: {
-          foreground: syntax.violet,
-        },
-      },
+        syntax.violet,
+      ),
       //
       // HTML
       //
-      {
-        name: "HTML - Tags",
-        scope: ["entity.name.tag.html"],
-        settings: {
-          foreground: syntax.pink,
-        },
-      },
-      {
-        name: "HTML - IDs",
-        scope: [
+      tok("HTML - Tags",
+        "entity.name.tag.html",
+        syntax.pink,
+      ),
+      tok("HTML - IDs",
+        [
           "meta.attribute.id.html string.quoted.double.html",
           "entity.other.attribute-name.id.css",
         ],
-        settings: {
-          foreground: syntax.orange,
-          fontStyle: "bold",
-        },
-      },
-      {
-        name: "HTML - Classes",
-        scope: [
+        syntax.orange,
+        "bold",
+      ),
+      tok("HTML - Classes",
+        [
           "meta.attribute.class.html string.quoted.double.html",
           "entity.other.attribute-name.class.css",
         ],
-        settings: {
-          foreground: syntax.green,
-        },
-      },
-      {
-        name: "HTML - Attributes",
-        scope: ["entity.other.attribute-name.html", "entity.other.attribute-name.css"],
-        settings: {
-          foreground: syntax.cyan,
-          fontStyle: "italic",
-        },
-      },
-      {
-        name: "HTML - Attribute Value",
-        scope: ["meta.attribute", "meta.attribute-selector.css string.quoted.double.css"],
-        settings: {
-          foreground: syntax.yellow,
-        },
-      },
-      {
-        name: "HTML - Links",
-        scope: [
+        syntax.green,
+      ),
+      tok("HTML - Attributes",
+        ["entity.other.attribute-name.html", "entity.other.attribute-name.css"],
+        syntax.cyan,
+        "italic",
+      ),
+      tok("HTML - Attribute Value",
+        ["meta.attribute", "meta.attribute-selector.css string.quoted.double.css"],
+        syntax.yellow,
+      ),
+      tok("HTML - Links",
+        [
           "meta.attribute.href.html string.quoted.double.html",
           "meta.attribute.src.html string.quoted.double.html",
           "meta.attribute.unrecognized.xmlns.html string.quoted.double.html",
         ],
-        settings: {
-          foreground: syntax.violet,
-        },
-      },
-      {
-        name: "HTML - Embedded CSS",
-        scope: ["meta.embedded.line.css"],
-        settings: {
-          foreground: syntax.lime,
-        },
-      },
-      //
+        syntax.violet,
+      ),
+      tok("HTML - Embedded CSS", "meta.embedded.line.css", syntax.lime),
       // CSS
       //
-      {
-        name: "CSS - Tags",
-        scope: ["entity.name.tag.css"],
-        settings: {
-          foreground: syntax.pink,
-        },
-      },
-      {
-        name: "CSS - Properties",
-        scope: [
+      tok("CSS - Tags", "entity.name.tag.css", syntax.pink),
+      tok("CSS - Properties",
+        [
           "support.type.property-name.css",
           "meta.property-name.css",
           "meta.property-name.scss",
           "support.type.property-name.media.css",
         ],
-        settings: {
-          foreground: syntax.lightPurple,
-        },
-      },
-      {
-        name: "CSS - Property Values",
-        scope: ["support.constant.property-value.css"],
-        settings: {
-          foreground: syntax.cyan,
-        },
-      },
-      {
-        name: "CSS - Fontname Selector",
-        scope: ["support.constant.font-name.css"],
-        settings: {
-          foreground: syntax.yellow,
-        },
-      },
-      {
-        name: "CSS - Pseudoclass Selector",
-        scope: [
+        syntax.lightPurple,
+      ),
+      tok("CSS - Property Values", "support.constant.property-value.css", syntax.cyan),
+      tok("CSS - Fontname Selector", "support.constant.font-name.css", syntax.yellow),
+      tok("CSS - Pseudoclass Selector",
+        [
           "entity.other.attribute-name.pseudo-class.css",
           "entity.other.attribute-name.pseudo-element.css",
         ],
-        settings: {
-          foreground: syntax.lime,
-        },
-      },
-      {
-        name: "CSS - Units",
-        scope: [
+        syntax.lime,
+      ),
+      tok("CSS - Units",
+        [
           "keyword.other.unit.rem.css",
           "keyword.other.unit.em.css",
           "keyword.other.unit.ex.css",
@@ -1080,28 +1005,20 @@ export function generateTextMateTheme(
           "keyword.other.unit.deg.css",
           "constant.other.scss", // {x}n
         ],
-        settings: {
-          foreground: syntax.orange,
-        },
-      },
-      {
-        name: "CSS - Logical Operators",
-        scope: [
+        syntax.orange,
+      ),
+      tok("CSS - Logical Operators",
+        [
           "keyword.operator.logical.and.media.css",
           "keyword.operator.logical.not.media.css",
           "keyword.operator.logical.only.media.css",
         ],
-        settings: {
-          foreground: syntax.lightGreen,
-        },
-      },
-      {
-        name: "CSS - Media Query Types",
-        scope: ["support.constant.media.css"],
-        settings: {
-          foreground: syntax.violet,
-        },
-      },
+        syntax.lightGreen,
+      ),
+      tok("CSS - Media Query Types",
+        ["support.constant.media.css"],
+        syntax.violet,
+      ),
       //
       // SCSS
       //
@@ -1120,39 +1037,21 @@ export function generateTextMateTheme(
       //
       // XML
       //
-      {
-        name: "XML - Tags",
-        scope: ["entity.name.tag.xml", "entity.name.tag.localname.xml"],
-        settings: {
-          foreground: syntax.pink,
-        },
-      },
-      {
-        name: "XML - Attributes",
-        scope: [
+      tok("XML - Tags",
+        ["entity.name.tag.xml", "entity.name.tag.localname.xml"],
+        syntax.pink,
+      ),
+      tok(
+        "XML - Attributes",
+        [
           "entity.other.attribute-name.xml",
           "entity.other.attribute-name.localname.xml",
         ],
-        settings: {
-          foreground: syntax.cyan,
-          fontStyle: "italic",
-        },
-      },
-      {
-        name: "XML - Tag Namespace",
-        scope: ["entity.name.tag.namespace.xml"],
-        settings: {
-          foreground: syntax.lime,
-        },
-      },
-      {
-        name: "XML - Attribute Namespace",
-        scope: ["entity.other.attribute-name.namespace.xml"],
-        settings: {
-          foreground: syntax.lime,
-          fontStyle: "italic",
-        },
-      },
+        syntax.cyan,
+        "italic",
+      ),
+      tok("XML - Tag Namespace", "entity.name.tag.namespace.xml", syntax.lime),
+      tok("XML - Attribute Namespace", "entity.other.attribute-name.namespace.xml", syntax.lime, "italic"),
       {
         name: "XML - Attribute Namespace :",
         scope: ["entity.other.attribute-name.xml punctuation.separator.namespace.xml"],
@@ -1160,27 +1059,14 @@ export function generateTextMateTheme(
           fontStyle: "italic",
         },
       },
-      {
-        name: "XML - Doctype",
-        scope: "variable.language.documentroot.xml",
-        settings: {
-          foreground: syntax.violet,
-        },
-      },
-      //
+      tok("XML - Doctype", "variable.language.documentroot.xml", syntax.violet),
       // MARKDOWN
       //
       ...mdStyles,
       //
       // ASCIIDOC
       //
-      {
-        name: "Asciidoc - Text",
-        scope: ["text.asciidoc"],
-        settings: {
-          foreground: syntax.fg,
-        },
-      },
+      tok("Asciidoc - Text", "text.asciidoc", syntax.fg),
       {
         name: "Asciidoc - Headings",
         scope: [
@@ -1196,31 +1082,11 @@ export function generateTextMateTheme(
           fontStyle: "bold",
         },
       },
+      tok("Asciidoc - Bold Text", "markup.bold.asciidoc", syntax.orange, "bold"),
+      tok("Asciidoc - Italic Text", "markup.italic.asciidoc", syntax.blue, "italic"),
+      tok("Asciidoc - Mark Text", "markup.mark.asciidoc", syntax.green),
       {
-        name: "Asciidoc - Bold Text",
-        scope: ["markup.bold.asciidoc"],
-        settings: {
-          foreground: syntax.orange,
-          fontStyle: "bold",
-        },
-      },
-      {
-        name: "Asciidoc - Italic Text",
-        scope: ["markup.italic.asciidoc"],
-        settings: {
-          foreground: syntax.blue,
-          fontStyle: "italic",
-        },
-      },
-      {
-        name: "Asciidoc - Mark Text",
-        scope: ["markup.mark.asciidoc"],
-        settings: {
-          foreground: syntax.green,
-        },
-      },
-      {
-        name: "Asciidoc - Punctation",
+        name: "Asciidoc - Punctuation",
         scope: [
           "punctuation.separator.asciidoc",
           "callout.asciidoc constant.other.symbol.asciidoc",
@@ -1250,14 +1116,7 @@ export function generateTextMateTheme(
           fontStyle: "italic",
         },
       },
-      {
-        name: "Asciidoc - Highlight",
-        scope: ["markup.highlight.asciidoc"],
-        settings: {
-          foreground: syntax.yellow,
-          fontStyle: "bold",
-        },
-      },
+      tok("Asciidoc - Highlight", "markup.highlight.asciidoc", syntax.yellow, "bold"),
       {
         name: "Asciidoc - Attribute",
         scope: [
@@ -1313,46 +1172,14 @@ export function generateTextMateTheme(
           fontStyle: "italic",
         },
       },
-      {
-        name: "Asciidoc - Footnote",
-        scope: ["markup.other.footnote.asciidoc"],
-        settings: {
-          foreground: syntax.gray,
-          fontStyle: "italic",
-        },
-      },
-      {
-        name: "Asciidoc - Macro",
-        scope: ["entity.name.function.asciidoc"],
-        settings: {
-          foreground: syntax.blue,
-        },
-      },
-      {
-        name: "Asciidoc - Macro content",
-        scope: ["string.unquoted.asciidoc"],
-        settings: {
-          foreground: syntax.yellow,
-        },
-      },
-      {
-        name: "Asciidoc - Ruler",
-        scope: ["constant.other.symbol.horizontal-rule.asciidoc"],
-        settings: {
-          foreground: syntax.orange,
-          fontStyle: "bold underline",
-        },
-      },
+      tok("Asciidoc - Footnote", "markup.other.footnote.asciidoc", syntax.gray, "italic"),
+      tok("Asciidoc - Macro", "entity.name.function.asciidoc", syntax.blue),
+      tok("Asciidoc - Macro content", "string.unquoted.asciidoc", syntax.yellow),
+      tok("Asciidoc - Ruler", "constant.other.symbol.horizontal-rule.asciidoc", syntax.orange, "bold underline"),
       //
       // JSON
       //
-      {
-        name: "JSON - Key",
-        scope: "support.type.property-name.json",
-        settings: {
-          foreground: syntax.lightPurple,
-        },
-      },
+      tok("JSON - Key", "support.type.property-name.json", syntax.lightPurple),
       {
         name: "JSON - Lighten Quotation Marks [DISABLED]",
         scope: [
@@ -1368,46 +1195,19 @@ export function generateTextMateTheme(
       //
       // YAML
       //
-      {
-        name: "YAML - Keys",
-        scope: ["entity.name.tag.yaml"],
-        settings: {
-          foreground: syntax.lightPurple,
-        },
-      },
-      {
-        name: "YAML - Timestamp Values",
-        scope: ["constant.other.timestamp.yaml"],
-        settings: {
-          foreground: syntax.green,
-        },
-      },
-      {
-        name: "YAML - Null Values",
-        scope: ["constant.language.null.yaml"],
-        settings: {
-          foreground: syntax.orange,
-        },
-      },
-      {
-        name: "YAML - Types",
-        scope: ["storage.type.tag-handle.yaml"],
-        settings: {
-          foreground: syntax.blue,
-        },
-      },
-      {
-        name: "YAML - Anchors",
-        scope: [
+      tok("YAML - Keys","entity.name.tag.yaml", syntax.lightPurple),
+      tok("YAML - Timestamp Values", "constant.other.timestamp.yaml", syntax.green),
+      tok("YAML - Null Values", "constant.language.null.yaml", syntax.orange),
+      tok("YAML - Types", "storage.type.tag-handle.yaml", syntax.blue),
+      tok("YAML - Anchors",
+        [
           "entity.name.type.anchor.yaml",
           "punctuation.definition.anchor.yaml",
           "variable.other.alias.yaml",
           "keyword.control.flow.alias.yaml punctuation.definition.alias.yaml",
         ],
-        settings: {
-          foreground: syntax.lime,
-        },
-      },
+        syntax.lime,
+      ),
       //
       // TOML
       //
@@ -1470,37 +1270,13 @@ export function generateTextMateTheme(
       //
       // INI
       //
-      {
-        name: "INI - Keys",
-        scope: "keyword.other.definition.ini",
-        settings: {
-          foreground: syntax.pink,
-        },
-      },
-      {
-        name: "INI - Headings",
-        scope: "entity.name.section.group-title.ini",
-        settings: {
-          foreground: syntax.lime,
-        },
-      },
+      tok("INI - Keys", "keyword.other.definition.ini", syntax.pink),
+      tok("INI - Headings", "entity.name.section.group-title.ini", syntax.lime),
       //
       // BNF
       //
-      {
-        name: "BNF - Symbol",
-        scope: "entity.name.class.bnf",
-        settings: {
-          foreground: syntax.green,
-        },
-      },
-      {
-        name: "BNF - Builtin",
-        scope: "support.variable.bnf",
-        settings: {
-          foreground: syntax.cyan,
-        },
-      },
+      tok("BNF - Symbol", "entity.name.class.bnf", syntax.green),
+      tok("BNF - Builtin", "support.variable.bnf", syntax.cyan),
     ],
   }
   return textMateTheme;

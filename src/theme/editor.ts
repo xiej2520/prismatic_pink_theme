@@ -1,5 +1,5 @@
-import { Config } from "../config";
-import { SyntaxColors, UiColors } from ".";
+import type { Config } from "../config";
+import type { SyntaxColors, UiColors } from ".";
 
 export function generateEditorTheme(
 	color: UiColors,
@@ -167,25 +167,27 @@ export function generateEditorTheme(
 	let banner;
 	let statusBar;
 	let commandBar;
+
+  const mutedStatusBar = {
+    "statusBar.foreground": color.text.normal,
+    "statusBar.background": color.ui.secondaryBg,
+    "statusBarItem.hoverBackground": color.ui.hoverBgA,
+    "statusBarItem.activeBackground": color.ui.activeBgA,
+    "statusBarItem.compactHoverBackground": color.ui.hoverBgA,
+    "statusBarItem.errorForeground": color.diag.error,
+    "statusBarItem.errorBackground": color.ui.secondaryBg,
+    "statusBarItem.warningForeground": color.diag.warning,
+    "statusBarItem.warningBackground": color.ui.secondaryBg,
+    "statusBarItem.prominentForeground": color.diag.info,
+    "statusBarItem.prominentBackground": color.ui.secondaryBg,
+    "statusBarItem.prominentHoverBackground": color.ui.hoverBgA,
+    // Remote icon.
+    "statusBarItem.remoteForeground": color.accent.primary,
+    "statusBarItem.remoteBackground": color.ui.secondaryBg,
+  };
 	if (config.globalAccent == "minimal") {
 		// MINIMAL
-		statusBar = {
-			"statusBar.foreground": color.text.normal,
-			"statusBar.background": color.ui.secondaryBg,
-			"statusBarItem.hoverBackground": color.ui.hoverBgA,
-			"statusBarItem.activeBackground": color.ui.activeBgA,
-			"statusBarItem.compactHoverBackground": color.ui.hoverBgA,
-			"statusBarItem.errorForeground": color.diag.error,
-			"statusBarItem.errorBackground": color.ui.secondaryBg,
-			"statusBarItem.warningForeground": color.diag.warning,
-			"statusBarItem.warningBackground": color.ui.secondaryBg,
-			"statusBarItem.prominentForeground": color.diag.info,
-			"statusBarItem.prominentBackground": color.ui.secondaryBg,
-			"statusBarItem.prominentHoverBackground": color.ui.hoverBgA,
-			// Remote icon.
-			"statusBarItem.remoteForeground": color.accent.primary,
-			"statusBarItem.remoteBackground": color.ui.secondaryBg,
-		};
+		statusBar = mutedStatusBar;
 		list = {
 			"list.hoverBackground": color.ui.listHoverBgA, // Background on individual entry on hover.
 			"list.activeSelectionBackground": color.ui.selectedBg,
@@ -317,23 +319,7 @@ export function generateEditorTheme(
 
 		if (config.globalAccent == "disabledStatusBar") {
 			// DISABLED_STATUS_BAR
-			statusBar = {
-				"statusBar.foreground": color.text.normal,
-				"statusBar.background": color.ui.secondaryBg,
-				"statusBarItem.hoverBackground": color.ui.hoverBgA,
-				"statusBarItem.activeBackground": color.ui.activeBgA,
-				"statusBarItem.compactHoverBackground": color.ui.hoverBgA,
-				"statusBarItem.errorForeground": color.diag.error,
-				"statusBarItem.errorBackground": color.ui.secondaryBg,
-				"statusBarItem.warningForeground": color.diag.warning,
-				"statusBarItem.warningBackground": color.ui.secondaryBg,
-				"statusBarItem.prominentForeground": color.diag.info,
-				"statusBarItem.prominentBackground": color.ui.secondaryBg,
-				"statusBarItem.prominentHoverBackground": color.ui.hoverBgA,
-				// Remote icon.
-				"statusBarItem.remoteForeground": color.accent.primary,
-				"statusBarItem.remoteBackground": color.ui.secondaryBg,
-			};
+			statusBar = mutedStatusBar;
 		} else {
 			// DEFAULT
 			statusBar = {
@@ -376,7 +362,7 @@ export function generateEditorTheme(
     "editorLineNumber.foreground": color.text.muted, // Line number colour in the gutter.
     "editorLineNumber.activeForeground": color.accent.primary, // Current line number colour in the gutter.
     "editor.foldBackground": color.text.currentLineBgA, // Colour of a line containing a folded range.
-    "eidtor.foldPlaceholderForeground": color.text.normal, // Colour of the ... text when collapsed range.
+    "editor.foldPlaceholderForeground": color.text.normal, // Colour of the ... text when collapsed range.
     "editor.hoverHighlightBackground": color.text.currentLineBgA, // Background when hovering over a symbol.
     //
     // Text selection boxes/ranges
@@ -858,7 +844,7 @@ export function generateEditorTheme(
     "debugTokenExpression.name": color.text.normal,
     "debugTokenExpression.value": color.text.normal,
     "debugTokenExpression.string": syntax.yellow,
-    "debugTokenExpression.boolean": syntax.cyan,
+    "debugTokenExpression.boolean": syntax.orange,
     "debugTokenExpression.number": syntax.orange,
     "debugTokenExpression.error": syntax.red,
     //
@@ -923,21 +909,21 @@ export function generateEditorTheme(
     //
     // SYMBOLS [x]
     "symbolIcon.arrayForeground": syntax.fg,
-    "symbolIcon.booleanForeground": syntax.cyan,
-    "symbolIcon.classForeground": syntax.green,
+    "symbolIcon.booleanForeground": syntax.orange,
+    "symbolIcon.classForeground": syntax.blue,
     "symbolIcon.colorForeground": color.text.normal,
-    "symbolIcon.constantForeground": syntax.cyan,
-    "symbolIcon.enumeratorForeground": syntax.green,
+    "symbolIcon.constantForeground": syntax.orange,
+    "symbolIcon.enumeratorForeground": syntax.blue,
     "symbolIcon.enumeratorMemberForeground": syntax.cyan,
     "symbolIcon.eventForeground": color.text.normal,
     "symbolIcon.fieldForeground": syntax.lightPurple,
     "symbolIcon.fileForeground": color.text.normal,
     "symbolIcon.folderForeground": color.text.normal,
-    "symbolIcon.functionForeground": syntax.blue,
-    "symbolIcon.interfaceForeground": syntax.violet,
+    "symbolIcon.functionForeground": syntax.green,
+    "symbolIcon.interfaceForeground": syntax.cornflower,
     "symbolIcon.keyForeground": syntax.pink,
     "symbolIcon.keywordForeground": syntax.pink,
-    "symbolIcon.methodForeground": syntax.blue,
+    "symbolIcon.methodForeground": syntax.green,
     "symbolIcon.moduleForeground": syntax.fg,
     "symbolIcon.namespaceForeground": syntax.fg,
     "symbolIcon.nullForeground": syntax.pink,
@@ -949,9 +935,9 @@ export function generateEditorTheme(
     "symbolIcon.referenceForeground": syntax.pink,
     "symbolIcon.snippetForeground": syntax.pink,
     "symbolIcon.stringForeground": syntax.yellow,
-    "symbolIcon.structForeground": syntax.green,
+    "symbolIcon.structForeground": syntax.blue,
     "symbolIcon.textForeground": color.text.normal,
-    "symbolIcon.typeParameterForeground": syntax.green,
+    "symbolIcon.typeParameterForeground": syntax.skyBlue,
     "symbolIcon.unitForeground": syntax.orange,
     "symbolIcon.variableForeground": syntax.fg,
     //

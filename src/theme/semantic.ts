@@ -1,5 +1,5 @@
-import { Config } from "../config";
-import { SyntaxColors } from ".";
+import type { Config } from "../config";
+import type { SyntaxColors } from ".";
 
 /// https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide#semantic-token-classification
 export interface StandardTokenTypeColors {
@@ -444,64 +444,11 @@ export function generateSemanticTheme(
     "method.mutable.reference.unsafe": {
       fontStyle: "bold underline italic",
     },
-    // JS
-    "variable:javascript": {
-      fontStyle: "bold",
-    },
-    "parameter:javascript": {
-      fontStyle: "bold",
-    },
-    "property:javascript": {
-      fontStyle: "bold",
-    },
-    "variable.readonly:javascript": {
-      fontStyle: "",
-    },
-    "parameter.readonly:javascript": {
-      fontStyle: "",
-    },
-    "property.readonly:javascript": {
-      fontStyle: "",
-    },
-    // TS
-    "variable:typescript": {
-      fontStyle: "bold",
-    },
-    "parameter:typescript": {
-      fontStyle: "bold",
-    },
-    "property:typescript": {
-      fontStyle: "bold",
-    },
-    "variable.readonly:typescript": {
-      fontStyle: "",
-    },
-    "parameter.readonly:typescript": {
-      fontStyle: "",
-    },
-    "property.readonly:typescript": {
-      fontStyle: "",
-    },
-    //
-    // JAVA
-    "variable:java": {
-      fontStyle: config.boldDefaultMutableVariables ? "bold" : "",
-    },
-    "parameter:java": {
-      fontStyle: config.boldDefaultMutableVariables ? "bold" : "",
-    },
-    "property:java": {
-      fontStyle: config.boldDefaultMutableVariables ? "bold" : "",
-    },
-    "variable.readonly:java": {
-      fontStyle: "",
-    },
-    "parameter.readonly:java": {
-      fontStyle: "",
-    },
-    "property.readonly:java": {
-      fontStyle: "",
-    },
+    // JS/TS make non-const variables bold by default,
+    // Java use boldDefaultMutableVariables setting
+    ...mutVars("javascript", "bold"),
+    ...mutVars("typescript", "bold"),
+    ...mutVars("java", config.boldDefaultMutableVariables ? "bold" : ""),
     //
     // ATTRIBUTES
     "attributeBracket.attribute:rust": semantic.attribute,
@@ -521,4 +468,14 @@ export function generateSemanticTheme(
   };
 }
 
+function mutVars(lang: string, mutStyle: string) {
+  return {
+    [`variable:${lang}`]: { fontStyle: mutStyle },
+    [`parameter:${lang}`]: { fontStyle: mutStyle },
+    [`property:${lang}`]: { fontStyle: mutStyle },
+    [`variable.readonly:${lang}`]: { fontStyle: "" },
+    [`parameter.readonly:${lang}`]: { fontStyle: "" },
+    [`property.readonly:${lang}`]: { fontStyle: "" },
+  }
+}
 

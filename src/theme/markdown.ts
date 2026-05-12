@@ -1,5 +1,5 @@
-import { TextMateStyle } from "./textmate";
-import { SyntaxColors } from ".";
+import type { TextMateStyle } from "./textmate";
+import type { SyntaxColors } from ".";
 
 export function generateMarkdownColors(syntax: SyntaxColors, muted: boolean): TextMateStyle[] {
 	let text;
@@ -578,7 +578,7 @@ export function generateAlternateMarkdownColors(syntax: SyntaxColors): TextMateS
 			},
 		},
 		{
-			name: "Markdown - Url $inline Descrption",
+			name: "Markdown - Url $inline Description",
 			scope: [
 				"meta.link.inline.markdown string.other.link.description.title.markdown",
 				"meta.image.inline.markdown string.other.link.description.title.markdown",
@@ -686,17 +686,6 @@ export function generateAlternateMarkdownColors(syntax: SyntaxColors): TextMateS
 			settings: {
 				foreground: italicColor,
 				fontStyle: "italic strikethrough underline",
-			},
-		},
-		{
-			name: "Markdown - Bold + Italic > Inline code $inline",
-			scope: [
-				"markup.italic.markdown markup.bold.markdown markup.inline.raw.string.markdown",
-				"markup.bold.markdown markup.italic.markdown markup.inline.raw.string.markdown",
-			],
-			settings: {
-				foreground: boldItalicColor,
-				fontStyle: "bold italic underline",
 			},
 		},
 		{
