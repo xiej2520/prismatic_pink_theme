@@ -1,11 +1,23 @@
-import { SyntaxColors, UiColors } from "./theme";
+import type { SyntaxColors, UiColors } from "./theme";
+import { alpha as a, flatten as f } from "./color";
+import { hue, sem, brackets, gitGraph, todo } from "./shared";
+
+const local = {
+  fg: "#C0C4D0",
+  boldFg: "#B2B6C4",
+  gray: "#636D83",
+  border: "#3D434F",
+  bg: "#1E1E22", // primary bg
+  bg2: "#1C1C20", // secondary, darker
+  bg3: "#121218", // tertiary, darkest
+};
 
 export const darkSyntax: SyntaxColors = {
 	// Pink Candy Dark remix with darker, more neutral background #1E1E22
 	// try to keep contrast to 7.5-9, slightly more saturation
-	fg: "#C0C4D0",
+	fg: local.fg,
 	gray: "#828DA0",
-	fadedGray: "#636D83",
+	fadedGray: local.gray,
 
 	red: "#F24646",
 
@@ -17,26 +29,26 @@ export const darkSyntax: SyntaxColors = {
 	lime: "#89E736",
 	// operators are short, extremely high contrast but low saturation should be fine
 	lightGreen: "#D6FFD6",
-	green: "#3FC56B",
+	green: hue.brightGreen,
 
 	//deepBlue: "#5C79ED",
-	cyan: "#15C9C5",
-	lightBlue: "#97BCCD",
+	cyan: hue.teal,
+	lightBlue: hue.paleBlue,
 	skyBlue: "#5CA2ED",
-	blue: "#10B1FE",
+	blue: hue.brightBlue,
 	cornflower: "#8AA5FF",
 
 	purple: "#A177F5",
 	violet: "#DD99FF",
 	lightPurple: "#D5C0E9",
 
-	pink: "#F85EB4",
+	pink: hue.softPink,
 	lightPink: "#EEBBFF",
-	strongPink: "#FF2884",
+	strongPink: hue.hotPink,
 	boldGreen: "#2ECC4B",
 	boldPink: "#F750AE",
 	boldViolet: "#D88AFF",
-	boldFg: "#B2B6C4",
+	boldFg: local.boldFg,
 };
 
 export const darkColors: UiColors = {
@@ -48,7 +60,7 @@ export const darkColors: UiColors = {
 		normal: "#CFD7E6", // brighter, blue tinted
 
 		// Setting header text
-		bold: "#C0C4D0",
+		bold: local.fg,
 
 		// Text editor line number, text editor suggestion ghost text, list deemphasized text, tab unfocused title,
 		// (??? x1)
@@ -64,10 +76,10 @@ export const darkColors: UiColors = {
 		// text, menu selected text
 		//
 		// DEFAULT: Status bar text & icons
-		inverse: "#FFFFFF",
+		inverse: hue.white,
 
 		// Peek view selected text, peek view header text, peek view filename text,
-		emphasised: "#FFFFFF",
+		emphasised: hue.white,
 
 		/// Text editor unnecessary text
 		faded: "#000000C0",
@@ -89,45 +101,45 @@ export const darkColors: UiColors = {
 			// BCKG_INLAY: Inlay hint text
 			alt1Inlay: "#9099AB",
 			// BCKG_INLAY: Inlay hint background
-			alt1InlayBgA: "#FFFFFF07",
+			alt1InlayBgA: a(hue.white, "07"),
 
 			// ACCENT_INLAY: Inlay hint text
-			alt2Inlay: "#7E3558", // FF4C986A on primaryBg
+			alt2Inlay: f(a(hue.brightPink, "6A"), local.bg), // FF4C986A on primaryBg
 
 			// ACCENT_BCKG_INLAY: Inlay hint text
-			alt3Inlay: "#8B385E", // FF4C987A on primaryBg
+			alt3Inlay: f(a(hue.brightPink, "7A"), local.bg), // FF4C987A on primaryBg
 			// ACCENT_BCKG_INLAY: Inlay hint background
-			alt3InlayBgA: "#FF4C9810",
+			alt3InlayBgA: a(hue.brightPink, "10"),
 		},
 
 		// Text editor folded line, text editor hover over symbol background box
 		//
 		// NORMAL_LINE: Text editor current line background
-		currentLineBgA: "#FFFFFF10",
+		currentLineBgA: a(hue.white, "10"),
 		// ALT_LINE: Text editor current line border
-		currentLineBorder: "#FFFFFF10",
+		currentLineBorder: a(hue.white, "10"),
 
 		// Text editor selection background box, text editor matching text background box, text editor matching
 		// symbol background box, text editor selection boxes, general selection, input field, terminal selection,
-		selectionBg: "#FF288440",
-		selectionBgA: "#FF288440",
+		selectionBg: a(hue.hotPink, "40"),
+		selectionBgA: a(hue.hotPink, "40"),
 		// Text editor unfocused selection background box, text editor find current range background box, terminal
 		// unfocused selection
-		secondarySelectionBgA: "#FF288420",
+		secondarySelectionBgA: a(hue.hotPink, "20"),
 
 		// Text editor tabstop background box
-		tabstopBgA: "#FF4C981A",
+		tabstopBgA: a(hue.brightPink, "1A"),
 
 		// Text editor & search sidebar find match background box, text editor match line background, peek view
 		// match background box, list filter widget background, list filter match background, terminal find match
 		// background box, (??? x1)
-		matchBg: "#CCD00C3C",
-		matchBgA: "#CCD00C3C", // yellow
+		matchBg: a(hue.limeYellow, "3C"),
+		matchBgA: a(hue.limeYellow, "3C"),
 
 		// Text editor & search sidebar find match border, peek view match border, list filter match border,
 		// terminal find match border,
-		matchBorder: "#31A1558A",
-		matchBorderA: "#31A1558A",
+		matchBorder: a(sem.success, "8A"),
+		matchBorderA: a(sem.success, "8A"),
 	},
 
 	accent: {
@@ -147,15 +159,15 @@ export const darkColors: UiColors = {
 		// DISABLED_STATUS_BAR: MINIMAL: status bar remote icon
 		//
 		// MINIMAL: list & command bar matching text, badge text
-		primary: "#FF1277",
-		primaryHover: "#DA005F",
-		link: "#ff388d",
-		linkHover: "#ff4c98",
+		primary: sem.accent,
+		primaryHover: sem.accentHover,
+		link: hue.vividPink,
+		linkHover: hue.brightPink,
 
 		// Button background, codeblock text, (??? x1)
 		//
 		// DEFAULT: status bar remote background
-		secondary: "#09A1ED",
+		secondary: sem.link,
 		secondaryHover: "#0784C2",
 	},
 
@@ -170,106 +182,106 @@ export const darkColors: UiColors = {
 		// minimap markers, notification icons,
 		//
 		// DISABLED_STATUS_BAR: MINIMAL: Status bar text & icons,
-		hint: "#31A155",
-		info: "#018ACC", // +(general peek view, status bar prominent if applicable)
-		warning: "#E17615", // +(list warning text)
-		error: "#FF1277", // +(general error text, bracket mismatch foreground, list error text, list invalid text, list no matches, confusing unicode highlighting border)
+		hint: sem.hint,
+		info: sem.info, // +(general peek view, status bar prominent if applicable)
+		warning: sem.warning, // +(list warning text)
+		error: sem.error, // +(general error text, bracket mismatch foreground, list error text, list invalid text, list no matches, confusing unicode highlighting border)
 
 		// Error lens line background, peek view header background, input validation background, testing message
 		// line background (info+error),
 		hintBg: "#293B38",
-		hintBgA: "#31A15520",
+		hintBgA: a(sem.hint, "20"),
 		infoBg: "#233847", // +(general peek view)
-		infoBgA: "#018ACC20", // +(general peek view)
+		infoBgA: a(sem.info, "20"), // +(general peek view)
 		warningBg: "#403530",
-		warningBgA: "#E1761520",
+		warningBgA: a(sem.warning, "20"),
 		errorBg: "#3E2A3B",
-		errorBgA: "#FF12771A", // +(confusing unicode highlighting)
+		errorBgA: a(sem.error, "1A"), // +(confusing unicode highlighting)
 
 		// Testing status icons
-		testPassed: "#31A155",
-		testQueued: "#018ACC",
-		testFailed: "#FF1277",
-		testUnset: "#E17615",
-		testSkipped: "#636D83",
+		testPassed: sem.success,
+		testQueued: sem.info,
+		testFailed: sem.error,
+		testUnset: sem.warning,
+		testSkipped: local.gray,
 	},
 
 	git: {
 		// Ruler markers, minimap markers, gutter markers, file names
-		addedOrStaged: "#31A155",
-		modified: "#018ACC",
-		renamed: "#13BBB7",
-		untracked: "#C75AF3",
-		removedOrConflicting: "#FF1277",
-		ignoredOrSubmodule: "#636D83",
-		current: "#31A155",
-		incoming: "#018ACC",
+		addedOrStaged: sem.added,
+		modified: sem.modified,
+		renamed: sem.renamed,
+		untracked: sem.untracked,
+		removedOrConflicting: sem.removed,
+		ignoredOrSubmodule: local.gray,
+		current: sem.success,
+		incoming: sem.info,
 
 		// Diff viewer line backgrounds, refactor preview text backgrounds
-		insertedBgA: "#31A1552A", // Entire modified line #243a31 Specifically added #264b37
-		removedBgA: "#FF127720", // Entire modified line #3f2234 Specifically removed #58203c
-		diffDiagonal: "#636D8388",
+		insertedBgA: a(sem.added, "2A"), // Entire modified line #243a31 Specifically added #264b37
+		removedBgA: a(sem.removed, "20"), // Entire modified line #3f2234 Specifically removed #58203c
+		diffDiagonal: a(local.gray, "88"),
 
 		// Conflict viewer line backgrounds
-		currentBgA: "#31A1552A",
-		currentHeaderBgA: "#31A1556A",
-		incomingBgA: "#018ACC2A",
-		incomingHeaderBgA: "#018ACC6A",
+		currentBgA: a(sem.success, "2A"),
+		currentHeaderBgA: a(sem.success, "6A"),
+		incomingBgA: a(sem.info, "2A"),
+		incomingHeaderBgA: a(sem.info, "6A"),
 
 		// Merge editor backgrounds
-		mergeWordChangeBgA: "#CCD00C2A",
-		mergeLineChangeBgA: "#CCD00C1A",
-		mergeUnhandledUnfocused: "#CCD00C4A",
-		mergeUnhandledFocused: "#CCD00CAA", // +(ruler marker)
-		mergeHandledUnfocused: "#FFFFFF3A",
-		mergeHandledFocused: "#FFFFFF8A", // +(ruler marker)
+		mergeWordChangeBgA: a(hue.limeYellow, "2A"),
+		mergeLineChangeBgA: a(hue.limeYellow, "1A"),
+		mergeUnhandledUnfocused: a(hue.limeYellow, "4A"),
+		mergeUnhandledFocused: a(hue.limeYellow, "AA"), // +(ruler marker)
+		mergeHandledUnfocused: a(hue.white, "3A"),
+		mergeHandledFocused: a(hue.white, "8A"), // +(ruler marker)
 	},
 
 	debug: {
 		// Debug toolbar icons
-		start: "#31A155",
-		pause: "#E17615",
-		step: "#018ACC",
-		stop: "#FF1277",
+		start: sem.success,
+		pause: sem.warning,
+		step: sem.info,
+		stop: sem.accent,
 
 		// Gutter icons
-		breakpoint: "#FF1277",
-		breakpointDisabled: "#636D83",
+		breakpoint: sem.accent,
+		breakpointDisabled: local.gray,
 
 		// Exception widget background
 		exceptionBg: "#3D412F",
 
 		// Debug console text
-		info: "#10B1FE",
-		warning: "#FF6B66",
-		error: "#FF2884",
-		source: "#FFFFFF",
-		input: "#D177F5",
+		info: hue.brightBlue,
+		warning: sem.warning,
+		error: hue.hotPink,
+		source: hue.white,
+		input: hue.purple,
 	},
 
 	terminal: {
 		// Command decoration icons
-		default: "#636D83", // +(SetMark sequence)
-		success: "#31A155",
-		error: "#FF1277",
+		default: local.gray, // +(SetMark sequence)
+		success: sem.success,
+		error: sem.accent,
 
-		foreground: "#B2B6C4", // 0m (foreground)
+		foreground: local.boldFg, // 0m (foreground)
 		ansiForeground: "#22222A", //37m (background)
-		ansiContrastForeground: "#FFFFFF", // (technicall 37;1m but vscode also applies this to just bold 1m, hence it's white)
-		ansiBackground: "#FFFFFF", // 30m
+		ansiContrastForeground: hue.white, // (technicall 37;1m but vscode also applies this to just bold 1m, hence it's white)
+		ansiBackground: hue.white, // 30m
 		ansiContrastBackground: "#666666", // 30;1m
-		ansiBlue: "#09A1ED",
+		ansiBlue: sem.link,
 		ansiContrastBlue: "#41B9FF",
-		ansiCyan: "#13BBB7",
+		ansiCyan: hue.darkTeal,
 		ansiContrastCyan: "#16DAD6",
 		ansiGreen: "#2DAE58",
 		ansiContrastGreen: "#25DA6A",
 		ansiYellow: "#CF9C00",
-		ansiContrastYellow: "#FFC104",
+		ansiContrastYellow: hue.gold,
 		ansiRed: "#FF0046",
 		ansiContrastRed: "#FF2E87",
 		ansiMagenta: "#C010EF",
-		ansiContrastMagenta: "#C75AF3",
+		ansiContrastMagenta: hue.magenta,
 	},
 
 	ui: {
@@ -282,7 +294,7 @@ export const darkColors: UiColors = {
 		// MINIMAL: Badge background,
 		// pure gray feels warmer, add slight blue tint
 		//primaryBg: "#22222A",
-		primaryBg: "#1E1E22",
+		primaryBg: local.bg,
 
 		// Widgets, hover widget status bar, peek view list, tab row background, tab row empty background, tab
 		// inactive background, tab unfocused background, sidebar background, panel section header background,
@@ -290,25 +302,25 @@ export const darkColors: UiColors = {
 		// code-block background, keybind table header backgrounds, keybind table even row background
 		//
 		// DISABLED_STATUS_BAR: MINIMAL: Status bar background, status bar remote icon background,
-		secondaryBg: "#1C1C20",
+		secondaryBg: local.bg2,
 
 		// Sidebar section header background
-		tertiaryBg: "#121218",
+		tertiaryBg: local.bg3,
 
 		// Breadcrumb, menu, any button which dropdowns
-		dropdownBg: "#1E1E22",
+		dropdownBg: local.bg,
 
 		// Checkbox, dropdown (+list), input field,
-		inputBg: "#1E1E22",
+		inputBg: local.bg,
 
 		// Tab group, sidebar pane, panel section, terminal, list
-		primaryDropBg: "#FF4C981A",
+		primaryDropBg: a(hue.brightPink, "1A"),
 
 		// All borders
-		border: "#3D434F",
+		border: local.border,
 
 		// Menu separator, command bar group separator, border between pinned and non-pinned tabs, (??? x1)
-		separator: "#3D434F",
+		separator: local.border,
 
 		// Input field foreground
 		// make faded text readable
@@ -320,103 +332,77 @@ export const darkColors: UiColors = {
 		// Little buttons, titlebar menu buttons, editor stick hover
 		//
 		// DISABLED_STATUS_BAR: MINIMAL: Status bar hover/active button overlays
-		hoverBgA: "#FFFFFF1A",
-		activeBgA: "#FFFFFF2A",
+		hoverBgA: a(hue.white, "1A"),
+		activeBgA: a(hue.white, "2A"),
 
 		// Lists, command bar hover, notification hover
 		//
 		// MINIMAL: List unfocused selected overlay
-		listHoverBgA: "#FFFFFF10",
+		listHoverBgA: a(hue.white, "10"),
 		// DEFAULT: DISABLED_STATUS_BAR: List unfocused selected overlay
-		listInactiveBgA: "#FF4C981A",
+		listInactiveBgA: a(hue.brightPink, "1A"),
 
 		// Keybind background
-		selectedBgA: "#FFFFFF10",
+		selectedBgA: a(hue.white, "10"),
 
 		// Dropdown selected, intellisense widget, peek view result, menu dropdown, command bar, command center
 		// hover
-		selectedBg: "#2F2F37", // FFFFFF10 on primaryBg
+		selectedBg: f(a(hue.white, "10"), local.bg),
 		// Welcome page tile on hover
-		selectedSecondaryBg: "#35343A", // FFFFFF10 on secondaryBg
+		selectedSecondaryBg: f(a(hue.white, "10"), local.bg2),
 
 		// Tree indent guide
-		treeIndent: "#FF1277",
+		treeIndent: sem.accent,
 
 		// Scrollbar/minimap handle overlays
-		scrollBgA: "#FFFFFF20",
-		scrollHoverBgA: "#FFFFFF40",
-		scrollActiveBgA: "#FF127760",
+		scrollBgA: a(hue.white, "20"),
+		scrollHoverBgA: a(hue.white, "40"),
+		scrollActiveBgA: a(sem.accent, "60"),
 
 		// Shadow whenever some scrollable element is scrolled, shadows around open widgets
-		shadow: "#0000005F",
+		shadow: a(local.bg, "5F"),
 
 		// Status bar during debugging background
-		statusDebugBg: "#31A155",
+		statusDebugBg: sem.success,
 		// Status bar when no folder is open background
 		statusEmptyBg: "#151419",
 		// DEFAULT: Status bar hover/active button overlays
-		statusHoverBgA: "#FFFFFF2F",
-		statusActiveBgA: "#FFFFFF4F",
+		statusHoverBgA: a(hue.white, "2F"),
+		statusActiveBgA: a(hue.white, "4F"),
 
 		// Tab open but unfocused indicator
-		unfocusedTab: "#FF4C9880",
+		unfocusedTab: a(hue.brightPink, "80"),
 
 		// Activity bar inactive icon
-		activityBarInactive: "#636D83",
+		activityBarInactive: local.gray,
 		activityBarTopInactive: "#778297",
 
 		// Code actions icon
-		lightBulb: "#FFC104",
+		lightBulb: hue.gold,
 
 		// Extension badge icons
-		star: "#FFC104",
-		remote: "#09A1ED",
-		verified: "#31A155",
-		prerelease: "#E17615",
-		sponsor: "#FF1277",
+		star: hue.gold,
+		remote: sem.link,
+		verified: sem.success,
+		prerelease: sem.warning,
+		sponsor: sem.accent,
 
 		// Chart colours
-		chartLine: "#B9BFCA",
-		chartBlue: "#10B1FE",
-		chartGreen: "#3FC56B",
-		chartYellow: "#F9C859",
-		chartOrange: "#FF6B66",
-		chartRed: "#FF2884",
-		chartPurple: "#D177F5",
+		chartLine: hue.lightGray,
+		chartBlue: hue.brightBlue,
+		chartGreen: hue.brightGreen,
+		chartYellow: hue.yellow,
+		chartOrange: hue.coral,
+		chartRed: hue.hotPink,
+		chartPurple: hue.purple,
 
-		preformatText: "#09A1ED",
+		preformatText: sem.link,
 	},
 
 	// TODO: Update with new colors
-	brackets: {
-		one: "#3FC56B",
-		two: "#10B1FE",
-		three: "#F9C859",
-		four: "#FF6B66",
-		five: "#D177F5",
-		six: "#B58E95",
-	},
+	brackets: brackets,
 
-	gitGraph: [
-		"#F85EB4",
-		"#10B1FE",
-		"#3FC56B",
-		"#F9C859",
-		"#FF6B66",
-		"#D177F5",
-		"#B58E95",
-		"#97BCCD",
-		"#15C9C5",
-		"#9ACC12",
-	],
+	gitGraph: gitGraph,
 
-	todo: {
-		todo: "#B9BFCA",
-		fixme: "#FF6B66",
-		bug: "#FF2884",
-		hack: "#F9C859",
-		maybe: "#15C9C5",
-		unchecked: "#B9BFCA",
-		checked: "#3FC56B",
-	},
+	todo: todo,
 };
