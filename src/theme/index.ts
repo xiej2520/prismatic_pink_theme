@@ -1,8 +1,5 @@
-import { Config } from "../config";
-import { darkColors, darkSyntax } from "../dark";
-import { blackContrastColors, blackContrastSyntax } from "../black-contrast";
-//import { darkWarmColors, darkWarmSyntax } from "./dark-warm";
-//import { lightColors, lightSyntax } from "./light";
+import type { Config } from "../config";
+import { THEMES } from "../themes";
 import { THEME_FOLDER } from "../paths";
 import * as fs from "fs";
 import * as path from "path";
@@ -16,25 +13,12 @@ import { generateTextMateTheme } from "./textmate";
  * @param config The current configuration.
  */
 export function createThemes(config: Config) {
-	createTheme("Prismatic Pink", "dark", "prismatic-pink.json", darkColors, darkSyntax, config);
-	createTheme("Prismatic Pink High Contrast", "dark", "prismatic-pink-contrast.json", blackContrastColors, blackContrastSyntax, config);
+  for (const t of THEMES) {
+    const jsonPath = path.join(THEME_FOLDER, t.file);
+    const theme = generateTheme(t.colors, t.syntax, t.label, t.type, config);
+    fs.writeFileSync(jsonPath, JSON.stringify(theme, undefined, 4));
+  }
 }
-
-function createTheme(
-	name: string,
-	type: "light" | "dark",
-	file: string,
-	color: UiColors,
-	syntax: SyntaxColors,
-	config: Config
-) {
-	const jsonPath = path.join(THEME_FOLDER, file);
-	const theme = generateTheme(color, syntax, name, type, config);
-	fs.writeFileSync(jsonPath, JSON.stringify(theme, undefined, 4));
-}
-
-// TODO: Review gutter comments
-// TODO: Chat?
 
 function generateTheme(
 	color: UiColors,

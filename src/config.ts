@@ -1,98 +1,112 @@
 import { CACHE_FILE } from "./paths";
 import * as fs from "fs";
-import * as vscode from "vscode";
+// require `vscode` lazily in `getConfig`/`resetConfig` so build scripts don't import them
 
 // Note: the accepted values should be kept in-line with `package.json`.
+// Register deprecated settings with their old key, `getConfig` falls back to reading it.
 
-/**
- * Valid markdown syntax styles.
- */
-type MarkdownSyntaxStyle = "traditional" | "mutedPlaintext" | "mutedPunctuation";
-function isValidMarkdownSyntaxStyle(str: String): str is MarkdownSyntaxStyle {
-	return str == "traditional" || str == "mutedPlaintext" || str == "mutedPunctuation";
+export interface SettingDef<T> {
+  key: string;
+  legacyVscodeKeys?: string[];
+  migrateLegacy?: (raw: unknown) => T | undefined;
+  default: T;
+  isValid: (v: unknown) => boolean;
 }
 
-/**
- * Valid inlay hint styles.
- */
-type InlayHintStyle = "noBackground" | "faintBackground" | "accent" | "accentBackground";
-function isValidInlayHintStyle(str: string): str is InlayHintStyle {
-	return (
-		str == "noBackground" ||
-		str == "faintBackground" ||
-		str == "accent" ||
-		str == "accentBackground"
-	);
+function stringEnum<T extends string>(...values: T[]) {
+  return (v: unknown): v is T => typeof v === "string" && (values as string[]).includes(v);
 }
 
-/**
- * Valid light terminal colour schemes.
- */
-type LightTerminalColourScheme = "normal+dark" | "normal+light" | "dark+normal";
-function isValidLightTerminalColourScheme(str: string): str is LightTerminalColourScheme {
-	return str == "normal+dark" || str == "normal+light" || str == "dark+normal";
-}
+const isBoolean = (v: unknown): v is boolean => typeof v === "boolean";
 
-/**
- * Valid global accent options.
- */
-type GlobalAccent = "everywhere" | "disabledStatusBar" | "minimal";
-function isValidGlobalAccent(str: string): str is GlobalAccent {
-	return str == "everywhere" || str == "disabledStatusBar" || str == "minimal";
-}
+export const SETTINGS: SettingDef<any>[] = [
+  {
+    key: "markdownSyntaxStyle",
+    legacyVscodeKeys: ["mutedMarkdownPlaintext"],
+    migrateLegacy: (raw) => (raw === true ? "mutedPlaintext" : raw === false ? "traditional" : undefined),
+    default: "traditional",
+    isValid: stringEnum("traditional", "mutedPlaintext", "mutedPunctuation"),
+  },
+  {
+    key: "italicComments",
+    legacyVscodeKeys: ["italicizedComments"],
+    default: false,
+    isValid: isBoolean,
+  },
+  {
+    key: "mutedComments",
+    default: false,
+    isValid: isBoolean,
+  },
+  {
+    key: "altCurrentLine",
+    legacyVscodeKeys: ["alternateCurrentLineStyle"],
+    default: false,
+    isValid: isBoolean,
+  },
+  {
+    key: "monochromeBracketGuides",
+    legacyVscodeKeys: ["monochromeBracketPairGuides"],
+    default: false,
+    isValid: isBoolean,
+  },
+  {
+    key: "inlayStyle",
+    legacyVscodeKeys: ["inlayHintStyle"],
+    default: "noBackground",
+    isValid: stringEnum("noBackground", "faintBackground", "accent", "accentBackground"),
+  },
+  {
+    key: "lightTerminalColourScheme",
+    legacyVscodeKeys: ["light.terminalColourScheme"],
+    default: "normal+dark",
+    isValid: stringEnum("normal+dark", "normal+light", "dark+normal"),
+  },
+  {
+    key: "globalAccent",
+    default: "disabledStatusBar",
+    isValid: stringEnum("everywhere", "disabledStatusBar", "minimal"),
+  },
+  {
+    key: "boldDefaultMutableVariables",
+    default: false,
+    isValid: isBoolean,
+  },
+]
 
-/**
- * The configuration of the theme.
- */
+export const DEFAULT_CONFIG = Object.fromEntries(
+  SETTINGS.map(s => [s.key, s.default]),
+) as {
+  markdownSyntaxStyle: "traditional" | "mutedPlaintext" | "mutedPunctuation";
+  italicComments: boolean;
+  mutedComments: boolean;
+  altCurrentLine: boolean;
+  monochromeBracketGuides: boolean;
+  inlayStyle: "noBackground" | "faintBackground" | "accent" | "accentBackground";
+  lightTerminalColourScheme: "normal+dark" | "normal+light" | "dark+normal";
+  globalAccent: "everywhere" | "disabledStatusBar" | "minimal";
+  boldDefaultMutableVariables: boolean;
+};
+
+export type ConfigValues = typeof DEFAULT_CONFIG;
+
 export class Config {
-	markdownSyntaxStyle: MarkdownSyntaxStyle;
-	italicComments: boolean;
-	mutedComments: boolean;
-	altCurrentLine: boolean;
-	monochromeBracketGuides: boolean;
-	inlayStyle: InlayHintStyle;
-	lightTerminalColourScheme: LightTerminalColourScheme;
-	globalAccent: GlobalAccent;
-	boldDefaultMutableVariables: boolean;
+  constructor(public values: ConfigValues) {}
 
-	constructor(
-		markdownSyntaxStyle: MarkdownSyntaxStyle,
-		italicComments: boolean,
-		mutedComments: boolean,
-		altCurrentLine: boolean,
-		monochromeBracketGuides: boolean,
-		inlayStyle: InlayHintStyle,
-		lightTerminalColourScheme: LightTerminalColourScheme,
-		globalAccent: GlobalAccent,
-		boldDefaultMutableVariables: boolean,
-	) {
-		this.markdownSyntaxStyle = markdownSyntaxStyle;
-		this.italicComments = italicComments;
-		this.mutedComments = mutedComments;
-		this.altCurrentLine = altCurrentLine;
-		this.inlayStyle = inlayStyle;
-		this.monochromeBracketGuides = monochromeBracketGuides;
-		this.lightTerminalColourScheme = lightTerminalColourScheme;
-		this.globalAccent = globalAccent;
-		this.boldDefaultMutableVariables = boldDefaultMutableVariables;
-	}
+  get markdownSyntaxStyle() { return this.values.markdownSyntaxStyle; }
+	get italicComments() { return this.values.italicComments; }
+	get mutedComments() { return this.values.mutedComments; }
+	get altCurrentLine() { return this.values.altCurrentLine; }
+	get monochromeBracketGuides() { return this.values.monochromeBracketGuides; }
+	get inlayStyle() { return this.values.inlayStyle; }
+	get lightTerminalColourScheme() { return this.values.lightTerminalColourScheme; }
+	get globalAccent() { return this.values.globalAccent; }
+	get boldDefaultMutableVariables() { return this.values.boldDefaultMutableVariables; }
 
 	/**
 	 * The default configuration settings.
-	 *
-	 * WARNING: these default values should be kept in-line with `package.json`.
 	 */
-	static DEFAULT: Config = new Config(
-		"traditional",
-		false,
-		false,
-		false,
-		false,
-		"noBackground",
-		"normal+dark",
-		"disabledStatusBar",
-		false,
-	);
+	static DEFAULT: Config = new Config(DEFAULT_CONFIG);
 
 	/**
 	 * Returns whether the theme configuration has been modified since the last time it was written to the cache.
@@ -106,30 +120,8 @@ export class Config {
 		}
 
 		try {
-			// For details about handling deprecated fields, see: /docs/Design Document.md#cached-configuration
-
-			let cachedConfig = JSON.parse(fs.readFileSync(CACHE_FILE, { encoding: "utf8" }));
-			if (cachedConfig.markdownSyntaxStyle === undefined) {
-				if (cachedConfig.mutedMd === true) {
-					cachedConfig.markdownSyntaxStyle = "mutedPlaintext";
-				} else {
-					cachedConfig.markdownSyntaxStyle = "traditional";
-				}
-			}
-
-			if (
-				this.markdownSyntaxStyle == cachedConfig.markdownSyntaxStyle &&
-				this.altCurrentLine == cachedConfig.altCurrentLine &&
-				this.italicComments == cachedConfig.italicComments &&
-				this.monochromeBracketGuides == cachedConfig.monochromeBracketGuides &&
-				this.inlayStyle == cachedConfig.inlayStyle &&
-				this.lightTerminalColourScheme == cachedConfig.lightTerminalColourScheme &&
-				this.globalAccent == cachedConfig.globalAccent
-			) {
-				return false;
-			} else {
-				return true;
-			}
+			const cached = JSON.parse(fs.readFileSync(CACHE_FILE, { encoding: "utf8"})).values ?? {};
+			return SETTINGS.some(s => (this as any)[s.key] !== cached[s.key]);
 		} catch {
 			return true;
 		}
@@ -147,103 +139,27 @@ export class Config {
  * Returns the current configuration of the theme.
  */
 export function getConfig(): Config {
-	const config = vscode.workspace.getConfiguration("theme-prismatic-pink");
+  const vscode: typeof import("vscode") = require("vscode");
+  const config = vscode.workspace.getConfiguration("theme-prismatic-pink");
 
-	// For details about handling deprecated settings, see: /docs/Design Document.md#configuration-vs-code
-
-	let markdownSyntaxStyle: MarkdownSyntaxStyle;
-	let markdownSyntaxStyleRaw = config.inspect("markdownSyntaxStyle")!;
-	if (markdownSyntaxStyleRaw.globalValue === undefined) {
-		// `theme-pink-candy.markdownSyntaxStyle` is not defined within the user configuration.
-		let mutedMdRaw = config.inspect("mutedMarkdownPlaintext")!;
-		if (mutedMdRaw.globalValue === undefined) {
-			// `theme-pink-candy.mutedMarkdownPlaintext` is not defined within the user configuration.
-			markdownSyntaxStyle = "traditional";
-		} else if (mutedMdRaw.globalValue === true) {
-			markdownSyntaxStyle = "mutedPlaintext";
-		} else {
-			markdownSyntaxStyle = "traditional";
-		}
-	} else {
-		if (typeof markdownSyntaxStyleRaw.globalValue === "string") {
-			let value = markdownSyntaxStyleRaw.globalValue as string;
-			if (isValidMarkdownSyntaxStyle(value)) {
-				markdownSyntaxStyle = value;
-			} else {
-				markdownSyntaxStyle = "traditional";
-			}
-		} else {
-			markdownSyntaxStyle = "traditional";
-		}
-	}
-
-	let italicComments: boolean | undefined = config.get("italicizedComments");
-	if (italicComments === undefined) {
-		italicComments = false;
-	}
-
-	let mutedComments: boolean | undefined = config.get("mutedComments");
-	if (mutedComments === undefined) {
-		mutedComments = false;
-	}
-
-	let altCurrentLine: boolean | undefined = config.get("alternateCurrentLineStyle");
-	if (altCurrentLine === undefined) {
-		altCurrentLine = false;
-	}
-
-	let monochromeBracketGuides: boolean | undefined = config.get("monochromeBracketPairGuides");
-	if (monochromeBracketGuides === undefined) {
-		monochromeBracketGuides = false;
-	}
-
-	let inlayStyle: InlayHintStyle;
-	let inlayStyleRaw: string | undefined = config.get("inlayHintStyle");
-	if (inlayStyleRaw === undefined) {
-		inlayStyleRaw = "noBackground";
-	}
-	if (isValidInlayHintStyle(inlayStyleRaw)) {
-		inlayStyle = inlayStyleRaw;
-	} else {
-		inlayStyle = "noBackground";
-	}
-
-	let lightTerminalColourScheme: LightTerminalColourScheme;
-	let lightTerminalColourSchemeRaw: string | undefined = config.get("light.terminalColourScheme");
-	if (lightTerminalColourSchemeRaw === undefined) {
-		lightTerminalColourScheme = "normal+dark";
-	}
-	// No idea why we need to explicitly cast here, but not for the others.
-	if (isValidLightTerminalColourScheme(lightTerminalColourSchemeRaw as string)) {
-		lightTerminalColourScheme = lightTerminalColourSchemeRaw as LightTerminalColourScheme;
-	} else {
-		lightTerminalColourScheme = "normal+dark";
-	}
-
-	let globalAccent: GlobalAccent;
-	let globalAccentRaw: string | undefined = config.get("globalAccent");
-	if (globalAccentRaw === undefined) {
-		globalAccentRaw = "default";
-	}
-	if (isValidGlobalAccent(globalAccentRaw)) {
-		globalAccent = globalAccentRaw;
-	} else {
-		globalAccent = "disabledStatusBar";
-	}
-
-	const boldDefaultMutableVariables: boolean = config.get("boldDefaultMutableVariables") ?? false;
-
-	return new Config(
-		markdownSyntaxStyle,
-		italicComments,
-		mutedComments,
-		altCurrentLine,
-		monochromeBracketGuides,
-		inlayStyle,
-		lightTerminalColourScheme,
-		globalAccent,
-		boldDefaultMutableVariables,
-	);
+  const values = {} as Record<string, unknown>;
+  for (const s of SETTINGS) {
+    const raw = config.inspect(s.key)?.globalValue;
+    if (raw !== undefined && s.isValid(raw)) {
+      values[s.key] = raw;
+      continue;
+    }
+    const legacyRaw = s.legacyVscodeKeys?.map(k => config.inspect(k)?.globalValue).find(v => v !== undefined);
+    if (legacyRaw !== undefined) {
+      const migrated = s.migrateLegacy ? s.migrateLegacy(legacyRaw) : legacyRaw;
+      if (migrated !== undefined && s.isValid(migrated)) {
+        values[s.key] = migrated;
+        continue;
+      }
+    }
+    values[s.key] = s.default;
+	};
+	return new Config(values as ConfigValues);
 }
 
 /**
@@ -252,14 +168,12 @@ export function getConfig(): Config {
  */
 export function resetConfig() {
 	Config.DEFAULT.writeToCache();
+	const vscode: typeof import("vscode") = require("vscode;")
 	const config = vscode.workspace.getConfiguration("theme-prismatic-pink");
-	// Note: this should undefine all settings defined in `package.json`.
-	config.update("mutedMarkdownPlaintext", undefined, true);
-	config.update("markdownSyntaxStyle", undefined, true);
-	config.update("italicizedComments", undefined, true);
-	config.update("alternateCurrentLineStyle", undefined, true);
-	config.update("monochromeBracketPairGuides", undefined, true);
-	config.update("inlayHintStyle", undefined, true);
-	config.update("light.terminalColourScheme", undefined, true);
-	config.update("globalAccent", undefined, true);
+	for (const s of SETTINGS) {
+  	config.update(s.key, undefined, true);
+   for (const legacyKey of s.legacyVscodeKeys ?? []) {
+     config.update(legacyKey, undefined, true);
+   }
+	}
 }

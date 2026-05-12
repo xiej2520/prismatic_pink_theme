@@ -74,9 +74,38 @@
 					"type": "boolean",
 					"scope": "application",
 					"default": false,
-					"description": "Controls whether markdown plaintext has a muted appearance.",
 					"markdownDeprecationMessage": "Deprecated; use `#theme-prismatic-pink.markdownSyntaxStyle#` instead.",
 					"deprecationMessage": "Deprecated; use `theme-prismatic-pink.markdownSyntaxStyle` instead."
+				},
+				"theme-prismatic-pink.italicizedComments": {
+					"type": "boolean",
+					"scope": "application",
+					"default": false,
+					"deprecationMessage": "Deprecated; use `theme-prismatic-pink.italicComments` instead."
+				},
+				"theme-prismatic-pink.alternateCurrentLineStyle": {
+					"type": "boolean",
+					"scope": "application",
+					"default": false,
+					"deprecationMessage": "Deprecated; use `theme-prismatic-pink.altCurrentLine` instead."
+				},
+				"theme-prismatic-pink.monochromeBracketPairGuides": {
+					"type": "boolean",
+					"scope": "application",
+					"default": false,
+					"deprecationMessage": "Deprecated; use `theme-prismatic-pink.monochromeBracketGuides` instead."
+				},
+				"theme-prismatic-pink.inlayHintStyle": {
+					"type": "boolean",
+					"scope": "application",
+					"default": false,
+					"deprecationMessage": "Deprecated; use `theme-prismatic-pink.inlayStyle` instead."
+				},
+				"theme-prismatic-pink.light.terminalColourScheme": {
+					"type": "boolean",
+					"scope": "application",
+					"default": "normal+dark",
+					"deprecationMessage": "Deprecated; use `theme-prismatic-pink.lightTerminalColourScheme` instead."
 				},
 				"theme-prismatic-pink.markdownSyntaxStyle": {
 					"type": "string",
@@ -105,7 +134,7 @@
 						"The default color scheme, but emphasizes semantic meaning and de-emphasizes markdown control characters."
 					]
 				},
-				"theme-prismatic-pink.italicizedComments": {
+				"theme-prismatic-pink.italicComments": {
 					"type": "boolean",
 					"scope": "application",
 					"default": false,
@@ -123,19 +152,19 @@
 					"default": false,
 					"description": "Controls whether mutable variables are bold in languages where they default to mutable, i.e. C++, Java."
 				},
-				"theme-prismatic-pink.alternateCurrentLineStyle": {
+				"theme-prismatic-pink.altCurrentLine": {
 					"type": "boolean",
 					"scope": "application",
 					"default": false,
 					"description": "Controls whether the current-line uses an alternate appearance (outline rather than transparent background fill)."
 				},
-				"theme-prismatic-pink.monochromeBracketPairGuides": {
+				"theme-prismatic-pink.monochromeBracketGuides": {
 					"type": "boolean",
 					"scope": "application",
 					"default": false,
 					"description": "Controls whether bracket pair guides are monochrome."
 				},
-				"theme-prismatic-pink.inlayHintStyle": {
+				"theme-prismatic-pink.inlayStyle": {
 					"type": "string",
 					"scope": "application",
 					"default": "noBackground",
@@ -165,7 +194,7 @@
 						"An accent colour for the inlay hint text and a lightly shaded background."
 					]
 				},
-				"theme-prismatic-pink.light.terminalColourScheme": {
+				"theme-prismatic-pink.lightTerminalColourScheme": {
 					"type": "string",
 					"scope": "application",
 					"default": "normal+dark",
@@ -222,9 +251,9 @@
 		}
 	},
 	"scripts": {
-    "clean": "node -e \"require('fs').rmSync('out',{recursive:true,force:true})\"",
-		"build": "tsc -p ./ && node ./build/buildTheme.js",
-		"buildTheme": "node ./build/buildTheme.js",
+ 	  "clean": "node -e \"require('fs').rmSync('out',{recursive:true,force:true})\"",
+		"build": "npm run clean && tsc -p ./ && tsx ./build/buildTheme.ts",
+		"buildTheme": "tsx ./build/buildTheme.ts",
 		"buildZedTheme": "tsx ./build/buildZedTheme.ts",
 		"buildTs": "tsc -p ./",
 		"watchTs": "tsc -watch -p ./",

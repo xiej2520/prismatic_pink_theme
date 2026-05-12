@@ -52,7 +52,7 @@ configuration. This will build the extension and launch the VS Code Extension
 Development Host with the extension preloaded.
 
 When the Extension Host is running, after making a change to the theme script,
-run the `buildTheme` task. This will rebuild the theme files with `build/buildTheme.js`
+run the `buildTheme` task. This will rebuild the theme files with `build/buildTheme.ts`
 and the Extension Host will update and reload the theme colours according to the
 defined `config` type, which uses the *default* setting values. If you're
 working on the theme colours for a non-default setting value, modify this type
@@ -83,36 +83,23 @@ When adding a new file or directory at the repository root, make sure to update
 
 ## Adding a new setting
 
-- [ ] Define the new key within the `package.json` extension manifest.
-- [ ] Add a new field within the `Config` type, update the constructor, and
-  add any relevant type/validation.
-- [ ] Update `Config.DEFAULT` to take the default value of the new setting
-  (should match the extension manifest).
-- [ ] Update the default config type within `theme.js` to have the new field
-  with the default value (should match the extension manifest).
-- [ ] Add a comparison check for the new field within the `isModified()` method.
-- [ ] Update the `getConfig()` function to read the new setting's value.
-- [ ] Add the new setting to the `resetConfig()` function.
+Settings are defined in the `SETTINGS` array in `src/config.ts`. Then manually:
+
+- [ ] Define the new key within the `package.json` extension manifest, using the same nameas the
+  `SETTINGS` entry's `key`.
+- [ ] Add a new entry to `SETTINGS` (key, default, isValid), matching extension manifest.
+- [ ] Add a new getter in the `Config` class.
 - [ ] Add a new subsection to `/Configuration.md`.
 
 ## Adding a new setting that deprecates an existing setting
 
 - [ ] Define the new key within the `package.json` extension manifest. In the
   description mention that this new setting overrides the existing setting.
-- [ ] Add a deprecation message to the existing setting.
+- [ ] Add a deprecation message to the deprecated property in `package.json`.
 - [ ] Decide on how the old setting migrates to the new setting.
-- [ ] Replace the existing field within `Config` type with a new field, update
-  the constructor, and add any relevant type/validation.
-- [ ] Update `Config.DEFAULT` to remove the deprecated setting and take the
-  default value of the new setting (should match the extension manifest).
-- [ ] Update the default config type within `theme.js` to remove the old field
-  and add the new field with the default value (should match the extension manifest).
-- [ ] Replace the comparison check within `isModified()` from the old field to the new field.
-- [ ] Before the comparison check, add the migration logic from the old field to the new field.
-- [ ] Update the `getConfig()` function to read the new setting's value, and
-  update the existing code that reads the deprecated setting to work according
-  to the defined migration.
-- [ ] Add the new setting to the `resetConfig()` function. **Don't remove** the deprecated setting.
+- [ ] Replace the existing entry in `SETTINGS` with a new one: new `key`, old property name added to
+  `legacyVscodeKeys`, and `migrateLegacy` if the value needs converting.
+- [ ] Update the `Config` class gett's name if the field name changed.
 - [ ] Replace the existing subsection in `/Configuration.md` to explain the
   new setting. Include a note as to how the deprecated setting is migrated to the new one.
 
