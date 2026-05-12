@@ -260,6 +260,7 @@
 		"build": "npm run clean && tsc -p ./ && tsx ./build/buildTheme.ts",
 		"buildTheme": "tsx ./build/buildTheme.ts",
 		"buildZedTheme": "tsx ./build/buildZedTheme.ts",
+		"buildNvimTheme": "tsx ./build/buildNvimTheme.ts",
 		"buildTs": "tsc -p ./",
 		"watchTs": "tsc -watch -p ./",
 		"typecheck": "tsc -p ./tsconfig.build.json",
