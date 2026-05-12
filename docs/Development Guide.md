@@ -16,6 +16,7 @@ all extension versions published before the change).
 |`.vscodeignore`|Describes which files/directories to ignore when packaging the extension.|
 |`build`|Build scripts|
 |`colors`|Build output for Neovim colorscheme file.|
+|`css`|Build output for CSS custom-property stylesheet|
 |`docs`|Developer documentation|
 |`out`|The build output for the typescript project.|
 |`package`|The packaging output.|
@@ -36,6 +37,7 @@ The extension manifest defines the following npm scripts:
 - `buildTheme` - Builds the theme files.
 - `buildZedTheme` - Builds the Zed theme `build/prismatic-pink-zed.json`.
 - `buildNvimTheme` - Builds the Neovim Theme `build/prismatic-pink.lua`.
+- `buildCssTheme` - Builds the CSS custom property stylesheet `css/prismatic-pink.css`.
 - `buildTs` - Build the typescript project.
 - `watchTs` - Watch the typescript project.
 - `typecheck` - Type-check `src/`, `build/`, and `test/`.

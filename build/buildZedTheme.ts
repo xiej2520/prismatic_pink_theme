@@ -1,62 +1,34 @@
 import * as fs from "fs";
 import * as path from "path";
-import { darkColors, darkSyntax } from "../src/dark";
-import { blackContrastColors, blackContrastSyntax } from "../src/black-contrast";
-import { THEME_FOLDER } from "../src/paths";
-import { UiColors, SyntaxColors } from "../src/theme";
-import { Config } from "../src/config";
+import { THEMES } from "../src/themes";
+import type { UiColors, SyntaxColors } from "../src/theme";
+import { DEFAULT_CONFIG, type Config } from "../src/config";
 import { generateSemanticThemeColors } from "../src/theme/semantic";
+import { selectAnsiColors } from "../src/theme/terminal";
+import { makeOutputFolder } from "./buildEnv";
 
-// Handle working directory paths within Azure pipelines.
-let workingDir = path.join(__dirname, "..");
-if (process.env.SYSTEM_DEFAULTWORKINGDIRECTORY && process.env.RELEASE_PRIMARYARTIFACTSOURCEALIAS) {
-  workingDir = path.join(
-    process.env.SYSTEM_DEFAULTWORKINGDIRECTORY,
-    process.env.RELEASE_PRIMARYARTIFACTSOURCEALIAS,
-  );
-}
+const themesFolder = makeOutputFolder("themes")
+const buildFolder = makeOutputFolder("build")
 
-// Create the `$extension_root/themes` folder if it doesn't exist, otherwise the file writing functions will fail.
-const folder = path.join(workingDir, "themes");
-if (!fs.existsSync(folder)) {
-  fs.mkdirSync(folder);
-}
+const { version } = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "..", "package.json"), "utf8"),
+) as { version: string };
 
-const config = {
-  markdownSyntaxStyle: "traditional",
-  italicComments: false,
-  mutedComments: false,
-  altCurrentLine: false,
-  monochromeBracketGuides: false,
-  inlayStyle: "noBackground",
-  lightTerminalColourScheme: "normal+dark",
-  globalAccent: "default",
-  boldDefaultMutableVariables: false,
-};
+const config = DEFAULT_CONFIG as unknown as Config;
 
-fs.writeFileSync(path.join(folder, "cached_config.json"), JSON.stringify(config));
+fs.writeFileSync(path.join(themesFolder, "cached_config.json"), JSON.stringify(config));
 createTheme("prismatic-pink-zed.json");
 
 function createTheme(file: string) {
-  const jsonPath = path.join(THEME_FOLDER, file);
+  const jsonPath = path.join(buildFolder, file);
 
   const ext = {
     $schema: "https://zed.dev/schema/themes/v0.2.0.json",
     name: "Prismatic Pink",
-    description: "Prismatic Pink Theme v0.0.0",
+    description: `Prismatic Pink Theme v${version}`,
     author: "xiej2520",
     isUserGenerated: true,
-    themes: [
-      //generateTheme(name, type, color, syntax, config),
-      generateTheme("Prismatic Pink", "dark", darkColors, darkSyntax, config),
-      generateTheme(
-        "Prismatic Pink High Contrast",
-        "dark",
-        blackContrastColors,
-        blackContrastSyntax,
-        config,
-      ),
-    ],
+    themes: THEMES.map(t => generateTheme(t.label, t.type, t.colors, t.syntax, config)),
   };
   fs.writeFileSync(jsonPath, JSON.stringify(ext, undefined, 2));
 }
@@ -72,27 +44,29 @@ function generateTheme(
     name,
     appearance: type,
     style: {
-      ...generateColors(color, config),
+      ...generateColors(color, type, config),
       syntax: generateSyntax(syntax, config),
     },
   };
 }
 
-function generateColors(color: UiColors, config: Config) {
+function generateColors(color: UiColors, type: "light" | "dark", config: Config) {
+  const ansi = selectAnsiColors(color, type, config);
   const surface = {
     background: color.ui.primaryBg,
 
     "surface.background": color.ui.tertiaryBg,
     "elevated_surface.background": color.ui.tertiaryBg,
-    "panel.background": color.ui.tertiaryBg,
+    "panel.background": color.ui.secondaryBg,
     "panel.focused_border": color.ui.border,
 
-    "panel.indent_guide": color.ui.treeIndent + "80",
+    "panel.indent_guide": color.ui.treeIndent + "40",
     "panel.indent_guide_hover": color.ui.treeIndent + "C0",
     "panel.indent_guide_active": color.ui.treeIndent,
 
-    "panel.overlay_background": color.ui.tertiaryBg,
-    "panel.overlay_hover": color.ui.hoverBgA,
+    "panel.overlay_background": color.ui.secondaryBg,
+    "panel.overlay_hover": color.ui.selectedBg,
+
     "pane.focused_border": color.ui.hoverBgA,
 
     //"pane_group.border": "#3D434F",
@@ -126,7 +100,7 @@ function generateColors(color: UiColors, config: Config) {
     "editor.gutter.background": color.ui.secondaryBg,
     "editor.active_line.background": color.text.currentLineBgA,
     "editor.highlighted_line.background": color.ui.secondaryBg,
-    "editor.debugger_active_line.background": color.ui.statusDebugBg,
+    "editor.debugger_active_line.background": color.diag.hintBgA,
     "editor.subheader.background": color.ui.secondaryBg,
     "editor.active_line_number": color.accent.primary,
     "editor.line_number": color.text.muted,
@@ -208,23 +182,23 @@ function generateColors(color: UiColors, config: Config) {
     "error.background": color.diag.errorBgA,
     "error.border": null,
 
-    created: color.diag.hint,
+    created: color.git.addedOrStaged,
     "created.background": color.diag.hintBgA,
     "created.border": null,
 
-    modified: color.diag.info,
+    modified: color.git.modified,
     "modified.background": color.diag.infoBgA,
     "modified.border": null,
 
-    deleted: color.diag.error,
+    deleted: color.git.removedOrConflicting,
     "deleted.background": color.diag.errorBgA,
     "deleted.border": null,
 
-    conflict: color.diag.warning,
+    conflict: color.git.removedOrConflicting,
     "conflict.background": color.diag.warningBgA,
     "conflict.border": null,
 
-    renamed: color.diag.info,
+    renamed: color.git.renamed,
     "renamed.background": color.diag.infoBgA,
     "renamed.border": null,
 
@@ -232,7 +206,7 @@ function generateColors(color: UiColors, config: Config) {
     "hidden.background": color.diag.hintBgA,
     "hidden.border": null,
 
-    ignored: color.diag.hint,
+    ignored: color.git.ignoredOrSubmodule,
     "ignored.background": color.diag.hintBgA,
     "ignored.border": null,
 
@@ -255,35 +229,37 @@ function generateColors(color: UiColors, config: Config) {
     "version_control.conflict_marker.theirs": color.git.incomingBgA,
   };
   const terminal = {
-    "terminal.background": color.terminal.ansiBackground,
+    //"terminal.background": color.terminal.ansiForeground, // ?? fix
+    "terminal.background": color.ui.primaryBg,
     "terminal.foreground": color.terminal.foreground,
-    "terminal.ansi.background": color.terminal.ansiBackground,
+    //"terminal.ansi.background": color.terminal.ansiForeground,
+    "terminal.ansi.background": color.ui.primaryBg,
     "terminal.bright_foreground": color.terminal.foreground,
     "terminal.dim_foreground": null,
-    "terminal.ansi.black": "#0B1012",
-    "terminal.ansi.bright_black": "#777777",
-    "terminal.ansi.dim_black": "#0F0F10",
-    "terminal.ansi.red": color.terminal.ansiRed,
-    "terminal.ansi.bright_red": color.terminal.ansiContrastRed,
-    "terminal.ansi.dim_red": "#A04040",
-    "terminal.ansi.green": color.terminal.ansiGreen,
-    "terminal.ansi.bright_green": color.terminal.ansiContrastGreen,
-    "terminal.ansi.dim_green": "#509040",
-    "terminal.ansi.yellow": color.terminal.ansiYellow,
-    "terminal.ansi.bright_yellow": color.terminal.ansiContrastYellow,
-    "terminal.ansi.dim_yellow": "#F4DD28",
-    "terminal.ansi.blue": color.terminal.ansiBlue,
-    "terminal.ansi.bright_blue": color.terminal.ansiContrastBlue,
-    "terminal.ansi.dim_blue": "#486AB0",
-    "terminal.ansi.magenta": color.terminal.ansiMagenta,
-    "terminal.ansi.bright_magenta": color.terminal.ansiContrastMagenta,
-    "terminal.ansi.dim_magenta": "#90488C",
-    "terminal.ansi.cyan": color.terminal.ansiCyan,
-    "terminal.ansi.bright_cyan": color.terminal.ansiContrastCyan,
-    "terminal.ansi.dim_cyan": "#408080",
-    "terminal.ansi.white": "#F0F0F0",
-    "terminal.ansi.bright_white": "#FFFFFF",
-    "terminal.ansi.dim_white": "#909090",
+    "terminal.ansi.black": ansi.black,
+    "terminal.ansi.bright_black": ansi.brightBlack,
+    "terminal.ansi.dim_black": ansi.dimBlack,
+    "terminal.ansi.red": ansi.red,
+    "terminal.ansi.bright_red": ansi.brightRed,
+    "terminal.ansi.dim_red": ansi.dimRed,
+    "terminal.ansi.green": ansi.green,
+    "terminal.ansi.bright_green": ansi.brightGreen,
+    "terminal.ansi.dim_green": ansi.dimGreen,
+    "terminal.ansi.yellow": ansi.yellow,
+    "terminal.ansi.bright_yellow": ansi.brightYellow,
+    "terminal.ansi.dim_yellow": ansi.dimYellow,
+    "terminal.ansi.blue": ansi.blue,
+    "terminal.ansi.bright_blue": ansi.brightBlue,
+    "terminal.ansi.dim_blue": ansi.dimBlue,
+    "terminal.ansi.magenta": ansi.magenta,
+    "terminal.ansi.bright_magenta": ansi.brightMagenta,
+    "terminal.ansi.dim_magenta": ansi.dimMagenta,
+    "terminal.ansi.cyan": ansi.cyan,
+    "terminal.ansi.bright_cyan": ansi.brightCyan,
+    "terminal.ansi.dim_cyan": ansi.dimCyan,
+    "terminal.ansi.white": ansi.white,
+    "terminal.ansi.bright_white": ansi.brightWhite,
+    "terminal.ansi.dim_white": ansi.dimWhite,
   };
   const players = {
     players: [
@@ -316,9 +292,10 @@ function generateColors(color: UiColors, config: Config) {
 
 function generateSyntax(syntax: SyntaxColors, config: Config) {
   const semantic = generateSemanticThemeColors(syntax);
+  const commentColor = config.mutedComments ? semantic.faded : semantic.comment;
   const comments = {
-    comment: semantic.comment,
-    "comment.doc": semantic.comment,
+    comment: config.italicComments ? { color: commentColor, font_style: "italic" } : commentColor,
+    "comment.doc": config.italicComments ? { color: commentColor, font_style: "italic" } : commentColor,
   };
   const literals = {
     string: semantic.string,

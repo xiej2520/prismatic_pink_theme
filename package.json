@@ -261,6 +261,7 @@
 		"buildTheme": "tsx ./build/buildTheme.ts",
 		"buildZedTheme": "tsx ./build/buildZedTheme.ts",
 		"buildNvimTheme": "tsx ./build/buildNvimTheme.ts",
+		"buildCssTheme": "tsx ./build/buildCssTheme.ts",
 		"buildTs": "tsc -p ./",
 		"watchTs": "tsc -watch -p ./",
 		"typecheck": "tsc -p ./tsconfig.build.json",
