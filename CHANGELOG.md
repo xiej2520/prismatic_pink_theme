@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.6 - 2026-08-21
+- Fix wrong default value being set for `boldDefaultMutableVariables`.
+- Rename settings keys to `italicComments`, `altCurrentLine`, `monochromeBracketGuides`, `inlayStyle`, and `lightTerminalColorScheme`.
+- Reintroduce light theme variant
+
 ## 0.1.5 - 2026-05-11
 - Fix not including the actual theme json
 
