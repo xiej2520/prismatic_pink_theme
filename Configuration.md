@@ -17,7 +17,7 @@ Controls whether comments use a muted gray color instead of the default accent c
 ---
 
 ### Markdown Syntax Style
-Controls the syntax colour scheme for markdown.
+Controls the syntax color scheme for markdown.
 
 ![Markdown](./img/options/MdStyle.png)
 ---
@@ -40,14 +40,14 @@ Controls whether bracket pair guides are monochrome.
 ![Monochrome](./img/options/Monochrome.png)
 ---
 
-### Light Terminal Colour Scheme
-Controls the terminal colour scheme.
+### Light Terminal Color Scheme
+Controls the terminal color scheme.
 
 ![Terminal](./img/options//LightTerm.png)
 ---
 
-### Accent Colour Usage
-Controls where the accent colours are used.
+### Accent Color Usage
+Controls where the accent colors are used.
 
 ![AccentDefault](./img/options/accentDefault.png)
 

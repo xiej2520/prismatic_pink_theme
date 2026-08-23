@@ -34,10 +34,10 @@ export interface AnsiColors {
 
 export function selectAnsiColors(color: UiColors, type: "light" | "dark", config: Config): AnsiColors {
   const dim = (hex: string) => f(a(hex, "80"), color.ui.primaryBg).slice(0, 7);
-	if (type == "light" && config.lightTerminalColourScheme != "normal+dark") {
+	if (type == "light" && config.lightTerminalColorScheme != "normal+dark") {
     const alt = color.terminal.alternativeContrast!;
     const whole = color.terminal.alternativeWhole!;
-		if (config.lightTerminalColourScheme == "normal+light") {
+		if (config.lightTerminalColorScheme == "normal+light") {
 			return {
 				foreground: color.terminal.foreground,
 				background: color.ui.primaryBg,
@@ -129,10 +129,10 @@ export function selectAnsiColors(color: UiColors, type: "light" | "dark", config
 }
 
 export function generateTerminalTheme(color: UiColors, type: "light" | "dark", config: Config) {
-  const terminalColourScheme = ansiScheme(selectAnsiColors(color, type, config));
+  const terminalColorScheme = ansiScheme(selectAnsiColors(color, type, config));
   return {
     // TERMINAL COLORS [x]
-    ...terminalColourScheme,
+    ...terminalColorScheme,
     //
     "terminal.selectionBackground": color.text.selectionBgA,
     "terminal.inactiveSelectionBackground": color.text.secondarySelectionBgA,

@@ -57,8 +57,8 @@ export const SETTINGS: SettingDef<any>[] = [
     isValid: stringEnum("noBackground", "faintBackground", "accent", "accentBackground"),
   },
   {
-    key: "lightTerminalColourScheme",
-    legacyVscodeKeys: ["light.terminalColourScheme"],
+    key: "lightTerminalColorScheme",
+    legacyVscodeKeys: ["light.terminalColorScheme"],
     default: "normal+dark",
     isValid: stringEnum("normal+dark", "normal+light", "dark+normal"),
   },
@@ -83,7 +83,7 @@ export const DEFAULT_CONFIG = Object.fromEntries(
   altCurrentLine: boolean;
   monochromeBracketGuides: boolean;
   inlayStyle: "noBackground" | "faintBackground" | "accent" | "accentBackground";
-  lightTerminalColourScheme: "normal+dark" | "normal+light" | "dark+normal";
+  lightTerminalColorScheme: "normal+dark" | "normal+light" | "dark+normal";
   globalAccent: "everywhere" | "disabledStatusBar" | "minimal";
   boldDefaultMutableVariables: boolean;
 };
@@ -99,7 +99,7 @@ export class Config {
 	get altCurrentLine() { return this.values.altCurrentLine; }
 	get monochromeBracketGuides() { return this.values.monochromeBracketGuides; }
 	get inlayStyle() { return this.values.inlayStyle; }
-	get lightTerminalColourScheme() { return this.values.lightTerminalColourScheme; }
+	get lightTerminalColorScheme() { return this.values.lightTerminalColorScheme; }
 	get globalAccent() { return this.values.globalAccent; }
 	get boldDefaultMutableVariables() { return this.values.boldDefaultMutableVariables; }
 

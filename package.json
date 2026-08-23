@@ -106,18 +106,18 @@
 					"default": false,
 					"deprecationMessage": "Deprecated; use `theme-prismatic-pink.inlayStyle` instead."
 				},
-				"theme-prismatic-pink.light.terminalColourScheme": {
+				"theme-prismatic-pink.light.terminalColorScheme": {
 					"type": "boolean",
 					"scope": "application",
 					"default": "normal+dark",
-					"deprecationMessage": "Deprecated; use `theme-prismatic-pink.lightTerminalColourScheme` instead."
+					"deprecationMessage": "Deprecated; use `theme-prismatic-pink.lightTerminalColorScheme` instead."
 				},
 				"theme-prismatic-pink.markdownSyntaxStyle": {
 					"type": "string",
 					"scope": "application",
 					"default": "traditional",
-					"markdownDescription": "Controls the syntax colour scheme for markdown.\r\nNote that this overrides the deprecated `#theme-prismatic-pink.mutedMarkdownPlaintext#` key.",
-					"description": "Controls the syntax colour scheme for markdown. Note that this overrides the deprecated `theme-prismatic-pink.mutedMarkdownPlaintext` key.",
+					"markdownDescription": "Controls the syntax color scheme for markdown.\r\nNote that this overrides the deprecated `#theme-prismatic-pink.mutedMarkdownPlaintext#` key.",
+					"description": "Controls the syntax color scheme for markdown. Note that this overrides the deprecated `theme-prismatic-pink.mutedMarkdownPlaintext` key.",
 					"enum": [
 						"traditional",
 						"mutedPlaintext",
@@ -189,22 +189,22 @@
 					"markdownEnumDescriptions": [
 						"No background behind the inlay hint; this is the *default* option.",
 						"A lightly shaded background behind the inlay hint.",
-						"An accent colour for the inlay hint text, with no background.",
-						"An accent colour for the inlay hint text and a lightly shaded background."
+						"An accent color for the inlay hint text, with no background.",
+						"An accent color for the inlay hint text and a lightly shaded background."
 					],
 					"enumDescriptions": [
 						"No background behind the inlay hint; this is the default option.",
 						"A lightly shaded background behind the inlay hint.",
-						"An accent colour for the inlay hint text, with no background.",
-						"An accent colour for the inlay hint text and a lightly shaded background."
+						"An accent color for the inlay hint text, with no background.",
+						"An accent color for the inlay hint text and a lightly shaded background."
 					]
 				},
-				"theme-prismatic-pink.lightTerminalColourScheme": {
+				"theme-prismatic-pink.lightTerminalColorScheme": {
 					"type": "string",
 					"scope": "application",
 					"default": "normal+dark",
-					"markdownDescription": "Controls the terminal colour scheme.\r\nThe commonly accepted ANSI/aixterm escape sequences to control colours are somewhat ambiguous. The \"bright\" colours on a dark terminal background often mean \"higher contrast\". However, on a light terminal background, higher contrast requires \"darker\" colours instead. Since this is quite ambiguous and there's no clearly defined standard interpretation, this setting allows choosing from a few options.",
-					"description": "Controls the terminal colour scheme.",
+					"markdownDescription": "Controls the terminal color scheme.\r\nThe commonly accepted ANSI/aixterm escape sequences to control colors are somewhat ambiguous. The \"bright\" colors on a dark terminal background often mean \"higher contrast\". However, on a light terminal background, higher contrast requires \"darker\" colors instead. Since this is quite ambiguous and there's no clearly defined standard interpretation, this setting allows choosing from a few options.",
+					"description": "Controls the terminal color scheme.",
 					"enum": [
 						"normal+dark",
 						"normal+light",
@@ -216,21 +216,21 @@
 						"Dark/Normal"
 					],
 					"markdownEnumDescriptions": [
-						"Normal theme colours for the standard 30-37/40-47 ANSI colours, and darker (higher contrast) colours for the \"bright\" 90-97 aixterm colours; this is the *default* option.",
-						"Normal theme colours for the standard 30-37 ANSI colours, and lighter (lower contrast) colours for the \"bright\" 90-97/100-107 aixterm colours.",
-						"Darker (higher contrast) colours for the standard 30-37/40-47 ANSI colours, and normal theme colours for the \"bright\" 90-97 aixterm colours."
+						"Normal theme colors for the standard 30-37/40-47 ANSI colors, and darker (higher contrast) colors for the \"bright\" 90-97 aixterm colors; this is the *default* option.",
+						"Normal theme colors for the standard 30-37 ANSI colors, and lighter (lower contrast) colors for the \"bright\" 90-97/100-107 aixterm colors.",
+						"Darker (higher contrast) colors for the standard 30-37/40-47 ANSI colors, and normal theme colors for the \"bright\" 90-97 aixterm colors."
 					],
 					"enumDescriptions": [
-						"Normal theme colours for the standard 30-37/40-47 ANSI colours, and darker (higher contrast) colours for the \"bright\" 90-97 aixterm colours; this is the default option.",
-						"Normal theme colours for the standard 30-37 ANSI colours, and lighter (lower contrast) colours for the \"bright\" 90-97/100-107 aixterm colours.",
-						"Darker (higher contrast) colours for the standard 30-37/40-47 ANSI colours, and normal theme colours for the \"bright\" 90-97 aixterm colours."
+						"Normal theme colors for the standard 30-37/40-47 ANSI colors, and darker (higher contrast) colors for the \"bright\" 90-97 aixterm colors; this is the default option.",
+						"Normal theme colors for the standard 30-37 ANSI colors, and lighter (lower contrast) colors for the \"bright\" 90-97/100-107 aixterm colors.",
+						"Darker (higher contrast) colors for the standard 30-37/40-47 ANSI colors, and normal theme colors for the \"bright\" 90-97 aixterm colors."
 					]
 				},
 				"theme-prismatic-pink.globalAccent": {
 					"type": "string",
 					"scope": "application",
 					"default": "disabledStatusBar",
-					"description": "Controls where the accent colours are used.",
+					"description": "Controls where the accent colors are used.",
 					"enum": [
 						"everywhere",
 						"disabledStatusBar",
@@ -242,14 +242,14 @@
 						"Minimal"
 					],
 					"markdownEnumDescriptions": [
-						"The accent colours are used everywhere.",
-						"The accent colours are used everywhere **but** on the status bar; this is the *default* option.",
-						"The accent colours are used only in a select few cases, such as buttons, links, important text, small decorations, etc."
+						"The accent colors are used everywhere.",
+						"The accent colors are used everywhere **but** on the status bar; this is the *default* option.",
+						"The accent colors are used only in a select few cases, such as buttons, links, important text, small decorations, etc."
 					],
 					"enumDescriptions": [
-						"The accent colours are used everywhere.",
-						"The accent colours are used everywhere but on the status bar; this is the default option.",
-						"The accent colours are used only in a select few cases, such as buttons, links, important text, small decorations, etc."
+						"The accent colors are used everywhere.",
+						"The accent colors are used everywhere but on the status bar; this is the default option.",
+						"The accent colors are used only in a select few cases, such as buttons, links, important text, small decorations, etc."
 					]
 				}
 			}
