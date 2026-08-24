@@ -18,6 +18,7 @@ createTheme(path.join(folder, "prismatic-pink-contrast.lua"), "prismatic-pink-co
 createTheme(path.join(folder, "prismatic-pink-light.lua"), "prismatic-pink-light", "light", lightColors, lightSyntax);
 
 function createTheme(filePath: string, colorsName: string, background: "light" | "dark", color: UiColors, syntax: SyntaxColors) {
+  console.log(`Writing Neovim colors "${colorsName}" to ${filePath}`);
   fs.writeFileSync(filePath, generateLua(colorsName, background, color, syntax));
 }
 

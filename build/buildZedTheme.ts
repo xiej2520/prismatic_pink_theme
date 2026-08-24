@@ -30,6 +30,7 @@ function createTheme(file: string) {
     isUserGenerated: true,
     themes: THEMES.map(t => generateTheme(t.label, t.type, t.colors, t.syntax, config)),
   };
+  console.log(`Writing Zed theme(s) to ${jsonPath}`);
   fs.writeFileSync(jsonPath, JSON.stringify(ext, undefined, 2));
 }
 
@@ -229,12 +230,9 @@ function generateColors(color: UiColors, type: "light" | "dark", config: Config)
     "version_control.conflict_marker.theirs": color.git.incomingBgA,
   };
   const terminal = {
-    //"terminal.background": color.terminal.ansiForeground, // ?? fix
-    "terminal.background": color.ui.primaryBg,
-    "terminal.foreground": color.terminal.foreground,
-    //"terminal.ansi.background": color.terminal.ansiForeground,
-    "terminal.ansi.background": color.ui.primaryBg,
-    "terminal.bright_foreground": color.terminal.foreground,
+    "terminal.background": ansi.background,
+    "terminal.foreground": ansi.foreground,
+    "terminal.bright_foreground": ansi.foreground,
     "terminal.dim_foreground": null,
     "terminal.ansi.black": ansi.black,
     "terminal.ansi.bright_black": ansi.brightBlack,

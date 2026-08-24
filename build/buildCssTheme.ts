@@ -116,4 +116,6 @@ ${block(":root,\n.prismatic-pink-light", light)}
 `;
 
 const folder = makeOutputFolder("themes");
-fs.writeFileSync(path.join(folder, "prismatic-pink.css"), css);
+const filePath = path.join(folder, "prismatic-pink.css");
+console.log(`Writing "prismatic-pink.css" to ${filePath}`);
+fs.writeFileSync(filePath, css);
