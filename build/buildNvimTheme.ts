@@ -30,13 +30,6 @@ function hi(group: string, opts: Record<string, string | boolean>): string {
 }
 
 function generateLua(colorsName: string, background: "dark" | "light", color: UiColors, syntax: SyntaxColors): string {
-  color.git.insertedBgA = "#273629";
-  color.diag.infoBgA = "#1F2E35";
-  color.git.removedBgA = "#3B1F2C";
-  color.diag.infoBgA = "#213B47";
-
-  color.text.currentLineBgA = "#252529";
-
   const ansi = selectAnsiColors(color, background, config);
   const terminalColors = [
     ansi.black, ansi.red, ansi.green, ansi.yellow, ansi.blue, ansi.magenta, ansi.cyan, ansi.white,
@@ -51,12 +44,11 @@ function generateLua(colorsName: string, background: "dark" | "light", color: Ui
     hi("FloatBorder", { fg: color.ui.border, bg: color.ui.secondaryBg }),
     hi("FloatTitle", { fg: syntax.pink, bg: color.ui.secondaryBg, bold: true }),
     hi("Cursor", { fg: color.ui.primaryBg, bg: color.accent.primary }),
-    //hi("CursorLine", { bg: color.text.currentLineBgA }),
-    hi("CursorLine", { bg: "#252529" }),
+    hi("CursorLine", { bg: f(color.text.currentLineBgA, color.ui.primaryBg) }),
     hi("CursorLineNr", { fg: color.accent.primary, bold: true }),
     hi("LineNr", { fg: syntax.fadedGray }),
     hi("SignColumn", { fg: syntax.fadedGray, bg: color.ui.primaryBg }),
-    hi("ColorColumn", { bg: color.ui.border }),
+    hi("ColorColumn", { bg: f(color.text.currentLineBorder, color.ui.primaryBg) }),
     hi("VertSplit", { fg: color.ui.border }),
     hi("WinSeparator", { fg: color.ui.border }),
     hi("EndOfBuffer", { fg: syntax.fadedGray }),
@@ -81,13 +73,11 @@ function generateLua(colorsName: string, background: "dark" | "light", color: Ui
     hi("PmenuMatchSel", { fg: syntax.pink, bg: color.ui.selectedBg, bold: true }),
 
     // search/selection
-    hi("Search", { fg: color.ui.primaryBg, bg: color.diag.match }),
+    hi("Search", { fg: syntax.fg, bg: f(color.text.matchBgA, color.ui.primaryBg) }),
     hi("IncSearch", { fg: color.ui.primaryBg, bg: color.accent.primary }),
     hi("CurSearch", { fg: color.ui.primaryBg, bg: color.accent.primary }),
-    //hi("Visual", { bg: color.text.selectionBg }),
-    hi("Visual", { bg: "#512535" }),
-    //hi("VisualNOS", { bg: color.text.secondarySelectionBgA }),
-    hi("VisualNOS", { bg: "#3b2030" }),
+    hi("Visual", { bg: f(color.text.selectionBgA, color.ui.primaryBg) }),
+    hi("VisualNOS", { bg: f(color.text.secondarySelectionBgA, color.ui.primaryBg) }),
     hi("MatchParen", { fg: color.accent.primary, bold: true }),
 
     // messages / prompts

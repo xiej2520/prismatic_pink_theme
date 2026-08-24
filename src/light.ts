@@ -149,14 +149,14 @@ export const lightColors: UiColors = {
 		// Text editor folded line, text editor hover over symbol background box
 		//
 		// NORMAL_LINE: Text editor current line background
-		currentLineBgA: "#00000007",
+		currentLineBgA: "#00000014",
 		// ALT_LINE: Text editor current line border
-		currentLineBorder: "#00000010",
+		currentLineBorder: "#00000008",
 
 		// Text editor selection background box, text editor matching text background box, text editor matching
 		// symbol background box, text editor selection boxes, general selection, input field, terminal selection,
 		selectionBg: "#FBE3EE", // FF12771A on primaryBg
-		selectionBgA: "#FF12771A",
+		selectionBgA: "#FF12772A",
 		// Text editor unfocused selection background box, text editor find current range background box, terminal
 		// unfocused selection
 		secondarySelectionBgA: "#FF127710",

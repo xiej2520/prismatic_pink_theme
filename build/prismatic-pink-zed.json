@@ -882,7 +882,7 @@
         "editor.foreground": "#565869",
         "editor.background": "#FAFBFC",
         "editor.gutter.background": "#F3F3F3",
-        "editor.active_line.background": "#00000007",
+        "editor.active_line.background": "#00000014",
         "editor.highlighted_line.background": "#F3F3F3",
         "editor.debugger_active_line.background": "#11C67820",
         "editor.subheader.background": "#F3F3F3",
