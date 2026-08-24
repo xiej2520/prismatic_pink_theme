@@ -20,16 +20,16 @@ test("alpha: replace existing alpha", () => {
 });
 
 test("flatten: translucent foreground over background", () => {
-	assert.equal(f("#FF4C986A", "#1E1E22"), "#7C3153FF");
+	assert.equal(f("#FF4C986A", "#1E1E22"), "#7C3153");
 });
 
 test("flatten: opaque foreground over background", () => {
-	assert.equal(f("#FF4C98FF", "#1E1E22"), "#FF4C98FF");
-	assert.equal(f("#FF4C98", "#1E1E22"), "#FF4C98FF");
+	assert.equal(f("#FF4C98FF", "#1E1E22"), "#FF4C98");
+	assert.equal(f("#FF4C98", "#1E1E22"), "#FF4C98");
 });
 
 test("flatten: transparent foreground over background", () => {
-	assert.equal(f("#FF4C9800", "#1E1E22"), "#1E1E22FF");
+	assert.equal(f("#FF4C9800", "#1E1E22"), "#1E1E22");
 });
 
 test("shorthand #RGB(A)", () => {

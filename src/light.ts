@@ -1,4 +1,5 @@
 import type { SyntaxColors, UiColors } from "./theme";
+import { TerminalAnsiPalette } from "./theme/terminal";
 
 //export const lightSyntax: SyntaxColors = {
 //	fg: "#565869",
@@ -50,6 +51,40 @@ export const lightSyntax: SyntaxColors = {
 	lightGreen: "#5E8A5E",
 	lightBlue: "#97BCCD",
 	lightPurple: "#7E5EA6",
+};
+
+// three sets of colors: dark --- normal --- light
+const terminalNormal: TerminalAnsiPalette = {
+	black: "#A0A0A8",
+	red: "#ff5c57",
+	green: "#2dae58",
+	yellow: "#c69613",
+	blue: "#09a1ed",
+	magenta: "#c75af3",
+	cyan: "#27b0ac",
+	white: "#565869",
+};
+
+const terminalDark: TerminalAnsiPalette = {
+	black: "#8B8FA0",
+	red: "#db3839",
+	green: "#1e9347",
+	yellow: "#a1790c",
+	blue: "#1684c2",
+	magenta: "#a853cb",
+	cyan: "#288d8a",
+	white: "#343545",
+};
+
+const terminalLight: TerminalAnsiPalette = {
+	black: "#b4b6cc",
+	red: "#fe8b82",
+	green: "#55ce76",
+	yellow: "#ddac37",
+	blue: "#78c6fd",
+	magenta: "#d991f9",
+	cyan: "#4bcac5",
+	white: "#8b8fa0",
 };
 
 export const lightColors: UiColors = {
@@ -263,55 +298,23 @@ export const lightColors: UiColors = {
 		success: "#11C678",
 		error: "#FF1277",
 
-		foreground: "#565869",
-
-		ansiForeground: "#565869",
-		ansiContrastForeground: "#343545",
-		ansiBackground: "#fafbfc",
-		ansiContrastBackground: "#8b8fa0",
-		ansiBlue: "#09a1ed",
-		ansiContrastBlue: "#1684c2",
-		ansiCyan: "#27b0ac",
-		ansiContrastCyan: "#288d8a",
-		ansiGreen: "#2dae58",
-		ansiContrastGreen: "#1e9347",
-		ansiYellow: "#c69613",
-		ansiContrastYellow: "#a1790c",
-		ansiRed: "#ff5c57",
-		ansiContrastRed: "#db3839",
-		ansiMagenta: "#c75af3",
-		ansiContrastMagenta: "#a853cb",
-
-		alternativeContrast: {
-			ansiContrastForeground: "#8b8fa0",
-			ansiContrastBackground: "#c9cee0",
-			ansiContrastBlue: "#78c6fd",
-			ansiContrastCyan: "#4bcac5",
-			ansiContrastGreen: "#55ce76",
-			ansiContrastYellow: "#ddac37",
-			ansiContrastRed: "#fe8b82",
-			ansiContrastMagenta: "#d991f9",
+		// normal+dark: darker (higher contrast) colors for bright,
+		ansi: {
+			foreground: "#565869", // 0m (default foreground)
+			background: "#FAFBFC", // terminal surface, separate from ANSI black
+			normal: terminalNormal,
+			bright: terminalDark,
 		},
 
+		// normal+light: lighter (lower contrast) colors for bright
+		alternativeBright: terminalLight,
+
+		// dark+normal: darker (higher contrast) colors for standard ANSI, normal colors for bright
 		alternativeWhole: {
 			foreground: "#343545",
-
-			ansiForeground: "#343545",
-			ansiContrastForeground: "#565869",
-			ansiBackground: "#fafbfc",
-			ansiContrastBackground: "#8b8fa0",
-			ansiBlue: "#1684c2",
-			ansiContrastBlue: "#09a1ed",
-			ansiCyan: "#288d8a",
-			ansiContrastCyan: "#27b0ac",
-			ansiGreen: "#1e9347",
-			ansiContrastGreen: "#2dae58",
-			ansiYellow: "#a1790c",
-			ansiContrastYellow: "#c69613",
-			ansiRed: "#db3839",
-			ansiContrastRed: "#ff5c57",
-			ansiMagenta: "#a853cb",
-			ansiContrastMagenta: "#c75af3",
+			background: "#FAFBFC",
+			normal: terminalDark,
+			bright: terminalNormal,
 		},
 	},
 

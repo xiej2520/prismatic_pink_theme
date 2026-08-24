@@ -10,6 +10,7 @@ const local = {
 	bg: "#1E1E22", // primary bg
 	bg2: "#1C1C20", // secondary, darker
 	bg3: "#121218", // tertiary, darkest
+	uiNormal: "#CFD7E6", // brighter, blue tinted
 };
 
 export const darkSyntax: SyntaxColors = {
@@ -56,8 +57,7 @@ export const darkColors: UiColors = {
 
 	text: {
 		// Most ui text, text editor default text
-		//normal: "#ABB2BF",
-		normal: "#CFD7E6", // brighter, blue tinted
+		normal: local.uiNormal,
 
 		// Setting header text
 		bold: local.fg,
@@ -265,23 +265,32 @@ export const darkColors: UiColors = {
 		success: sem.success,
 		error: sem.accent,
 
-		foreground: local.boldFg, // 0m (foreground)
-		ansiForeground: "#22222A", //37m (background)
-		ansiContrastForeground: hue.white, // (technicall 37;1m but vscode also applies this to just bold 1m, hence it's white)
-		ansiBackground: hue.white, // 30m
-		ansiContrastBackground: "#666666", // 30;1m
-		ansiBlue: sem.link,
-		ansiContrastBlue: "#41B9FF",
-		ansiCyan: hue.darkTeal,
-		ansiContrastCyan: "#16DAD6",
-		ansiGreen: "#2DAE58",
-		ansiContrastGreen: "#25DA6A",
-		ansiYellow: "#CF9C00",
-		ansiContrastYellow: hue.gold,
-		ansiRed: "#FF0046",
-		ansiContrastRed: "#FF2E87",
-		ansiMagenta: "#C010EF",
-		ansiContrastMagenta: hue.magenta,
+		ansi: {
+			foreground: local.boldFg, // 0m (default foreground)
+			background: local.bg, // terminal surface, separate from ANSI black
+			normal: {
+				// ANSI 30-37
+				black: darkSyntax.fadedGray, // "black" text should be gray to actually be readable
+				red: darkSyntax.red,
+				green: darkSyntax.green,
+				yellow: darkSyntax.yellow,
+				blue: darkSyntax.skyBlue,
+				magenta: hue.purple,
+				cyan: hue.darkTeal,
+				white: local.uiNormal,
+			},
+			bright: {
+				// ANSI 90-97; VS Code also applies these to bold text
+				black: darkSyntax.gray,
+				red: hue.pink,
+				green: hue.brightGreen,
+				yellow: hue.gold,
+				blue: hue.brightBlue,
+				magenta: hue.magenta,
+				cyan: hue.teal,
+				white: local.fg,
+			},
+		},
 	},
 
 	ui: {

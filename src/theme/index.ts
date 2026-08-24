@@ -5,6 +5,7 @@ import * as fs from "fs";
 import * as path from "path";
 import { generateEditorTheme } from "./editor";
 import { generateTerminalTheme } from "./terminal";
+import type { TerminalAnsiPalette, TerminalPalette } from "./terminal";
 import { generateSemanticTheme, generateSemanticThemeColors } from "./semantic";
 import { generateTextMateTheme } from "./textmate";
 
@@ -16,6 +17,7 @@ export function createThemes(config: Config) {
 	for (const t of THEMES) {
 		const jsonPath = path.join(THEME_FOLDER, t.file);
 		const theme = generateTheme(t.colors, t.syntax, t.label, t.type, config);
+		console.log(`Writing "${t.label}" theme to ${jsonPath}`);
 		fs.writeFileSync(jsonPath, JSON.stringify(theme, undefined, 4));
 	}
 }
@@ -285,58 +287,16 @@ export interface UiColors {
 		success: string;
 		error: string;
 
-		foreground: string;
+		// Default terminal text color.
+		ansi: TerminalPalette;
 
-		ansiForeground: string; // 7
-		ansiContrastForeground: string; // 7^
-		ansiBackground: string; // 0
-		ansiContrastBackground: string; // 0^
-		ansiBlue: string; // 4
-		ansiContrastBlue: string; // 4^
-		ansiCyan: string; // 6
-		ansiContrastCyan: string; // 6^
-		ansiGreen: string; // 2
-		ansiContrastGreen: string; // 2^
-		ansiYellow: string; // 3
-		ansiContrastYellow: string; // 3^
-		ansiRed: string; // 1
-		ansiContrastRed: string; // 1^
-		ansiMagenta: string; // 5
-		ansiContrastMagenta: string; // 5^
+		// Light-theme option "normal+light": keep the normal 30-37/40-47 colors above,
+		// but use this lighter (lower contrast) palette for bright 90-97 aixterm colors .
+		alternativeBright?: TerminalAnsiPalette;
 
-		// Alternative set of colours for the "bright" aixterm colours (90-97/100-107).
-		alternativeContrast?: {
-			ansiContrastForeground: string; // 7^
-			ansiContrastBackground: string; // 0^
-			ansiContrastBlue: string; // 4^
-			ansiContrastCyan: string; // 6^
-			ansiContrastGreen: string; // 2^
-			ansiContrastYellow: string; // 3^
-			ansiContrastRed: string; // 1^
-			ansiContrastMagenta: string; // 5^
-		};
-
-		// Alternative set of all ANSI/aixterm colours.
-		alternativeWhole?: {
-			foreground: string;
-
-			ansiForeground: string; // 7
-			ansiContrastForeground: string; // 7^
-			ansiBackground: string; // 0
-			ansiContrastBackground: string; // 0^
-			ansiBlue: string; // 4
-			ansiContrastBlue: string; // 4^
-			ansiCyan: string; // 6
-			ansiContrastCyan: string; // 6^
-			ansiGreen: string; // 2
-			ansiContrastGreen: string; // 2^
-			ansiYellow: string; // 3
-			ansiContrastYellow: string; // 3^
-			ansiRed: string; // 1
-			ansiContrastRed: string; // 1^
-			ansiMagenta: string; // 5
-			ansiContrastMagenta: string; // 5^
-		};
+		// Light-theme option "dark+normal": use darker (higher contrast) colors for 30-37/40-47 ANSI,
+		// and normal theme colors for bright 90-97 aixterm colors.
+		alternativeWhole?: TerminalPalette;
 	};
 
 	ui: {

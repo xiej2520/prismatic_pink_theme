@@ -8,6 +8,7 @@ const local = {
 	bg: "#000000", // primary/tertiary/dropdown background
 	bgAlt: "#040406", // secondary background
 	inputBg: "#181818",
+	uiNormal: "#E8EBF2",
 };
 
 export const blackContrastSyntax: SyntaxColors = {
@@ -48,8 +49,7 @@ export const blackContrastColors: UiColors = {
 
 	text: {
 		// Most ui text, text editor default text
-		//normal: "#ABB2BF",
-		normal: "#E8EBF2", // brighter, blue tinted
+		normal: local.uiNormal, // brighter, blue tinted
 
 		// Setting header text
 		bold: "#CFD7E6",
@@ -257,23 +257,32 @@ export const blackContrastColors: UiColors = {
 		success: sem.success,
 		error: sem.accent,
 
-		foreground: "#D6DAE0", // 0m (foreground)
-		ansiForeground: "#1C1C1C", //37m (background)
-		ansiContrastForeground: hue.white, // (technicall 37;1m but vscode also applies this to just bold 1m, hence it's white)
-		ansiBackground: hue.white, // 30m
-		ansiContrastBackground: "#666666", // 30;1m
-		ansiBlue: sem.link,
-		ansiContrastBlue: "#41B9FF",
-		ansiCyan: hue.darkTeal,
-		ansiContrastCyan: "#16DAD6",
-		ansiGreen: "#2DAE58",
-		ansiContrastGreen: "#25DA6A",
-		ansiYellow: "#CF9C00",
-		ansiContrastYellow: hue.gold,
-		ansiRed: "#FF0046",
-		ansiContrastRed: "#FF2E87",
-		ansiMagenta: "#C010EF",
-		ansiContrastMagenta: hue.magenta,
+		ansi: {
+			foreground: blackContrastSyntax.fg, // 0m (default foreground)
+			background: local.bg, // terminal surface, separate from ANSI black
+			normal: {
+				// ANSI 30-37
+				black: blackContrastSyntax.fadedGray, // "black" text should be gray to actually be readable
+				red: blackContrastSyntax.red,
+				green: blackContrastSyntax.green,
+				yellow: blackContrastSyntax.yellow,
+				blue: blackContrastSyntax.blue,
+				magenta: hue.magenta,
+				cyan: hue.teal,
+				white: local.uiNormal,
+			},
+			bright: {
+				// ANSI 90-97; VS Code also applies these to bold text
+				black: blackContrastSyntax.gray,
+				red: hue.pink,
+				green: hue.brightGreen,
+				yellow: hue.gold,
+				blue: hue.brightBlue,
+				magenta: "#C010EF",
+				cyan: "#16DAD6",
+				white: hue.white,
+			},
+		},
 	},
 
 	ui: {
