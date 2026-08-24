@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.7 - 2026-08-24
+- Fix terminal ANSI black, foreground, and background color handling.
+- Improve light-theme terminal palette.
+
 ## 0.1.6 - 2026-08-21
 - Fix wrong default value being set for `boldDefaultMutableVariables`.
 - Rename settings keys to `italicComments`, `altCurrentLine`, `monochromeBracketGuides`, `inlayStyle`, and `lightTerminalColorScheme`.
