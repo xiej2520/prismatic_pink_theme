@@ -4,31 +4,31 @@ import { alpha as a, flatten as f } from "../color";
 
 // foreground/background + 8 ANSI colors * normal/bright/dim
 export interface AnsiColors {
-	foreground: string;
-	background: string;
-	black: string;
-	brightBlack: string;
-	dimBlack: string;
-	white: string;
-	brightWhite: string;
+	foreground: string;    // white 37
+	background: string;    // brightWhite 97
+	black: string;         // black 30
+	brightBlack: string;   // brightBlack 90
+	dimBlack: string;      // 
+	white: string;         // 37
+	brightWhite: string;   // 97
 	dimWhite: string;
-	blue: string;
-	brightBlue: string;
+	blue: string;          // 34
+	brightBlue: string;    // 94
 	dimBlue: string;
-	cyan: string;
-	brightCyan: string;
+	cyan: string;          // 36
+	brightCyan: string;    // 96
 	dimCyan: string;
-	green: string;
-	brightGreen: string;
+	green: string;         // 32
+	brightGreen: string;   // 92
 	dimGreen: string;
-	yellow: string;
-	brightYellow: string;
+	yellow: string;        // 33
+	brightYellow: string;  // 93
 	dimYellow: string;
-	red: string;
-	brightRed: string;
+	red: string;           // 31
+	brightRed: string;     // 91
 	dimRed: string;
-	magenta: string;
-	brightMagenta: string;
+	magenta: string;       // 35
+	brightMagenta: string; // 95
 	dimMagenta: string;
 }
 
