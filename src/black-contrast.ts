@@ -3,11 +3,11 @@ import { alpha as a, flatten as f } from "./color";
 import { hue, sem, brackets, gitGraph, todo } from "./shared";
 
 const local = {
-  gray: "#7A7A8A",
-  border: "#222228",
-  bg: "#000000", // primary/tertiary/dropdown background
-  bgAlt: "#040406", // secondary background
-  inputBg: "#181818",
+	gray: "#7A7A8A",
+	border: "#222228",
+	bg: "#000000", // primary/tertiary/dropdown background
+	bgAlt: "#040406", // secondary background
+	inputBg: "#181818",
 };
 
 export const blackContrastSyntax: SyntaxColors = {

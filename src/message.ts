@@ -20,7 +20,7 @@ export function showReloadOnLoadConfirmation() {
 	vscode.window
 		.showInformationMessage(
 			"Detected new changes in the Prismatic Pink Theme configuration since the last time VS Code was open. You need to reload VS Code to see the changes.",
-			"Reload"
+			"Reload",
 		)
 		.then((button) => {
 			if (button == "Reload") {

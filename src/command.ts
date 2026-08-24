@@ -8,5 +8,5 @@ export const resetCmd = vscode.commands.registerCommand(
 	"theme-prismatic-pink.restoreDefaultConfig",
 	() => {
 		config.resetConfig();
-	}
+	},
 );

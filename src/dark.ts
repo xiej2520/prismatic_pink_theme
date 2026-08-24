@@ -3,13 +3,13 @@ import { alpha as a, flatten as f } from "./color";
 import { hue, sem, brackets, gitGraph, todo } from "./shared";
 
 const local = {
-  fg: "#C0C4D0",
-  boldFg: "#B2B6C4",
-  gray: "#636D83",
-  border: "#3D434F",
-  bg: "#1E1E22", // primary bg
-  bg2: "#1C1C20", // secondary, darker
-  bg3: "#121218", // tertiary, darkest
+	fg: "#C0C4D0",
+	boldFg: "#B2B6C4",
+	gray: "#636D83",
+	border: "#3D434F",
+	bg: "#1E1E22", // primary bg
+	bg2: "#1C1C20", // secondary, darker
+	bg3: "#121218", // tertiary, darkest
 };
 
 export const darkSyntax: SyntaxColors = {

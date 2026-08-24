@@ -13,11 +13,11 @@ import { generateTextMateTheme } from "./textmate";
  * @param config The current configuration.
  */
 export function createThemes(config: Config) {
-  for (const t of THEMES) {
-    const jsonPath = path.join(THEME_FOLDER, t.file);
-    const theme = generateTheme(t.colors, t.syntax, t.label, t.type, config);
-    fs.writeFileSync(jsonPath, JSON.stringify(theme, undefined, 4));
-  }
+	for (const t of THEMES) {
+		const jsonPath = path.join(THEME_FOLDER, t.file);
+		const theme = generateTheme(t.colors, t.syntax, t.label, t.type, config);
+		fs.writeFileSync(jsonPath, JSON.stringify(theme, undefined, 4));
+	}
 }
 
 function generateTheme(
@@ -25,7 +25,7 @@ function generateTheme(
 	syntax: SyntaxColors,
 	name: string,
 	type: "light" | "dark",
-	config: Config
+	config: Config,
 ) {
 	const semanticThemeColors = generateSemanticThemeColors(syntax);
 	return {
@@ -63,7 +63,7 @@ export interface SyntaxColors {
 	violet: string;
 	// Bold text, due to it's boldness, has a higher contrast. To maintain the same perceptual contrast, a lower
 	// contrast colour must be used instead.
-	boldGreen: string,
+	boldGreen: string;
 	boldPink: string;
 	boldViolet: string;
 	boldFg: string;

@@ -32,6 +32,7 @@
             packages = with pkgs; [
               nodejs
               pnpm
+              prettier
             ];
           };
         }

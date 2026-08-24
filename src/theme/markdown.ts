@@ -122,7 +122,7 @@ export function generateMarkdownColors(syntax: SyntaxColors, muted: boolean): Te
 			},
 		];
 	}
-	
+
 	const boldColor = syntax.boldGreen;
 	const italicColor = syntax.lightPink;
 	const boldItalicColor = syntax.boldPink;
@@ -293,7 +293,7 @@ export function generateMarkdownColors(syntax: SyntaxColors, muted: boolean): Te
 			scope: [
 				"markup.strikethrough.markdown markup.italic.markdown markup.bold.markdown",
 				"markup.strikethrough.markdown markup.italic.markdown markup.bold.markdown punctuation.definition.bold.markdown",
-				],
+			],
 			settings: {
 				foreground: boldItalicStrikethroughColor,
 				fontStyle: "bold italic strikethrough",
@@ -430,18 +430,14 @@ export function generateMarkdownColors(syntax: SyntaxColors, muted: boolean): Te
 		},
 		{
 			name: "Markdown - Unordered List Point",
-			scope: [
-				"markup.list.unnumbered.markdown punctuation.definition.list.begin.markdown",
-			],
+			scope: ["markup.list.unnumbered.markdown punctuation.definition.list.begin.markdown"],
 			settings: {
 				foreground: syntax.cyan,
 			},
 		},
 		{
 			name: "Markdown - Ordered List Point",
-			scope: [
-				"markup.list.numbered.markdown punctuation.definition.list.begin.markdown",
-			],
+			scope: ["markup.list.numbered.markdown punctuation.definition.list.begin.markdown"],
 			settings: {
 				foreground: syntax.orange,
 			},
@@ -482,9 +478,7 @@ export function generateMarkdownColors(syntax: SyntaxColors, muted: boolean): Te
 		},
 		{
 			name: "Markdown - Table Text",
-			scope: [
-				"markup.table.markdown",
-			],
+			scope: ["markup.table.markdown"],
 			settings: {
 				foreground: syntax.fg,
 			},
@@ -765,18 +759,14 @@ export function generateAlternateMarkdownColors(syntax: SyntaxColors): TextMateS
 		},
 		{
 			name: "Markdown - Unordered List Point",
-			scope: [
-				"markup.list.unnumbered.markdown punctuation.definition.list.begin.markdown",
-			],
+			scope: ["markup.list.unnumbered.markdown punctuation.definition.list.begin.markdown"],
 			settings: {
 				foreground: syntax.cyan,
 			},
 		},
 		{
 			name: "Markdown - Ordered List Point",
-			scope: [
-				"markup.list.numbered.markdown punctuation.definition.list.begin.markdown",
-			],
+			scope: ["markup.list.numbered.markdown punctuation.definition.list.begin.markdown"],
 			settings: {
 				foreground: syntax.orange,
 			},

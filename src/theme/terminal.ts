@@ -4,39 +4,43 @@ import { alpha as a, flatten as f } from "../color";
 
 // foreground/background + 8 ANSI colors * normal/bright/dim
 export interface AnsiColors {
-  foreground: string,
-  background: string,
-  black: string,
-  brightBlack: string,
-  dimBlack: string,
-  white: string,
-  brightWhite: string,
-  dimWhite: string,
-  blue: string,
-  brightBlue: string,
-  dimBlue: string,
-  cyan: string,
-  brightCyan: string,
-  dimCyan: string,
-  green: string,
-  brightGreen: string,
-  dimGreen: string,
-  yellow: string,
-  brightYellow: string,
-  dimYellow: string,
-  red: string,
-  brightRed: string,
-  dimRed: string,
-  magenta: string,
-  brightMagenta: string,
-  dimMagenta: string,
+	foreground: string;
+	background: string;
+	black: string;
+	brightBlack: string;
+	dimBlack: string;
+	white: string;
+	brightWhite: string;
+	dimWhite: string;
+	blue: string;
+	brightBlue: string;
+	dimBlue: string;
+	cyan: string;
+	brightCyan: string;
+	dimCyan: string;
+	green: string;
+	brightGreen: string;
+	dimGreen: string;
+	yellow: string;
+	brightYellow: string;
+	dimYellow: string;
+	red: string;
+	brightRed: string;
+	dimRed: string;
+	magenta: string;
+	brightMagenta: string;
+	dimMagenta: string;
 }
 
-export function selectAnsiColors(color: UiColors, type: "light" | "dark", config: Config): AnsiColors {
-  const dim = (hex: string) => f(a(hex, "80"), color.ui.primaryBg).slice(0, 7);
+export function selectAnsiColors(
+	color: UiColors,
+	type: "light" | "dark",
+	config: Config,
+): AnsiColors {
+	const dim = (hex: string) => f(a(hex, "80"), color.ui.primaryBg).slice(0, 7);
 	if (type == "light" && config.lightTerminalColorScheme != "normal+dark") {
-    const alt = color.terminal.alternativeContrast!;
-    const whole = color.terminal.alternativeWhole!;
+		const alt = color.terminal.alternativeContrast!;
+		const whole = color.terminal.alternativeWhole!;
 		if (config.lightTerminalColorScheme == "normal+light") {
 			return {
 				foreground: color.terminal.foreground,
@@ -129,52 +133,51 @@ export function selectAnsiColors(color: UiColors, type: "light" | "dark", config
 }
 
 export function generateTerminalTheme(color: UiColors, type: "light" | "dark", config: Config) {
-  const terminalColorScheme = ansiScheme(selectAnsiColors(color, type, config));
-  return {
-    // TERMINAL COLORS [x]
-    ...terminalColorScheme,
-    //
-    "terminal.selectionBackground": color.text.selectionBgA,
-    "terminal.inactiveSelectionBackground": color.text.secondarySelectionBgA,
-    "terminal.findMatchBackground": color.text.matchBg, // Currently selected match.
-    "terminal.findMatchBorder": color.text.matchBorderA, // Currently selected match.
-    "terminal.findMatchHighlightBackground": color.text.matchBgA, // Other matches.
-    "terminal.findMatchHighlightBorder": "#00000000", // Other matches.
-    "terminalOverviewRuler.cursorForeground": color.accent.primary,
-    "terminalOverviewRuler.findMatchForeground": color.diag.match,
-    //
-    "terminalCommandDecoration.defaultBackground": color.terminal.default,
-    "terminalCommandDecoration.successBackground": color.terminal.success,
-    "terminalCommandDecoration.errorBackground": color.terminal.error,
-    //
-    "terminalCursor.foreground": color.accent.primary,
-    "terminalCursor.background": color.ui.primaryBg, // Colour of text when selected by block cursor.
-    //
-    "terminal.dropBackground": color.ui.primaryDropBg, // // Background for re-organising stacked terminals.
-    "terminal.tab.activeBorder": color.ui.border, // ???
-  };
+	const terminalColorScheme = ansiScheme(selectAnsiColors(color, type, config));
+	return {
+		// TERMINAL COLORS [x]
+		...terminalColorScheme,
+		//
+		"terminal.selectionBackground": color.text.selectionBgA,
+		"terminal.inactiveSelectionBackground": color.text.secondarySelectionBgA,
+		"terminal.findMatchBackground": color.text.matchBg, // Currently selected match.
+		"terminal.findMatchBorder": color.text.matchBorderA, // Currently selected match.
+		"terminal.findMatchHighlightBackground": color.text.matchBgA, // Other matches.
+		"terminal.findMatchHighlightBorder": "#00000000", // Other matches.
+		"terminalOverviewRuler.cursorForeground": color.accent.primary,
+		"terminalOverviewRuler.findMatchForeground": color.diag.match,
+		//
+		"terminalCommandDecoration.defaultBackground": color.terminal.default,
+		"terminalCommandDecoration.successBackground": color.terminal.success,
+		"terminalCommandDecoration.errorBackground": color.terminal.error,
+		//
+		"terminalCursor.foreground": color.accent.primary,
+		"terminalCursor.background": color.ui.primaryBg, // Colour of text when selected by block cursor.
+		//
+		"terminal.dropBackground": color.ui.primaryDropBg, // // Background for re-organising stacked terminals.
+		"terminal.tab.activeBorder": color.ui.border, // ???
+	};
 }
 
 function ansiScheme(c: AnsiColors) {
-  return {
-    "terminal.foreground": c.foreground,
-    "terminal.background": c.background,
-    "terminal.ansiBlack": c.black,
-    "terminal.ansiBrightBlack": c.brightBlack,
-    "terminal.ansiWhite": c.white,
-    "terminal.ansiBrightWhite": c.brightWhite,
-    "terminal.ansiBlue": c.blue,
-    "terminal.ansiBrightBlue": c.brightBlue,
-    "terminal.ansiCyan": c.cyan,
-    "terminal.ansiBrightCyan": c.brightCyan,
-    "terminal.ansiGreen": c.green,
-    "terminal.ansiBrightGreen": c.brightGreen,
-    "terminal.ansiYellow": c.yellow,
-    "terminal.ansiBrightYellow": c.brightYellow,
-    "terminal.ansiRed": c.red,
-    "terminal.ansiBrightRed": c.brightRed,
-    "terminal.ansiMagenta": c.magenta,
-    "terminal.ansiBrightMagenta": c.brightMagenta,
-  }
+	return {
+		"terminal.foreground": c.foreground,
+		"terminal.background": c.background,
+		"terminal.ansiBlack": c.black,
+		"terminal.ansiBrightBlack": c.brightBlack,
+		"terminal.ansiWhite": c.white,
+		"terminal.ansiBrightWhite": c.brightWhite,
+		"terminal.ansiBlue": c.blue,
+		"terminal.ansiBrightBlue": c.brightBlue,
+		"terminal.ansiCyan": c.cyan,
+		"terminal.ansiBrightCyan": c.brightCyan,
+		"terminal.ansiGreen": c.green,
+		"terminal.ansiBrightGreen": c.brightGreen,
+		"terminal.ansiYellow": c.yellow,
+		"terminal.ansiBrightYellow": c.brightYellow,
+		"terminal.ansiRed": c.red,
+		"terminal.ansiBrightRed": c.brightRed,
+		"terminal.ansiMagenta": c.magenta,
+		"terminal.ansiBrightMagenta": c.brightMagenta,
+	};
 }
-

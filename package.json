@@ -257,6 +257,7 @@
 	},
 	"scripts": {
  	  "clean": "node -e \"require('fs').rmSync('out',{recursive:true,force:true})\"",
+		"format": "prettier --write src test",
 		"build": "npm run clean && tsc -p ./ && tsx ./build/buildTheme.ts",
 		"buildTheme": "tsx ./build/buildTheme.ts",
 		"buildZedTheme": "tsx ./build/buildZedTheme.ts",
