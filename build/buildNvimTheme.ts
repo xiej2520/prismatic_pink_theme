@@ -12,7 +12,7 @@ import { makeOutputFolder } from "./buildEnv";
 
 const config = DEFAULT_CONFIG as unknown as Config;
 
-const folder = makeOutputFolder("themes");
+const folder = makeOutputFolder("themes/nvim");
 createTheme(path.join(folder, "prismatic-pink.lua"), "prismatic-pink", "dark", darkColors, darkSyntax);
 createTheme(path.join(folder, "prismatic-pink-contrast.lua"), "prismatic-pink-contrast", "dark", blackContrastColors, blackContrastSyntax);
 createTheme(path.join(folder, "prismatic-pink-light.lua"), "prismatic-pink-light", "light", lightColors, lightSyntax);

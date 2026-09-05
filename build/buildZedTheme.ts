@@ -8,7 +8,6 @@ import { selectAnsiColors } from "../src/theme/terminal";
 import { makeOutputFolder } from "./buildEnv";
 
 const themesFolder = makeOutputFolder("themes")
-const buildFolder = makeOutputFolder("build")
 
 const { version } = JSON.parse(
   fs.readFileSync(path.join(__dirname, "..", "package.json"), "utf8"),
@@ -20,7 +19,7 @@ fs.writeFileSync(path.join(themesFolder, "cached_config.json"), JSON.stringify(c
 createTheme("prismatic-pink-zed.json");
 
 function createTheme(file: string) {
-  const jsonPath = path.join(buildFolder, file);
+  const jsonPath = path.join(themesFolder, file);
 
   const ext = {
     $schema: "https://zed.dev/schema/themes/v0.2.0.json",

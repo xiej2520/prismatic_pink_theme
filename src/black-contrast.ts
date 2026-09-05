@@ -330,8 +330,8 @@ export const blackContrastColors: UiColors = {
 		// Little buttons, titlebar menu buttons, editor stick hover
 		//
 		// DISABLED_STATUS_BAR: MINIMAL: Status bar hover/active button overlays
-		hoverBgA: a(hue.hotPink, "A0"),
-		activeBgA: a(hue.hotPink, "C0"),
+		hoverBgA: a(hue.white, "2A"),
+		activeBgA: a(hue.white, "40"),
 
 		// Lists, command bar hover, notification hover
 		//
