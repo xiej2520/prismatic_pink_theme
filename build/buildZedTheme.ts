@@ -15,7 +15,6 @@ const { version } = JSON.parse(
 
 const config = DEFAULT_CONFIG as unknown as Config;
 
-fs.writeFileSync(path.join(themesFolder, "cached_config.json"), JSON.stringify(config));
 createTheme("prismatic-pink-zed.json");
 
 function createTheme(file: string) {
