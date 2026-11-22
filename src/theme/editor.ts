@@ -990,62 +990,6 @@ export function generateEditorTheme(
 		"scmGraph.historyItemBaseRefColor": color.text.normal, // ???
 		"scmGraph.historyItemHoverAdditionsForeground": color.git.addedOrStaged,
 		"scmGraph.historyItemHoverDeletionsForeground": color.git.removedOrConflicting,
-		//
-		// GIT GRAPH [x]
-		"git-graph.graph.colours": color.gitGraph,
-		//
-		// _TODO TREE [x]
-		"todo-tree.highlights.customHighlight": {
-			TODO: {
-				foreground: color.ui.primaryBg,
-				background: color.todo.todo,
-				icon: "checklist",
-				iconColour: color.todo.todo,
-				gutterIcon: true,
-			},
-			FIXME: {
-				foreground: color.ui.primaryBg,
-				background: color.todo.fixme,
-				icon: "tools",
-				iconColour: color.todo.fixme,
-				gutterIcon: true,
-			},
-			BUG: {
-				foreground: color.ui.primaryBg,
-				background: color.todo.bug,
-				icon: "alert",
-				iconColour: color.todo.bug,
-				gutterIcon: true,
-			},
-			HACK: {
-				foreground: color.ui.primaryBg,
-				background: color.todo.hack,
-				icon: "flame",
-				iconColour: color.todo.hack,
-				gutterIcon: true,
-			},
-			MAYBE: {
-				foreground: color.ui.primaryBg,
-				background: color.todo.maybe,
-				icon: "info",
-				iconColour: color.todo.maybe,
-				gutterIcon: true,
-			},
-			"[ ]": {
-				foreground: color.ui.primaryBg,
-				background: color.todo.unchecked,
-				icon: "checklist",
-				iconColour: color.todo.unchecked,
-				gutterIcon: true,
-			},
-			"[x]": {
-				foreground: color.todo.checked,
-				background: color.ui.primaryBg,
-				icon: "checklist",
-				iconColour: color.todo.checked,
-				gutterIcon: true,
-			},
-		},
 	};
 	return editor_colors;
 }
