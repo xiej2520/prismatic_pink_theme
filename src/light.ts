@@ -196,6 +196,8 @@ export const lightColors: UiColors = {
 		// MINIMAL: list & command bar matching text, badge text
 		primary: "#FF1277",
 		primaryHover: "#DA005F",
+		fill: "#DA005F", // white text 5.1:1
+		fillHover: "#B90051", // white text 6.6:1
 		link: "#FF1277",
 		linkHover: "#DA005F",
 

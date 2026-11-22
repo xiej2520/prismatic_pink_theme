@@ -183,6 +183,9 @@ export interface UiColors {
 		// MINIMAL: list & command bar matching text, badge text
 		primary: string;
 		primaryHover: string;
+		// Darker pink background behind white text: buttons, badges, selected list/menu rows, accent status bar.
+		fill: string;
+		fillHover: string;
 		link: string;
 		linkHover: string;
 

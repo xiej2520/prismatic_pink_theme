@@ -59,6 +59,8 @@ function themeVars(color: UiColors, syntax: SyntaxColors, type: "light" | "dark"
 
     "--pp-accent": color.accent.primary,
     "--pp-accent-hover": color.accent.primaryHover,
+    "--pp-accent-fill": color.accent.fill, // background behind white text
+    "--pp-accent-fill-hover": color.accent.fillHover,
     "--pp-accent-secondary": color.accent.secondary,
     "--pp-accent-secondary-hover": color.accent.secondaryHover,
 

@@ -82,7 +82,7 @@ export const blackContrastColors: UiColors = {
 			// Text editor matching bracket border, text editor corrent indentation guide
 			//
 			// MONO_GUIDES: Bracket match guides
-			dark: "#F829A0",
+			dark: sem.accent,
 
 			// Codelens
 			//
@@ -95,12 +95,12 @@ export const blackContrastColors: UiColors = {
 			alt1InlayBgA: a(hue.white, "07"),
 
 			// ACCENT_INLAY: Inlay hint text
-			alt2Inlay: f(a(hue.brightPink, "6A"), local.bg), // FF4C986A on primaryBg
+			alt2Inlay: f(a(sem.accent, "6A"), local.bg),
 
 			// ACCENT_BCKG_INLAY: Inlay hint text
-			alt3Inlay: f(a(hue.brightPink, "7A"), local.bg), // FF4C987A on primaryBg
+			alt3Inlay: f(a(sem.accent, "7A"), local.bg),
 			// ACCENT_BCKG_INLAY: Inlay hint background
-			alt3InlayBgA: a(hue.brightPink, "10"),
+			alt3InlayBgA: a(sem.accent, "10"),
 		},
 
 		// Text editor folded line, text editor hover over symbol background box
@@ -112,14 +112,14 @@ export const blackContrastColors: UiColors = {
 
 		// Text editor selection background box, text editor matching text background box, text editor matching
 		// symbol background box, text editor selection boxes, general selection, input field, terminal selection,
-		selectionBg: a(hue.hotPink, "40"), // FF4C981A on primaryBg
-		selectionBgA: a(hue.hotPink, "40"),
+		selectionBg: a(sem.accent, "40"),
+		selectionBgA: a(sem.accent, "40"),
 		// Text editor unfocused selection background box, text editor find current range background box, terminal
 		// unfocused selection
-		secondarySelectionBgA: a(hue.hotPink, "30"),
+		secondarySelectionBgA: a(sem.accent, "30"),
 
 		// Text editor tabstop background box
-		tabstopBgA: a(hue.brightPink, "1A"),
+		tabstopBgA: a(sem.accent, "1A"),
 
 		// Text editor & search sidebar find match background box, text editor match line background, peek view
 		// match background box, list filter widget background, list filter match background, terminal find match
@@ -153,8 +153,10 @@ export const blackContrastColors: UiColors = {
 		// TODO: split these up, especially sidebar list selected element background
 		primary: sem.accent,
 		primaryHover: sem.accentHover,
-		link: hue.vividPink,
-		linkHover: hue.brightPink,
+		fill: sem.accentFill,
+		fillHover: sem.accentFillHover,
+		link: sem.accent,
+		linkHover: hue.softPink,
 
 		// Button background, codeblock text, (??? x1)
 		//
@@ -314,7 +316,7 @@ export const blackContrastColors: UiColors = {
 		inputBg: local.inputBg,
 
 		// Tab group, sidebar pane, panel section, terminal, list
-		primaryDropBg: a(hue.brightPink, "1A"),
+		primaryDropBg: a(sem.accent, "1A"),
 
 		// All borders
 		border: local.border,
@@ -337,9 +339,9 @@ export const blackContrastColors: UiColors = {
 		// Lists, command bar hover, notification hover
 		//
 		// MINIMAL: List unfocused selected overlay
-		listHoverBgA: a(hue.hotPink, "60"),
+		listHoverBgA: a(sem.accent, "60"),
 		// DEFAULT: DISABLED_STATUS_BAR: List unfocused selected overlay
-		listInactiveBgA: a(hue.brightPink, "1A"),
+		listInactiveBgA: a(sem.accent, "1A"),
 
 		// Keybind background
 		selectedBgA: a(hue.white, "10"),
@@ -370,7 +372,7 @@ export const blackContrastColors: UiColors = {
 		statusActiveBgA: a(hue.white, "4F"),
 
 		// Tab open but unfocused indicator
-		unfocusedTab: a(hue.brightPink, "80"),
+		unfocusedTab: a(sem.accent, "80"),
 
 		// Activity bar inactive icon
 		activityBarInactive: local.gray,
@@ -392,7 +394,7 @@ export const blackContrastColors: UiColors = {
 		chartGreen: hue.brightGreen,
 		chartYellow: hue.yellow,
 		chartOrange: hue.coral,
-		chartRed: hue.hotPink,
+		chartRed: sem.accent,
 		chartPurple: hue.purple,
 
 		preformatText: sem.link,

@@ -267,7 +267,7 @@ export function generateEditorTheme(
 		// DEFAULT + DISABLED_STATUS_BAR
 		list = {
 			"list.hoverBackground": color.ui.listHoverBgA, // Background on individual entry on hover.
-			"list.activeSelectionBackground": color.accent.primary,
+			"list.activeSelectionBackground": color.accent.fill,
 			"list.activeSelectionForeground": color.text.inverse,
 			"list.activeSelectionIconForeground": color.text.inverse, // Doesn't work?
 			"list.inactiveSelectionBackground": color.ui.listInactiveBgA, // Colour of a selected item when the list is not actively selected.
@@ -280,23 +280,23 @@ export function generateEditorTheme(
 			"editorSuggestWidget.border": color.ui.border,
 			"editorSuggestWidget.highlightForeground": color.accent.primary, // Matching letters in other entries.
 			"editorSuggestWidget.focusHighlightForeground": color.text.inverse, // Matching letters in currently selected entry.
-			"editorSuggestWidget.selectedBackground": color.accent.primary, // Background of selected entry.
+			"editorSuggestWidget.selectedBackground": color.accent.fill, // Background of selected entry.
 			"editorSuggestWidget.selectedForeground": color.text.inverse, // Text in selected entry.
 			"editorSuggestWidget.selectedIconForeground": color.text.inverse, // Icon in selected entry.
 			// This is the light bulb popup.
 			"editorActionList.foreground": color.text.normal,
 			"editorActionList.background": color.ui.primaryBg,
 			"editorActionList.focusForeground": color.text.inverse,
-			"editorActionList.focusBackground": color.accent.primary,
+			"editorActionList.focusBackground": color.accent.fill,
 			//
 			"peekViewResult.selectionForeground": color.text.emphasised, // Clicked entry.
-			"peekViewResult.selectionBackground": color.accent.primary, // Clicked entry.
+			"peekViewResult.selectionBackground": color.accent.fill, // Clicked entry.
 		};
 		badges = {
 			"badge.foreground": color.text.inverse,
-			"badge.background": color.accent.primary,
+			"badge.background": color.accent.fill,
 			"activityBarBadge.foreground": color.text.inverse,
-			"activityBarBadge.background": color.accent.primary,
+			"activityBarBadge.background": color.accent.fill,
 			"activityWarningBadge.foreground": color.text.inverse, // ???
 			"activityWarningBadge.background": color.diag.warning, // ???
 			"activityErrorBadge.foreground": color.text.inverse, // ???
@@ -304,14 +304,14 @@ export function generateEditorTheme(
 		};
 		banner = {
 			"banner.foreground": color.text.inverse,
-			"banner.background": color.accent.primary,
+			"banner.background": color.accent.fill,
 			"banner.iconForeground": color.text.inverse,
 		};
 		menu = {
 			"menu.foreground": color.text.normal,
 			"menu.background": color.ui.dropdownBg, // Background of a fly-out.
 			"menu.selectionForeground": color.text.inverse,
-			"menu.selectionBackground": color.accent.primary,
+			"menu.selectionBackground": color.accent.fill,
 			//"menu.selectionBorder": "",
 			"menu.separatorBackground": color.ui.separator,
 			"menubar.selectionForeground": color.text.normal,
@@ -322,7 +322,7 @@ export function generateEditorTheme(
 			"quickInput.foreground": color.text.normal, // All text.
 			"quickInput.background": color.ui.primaryBg,
 			"quickInputTitle.background": color.ui.primaryBg,
-			"quickInputList.focusBackground": color.accent.primary,
+			"quickInputList.focusBackground": color.accent.fill,
 			"quickInputList.focusForeground": color.text.inverse,
 			"quickInputList.focusIconForeground": color.text.inverse,
 			"pickerGroup.border": color.ui.separator, // Border between groups within the drop down.
@@ -336,16 +336,16 @@ export function generateEditorTheme(
 			// DEFAULT
 			statusBar = {
 				"statusBar.foreground": color.text.inverse,
-				"statusBar.background": color.accent.primary,
+				"statusBar.background": color.accent.fill,
 				"statusBarItem.hoverBackground": color.ui.statusHoverBgA,
 				"statusBarItem.activeBackground": color.ui.statusActiveBgA,
 				"statusBarItem.compactHoverBackground": color.ui.statusHoverBgA,
 				"statusBarItem.errorForeground": color.text.inverse,
-				"statusBarItem.errorBackground": color.accent.primary,
+				"statusBarItem.errorBackground": color.accent.fill,
 				"statusBarItem.warningForeground": color.text.inverse,
-				"statusBarItem.warningBackground": color.accent.primary,
+				"statusBarItem.warningBackground": color.accent.fill,
 				"statusBarItem.prominentForeground": color.text.inverse,
-				"statusBarItem.prominentBackground": color.accent.primary,
+				"statusBarItem.prominentBackground": color.accent.fill,
 				"statusBarItem.prominentHoverBackground": color.ui.statusHoverBgA,
 				// Remote icon.
 				"statusBarItem.remoteForeground": color.text.inverse,
@@ -611,8 +611,8 @@ export function generateEditorTheme(
 		//
 		// BUTTONS [x]
 		"button.foreground": color.text.inverse,
-		"button.background": color.accent.primary,
-		"button.hoverBackground": color.accent.primaryHover,
+		"button.background": color.accent.fill,
+		"button.hoverBackground": color.accent.fillHover,
 		"button.secondaryForeground": color.text.inverse, // Secondary button, e.g. `Cancel` on a delete file dialogue.
 		"button.secondaryBackground": color.accent.secondary,
 		"button.secondaryHoverBackground": color.accent.secondaryHover,
@@ -787,8 +787,8 @@ export function generateEditorTheme(
 		"extensionBadge.remoteForeground": color.text.inverse,
 		"extensionBadge.remoteBackground": color.ui.remote,
 		"extensionButton.prominentForeground": color.text.inverse, // `Install` button
-		"extensionButton.prominentBackground": color.accent.primary,
-		"extensionButton.prominentHoverBackground": color.accent.primaryHover,
+		"extensionButton.prominentBackground": color.accent.fill,
+		"extensionButton.prominentHoverBackground": color.accent.fillHover,
 		//
 		// SETTINGS PAGE [x]
 		"settings.headerForeground": color.text.bold, // Titles and headings
@@ -1048,15 +1048,15 @@ export function generateEditorTheme(
 		"agentsChatInput.border": color.ui.border,
 		"agentsChatInput.focusBorder": color.accent.primary,
 		"agentsChatInput.placeholderForeground": color.ui.placeholderText,
-		"agentsBadge.background": color.accent.primary,
+		"agentsBadge.background": color.accent.fill,
 		"agentsBadge.foreground": color.text.inverse,
-		"agentsUnreadBadge.background": color.accent.primary,
+		"agentsUnreadBadge.background": color.accent.fill,
 		"agentsUnreadBadge.foreground": color.text.inverse,
-		"agentsNewSessionButton.background": color.accent.primary,
+		"agentsNewSessionButton.background": color.accent.fill,
 		"agentsNewSessionButton.foreground": color.text.inverse,
-		"agentsNewSessionButton.hoverBackground": color.accent.primaryHover,
+		"agentsNewSessionButton.hoverBackground": color.accent.fillHover,
 		"agentsNewSessionButton.border": "#00000000",
-		"agentsUpdateButton.downloadedBackground": color.accent.primary,
+		"agentsUpdateButton.downloadedBackground": color.accent.fill,
 		"agentsUpdateButton.downloadingBackground": a(color.accent.primary, "60"),
 		"agentsMobileDiff.addedForeground": color.git.addedOrStaged,
 		"agentsMobileDiff.deletedForeground": color.git.removedOrConflicting,
@@ -1109,7 +1109,7 @@ export function generateEditorTheme(
 		"inlineEdit.tabWillAcceptOriginalBorder": color.accent.primary,
 		"inlineEdit.tabWillAcceptModifiedBorder": color.accent.primary,
 		"inlineEdit.gutterIndicator.background": color.ui.secondaryBg,
-		"inlineEdit.gutterIndicator.primaryBackground": color.accent.primary,
+		"inlineEdit.gutterIndicator.primaryBackground": color.accent.fill,
 		"inlineEdit.gutterIndicator.primaryForeground": color.text.inverse,
 		"inlineEdit.gutterIndicator.primaryBorder": color.accent.primary,
 		"inlineEdit.gutterIndicator.secondaryBackground": color.ui.secondaryBg,
@@ -1186,7 +1186,7 @@ export function generateEditorTheme(
 		"testing.uncoveredBackground": color.git.removedBgA,
 		"testing.uncoveredGutterBackground": a(color.git.removedOrConflicting, "60"),
 		"testing.uncoveredBranchBackground": color.diag.errorBg,
-		"testing.coverCountBadgeBackground": color.accent.primary,
+		"testing.coverCountBadgeBackground": color.accent.fill,
 		"testing.coverCountBadgeForeground": color.text.inverse,
 		"testing.message.error.badgeBackground": color.diag.error,
 		"testing.message.error.badgeForeground": color.text.inverse,
@@ -1262,15 +1262,15 @@ export function generateEditorTheme(
 		"gauge.warningBackground": a(color.diag.warning, "30"),
 		"gauge.errorForeground": color.diag.error,
 		"gauge.errorBackground": a(color.diag.error, "30"),
-		"panelTitleBadge.background": color.accent.primary,
+		"panelTitleBadge.background": color.accent.fill,
 		"panelTitleBadge.foreground": color.text.inverse,
-		"profileBadge.background": color.accent.primary,
+		"profileBadge.background": color.accent.fill,
 		"profileBadge.foreground": color.text.inverse,
 		//
 		// MISC WORKBENCH [x]
-		"extensionButton.background": color.accent.primary,
+		"extensionButton.background": color.accent.fill,
 		"extensionButton.foreground": color.text.inverse,
-		"extensionButton.hoverBackground": color.accent.primaryHover,
+		"extensionButton.hoverBackground": color.accent.fillHover,
 		"extensionButton.separator": a(color.text.inverse, "40"),
 		"button.separator": a(color.text.inverse, "40"),
 		"inputOption.hoverBackground": color.ui.hoverBgA,

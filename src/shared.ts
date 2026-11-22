@@ -1,10 +1,9 @@
 export const hue = {
-	pink: "#FF1277",
-	hotPink: "#FF2884",
-	vividPink: "#FF388D",
-	deepPink: "#DA005F",
-	softPink: "#F85EB4",
-	brightPink: "#FF4C98",
+	// accent pink (with a darker fill for white text), keyword pink and macro pink.
+	pink: "#FF1277", // accent
+	deepPink: "#DA005F", // accent fill behind white text
+	softPink: "#F85EB4", // keywords
+	hotPink: "#FF2884", // macros
 
 	green: "#31A155",
 	brightGreen: "#3FC56B",
@@ -34,6 +33,8 @@ export const hue = {
 export const sem = {
 	accent: hue.pink,
 	accentHover: hue.deepPink,
+	accentFill: hue.deepPink, // white text 5.1:1
+	accentFillHover: "#B90051", // white text 6.6:1
 	success: hue.green,
 	info: hue.blue,
 	warning: hue.orange,
@@ -83,7 +84,7 @@ export const gitGraph: [
 export const todo = {
 	todo: hue.lightGray,
 	fixme: hue.coral,
-	bug: hue.hotPink,
+	bug: hue.pink,
 	hack: hue.yellow,
 	maybe: hue.teal,
 	unchecked: hue.lightGray,
