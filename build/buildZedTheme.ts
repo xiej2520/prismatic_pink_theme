@@ -97,7 +97,7 @@ function generateColors(color: UiColors, type: "light" | "dark", config: Config)
   const editor = {
     "editor.foreground": color.text.normal,
     "editor.background": color.ui.primaryBg,
-    "editor.gutter.background": color.ui.secondaryBg,
+    "editor.gutter.background": color.ui.primaryBg,
     "editor.active_line.background": color.text.currentLineBgA,
     "editor.highlighted_line.background": color.ui.secondaryBg,
     "editor.debugger_active_line.background": color.diag.hintBgA,
@@ -293,6 +293,8 @@ function generateSyntax(color: UiColors, syntax: SyntaxColors, config: Config) {
   const comments = {
     comment: config.italicComments ? { color: commentColor, font_style: "italic" } : commentColor,
     "comment.doc": config.italicComments ? { color: commentColor, font_style: "italic" } : commentColor,
+    // Python docstrings
+    "string.doc": config.italicComments ? { color: commentColor, font_style: "italic" } : commentColor,
   };
   const literals = {
     string: semantic.string,
