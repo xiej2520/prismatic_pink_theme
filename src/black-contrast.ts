@@ -304,7 +304,8 @@ export const blackContrastColors: UiColors = {
 		secondaryBg: local.bgAlt,
 
 		// Sidebar section header background
-		tertiaryBg: local.bg,
+		// Dark gray rather than black, so the modern UI cards and sidebar section headers stand out
+		tertiaryBg: "#16161C",
 
 		// Breadcrumb, menu, any button which dropdowns
 		dropdownBg: local.bg,

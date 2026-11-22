@@ -1,6 +1,6 @@
 import type { Config } from "../config";
 import type { SyntaxColors, UiColors } from ".";
-import { alpha as a } from "../color";
+import { alpha as a, flatten as f } from "../color";
 
 export function generateEditorTheme(
 	color: UiColors,
@@ -705,7 +705,7 @@ export function generateEditorTheme(
 		"editorGroup.dropBackground": color.ui.primaryDropBg, // Background for re-organising tab panes.
 		"editorGroupHeader.tabsBackground": color.ui.secondaryBg, // Background of tab row.
 		"editorGroupHeader.noTabsBackground": color.ui.secondaryBg, // Background of no-tab row.
-		"editorGroupHeader.tabsBorder": "#00000000", // Border below the tab row.
+		"editorGroupHeader.tabsBorder": color.ui.border, // Border below the tab row.
 		"editorGroupHeader.border": "#00000000", // Border underneath the tabs & breadcrumbs, if enabled.
 		//
 		"editorGroup.emptyBackground": color.ui.primaryBg, // Background of empty editor pane.
@@ -714,7 +714,7 @@ export function generateEditorTheme(
 		"editorGroup.dropIntoPromptBackground": color.ui.primaryBg,
 		"editorGroup.dropIntoPromptBorder": "#00000000",
 		// Individual tabs
-		"tab.border": "#00000000", // | Borders between tabs |
+		"tab.border": f(a(color.ui.border, "80"), color.ui.secondaryBg), // | Borders between tabs |, softer than other borders so uneven 1px rendering is less visible
 		"tab.dragAndDropBorder": color.accent.primary,
 		//
 		"tab.activeForeground": color.text.normal,
@@ -999,6 +999,148 @@ export function generateEditorTheme(
 		"scmGraph.historyItemBaseRefColor": color.text.normal, // ???
 		"scmGraph.historyItemHoverAdditionsForeground": color.git.addedOrStaged,
 		"scmGraph.historyItemHoverDeletionsForeground": color.git.removedOrConflicting,
+		//
+		// MODERN UI [x], floating cards over a darker shell
+		"modernUI.shellBackground": color.ui.tertiaryBg, // Window background around floating cards
+		"modernUI.inactiveShellBackground": color.ui.tertiaryBg,
+		"surface.background": color.ui.primaryBg, // Card background, e.g. the floating sidebar, panel and chat
+		"surface.foreground": color.text.normal,
+		"surface.border": color.ui.border,
+		"editor.border": color.ui.border,
+		"modernPanel.border": color.ui.border, // Outline of the bottom panel card
+		"modernSash.gripForeground": color.text.decoration.light, // Grip handles on the resizable gaps between cards.
+		"modernActivityBar.background": color.ui.tertiaryBg,
+		"modernActivityBar.inactiveBackground": color.ui.tertiaryBg,
+		"modernActivityBar.border": color.ui.border,
+		"modernActivityBarItem.activeBackground": color.ui.selectedBgA, // Pill behind the selected view's icon.
+		"modernActivityBarItem.activeForeground": color.accent.primary,
+		"modernActivityBarItem.hoverBackground": color.ui.hoverBgA,
+		"modernActivityBarItem.hoverForeground": color.text.normal,
+		"modernEditorTab.activeBackground": color.ui.primaryBg,
+		"modernEditorTab.activeForeground": color.text.normal,
+		"modernEditorTab.activeHoverBackground": color.ui.primaryBg,
+		"modernEditorTab.inactiveBackground": color.ui.secondaryBg,
+		"modernEditorTab.hoverBackground": color.ui.primaryBg,
+		"modernEditorTab.hoverForeground": color.text.normal,
+		"modernEditorTab.activeActionBackground": color.ui.primaryBg,
+		"modernEditorTab.activeHoverActionBackground": color.ui.primaryBg,
+		"modernEditorTab.hoverActionBackground": color.ui.primaryBg,
+		"modernEditorTab.selectedActionBackground": f(color.ui.listInactiveBgA, color.ui.primaryBg),
+		"modernTab.activeBackground": color.ui.primaryBg,
+		"modernTab.activeForeground": color.accent.primary,
+		"modernTab.hoverBackground": color.ui.hoverBgA,
+		"modernTab.hoverForeground": color.text.normal,
+		//
+		// AGENT SESSIONS WINDOW [x]
+		"agents.background": color.ui.tertiaryBg,
+		"agentsGradient.tintColor": a(color.accent.primary, "20"),
+		"agentsPanel.background": color.ui.primaryBg,
+		"agentsPanel.foreground": color.text.normal,
+		"agentsPanel.border": color.ui.border,
+		"agentsCard.border": color.ui.border,
+		"agentsBottomPanel.border": color.ui.border,
+		"activeSessionView.background": color.ui.primaryBg,
+		"activeSessionView.foreground": color.text.normal,
+		"inactiveSessionView.background": color.ui.secondaryBg,
+		"inactiveSessionView.foreground": color.text.normal,
+		"agentsChatInput.background": color.ui.inputBg,
+		"agentsChatInput.foreground": color.text.normal,
+		"agentsChatInput.border": color.ui.border,
+		"agentsChatInput.focusBorder": color.accent.primary,
+		"agentsChatInput.placeholderForeground": color.ui.placeholderText,
+		"agentsBadge.background": color.accent.primary,
+		"agentsBadge.foreground": color.text.inverse,
+		"agentsUnreadBadge.background": color.accent.primary,
+		"agentsUnreadBadge.foreground": color.text.inverse,
+		"agentsNewSessionButton.background": color.accent.primary,
+		"agentsNewSessionButton.foreground": color.text.inverse,
+		"agentsNewSessionButton.hoverBackground": color.accent.primaryHover,
+		"agentsNewSessionButton.border": "#00000000",
+		"agentsUpdateButton.downloadedBackground": color.accent.primary,
+		"agentsUpdateButton.downloadingBackground": a(color.accent.primary, "60"),
+		"agentsMobileDiff.addedForeground": color.git.addedOrStaged,
+		"agentsMobileDiff.deletedForeground": color.git.removedOrConflicting,
+		"agentsMobileDiff.modifiedForeground": color.git.modified,
+		"agentStatusIndicator.background": color.ui.listInactiveBgA,
+		"agentSessionReadIndicator.foreground": color.text.muted,
+		"agentSessionSelectedBadge.border": color.text.inverse,
+		"agentSessionSelectedUnfocusedBadge.border": color.ui.border,
+		"agentFeedbackEditorWidget.background": color.ui.secondaryBg,
+		"agentFeedbackEditorWidget.border": color.ui.border,
+		"agentFeedbackInputWidget.border": color.ui.border,
+		//
+		// CHAT [x], requests use the faint accent tint
+		"chat.requestBubbleBackground": color.ui.listInactiveBgA,
+		"chat.requestBubbleHoverBackground": a(color.accent.primary, "24"),
+		"chat.requestBorder": color.ui.border,
+		"chat.requestCodeBorder": color.ui.border,
+		"chat.avatarBackground": color.ui.secondaryBg,
+		"chat.avatarForeground": color.text.normal,
+		"chat.checkpointSeparator": color.ui.border,
+		"chat.editedFileForeground": color.git.modified,
+		"chat.linesAddedForeground": color.git.addedOrStaged,
+		"chat.linesRemovedForeground": color.git.removedOrConflicting,
+		"chat.slashCommandBackground": a(color.accent.secondary, "26"),
+		"chat.slashCommandForeground": color.accent.secondary,
+		"chat.thinkingShimmer": color.accent.primary,
+		"inlineChat.background": color.ui.secondaryBg,
+		"inlineChat.foreground": color.text.normal,
+		"inlineChat.border": color.ui.border,
+		"inlineChat.shadow": color.ui.shadow,
+		"inlineChatInput.background": color.ui.inputBg,
+		"inlineChatInput.border": color.ui.border,
+		"inlineChatInput.focusBorder": color.accent.primary,
+		"inlineChatInput.placeholderForeground": color.ui.placeholderText,
+		"inlineChatDiff.inserted": color.git.insertedBgA,
+		"inlineChatDiff.removed": color.git.removedBgA,
+		"editorOverviewRuler.inlineChatInserted": color.git.addedOrStaged,
+		"editorOverviewRuler.inlineChatRemoved": color.git.removedOrConflicting,
+		"editorLightBulbAi.foreground": color.ui.lightBulb,
+		//
+		// INLINE EDIT SUGGESTIONS [x], original = removed, modified = added
+		"inlineEdit.originalBackground": a(color.git.removedOrConflicting, "10"),
+		"inlineEdit.originalChangedLineBackground": color.git.removedBgA,
+		"inlineEdit.originalChangedTextBackground": a(color.git.removedOrConflicting, "40"),
+		"inlineEdit.originalBorder": color.git.removedOrConflicting,
+		"inlineEdit.modifiedBackground": a(color.git.addedOrStaged, "10"),
+		"inlineEdit.modifiedChangedLineBackground": color.git.insertedBgA,
+		"inlineEdit.modifiedChangedTextBackground": a(color.git.addedOrStaged, "40"),
+		"inlineEdit.modifiedBorder": color.git.addedOrStaged,
+		"inlineEdit.tabWillAcceptOriginalBorder": color.accent.primary,
+		"inlineEdit.tabWillAcceptModifiedBorder": color.accent.primary,
+		"inlineEdit.gutterIndicator.background": color.ui.secondaryBg,
+		"inlineEdit.gutterIndicator.primaryBackground": color.accent.primary,
+		"inlineEdit.gutterIndicator.primaryForeground": color.text.inverse,
+		"inlineEdit.gutterIndicator.primaryBorder": color.accent.primary,
+		"inlineEdit.gutterIndicator.secondaryBackground": color.ui.secondaryBg,
+		"inlineEdit.gutterIndicator.secondaryForeground": color.text.normal,
+		"inlineEdit.gutterIndicator.secondaryBorder": color.ui.border,
+		"inlineEdit.gutterIndicator.successfulBackground": color.diag.testPassed,
+		"inlineEdit.gutterIndicator.successfulForeground": color.text.inverse,
+		"inlineEdit.gutterIndicator.successfulBorder": color.diag.testPassed,
+		//
+		// DIFF & MERGE [x], whole lines are fainter than the changed text on them
+		"diffEditor.insertedLineBackground": a(color.git.addedOrStaged, "15"),
+		"diffEditor.removedLineBackground": a(color.git.removedOrConflicting, "12"),
+		"diffEditorGutter.insertedLineBackground": a(color.git.addedOrStaged, "15"),
+		"diffEditorGutter.removedLineBackground": a(color.git.removedOrConflicting, "12"),
+		"diffEditorOverview.insertedForeground": color.git.addedOrStaged,
+		"diffEditorOverview.removedForeground": color.git.removedOrConflicting,
+		"diffEditor.move.border": a(color.git.modified, "80"),
+		"diffEditor.moveActive.border": color.git.modified,
+		"diffEditor.unchangedCodeBackground": "#00000000",
+		"diffEditor.unchangedRegionBackground": color.ui.secondaryBg,
+		"diffEditor.unchangedRegionForeground": color.text.muted,
+		"diffEditor.unchangedRegionShadow": color.ui.shadow,
+		"multiDiffEditor.headerBackground": color.ui.secondaryBg,
+		"merge.commonContentBackground": a(color.git.ignoredOrSubmodule, "2A"),
+		"merge.commonHeaderBackground": a(color.git.ignoredOrSubmodule, "6A"),
+		"editorOverviewRuler.commonContentForeground": color.git.ignoredOrSubmodule,
+		"mergeEditor.changeBase.background": a(color.git.removedOrConflicting, "1A"),
+		"mergeEditor.changeBase.word.background": a(color.git.removedOrConflicting, "2A"),
+		"mergeEditor.conflict.input1.background": color.git.currentBgA,
+		"mergeEditor.conflict.input2.background": color.git.incomingBgA,
+		"mergeEditor.conflictingLines.background": color.git.mergeUnhandledUnfocused,
 	};
 	return editor_colors;
 }
