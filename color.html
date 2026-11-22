@@ -6,27 +6,50 @@
     <title>Color Table</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: "Lexend", system-ui, "Segoe UI", Arial, sans-serif;
             background-color: #000000;
             color: #B9BFCA;
             margin: 20px;
         }
+        h1 { font-size: 22px; margin: 0 0 4px; }
+        h2 { font-size: 16px; margin: 32px 0 8px; }
+        p.note { color: #8A8A96; margin: 0 0 12px; }
         table {
             width: 100%;
             border-collapse: collapse;
+            font-variant-numeric: tabular-nums;
         }
         th, td {
-            padding: 10px;
+            padding: 8px 10px;
             text-align: left;
-            border: 1px solid #444;
+            border: 1px solid #2A2A32;
         }
         th {
-            background-color: #000;
+            background-color: #16161B;
+            font-size: 12px;
+            letter-spacing: 0.04em;
+        }
+        td {
+            font-family: "Iosevka", ui-monospace, Consolas, monospace;
+            font-size: 13px;
+        }
+        td.name {
+            font-family: "Lexend", system-ui, "Segoe UI", Arial, sans-serif;
+            font-size: 14px;
+        }
+        td.low {
+            text-decoration: underline wavy #FF5C7A;
+        }
+        td.swatch {
+            width: 36px;
         }
     </style>
 </head>
 <body>
-    <h1>Color Table</h1>
+    <h1>Prismatic Pink Colors</h1>
+    <p class="note">Contrast on each theme's editor background. Contrast below 3:1 is underlined.</p>
+
+    <h2>Syntax</h2>
     <table id="colorTable">
         <thead>
             <tr>
@@ -35,6 +58,18 @@
         </thead>
         <tbody>
             <!-- JavaScript will populate this -->
+        </tbody>
+    </table>
+
+    <h2>UI</h2>
+    <p class="note">Background contrast is on editor background. Accents show white text contrast.</p>
+    <table id="uiTable">
+        <thead>
+            <tr>
+                <th>Color Name</th>
+            </tr>
+        </thead>
+        <tbody>
         </tbody>
     </table>
 
@@ -78,7 +113,7 @@
             ['Foreground',      "fg",            "var &var"],
             ['Gray',            "gray",          "Gray"],
             ['Faded Gray',      "fadedGray",     "Fade Gray"],
-            ['Light Pink',      "lightPink",     "// FIX THIS: "],
+            ['Light Pink',      "lightPink",     "// comment"],
             ['Pink',            "pink",          "if else while const"],
             ['Strong Pink',     "strongPink",    "panic!() println!()"],
             ['Bold Pink',       "boldPink",      "Bold Pink"],
@@ -86,7 +121,7 @@
             ['Orange',          "orange",        "0123456789.0usize '\\n' #[derive()]"],
             ['Yellow',          "yellow",        "\"Hello, World!\""],
             //['Yellowgreen',     "yellowgreen",   "foo()"],
-            ['Lime',            "lime",          "foo()"],
+            ['Lime',            "lime",          "'outer: loop"],
             ['Light Green',     "lightGreen",    "+ - * / = == != && || : :: <= >= ~ !"],
             ['Green',           "green",         "foo.bar()"],
             //['Turquoise',       "turquoise",     "Foo::bar()"],
@@ -97,7 +132,7 @@
             ['Purple',          "purple",        "'lifetime"],
             ['Violet',          "violet",        "fn f(violet, parameter)"],
             ['Light Purple',    "lightPurple",   "self.prop, var.prop"],
-            ['Light Blue',      "lightBlue",     "path::to::something"],
+            ['Light Blue',      "lightBlue",     "(unused)"],
             ['Bold Light Blue', "boldLightBlue", "path::to::something"],
             ['Bold Green',      "boldGreen",     "fn boldGreen(&mut)"],
             ['Bold Blue',       "boldBlue",      "Bold Blue"],
@@ -155,7 +190,7 @@
             fg:            "#C0C4D0",
             gray:          "#828DA0",
             fadedGray:     "#636D83",
-            lightPink:     "#EEBBFF",
+            lightPink:     "#E5B1F7",
             pink:          "#F85EB4",
             strongPink:    "#FF2884",
             boldPink:      "#F750AE",
@@ -163,9 +198,9 @@
             orange:        "#FF8D5C",
             yellow:        "#E3C24A",
             //yellowgreen:   "#9ACC12",
-            lime:          "#72D21A",
-            lightGreen:    "#D6FFD6",
-            green:         "#3CD357",
+            lime:          "#89E736",
+            lightGreen:    "#B3CCB7",
+            green:         "#3FC56B",
             //turquoise:     "#00D595",
             cyan:          "#15C9C5",
             skyBlue:       "#5CA2ED",
@@ -174,11 +209,12 @@
             purple:        "#A177F5",
             violet:        "#DD99FF",
             lightPurple:   "#D5C0E9",
-            lightBlue:     "#97BCCD",
+            lightBlue:     "#978CCD",
             boldGreen:     "#2ECC4B",
             boldViolet:    "#D88AFF",
             boldFg:        "#B2B6C4",
-            normal:        "#E6EEF2",
+            normal:        "#CFD7E6",
+            ui: { secondaryBg: "#1C1C20", tertiaryBg: "#18181C", border: "#3D434F", accent: "#FF1277", accentFill: "#DA005F" },
         };
         const highContrastBlack = {
             name: "High Contrast Black",
@@ -194,7 +230,7 @@
             orange:        "#FF8142",
             yellow:        "#F9D959",
             lime:          "#89E736",
-            lightGreen:    "#D6FFD6",
+            lightGreen:    "#C8E2CC",
             green:         "#38CB5E",
             cyan:          "#16DAD5",
             skyBlue:       "#77AFEE",
@@ -203,14 +239,45 @@
             purple:        "#B3A4FE",
             violet:        "#CF94FF",
             lightPurple:   "#D3C3EF",
-            lightBlue:     "#97BCCD",
+            lightBlue:     "#978CCD",
             boldGreen:     "#2BBF46",
             boldViolet:    "#D88AFF",
             boldFg:        "#C8CCD6",
-            normal:        "#F2F6F8",
+            normal:        "#E8EBF2",
+            ui: { secondaryBg: "#040406", tertiaryBg: "#0C0C10", border: "#222228", accent: "#FF1277", accentFill: "#DA005F" },
         };
-        
-        const colorThemes = [pinkCandyDark, prismaticPink, highContrastBlack]
+        const prismaticPinkLight = {
+            name: "Prismatic Pink Light",
+            primaryBg:     "#FAFBFC",
+            fg:            "#565869",
+            gray:          "#747474",
+            fadedGray:     "#898D9D",
+            lightPink:     "#8E6984",
+            pink:          "#EB5CB1",
+            strongPink:    "#FF1277",
+            boldPink:      "#F565BA",
+            red:           "#E5484D",
+            orange:        "#F75703",
+            yellow:        "#B98B01",
+            lime:          "#7BA403",
+            lightGreen:    "#4A604E",
+            green:         "#19A24D",
+            cyan:          "#07A3A0",
+            skyBlue:       "#2E7DC4",
+            blue:          "#0194DB",
+            cornflower:    "#5270C7",
+            purple:        "#9177F4",
+            violet:        "#9B53CA",
+            lightPurple:   "#8466AA",
+            lightBlue:     "#97BCCD",
+            boldGreen:     "#28AA55",
+            boldViolet:    "#A059CF",
+            boldFg:        "#6C6E83",
+            normal:        "#565869",
+            ui: { secondaryBg: "#F3F3F3", tertiaryBg: "#E5E5E5", border: "#CECECE", accent: "#FF1277", accentFill: "#DA005F" },
+        };
+
+        const colorThemes = [pinkCandyDark, prismaticPink, highContrastBlack, prismaticPinkLight]
         const syntaxMap = new Map(colorSyntax.map(i => [i[1], i[2]]));
 
         // Function to generate table rows
@@ -228,6 +295,7 @@
             colorSyntax.forEach(([colorName, propertyName, sampleText]) => {
                 const row = document.createElement('tr');
                 const nameCell = document.createElement('td');
+                nameCell.className = "name";
                 nameCell.textContent = colorName;
                 nameCell.style.color = highContrastBlack[propertyName];
                 if (colorName.toLowerCase().includes("bold")) {
@@ -254,7 +322,9 @@
                             colorCodeCell.textContent = theme[propertyName];
                             colorCode = theme[propertyName];
                         }
-                        contrastCell.textContent = checkContrast(theme.primaryBg.substr(1), colorCode.substr(1));
+                        const contrast = checkContrast(theme.primaryBg.substr(1), colorCode.substr(1));
+                        contrastCell.textContent = contrast;
+                        if (contrast < 3) contrastCell.className = "low";
 
                         sampleTextCell.style.color = colorCode;
                         colorCodeCell.style.color = colorCode;
@@ -274,8 +344,60 @@
             });
         }
 
-        // Generate the table when the page loads
-        document.addEventListener('DOMContentLoaded', generateTable);
+        // UI colors: [label, key, contrast against]
+        const uiColors = [
+            ['Editor',           "primaryBg",   null],
+            ['Sidebar, tab row', "secondaryBg", "editor"],
+            ['Shell, section header (darkest)', "tertiaryBg", "editor"],
+            ['Border',           "border",      "editor"],
+            ['Accent',           "accent",      "white"],
+            ['Accent fill (buttons, badges)', "accentFill", "white"],
+        ];
+
+        function generateUiTable() {
+            const themes = colorThemes.filter(theme => theme.ui);
+            const headerRow = document.querySelector("#uiTable thead tr");
+            for (const theme of themes) {
+                const headerCell = document.createElement('th');
+                headerCell.style.backgroundColor = theme.primaryBg;
+                headerCell.style.color = theme.fg;
+                headerCell.textContent = theme.name;
+                headerCell.colSpan = 3;
+                headerRow.append(headerCell);
+            }
+            const tableBody = document.querySelector('#uiTable tbody');
+            uiColors.forEach(([colorName, key, against]) => {
+                const row = document.createElement('tr');
+                const nameCell = document.createElement('td');
+                nameCell.className = "name";
+                nameCell.textContent = colorName;
+                row.appendChild(nameCell);
+                for (const theme of themes) {
+                    const color = key === "primaryBg" ? theme.primaryBg : theme.ui[key];
+                    const swatchCell = document.createElement('td');
+                    const colorCodeCell = document.createElement('td');
+                    const contrastCell = document.createElement('td');
+                    swatchCell.className = "swatch";
+                    swatchCell.style.backgroundColor = color;
+                    colorCodeCell.textContent = color;
+                    if (against === "editor") {
+                        contrastCell.textContent = checkContrast(theme.primaryBg.substr(1), color.substr(1));
+                    } else if (against === "white") {
+                        contrastCell.textContent = checkContrast(color.substr(1), "FFFFFF");
+                    }
+                    row.appendChild(swatchCell);
+                    row.appendChild(colorCodeCell);
+                    row.appendChild(contrastCell);
+                }
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Generate the tables when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            generateTable();
+            generateUiTable();
+        });
     </script>
 </body>
 </html>
