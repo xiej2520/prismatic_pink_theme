@@ -7,7 +7,7 @@ import type { UiColors, SyntaxColors } from "../src/theme";
 import { DEFAULT_CONFIG, type Config } from "../src/config";
 import { selectAnsiColors } from "../src/theme/terminal";
 
-import { flatten as f } from "../src/color";
+import { alpha as a, flatten as f } from "../src/color";
 import { makeOutputFolder } from "./buildEnv";
 
 const config = DEFAULT_CONFIG as unknown as Config;
@@ -120,6 +120,9 @@ function generateLua(colorsName: string, background: "dark" | "light", color: Ui
     hi("DiagnosticSignWarn", { fg: color.diag.warning }),
     hi("DiagnosticSignInfo", { fg: color.diag.info }),
     hi("DiagnosticSignHint", { fg: color.diag.hint }),
+    hi("DiagnosticDeprecated", { strikethrough: true }),
+    // VS Code fades unused code to 75% opacity; approximate it on plain text
+    hi("DiagnosticUnnecessary", { fg: f(a(syntax.fg, "C0"), color.ui.primaryBg) }),
 
     // Git signs
     hi("GitSignsAdd", { fg: color.git.addedOrStaged }),
@@ -315,7 +318,7 @@ function generateLua(colorsName: string, background: "dark" | "light", color: Ui
     hi("@lsp.mod.declaration", {}),
     hi("@lsp.mod.defaultLibrary", {}),
     hi("@lsp.mod.definition", {}),
-    hi("@lsp.mod.deprecated", {}),
+    hi("@lsp.mod.deprecated", { link: "DiagnosticDeprecated" }),
     hi("@lsp.mod.documentation", {}),
     hi("@lsp.mod.modification", {}),
     hi("@lsp.mod.readonly", {}),
@@ -383,7 +386,7 @@ function generateLua(colorsName: string, background: "dark" | "light", color: Ui
     hi("NotifyWARNBorder", { fg: color.diag.warning }),
     hi("NotifyINFOBorder", { fg: color.diag.info }),
     hi("NotifyDEBUGBorder", { fg: syntax.fadedGray }),
-    hi("NotifyTRAcolor.ui.border", { fg: syntax.purple }),
+    hi("NotifyTRACEBorder", { fg: syntax.purple }),
 
     hi("NotifyERRORTitle", { fg: color.diag.error }),
     hi("NotifyWARNTitle", { fg: color.diag.warning }),
@@ -411,7 +414,7 @@ function generateLua(colorsName: string, background: "dark" | "light", color: Ui
 
 vim.opt.background = "${background}"
 vim.cmd("highlight clear")
-if vim.fn.exists("syntax_on") then
+if vim.fn.exists("syntax_on") == 1 then
   vim.cmd("syntax reset")
 end
 vim.g.colors_name = "${colorsName}"
