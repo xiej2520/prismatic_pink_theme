@@ -101,13 +101,13 @@
 					"deprecationMessage": "Deprecated; use `theme-prismatic-pink.monochromeBracketGuides` instead."
 				},
 				"theme-prismatic-pink.inlayHintStyle": {
-					"type": "boolean",
+					"type": "string",
 					"scope": "application",
-					"default": false,
+					"default": "noBackground",
 					"deprecationMessage": "Deprecated; use `theme-prismatic-pink.inlayStyle` instead."
 				},
 				"theme-prismatic-pink.light.terminalColorScheme": {
-					"type": "boolean",
+					"type": "string",
 					"scope": "application",
 					"default": "normal+dark",
 					"deprecationMessage": "Deprecated; use `theme-prismatic-pink.lightTerminalColorScheme` instead."
