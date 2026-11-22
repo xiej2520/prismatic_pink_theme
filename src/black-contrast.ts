@@ -177,7 +177,7 @@ export const blackContrastColors: UiColors = {
 		hint: sem.hint,
 		info: sem.info, // +(general peek view, status bar prominent if applicable)
 		warning: sem.warning, // +(list warning text)
-		error: sem.error, // +(general error text, bracket mismatch foreground, list error text, list invalid text, list no matches, confusing unicode highlighting border)
+		error: blackContrastSyntax.red, // +(general error text, bracket mismatch foreground, list error text, list invalid text, list no matches, confusing unicode highlighting border)
 
 		// Error lens line background, peek view header background, input validation background, testing message
 		// line background (info+error),
@@ -187,13 +187,13 @@ export const blackContrastColors: UiColors = {
 		infoBgA: a(sem.info, "20"), // +(general peek view)
 		warningBg: f(a(sem.warning, "20"), local.bg),
 		warningBgA: a(sem.warning, "20"),
-		errorBg: f(a(sem.error, "1A"), local.bg),
-		errorBgA: a(sem.error, "1A"), // +(confusing unicode highlighting)
+		errorBg: f(a(blackContrastSyntax.red, "1A"), local.bg),
+		errorBgA: a(blackContrastSyntax.red, "1A"), // +(confusing unicode highlighting)
 
 		// Testing status icons
 		testPassed: sem.success,
 		testQueued: sem.info,
-		testFailed: sem.error,
+		testFailed: blackContrastSyntax.red,
 		testUnset: sem.warning,
 		testSkipped: local.gray,
 	},
@@ -246,7 +246,7 @@ export const blackContrastColors: UiColors = {
 		// Debug console text
 		info: hue.brightBlue,
 		warning: sem.warning,
-		error: hue.hotPink,
+		error: blackContrastSyntax.red,
 		source: hue.white,
 		input: hue.purple,
 	},
@@ -255,7 +255,7 @@ export const blackContrastColors: UiColors = {
 		// Command decoration icons
 		default: local.gray, // +(SetMark sequence)
 		success: sem.success,
-		error: sem.accent,
+		error: blackContrastSyntax.red,
 
 		ansi: {
 			foreground: blackContrastSyntax.fg, // 0m (default foreground)

@@ -220,7 +220,7 @@ export const lightColors: UiColors = {
 		hint: "#03863C",
 		info: "#057AB6", // +(general peek view, status bar prominent if applicable)
 		warning: "#BB5704", // +(list warning text)
-		error: "#FF1277", // +(general error text, bracket mismatch foreground, list error text, list invalid text, list no matches, confusing unicode highlighting border)
+		error: "#D53840", // +(general error text, bracket mismatch foreground, list error text, list invalid text, list no matches, confusing unicode highlighting border)
 
 		// Error lens line background, peek view header background, input validation background, testing message
 		// line background (info+error),
@@ -230,13 +230,13 @@ export const lightColors: UiColors = {
 		infoBgA: "#057AB620", // +(general peek view)
 		warningBg: "#F2E6DD",
 		warningBgA: "#BB570420",
-		errorBg: "#FBE3EE",
-		errorBgA: "#FF12771A", // +(confusing unicode highlighting)
+		errorBg: "#F6E7E9",
+		errorBgA: "#D538401A", // +(confusing unicode highlighting)
 
 		// Test status icons
 		testPassed: "#03863C",
 		testQueued: "#057AB6",
-		testFailed: "#FF1277",
+		testFailed: "#D53840",
 		testUnset: "#BB5704",
 		testSkipped: "#898C9D",
 	},
@@ -289,7 +289,7 @@ export const lightColors: UiColors = {
 		// Debug console text
 		info: "#057AB6",
 		warning: "#BB5704",
-		error: "#E30068",
+		error: "#D53840",
 		source: "#000000",
 		input: "#AE3FD8",
 	},
@@ -297,7 +297,7 @@ export const lightColors: UiColors = {
 	terminal: {
 		default: "#898C9D",
 		success: "#03863C",
-		error: "#FF1277",
+		error: "#D53840",
 
 		// normal+dark: darker (higher contrast) colors for bright,
 		ansi: {

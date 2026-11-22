@@ -40,7 +40,6 @@ export const sem = {
 	link: hue.skyBlue,
 
 	hint: hue.green,
-	error: hue.pink,
 	added: hue.green,
 	modified: hue.blue,
 	removed: hue.pink,
