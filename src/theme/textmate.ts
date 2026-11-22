@@ -62,6 +62,8 @@ export function generateTextMateTheme(syntax: SyntaxColors, config: Config) {
 	// TextMate grammar token colors
 	const textMateTheme = {
 		tokenColors: [
+			// Set unscoped code to syntax.fg, other text is editor.fg
+			tok("Source Default", "source", syntax.fg),
 			// BASICS
 			{
 				name: "Keywords",
@@ -96,8 +98,6 @@ export function generateTextMateTheme(syntax: SyntaxColors, config: Config) {
 					"keyword.control.as.js",
 					"keyword.control.from.js",
 					"storage.type.js",
-					"constant.language.null.js",
-					"constant.language.undefined.js",
 					// ts
 					"variable.language.this.ts",
 					"variable.language.super.ts",
@@ -120,13 +120,18 @@ export function generateTextMateTheme(syntax: SyntaxColors, config: Config) {
 					"storage.type.interface.ts",
 					"storage.type.namespace.ts",
 					"storage.type.function.ts",
-					"storage.type.function.arrow.ts",
 					"storage.type.numeric.bigint.ts",
 					"storage.type.property.ts",
 					"storage.modifier.ts",
 					"storage.modifier.async.ts",
-					"constant.language.null.ts",
-					"constant.language.undefined.ts",
+					// self/this/super
+					"variable.language.this.cpp",
+					"variable.language.this.kotlin",
+					"variable.language.super.js",
+					"variable.language.special.self.python",
+					"variable.parameter.function.language.special.self.python",
+					"variable.language.special.cls.python",
+					"variable.parameter.function.language.special.cls.python",
 				],
 				settings: {
 					foreground: syntax.pink,
@@ -145,6 +150,30 @@ export function generateTextMateTheme(syntax: SyntaxColors, config: Config) {
 					// ts
 					"support.type.primitive.ts",
 					"support.type.builtin.ts",
+					// java
+					"storage.type.primitive.java",
+					// c
+					"storage.type.built-in.c",
+					"storage.type.built-in.primitive.c",
+					// c++
+					"storage.type.built-in.cpp",
+					"storage.type.built-in.primitive.cpp",
+					// go
+					"storage.type.boolean.go",
+					"storage.type.byte.go",
+					"storage.type.error.go",
+					"storage.type.numeric.go",
+					"storage.type.rune.go",
+					"storage.type.string.go",
+					"storage.type.uintptr.go",
+					// d
+					"storage.type.basic-type.d",
+					// python
+					"support.type.python",
+					// nim
+					"basicTypes.nim",
+					// ocaml
+					"support.type.ocaml",
 				],
 				settings: {
 					foreground: config.builtinTypeColor === "type" ? syntax.blue : syntax.pink,
@@ -155,6 +184,9 @@ export function generateTextMateTheme(syntax: SyntaxColors, config: Config) {
 				scope: [
 					"punctuation",
 					"keyword.operator",
+					// js/ts arrow functions, like -> elsewhere
+					"storage.type.function.arrow.js",
+					"storage.type.function.arrow.ts",
 					// c++
 					"entity.name.operator.cpp",
 					// rust
@@ -219,6 +251,10 @@ export function generateTextMateTheme(syntax: SyntaxColors, config: Config) {
 					// css
 					"support.function.misc.css",
 					"support.function.misc.scss",
+					// python/js/ts decorators are calls, including the @
+					"punctuation.definition.decorator.python",
+					"punctuation.decorator.ts",
+					"punctuation.decorator.js",
 				],
 				settings: {
 					foreground: syntax.green,
@@ -267,28 +303,13 @@ export function generateTextMateTheme(syntax: SyntaxColors, config: Config) {
 					"variable.key.table.toml",
 					"storage.type.haskell",
 					"storage.type.java",
-					"storage.type.primitive.java",
 					"storage.type.object.array.java",
 					"storage.type.c",
-					"storage.type.built-in.c",
-					"storage.type.built-in.primitive.c",
 					"meta.function.definition.parameters.c",
-					"storage.type.built-in.cpp",
-					"storage.type.built-in.primitive.cpp",
 					"entity.name.class.kotlin",
 					"storage.type.go",
-					"storage.type.boolean.go",
-					"storage.type.byte.go",
-					"storage.type.error.go",
-					"storage.type.numeric.go",
-					"storage.type.rune.go",
-					"storage.type.string.go",
-					"storage.type.uintptr.go",
 					"storage.type.concrete.nim",
-					"storage.type.basic-type.d",
 					"storage.type.d",
-					"support.type.python",
-					"basicTypes.nim",
 					"meta.class.stanza.dune",
 					"storage.type.cs",
 					"entity.name.type",
@@ -314,6 +335,8 @@ export function generateTextMateTheme(syntax: SyntaxColors, config: Config) {
 					"entity.name.type.class.ts",
 					// java
 					"entity.other.inherited-class.java",
+					// python and others: base classes
+					"entity.other.inherited-class",
 				],
 				settings: {
 					foreground: syntax.blue,
@@ -335,6 +358,8 @@ export function generateTextMateTheme(syntax: SyntaxColors, config: Config) {
 					"constant.language.powershell punctuation.definition.variable.powershell",
 					// ts
 					"variable.other.enummember.ts",
+					// ocaml: constructors, exceptions and modules share this scope; constructors matter most
+					"constant.language.capital-identifier.ocaml",
 				],
 				settings: {
 					foreground: syntax.cyan,
@@ -362,6 +387,11 @@ export function generateTextMateTheme(syntax: SyntaxColors, config: Config) {
 					"entity.name.type.template.cpp",
 					// csharp
 					"entity.name.type.type-parameter.cs",
+					// java, ocaml, haskell, ts
+					"storage.type.generic.java",
+					"storage.type.ocaml",
+					"variable.other.generic-type.haskell",
+					"meta.type.parameters.ts entity.name.type.ts",
 				],
 				settings: {
 					foreground: syntax.skyBlue,
@@ -395,6 +425,10 @@ export function generateTextMateTheme(syntax: SyntaxColors, config: Config) {
 					"variable.css",
 					"variable.argument.css",
 					"variable.scss",
+					// nix identifier references (lambda params stay violet)
+					"variable.parameter.name.nix",
+					// java package and import paths
+					"storage.modifier.package.java",
 				],
 				settings: {
 					foreground: syntax.fg,
@@ -433,6 +467,13 @@ export function generateTextMateTheme(syntax: SyntaxColors, config: Config) {
 					// ts
 					"variable.object.property.ts",
 					"variable.other.property.ts",
+					// js/ts class fields, c/c++ members, python attributes, nix attribute names
+					"variable.object.property.js",
+					"variable.other.member.c",
+					"variable.other.member.cpp",
+					"meta.attribute.python",
+					"entity.other.attribute-name.multipart.nix",
+					"entity.other.attribute-name.single.nix",
 				],
 				settings: {
 					foreground: syntax.lightPurple,
@@ -450,14 +491,14 @@ export function generateTextMateTheme(syntax: SyntaxColors, config: Config) {
 					"support.constant.variable.powershell",
 					"support.constant.variable.powershell punctuation.definition.variable.powershell",
 					// js
-					"variable.other.constant.js",
 					// ts
-					"variable.other.constant.ts",
 					// json
 					"constant.language.json",
 					// toml
 					// Better TOML
 					"constant.other.boolean.toml",
+					// c++ UPPER_CASE
+					"variable.upper-case.cpp",
 				],
 				settings: {
 					foreground: syntax.orange,
@@ -651,6 +692,8 @@ export function generateTextMateTheme(syntax: SyntaxColors, config: Config) {
 					"constant.numeric.inf.toml",
 					"constant.numeric.nan.toml",
 					"constant.language.nan.ts",
+					// c/c++ prefixes and suffixes (0x, u, f)
+					"keyword.other.unit",
 				],
 				settings: {
 					foreground: syntax.orange,
@@ -692,6 +735,9 @@ export function generateTextMateTheme(syntax: SyntaxColors, config: Config) {
 					// bnf
 					"comment.line.bnf",
 					"comment.block.bnf",
+					// python docstrings
+					"string.quoted.docstring",
+					"string.quoted.docstring punctuation.definition.string",
 				],
 				...commentStyles,
 			},
@@ -710,6 +756,11 @@ export function generateTextMateTheme(syntax: SyntaxColors, config: Config) {
 					// powershell
 					"support.function.attribute.powershell",
 					"variable.parameter.attribute.powershell",
+					// java/kotlin annotations
+					"storage.type.annotation.java",
+					"punctuation.definition.annotation.java",
+					"entity.name.type.annotation.kotlin",
+					"punctuation.definition.annotation.kotlin",
 				],
 				settings: {
 					foreground: syntax.orange,
@@ -755,7 +806,15 @@ export function generateTextMateTheme(syntax: SyntaxColors, config: Config) {
 			},
 			{
 				name: "Format Specifier",
-				scope: ["meta.interpolation.rust", "punctuation.definition.interpolation.rust"],
+				scope: [
+					"meta.interpolation.rust",
+					"punctuation.definition.interpolation.rust",
+					// printf-style and python format placeholders
+					"constant.other.placeholder.c",
+					"constant.other.placeholder.cpp",
+					"constant.character.printf.ocaml",
+					"constant.character.format.placeholder.other.python",
+				],
 				settings: {
 					foreground: syntax.purple,
 				},
@@ -816,7 +875,8 @@ export function generateTextMateTheme(syntax: SyntaxColors, config: Config) {
 				],
 				settings: {
 					foreground: syntax.pink,
-					fontStyle: "bold",
+					// Java defaults to mutable, set `this` to mutable variable style.
+					fontStyle: config.boldDefaultMutableVariables ? "bold" : "",
 				},
 			},
 			{
@@ -890,6 +950,15 @@ export function generateTextMateTheme(syntax: SyntaxColors, config: Config) {
 				syntax.violet,
 			),
 			tok(
+				"Nix/Kotlin - String Interpolation",
+				[
+					"punctuation.section.embedded.begin.nix",
+					"punctuation.section.embedded.end.nix",
+					"meta.template.expression.kotlin",
+				],
+				syntax.violet,
+			),
+			tok(
 				"JS - Regexp Group",
 				[
 					"punctuation.definition.group.regexp",
@@ -918,7 +987,7 @@ export function generateTextMateTheme(syntax: SyntaxColors, config: Config) {
 				syntax.orange,
 				"bold",
 			),
-			tok("JSX - Attributes", "entity.other.attribute-name.js", syntax.violet, "italic"),
+			tok("JSX - Attributes", "entity.other.attribute-name.js", syntax.cyan, "italic"), // Same as HTML.
 			//
 			// TS
 			//
@@ -1093,8 +1162,8 @@ export function generateTextMateTheme(syntax: SyntaxColors, config: Config) {
 					fontStyle: "bold",
 				},
 			},
-			tok("Asciidoc - Bold Text", "markup.bold.asciidoc", syntax.orange, "bold"),
-			tok("Asciidoc - Italic Text", "markup.italic.asciidoc", syntax.blue, "italic"),
+			tok("Asciidoc - Bold Text", "markup.bold.asciidoc", syntax.boldGreen, "bold"), // Same as Markdown.
+			tok("Asciidoc - Italic Text", "markup.italic.asciidoc", syntax.lightPink, "italic"),
 			tok("Asciidoc - Mark Text", "markup.mark.asciidoc", syntax.green),
 			{
 				name: "Asciidoc - Punctuation",
@@ -1108,7 +1177,7 @@ export function generateTextMateTheme(syntax: SyntaxColors, config: Config) {
 					"markup.macro.btn.asciidoc",
 				],
 				settings: {
-					foreground: syntax.gray,
+					foreground: syntax.lightGreen, // Same as Markdown punctuation.
 				},
 			},
 			{
@@ -1123,8 +1192,7 @@ export function generateTextMateTheme(syntax: SyntaxColors, config: Config) {
 					"markup.mark.asciidoc punctuation.definition.asciidoc",
 				],
 				settings: {
-					foreground: syntax.gray,
-					fontStyle: "italic",
+					foreground: syntax.lightGreen,
 				},
 			},
 			tok("Asciidoc - Highlight", "markup.highlight.asciidoc", syntax.yellow, "bold"),
@@ -1171,7 +1239,7 @@ export function generateTextMateTheme(syntax: SyntaxColors, config: Config) {
 					"markup.reference.xref.asciidoc string.unquoted.asciidoc",
 				],
 				settings: {
-					foreground: syntax.violet,
+					foreground: syntax.cornflower, // Same as Markdown URLs.
 					fontStyle: "underline",
 				},
 			},
@@ -1189,8 +1257,8 @@ export function generateTextMateTheme(syntax: SyntaxColors, config: Config) {
 			tok(
 				"Asciidoc - Ruler",
 				"constant.other.symbol.horizontal-rule.asciidoc",
-				syntax.orange,
-				"bold underline",
+				syntax.pink, // Same as the Markdown separator.
+				"bold",
 			),
 			//
 			// JSON
@@ -1287,8 +1355,8 @@ export function generateTextMateTheme(syntax: SyntaxColors, config: Config) {
 			//
 			// INI
 			//
-			tok("INI - Keys", "keyword.other.definition.ini", syntax.pink),
-			tok("INI - Headings", "entity.name.section.group-title.ini", syntax.lime),
+			tok("INI - Keys", "keyword.other.definition.ini", syntax.lightPurple), // Same as TOML/YAML/JSON keys.
+			tok("INI - Headings", "entity.name.section.group-title.ini", syntax.blue), // Same as TOML tables.
 			//
 			// BNF
 			//

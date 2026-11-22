@@ -155,7 +155,7 @@
 					"type": "boolean",
 					"scope": "application",
 					"default": false,
-					"description": "Controls whether mutable variables are bold in languages where they default to mutable, i.e. C++, Java."
+					"description": "Controls whether mutable variables (and Java's `this`) are bold in languages where variables default to mutable: C, C++ and Java. Explicitly mutable variables, Rust `mut` and JS/TS `let`/`var`, are always bold."
 				},
 				"theme-prismatic-pink.altCurrentLine": {
 					"type": "boolean",
