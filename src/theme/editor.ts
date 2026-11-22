@@ -8,333 +8,168 @@ export function generateEditorTheme(
 	type: "light" | "dark",
 	config: Config,
 ) {
-	// Current line style.
-	let currentLine;
-	if (config.altCurrentLine) {
-		currentLine = {
-			"editor.lineHighlightBackground": "#00000000", // Current line background colour.
-			"editor.lineHighlightBorder": color.text.currentLineBorder, // Remove current line border.
-		};
-	} else {
-		currentLine = {
-			"editor.lineHighlightBackground": color.text.currentLineBgA, // Current line background colour.
-			"editor.lineHighlightBorder": "#00000000", // Remove current line border.
-		};
-	}
+	const transparent = "#00000000";
 
-	// Inlay hint style.
-	let inlay;
-	switch (config.inlayStyle) {
-		case "noBackground": {
-			inlay = {
-				"editorInlayHint.foreground": color.text.decoration.codelens,
-				"editorInlayHint.background": "#00000000",
-				"editorInlayHint.typeForeground": color.text.decoration.codelens,
-				"editorInlayHint.typeBackground": "#00000000",
-				"editorInlayHint.parameterForeground": color.text.decoration.codelens,
-				"editorInlayHint.parameterBackground": "#00000000",
-			};
-			break;
-		}
-		case "faintBackground": {
-			inlay = {
-				"editorInlayHint.foreground": color.text.decoration.alt1Inlay,
-				"editorInlayHint.background": color.text.decoration.alt1InlayBgA,
-				"editorInlayHint.typeForeground": color.text.decoration.alt1Inlay,
-				"editorInlayHint.typeBackground": color.text.decoration.alt1InlayBgA,
-				"editorInlayHint.parameterForeground": color.text.decoration.alt1Inlay,
-				"editorInlayHint.parameterBackground": color.text.decoration.alt1InlayBgA,
-			};
-			break;
-		}
-		case "accent": {
-			inlay = {
-				"editorInlayHint.foreground": color.text.decoration.alt2Inlay,
-				"editorInlayHint.background": "#00000000",
-				"editorInlayHint.typeForeground": color.text.decoration.alt2Inlay,
-				"editorInlayHint.typeBackground": "#00000000",
-				"editorInlayHint.parameterForeground": color.text.decoration.alt2Inlay,
-				"editorInlayHint.parameterBackground": "#00000000",
-			};
-			break;
-		}
-		case "accentBackground": {
-			inlay = {
-				"editorInlayHint.foreground": color.text.decoration.alt3Inlay,
-				"editorInlayHint.background": color.text.decoration.alt3InlayBgA,
-				"editorInlayHint.typeForeground": color.text.decoration.alt3Inlay,
-				"editorInlayHint.typeBackground": color.text.decoration.alt3InlayBgA,
-				"editorInlayHint.parameterForeground": color.text.decoration.alt3Inlay,
-				"editorInlayHint.parameterBackground": color.text.decoration.alt3InlayBgA,
-			};
-			break;
-		}
-	}
+	// Current line style.
+	const currentLine = {
+		"editor.lineHighlightBackground": config.altCurrentLine
+			? transparent
+			: color.text.currentLineBgA, // Current line background colour.
+		"editor.lineHighlightBorder": config.altCurrentLine
+			? color.text.currentLineBorder
+			: transparent, // Current line border colour.
+	};
+
+	// Inlay hint style: [foreground, background].
+	const decoration = color.text.decoration;
+	const [inlayFg, inlayBg] = {
+		noBackground: [decoration.codelens, transparent],
+		faintBackground: [decoration.alt1Inlay, decoration.alt1InlayBgA],
+		accent: [decoration.alt2Inlay, transparent],
+		accentBackground: [decoration.alt3Inlay, decoration.alt3InlayBgA],
+	}[config.inlayStyle];
+	const inlay = {
+		"editorInlayHint.foreground": inlayFg,
+		"editorInlayHint.background": inlayBg,
+		"editorInlayHint.typeForeground": inlayFg,
+		"editorInlayHint.typeBackground": inlayBg,
+		"editorInlayHint.parameterForeground": inlayFg,
+		"editorInlayHint.parameterBackground": inlayBg,
+	};
 
 	// Bracket guides styles.
-	let brackets;
-	if (config.monochromeBracketGuides) {
-		brackets = {
-			"editorBracketHighlight.foreground1": color.text.decoration.dark,
-			"editorBracketHighlight.foreground2": color.text.decoration.dark,
-			"editorBracketHighlight.foreground3": color.text.decoration.dark,
-			"editorBracketHighlight.foreground4": color.text.decoration.dark,
-			"editorBracketHighlight.foreground5": color.text.decoration.dark,
-			"editorBracketHighlight.foreground6": color.text.decoration.dark,
-			"editorBracketPairGuide.background1": color.text.decoration.light,
-			"editorBracketPairGuide.background2": color.text.decoration.light,
-			"editorBracketPairGuide.background3": color.text.decoration.light,
-			"editorBracketPairGuide.background4": color.text.decoration.light,
-			"editorBracketPairGuide.background5": color.text.decoration.light,
-			"editorBracketPairGuide.background6": color.text.decoration.light,
-			"editorBracketPairGuide.activeBackground1": color.text.decoration.dark,
-			"editorBracketPairGuide.activeBackground2": color.text.decoration.dark,
-			"editorBracketPairGuide.activeBackground3": color.text.decoration.dark,
-			"editorBracketPairGuide.activeBackground4": color.text.decoration.dark,
-			"editorBracketPairGuide.activeBackground5": color.text.decoration.dark,
-			"editorBracketPairGuide.activeBackground6": color.text.decoration.dark,
-		};
-	} else {
-		brackets = {
-			"editorBracketHighlight.foreground1": color.brackets.one,
-			"editorBracketHighlight.foreground2": color.brackets.two,
-			"editorBracketHighlight.foreground3": color.brackets.three,
-			"editorBracketHighlight.foreground4": color.brackets.four,
-			"editorBracketHighlight.foreground5": color.brackets.five,
-			"editorBracketHighlight.foreground6": color.brackets.six,
-			"editorBracketPairGuide.background1": a(color.brackets.one, "50"),
-			"editorBracketPairGuide.background2": a(color.brackets.two, "50"),
-			"editorBracketPairGuide.background3": a(color.brackets.three, "50"),
-			"editorBracketPairGuide.background4": a(color.brackets.four, "50"),
-			"editorBracketPairGuide.background5": a(color.brackets.five, "50"),
-			"editorBracketPairGuide.background6": a(color.brackets.six, "50"),
-			"editorBracketPairGuide.activeBackground1": color.brackets.one,
-			"editorBracketPairGuide.activeBackground2": color.brackets.two,
-			"editorBracketPairGuide.activeBackground3": color.brackets.three,
-			"editorBracketPairGuide.activeBackground4": color.brackets.four,
-			"editorBracketPairGuide.activeBackground5": color.brackets.five,
-			"editorBracketPairGuide.activeBackground6": color.brackets.six,
-		};
-	}
+	const mono = config.monochromeBracketGuides;
+	const bracketColors = Object.values(color.brackets);
+	const brackets = Object.fromEntries([
+		...bracketColors.map((c, i) => [
+			`editorBracketHighlight.foreground${i + 1}`,
+			mono ? decoration.dark : c,
+		]),
+		...bracketColors.map((c, i) => [
+			`editorBracketPairGuide.background${i + 1}`,
+			mono ? decoration.light : a(c, "50"),
+		]),
+		...bracketColors.map((c, i) => [
+			`editorBracketPairGuide.activeBackground${i + 1}`,
+			mono ? decoration.dark : c,
+		]),
+	]);
 
-	// Output the appropriate error lens keys.
-	let errorLens;
-	let errorLensStatusBar;
-	if (type == "light") {
-		errorLens = {
-			"errorLens.infoForegroundLight": color.diag.info,
-			"errorLens.infoBackgroundLight": color.diag.infoBgA,
-			"errorLens.hintForegroundLight": color.diag.hint,
-			"errorLens.hintBackgroundLight": color.diag.hintBgA,
-			"errorLens.warningForegroundLight": color.diag.warning,
-			"errorLens.warningBackgroundLight": color.diag.warningBgA,
-			"errorLens.errorForegroundLight": color.diag.error,
-			"errorLens.errorBackgroundLight": color.diag.errorBgA,
-			// Gutter icons.
-			"errorLens.infoGutterIconColor": color.diag.info,
-			"errorLens.warningGutterIconColor": color.diag.warning,
-			"errorLens.errorGutterIconColor": color.diag.error,
-		};
-	} else {
-		errorLens = {
-			"errorLens.infoForeground": color.diag.info,
-			"errorLens.infoBackground": color.diag.infoBgA,
-			"errorLens.hintForeground": color.diag.hint,
-			"errorLens.hintBackground": color.diag.hintBgA,
-			"errorLens.warningForeground": color.diag.warning,
-			"errorLens.warningBackground": color.diag.warningBgA,
-			"errorLens.errorForeground": color.diag.error,
-			"errorLens.errorBackground": color.diag.errorBgA,
-			// Gutter icons.
-			"errorLens.infoGutterIconColor": color.diag.info,
-			"errorLens.warningGutterIconColor": color.diag.warning,
-			"errorLens.errorGutterIconColor": color.diag.error,
-		};
-	}
-	if (config.globalAccent == "everywhere") {
-		errorLensStatusBar = {
-			"errorLens.statusBarHintForeground": color.text.inverse,
-			"errorLens.statusBarInfoForeground": color.text.inverse,
-			"errorLens.statusBarWarningForeground": color.text.inverse,
-			"errorLens.statusBarIconWarningForeground": color.text.inverse,
-			"errorLens.statusBarErrorForeground": color.text.inverse,
-			"errorLens.statusBarIconErrorForeground": color.text.inverse,
-		};
-	} else {
-		errorLensStatusBar = {
-			"errorLens.statusBarHintForeground": color.diag.hint,
-			"errorLens.statusBarInfoForeground": color.diag.info,
-			"errorLens.statusBarWarningForeground": color.diag.warning,
-			"errorLens.statusBarIconWarningForeground": color.diag.warning,
-			"errorLens.statusBarErrorForeground": color.diag.error,
-			"errorLens.statusBarIconErrorForeground": color.diag.error,
-		};
-	}
-
-	// Global accent options.
-	let list;
-	let widgets;
-	let badges;
-	let menu;
-	let banner;
-	let statusBar;
-	let commandBar;
-
-	const mutedStatusBar = {
-		"statusBar.foreground": color.text.normal,
-		"statusBar.background": color.ui.secondaryBg,
-		"statusBarItem.hoverBackground": color.ui.hoverBgA,
-		"statusBarItem.activeBackground": color.ui.activeBgA,
-		"statusBarItem.compactHoverBackground": color.ui.hoverBgA,
-		"statusBarItem.errorForeground": color.diag.error,
-		"statusBarItem.errorBackground": color.ui.secondaryBg,
-		"statusBarItem.warningForeground": color.diag.warning,
-		"statusBarItem.warningBackground": color.ui.secondaryBg,
-		"statusBarItem.prominentForeground": color.diag.info,
-		"statusBarItem.prominentBackground": color.ui.secondaryBg,
-		"statusBarItem.prominentHoverBackground": color.ui.hoverBgA,
-		// Remote icon.
-		"statusBarItem.remoteForeground": color.accent.primary,
-		"statusBarItem.remoteBackground": color.ui.secondaryBg,
+	// Error lens keys, which have a `Light` suffix in light themes.
+	const l = type == "light" ? "Light" : "";
+	const errorLens = {
+		[`errorLens.infoForeground${l}`]: color.diag.info,
+		[`errorLens.infoBackground${l}`]: color.diag.infoBgA,
+		[`errorLens.hintForeground${l}`]: color.diag.hint,
+		[`errorLens.hintBackground${l}`]: color.diag.hintBgA,
+		[`errorLens.warningForeground${l}`]: color.diag.warning,
+		[`errorLens.warningBackground${l}`]: color.diag.warningBgA,
+		[`errorLens.errorForeground${l}`]: color.diag.error,
+		[`errorLens.errorBackground${l}`]: color.diag.errorBgA,
+		// Gutter icons.
+		"errorLens.infoGutterIconColor": color.diag.info,
+		"errorLens.warningGutterIconColor": color.diag.warning,
+		"errorLens.errorGutterIconColor": color.diag.error,
 	};
-	if (config.globalAccent == "minimal") {
-		// MINIMAL
-		statusBar = mutedStatusBar;
-		list = {
-			"list.hoverBackground": color.ui.listHoverBgA, // Background on individual entry on hover.
-			"list.activeSelectionBackground": color.ui.selectedBg,
-			"list.activeSelectionForeground": color.text.normal,
-			"list.activeSelectionIconForeground": color.text.normal, // Doesn't work?
-			"list.inactiveSelectionBackground": color.ui.listHoverBgA, // Colour of a selected item when the list is not actively selected.
-			"list.highlightForeground": color.accent.primary, // E.g. matching text in the command palette.
-			"list.focusHighlightForeground": color.text.normal, // E.g. matching text in the currently selected entry in the command palette.
-		};
-		widgets = {
-			"editorSuggestWidget.foreground": color.text.normal, // All text.
-			"editorSuggestWidget.background": color.ui.primaryBg,
-			"editorSuggestWidget.border": color.ui.border,
-			"editorSuggestWidget.highlightForeground": color.accent.primary, // Matching letters in other entries.
-			"editorSuggestWidget.focusHighlightForeground": color.text.normal, // Matching letters in currently selected entry.
-			"editorSuggestWidget.selectedBackground": color.ui.selectedBg, // Background of selected entry.
-			"editorSuggestWidget.selectedForeground": color.text.normal, // Text in selected entry.
-			"editorSuggestWidget.selectedIconForeground": color.text.normal, // Icon in selected entry.
-			// This is the light bulb popup.
-			"editorActionList.foreground": color.text.normal,
-			"editorActionList.background": color.ui.primaryBg,
-			"editorActionList.focusForeground": color.text.normal,
-			"editorActionList.focusBackground": color.ui.selectedBg,
-			//
-			"peekViewResult.selectionForeground": color.text.normal, // Clicked entry.
-			"peekViewResult.selectionBackground": color.ui.selectedBg, // Clicked entry.
-		};
-		badges = {
-			"badge.foreground": color.accent.primary,
-			"badge.background": color.ui.primaryBg,
-			"activityBarBadge.foreground": color.accent.primary,
-			"activityBarBadge.background": color.ui.primaryBg,
-			"activityWarningBadge.foreground": color.diag.warning, // ???
-			"activityWarningBadge.background": color.ui.primaryBg, // ???
-			"activityErrorBadge.foreground": color.diag.error, // ???
-			"activityErrorBadge.background": color.ui.primaryBg, // ???
-		};
-		banner = {
-			"banner.foreground": color.text.normal,
-			"banner.background": color.ui.secondaryBg,
-			"banner.iconForeground": color.text.normal,
-		};
-		menu = {
-			"menu.foreground": color.text.normal,
-			"menu.background": color.ui.dropdownBg, // Background of a fly-out.
-			"menu.selectionForeground": color.text.normal,
-			"menu.selectionBackground": color.ui.selectedBg,
-			//"menu.selectionBorder": "",
-			"menu.separatorBackground": color.ui.separator,
-			"menubar.selectionForeground": color.text.normal,
-			"menubar.selectionBackground": color.ui.hoverBgA, // Background of hover/active menu bar item.
-			//"menubar.selectionBorder": "",
-		};
-		commandBar = {
-			"quickInput.foreground": color.text.normal, // All text.
-			"quickInput.background": color.ui.primaryBg,
-			"quickInputTitle.background": color.ui.primaryBg,
-			"quickInputList.focusBackground": color.ui.selectedBg,
-			"quickInputList.focusForeground": color.text.normal,
-			"quickInputList.focusIconForeground": color.text.normal,
-			"pickerGroup.border": color.ui.separator, // Border between groups within the drop down.
-			"pickerGroup.foreground": color.accent.primary, // The little text seen sometimes, e.g. `other commands`.
-		};
-	} else {
-		// DEFAULT + DISABLED_STATUS_BAR
-		list = {
-			"list.hoverBackground": color.ui.listHoverBgA, // Background on individual entry on hover.
-			"list.activeSelectionBackground": color.accent.fill,
-			"list.activeSelectionForeground": color.text.inverse,
-			"list.activeSelectionIconForeground": color.text.inverse, // Doesn't work?
-			"list.inactiveSelectionBackground": color.ui.listInactiveBgA, // Colour of a selected item when the list is not actively selected.
-			"list.highlightForeground": color.accent.primary, // E.g. matching text in the command palette.
-			"list.focusHighlightForeground": color.text.inverse, // E.g. matching text in the currently selected entry in the command palette.
-		};
-		widgets = {
-			"editorSuggestWidget.foreground": color.text.normal, // All text.
-			"editorSuggestWidget.background": color.ui.primaryBg,
-			"editorSuggestWidget.border": color.ui.border,
-			"editorSuggestWidget.highlightForeground": color.accent.primary, // Matching letters in other entries.
-			"editorSuggestWidget.focusHighlightForeground": color.text.inverse, // Matching letters in currently selected entry.
-			"editorSuggestWidget.selectedBackground": color.accent.fill, // Background of selected entry.
-			"editorSuggestWidget.selectedForeground": color.text.inverse, // Text in selected entry.
-			"editorSuggestWidget.selectedIconForeground": color.text.inverse, // Icon in selected entry.
-			// This is the light bulb popup.
-			"editorActionList.foreground": color.text.normal,
-			"editorActionList.background": color.ui.primaryBg,
-			"editorActionList.focusForeground": color.text.inverse,
-			"editorActionList.focusBackground": color.accent.fill,
-			//
-			"peekViewResult.selectionForeground": color.text.emphasised, // Clicked entry.
-			"peekViewResult.selectionBackground": color.accent.fill, // Clicked entry.
-		};
-		badges = {
-			"badge.foreground": color.text.inverse,
-			"badge.background": color.accent.fill,
-			"activityBarBadge.foreground": color.text.inverse,
-			"activityBarBadge.background": color.accent.fill,
-			"activityWarningBadge.foreground": color.text.inverse, // ???
-			"activityWarningBadge.background": color.diag.warning, // ???
-			"activityErrorBadge.foreground": color.text.inverse, // ???
-			"activityErrorBadge.background": color.diag.error, // ???
-		};
-		banner = {
-			"banner.foreground": color.text.inverse,
-			"banner.background": color.accent.fill,
-			"banner.iconForeground": color.text.inverse,
-		};
-		menu = {
-			"menu.foreground": color.text.normal,
-			"menu.background": color.ui.dropdownBg, // Background of a fly-out.
-			"menu.selectionForeground": color.text.inverse,
-			"menu.selectionBackground": color.accent.fill,
-			//"menu.selectionBorder": "",
-			"menu.separatorBackground": color.ui.separator,
-			"menubar.selectionForeground": color.text.normal,
-			"menubar.selectionBackground": color.ui.hoverBgA, // Background of hover/active menu bar item.
-			//"menubar.selectionBorder": "",
-		};
-		commandBar = {
-			"quickInput.foreground": color.text.normal, // All text.
-			"quickInput.background": color.ui.primaryBg,
-			"quickInputTitle.background": color.ui.primaryBg,
-			"quickInputList.focusBackground": color.accent.fill,
-			"quickInputList.focusForeground": color.text.inverse,
-			"quickInputList.focusIconForeground": color.text.inverse,
-			"pickerGroup.border": color.ui.separator, // Border between groups within the drop down.
-			"pickerGroup.foreground": color.accent.primary, // The little text seen sometimes, e.g. `other commands`.
-		};
+	const everywhere = config.globalAccent == "everywhere";
+	const errorLensStatusBar = {
+		"errorLens.statusBarHintForeground": everywhere ? color.text.inverse : color.diag.hint,
+		"errorLens.statusBarInfoForeground": everywhere ? color.text.inverse : color.diag.info,
+		"errorLens.statusBarWarningForeground": everywhere
+			? color.text.inverse
+			: color.diag.warning,
+		"errorLens.statusBarIconWarningForeground": everywhere
+			? color.text.inverse
+			: color.diag.warning,
+		"errorLens.statusBarErrorForeground": everywhere ? color.text.inverse : color.diag.error,
+		"errorLens.statusBarIconErrorForeground": everywhere
+			? color.text.inverse
+			: color.diag.error,
+	};
 
-		if (config.globalAccent == "disabledStatusBar") {
-			// DISABLED_STATUS_BAR
-			statusBar = mutedStatusBar;
-		} else {
-			// DEFAULT
-			statusBar = {
+	// Global accent options. "minimal" selects with a gray background, the others with the accent fill.
+	const minimal = config.globalAccent == "minimal";
+	const selBg = minimal ? color.ui.selectedBg : color.accent.fill;
+	const selFg = minimal ? color.text.normal : color.text.inverse;
+
+	const list = {
+		"list.hoverBackground": color.ui.listHoverBgA, // Background on individual entry on hover.
+		"list.activeSelectionBackground": selBg,
+		"list.activeSelectionForeground": selFg,
+		"list.activeSelectionIconForeground": selFg, // Doesn't work?
+		"list.inactiveSelectionBackground": minimal
+			? color.ui.listHoverBgA
+			: color.ui.listInactiveBgA, // Colour of a selected item when the list is not actively selected.
+		"list.highlightForeground": color.accent.primary, // E.g. matching text in the command palette.
+		"list.focusHighlightForeground": selFg, // E.g. matching text in the currently selected entry in the command palette.
+	};
+	const widgets = {
+		"editorSuggestWidget.foreground": color.text.normal, // All text.
+		"editorSuggestWidget.background": color.ui.primaryBg,
+		"editorSuggestWidget.border": color.ui.border,
+		"editorSuggestWidget.highlightForeground": color.accent.primary, // Matching letters in other entries.
+		"editorSuggestWidget.focusHighlightForeground": selFg, // Matching letters in currently selected entry.
+		"editorSuggestWidget.selectedBackground": selBg, // Background of selected entry.
+		"editorSuggestWidget.selectedForeground": selFg, // Text in selected entry.
+		"editorSuggestWidget.selectedIconForeground": selFg, // Icon in selected entry.
+		// This is the light bulb popup.
+		"editorActionList.foreground": color.text.normal,
+		"editorActionList.background": color.ui.primaryBg,
+		"editorActionList.focusForeground": selFg,
+		"editorActionList.focusBackground": selBg,
+		//
+		"peekViewResult.selectionForeground": minimal ? color.text.normal : color.text.emphasised, // Clicked entry.
+		"peekViewResult.selectionBackground": selBg, // Clicked entry.
+	};
+	const badges = minimal
+		? {
+				"badge.foreground": color.accent.primary,
+				"badge.background": color.ui.primaryBg,
+				"activityBarBadge.foreground": color.accent.primary,
+				"activityBarBadge.background": color.ui.primaryBg,
+				"activityWarningBadge.foreground": color.diag.warning, // ???
+				"activityWarningBadge.background": color.ui.primaryBg, // ???
+				"activityErrorBadge.foreground": color.diag.error, // ???
+				"activityErrorBadge.background": color.ui.primaryBg, // ???
+			}
+		: {
+				"badge.foreground": color.text.inverse,
+				"badge.background": color.accent.fill,
+				"activityBarBadge.foreground": color.text.inverse,
+				"activityBarBadge.background": color.accent.fill,
+				"activityWarningBadge.foreground": color.text.inverse, // ???
+				"activityWarningBadge.background": color.diag.warning, // ???
+				"activityErrorBadge.foreground": color.text.inverse, // ???
+				"activityErrorBadge.background": color.diag.error, // ???
+			};
+	const banner = {
+		"banner.foreground": selFg,
+		"banner.background": minimal ? color.ui.secondaryBg : color.accent.fill,
+		"banner.iconForeground": selFg,
+	};
+	const menu = {
+		"menu.foreground": color.text.normal,
+		"menu.background": color.ui.dropdownBg, // Background of a fly-out.
+		"menu.selectionForeground": selFg,
+		"menu.selectionBackground": selBg,
+		//"menu.selectionBorder": "",
+		"menu.separatorBackground": color.ui.separator,
+		"menubar.selectionForeground": color.text.normal,
+		"menubar.selectionBackground": color.ui.hoverBgA, // Background of hover/active menu bar item.
+		//"menubar.selectionBorder": "",
+	};
+	const commandBar = {
+		"quickInput.foreground": color.text.normal, // All text.
+		"quickInput.background": color.ui.primaryBg,
+		"quickInputTitle.background": color.ui.primaryBg,
+		"quickInputList.focusBackground": selBg,
+		"quickInputList.focusForeground": selFg,
+		"quickInputList.focusIconForeground": selFg,
+		"pickerGroup.border": color.ui.separator, // Border between groups within the drop down.
+		"pickerGroup.foreground": color.accent.primary, // The little text seen sometimes, e.g. `other commands`.
+	};
+	const statusBar = everywhere
+		? {
 				"statusBar.foreground": color.text.inverse,
 				"statusBar.background": color.accent.fill,
 				"statusBarItem.hoverBackground": color.ui.statusHoverBgA,
@@ -350,9 +185,24 @@ export function generateEditorTheme(
 				// Remote icon.
 				"statusBarItem.remoteForeground": color.text.inverse,
 				"statusBarItem.remoteBackground": color.accent.secondary,
+			}
+		: {
+				"statusBar.foreground": color.text.normal,
+				"statusBar.background": color.ui.secondaryBg,
+				"statusBarItem.hoverBackground": color.ui.hoverBgA,
+				"statusBarItem.activeBackground": color.ui.activeBgA,
+				"statusBarItem.compactHoverBackground": color.ui.hoverBgA,
+				"statusBarItem.errorForeground": color.diag.error,
+				"statusBarItem.errorBackground": color.ui.secondaryBg,
+				"statusBarItem.warningForeground": color.diag.warning,
+				"statusBarItem.warningBackground": color.ui.secondaryBg,
+				"statusBarItem.prominentForeground": color.diag.info,
+				"statusBarItem.prominentBackground": color.ui.secondaryBg,
+				"statusBarItem.prominentHoverBackground": color.ui.hoverBgA,
+				// Remote icon.
+				"statusBarItem.remoteForeground": color.accent.primary,
+				"statusBarItem.remoteBackground": color.ui.secondaryBg,
 			};
-		}
-	}
 
 	let editor_colors = {
 		// EDITOR

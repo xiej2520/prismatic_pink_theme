@@ -13,3 +13,6 @@ package/
 # Website build output
 www/css
 www/script
+
+# Packaged extensions
+*.vsix
