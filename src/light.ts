@@ -26,7 +26,7 @@ export const lightSyntax: SyntaxColors = {
 	// Keep at least 3:1 contrast on background. Bold are just below.
 	fg: "#565869",
 	gray: "#747474",
-	fadedGray: "#ADB1C2",
+	fadedGray: "#898D9D",
 
 	pink: "#EB5CB1",
 	strongPink: "#FF1277",
@@ -100,10 +100,10 @@ export const lightColors: UiColors = {
 
 		// Text editor line number, text editor suggestion ghost text, list deemphasized text, tab unfocused title,
 		// (??? x1)
-		muted: "#ADB1C2",
+		muted: "#787C8C",
 
 		// Breadcrumb text, general description text, titlebar unfocused text
-		light: "#999999",
+		light: "#747474",
 
 		// Button text, extension button text, status bar when debugging text & icons
 		//
@@ -126,7 +126,7 @@ export const lightColors: UiColors = {
 			// Text editor matching bracket border, text editor corrent indentation guide
 			//
 			// MONO_GUIDES: Bracket match guides
-			dark: "#AAAAAA",
+			dark: "#929292",
 
 			// Codelens
 			//
@@ -238,7 +238,7 @@ export const lightColors: UiColors = {
 		testQueued: "#057AB6",
 		testFailed: "#FF1277",
 		testUnset: "#BB5704",
-		testSkipped: "#ADB1C2",
+		testSkipped: "#898C9D",
 	},
 
 	git: {
@@ -248,7 +248,7 @@ export const lightColors: UiColors = {
 		renamed: "#03827F",
 		untracked: "#AE3FD8",
 		removedOrConflicting: "#FF1277",
-		ignoredOrSubmodule: "#ADB1C2",
+		ignoredOrSubmodule: "#898C9D",
 		current: "#03863C",
 		incoming: "#057AB6",
 
@@ -281,7 +281,7 @@ export const lightColors: UiColors = {
 
 		// Gutter icons
 		breakpoint: "#FF1277",
-		breakpointDisabled: "#ADB1C2",
+		breakpointDisabled: "#898C9D",
 
 		// Exception widget background
 		exceptionBg: "#F7F9CB",
@@ -295,7 +295,7 @@ export const lightColors: UiColors = {
 	},
 
 	terminal: {
-		default: "#ADB1C2",
+		default: "#898C9D",
 		success: "#03863C",
 		error: "#FF1277",
 
@@ -356,11 +356,11 @@ export const lightColors: UiColors = {
 		separator: "#CECECE",
 
 		// Input field foreground
-		placeholderText: "#BEBEBE",
+		placeholderText: "#868686",
 
 		// Menu disabled entry foreground, (this is chosen to match `placeholderText` since the disabled text also
 		// has a secondary fade layer)
-		disabledText: "#ABABAB",
+		disabledText: "#929292",
 
 		// Little buttons, titlebar menu buttons, editor stick hover
 		//
@@ -407,8 +407,8 @@ export const lightColors: UiColors = {
 		unfocusedTab: "#FC9AC5", // FF12776A on primaryBg
 
 		// Activity bar inactive icon
-		activityBarInactive: "#BFC0C7",
-		activityBarTopInactive: "#999aa5",
+		activityBarInactive: "#919298",
+		activityBarTopInactive: "#8B8C97",
 
 		// Code actions icon
 		lightBulb: "#FFC104",

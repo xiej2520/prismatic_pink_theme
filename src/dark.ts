@@ -331,11 +331,11 @@ export const darkColors: UiColors = {
 		separator: local.border,
 
 		// Input field foreground
-		// make faded text readable
-		placeholderText: "#B1A3BE",
+		// dimmer than descriptions (4.5:1)
+		placeholderText: "#857791",
 
 		// Menu disabled entry foreground
-		disabledText: "#B499B9",
+		disabledText: "#846A89",
 
 		// Little buttons, titlebar menu buttons, editor stick hover
 		//
