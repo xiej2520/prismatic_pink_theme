@@ -5,6 +5,7 @@ import type { UiColors, SyntaxColors } from "../src/theme";
 import { DEFAULT_CONFIG, type Config } from "../src/config";
 import { generateSemanticThemeColors } from "../src/theme/semantic";
 import { selectAnsiColors } from "../src/theme/terminal";
+import { alpha as a } from "../src/color";
 import { makeOutputFolder } from "./buildEnv";
 
 const themesFolder = makeOutputFolder("themes")
@@ -59,8 +60,8 @@ function generateColors(color: UiColors, type: "light" | "dark", config: Config)
     "panel.background": color.ui.secondaryBg,
     "panel.focused_border": color.ui.border,
 
-    "panel.indent_guide": color.ui.treeIndent + "40",
-    "panel.indent_guide_hover": color.ui.treeIndent + "C0",
+    "panel.indent_guide": a(color.ui.treeIndent, "40"),
+    "panel.indent_guide_hover": a(color.ui.treeIndent, "C0"),
     "panel.indent_guide_active": color.ui.treeIndent,
 
     "panel.overlay_background": color.ui.secondaryBg,
@@ -104,16 +105,16 @@ function generateColors(color: UiColors, type: "light" | "dark", config: Config)
     "editor.active_line_number": color.accent.primary,
     "editor.line_number": color.text.muted,
     // whitespace
-    "editor.invisible": color.text.decoration.alt2Inlay,
+    "editor.invisible": color.text.decoration.light,
     "editor.wrap_guide": color.ui.separator, // ?
     "editor.active_wrap_guide": color.ui.treeIndent, // ?
-    "editor.indent_guide": color.ui.treeIndent + "40", // ?
-    "editor.indent_guide_active": color.ui.treeIndent + "80", // ?
+    "editor.indent_guide": a(color.ui.treeIndent, "40"), // ?
+    "editor.indent_guide_active": a(color.ui.treeIndent, "80"), // ?
     "editor.document_highlight.read_background": null,
     "editor.document_highlight.write_background": null,
     "editor.document_highlight.bracket_background": null,
     "search.match_background": color.text.matchBg,
-    "search.active_match_background": color.text.matchBorder, // green
+    "search.active_match_background": a(color.text.matchBorder, "8A"), // green
   };
   const navigation = {
     "status_bar.background": color.ui.secondaryBg,
