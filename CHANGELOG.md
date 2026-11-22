@@ -1,5 +1,38 @@
 # Changelog
 
+## 0.2.0 - 2026-11-21
+### Added
+- `builtinTypeColor` setting to control whether builtin types (`i32`, `bool`, `string`, ...) use the keyword color
+  (default, backwards compat) or the type color.
+- Colors for VS Code's modern UI, the agent sessions window, chat and inline chat (untested), inline edit suggestions,
+  newer diff and merge editor colors, test coverage, Markdown alerts, notebooks, settings editor inputs,
+  gauges and other newer workbench surfaces.
+- Semantic highlighting for Python Pylance/basedpyright and ty, Java jdtls, C++ clangd and Nix nil/nixd.
+
+### Changed
+- Dark and contrast: operators and punctuation and comments are slightly dimmer.
+- Java `this` obeys `boldDefaultMutableVariables`.
+- Make syntax colors more consistent across languages: `null`, `this`/`self`, annotations (orange) vs decorators (green),
+  Python docstrings, type parameters, members, format specifiers and interpolation.
+- Semantic `type` tokens (type aliases, typedefs) use the type color.
+- Rust const fns use green function color instead of orange constant color.
+
+- Make sidebar section header background color closer to the other backgrounds.
+- Use tab borders since modern UI reduces the contrast.
+- Errors use red instead of the accent pink.
+- Badges, buttons and selected list rows use a darker pink so white text is readable.
+  Consolidate pinks to the accent, keyword and macro pinks.
+- UI text: light line numbers, descriptions, placeholders and disabled text are easier to read.
+  Dim dark placeholders and disabled text.
+- Light theme: bump syntax colors to ~3:1 contrast. Change orange color to be more orange.
+  Status, git and debug colors use the dark theme's hues at 4.5:1.
+
+### Fixed
+- No reload prompt on a fresh install or after an update when using default settings.
+- The "Restore default configuration" command failed with an error.
+- Bracket pair guide colors had no effect.
+- Removed color keys VS Code no longer supports, and extension settings that were mistakenly in the theme.
+
 ## 0.1.7 - 2026-08-24
 - Fix terminal ANSI black, foreground, and background color handling.
 - Improve light-theme terminal palette.

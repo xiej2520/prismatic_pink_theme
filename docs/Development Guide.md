@@ -35,9 +35,9 @@ The extension manifest defines the following npm scripts:
 - `clean` - Removes `out/` build directory
 - `build` - Builds the typescript project and theme files.
 - `buildTheme` - Builds the theme files.
-- `buildZedTheme` - Builds the Zed theme `build/prismatic-pink-zed.json`.
-- `buildNvimTheme` - Builds the Neovim Theme `build/prismatic-pink.lua`.
-- `buildCssTheme` - Builds the CSS custom property stylesheet `css/prismatic-pink.css`.
+- `buildZedTheme` - Builds the Zed theme `themes/prismatic-pink-zed.json`.
+- `buildNvimTheme` - Builds the Neovim themes `themes/nvim/prismatic-pink*.lua`.
+- `buildCssTheme` - Builds the CSS custom property stylesheet `themes/prismatic-pink.css`.
 - `buildTs` - Build the typescript project.
 - `watchTs` - Watch the typescript project.
 - `typecheck` - Type-check `src/`, `build/`, and `test/`.

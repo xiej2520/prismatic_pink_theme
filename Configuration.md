@@ -56,4 +56,10 @@ Controls where the accent colors are used.
 ![AccentMinimal](./img/options/accentMinimal.png)
 
 ### Bold Default Mutable Variables
-Controls whether mutable variables are bold in languages where they default to mutable, currently C++, Java.
+Controls whether mutable variables (and Java's `this`) are bold in languages where variables default to mutable: C,
+C++ and Java. Explicitly mutable variables, Rust `mut` and JS/TS `let`/`var`, are always bold.
+---
+
+### Built-in Type Color
+Controls whether built-in types such as `i32`, `bool` and `string` use the keyword color (pink, the default) or the
+same color as other types (blue).
