@@ -73,6 +73,11 @@ export const SETTINGS: SettingDef<any>[] = [
 		default: false,
 		isValid: isBoolean,
 	},
+	{
+		key: "builtinTypeColor",
+		default: "keyword",
+		isValid: stringEnum("keyword", "type"),
+	},
 ];
 
 export const DEFAULT_CONFIG = Object.fromEntries(SETTINGS.map((s) => [s.key, s.default])) as {
@@ -85,6 +90,7 @@ export const DEFAULT_CONFIG = Object.fromEntries(SETTINGS.map((s) => [s.key, s.d
 	lightTerminalColorScheme: "normal+dark" | "normal+light" | "dark+normal";
 	globalAccent: "everywhere" | "disabledStatusBar" | "minimal";
 	boldDefaultMutableVariables: boolean;
+	builtinTypeColor: "keyword" | "type";
 };
 
 export type ConfigValues = typeof DEFAULT_CONFIG;
@@ -119,6 +125,9 @@ export class Config {
 	get boldDefaultMutableVariables() {
 		return this.values.boldDefaultMutableVariables;
 	}
+	get builtinTypeColor() {
+		return this.values.builtinTypeColor;
+	}
 
 	/**
 	 * The default configuration settings.
@@ -129,11 +138,10 @@ export class Config {
 	 * Returns whether the theme configuration has been modified since the last time it was written to the cache.
 	 */
 	isModified(): boolean {
-		// If there is no cache, then we need to assume that the configuration has been modified. We also want to
-		// create the cache file for future use.
+		// If there is no cache, the theme files were built with the default configuration, so report a
+		// modification only if it's different from default. Regenerating writes the cache.
 		if (!fs.existsSync(CACHE_FILE)) {
-			this.writeToCache();
-			return true;
+			return SETTINGS.some((s) => (this as any)[s.key] !== s.default);
 		}
 
 		try {
@@ -188,7 +196,7 @@ export function getConfig(): Config {
  */
 export function resetConfig() {
 	Config.DEFAULT.writeToCache();
-	const vscode: typeof import("vscode") = require("vscode;");
+	const vscode: typeof import("vscode") = require("vscode");
 	const config = vscode.workspace.getConfiguration("theme-prismatic-pink");
 	for (const s of SETTINGS) {
 		config.update(s.key, undefined, true);

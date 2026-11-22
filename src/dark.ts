@@ -9,7 +9,7 @@ const local = {
 	border: "#3D434F",
 	bg: "#1E1E22", // primary bg
 	bg2: "#1C1C20", // secondary, darker
-	bg3: "#121218", // tertiary, darkest
+	bg3: "#18181C", // tertiary, darkest
 	uiNormal: "#CFD7E6", // brighter, blue tinted
 };
 
@@ -28,8 +28,7 @@ export const darkSyntax: SyntaxColors = {
 	yellow: "#E3C24A",
 
 	lime: "#89E736",
-	// operators are short, extremely high contrast but low saturation should be fine
-	lightGreen: "#D6FFD6",
+	lightGreen: "#B3CCB7",
 	green: hue.brightGreen,
 
 	//deepBlue: "#5C79ED",
@@ -44,7 +43,7 @@ export const darkSyntax: SyntaxColors = {
 	lightPurple: "#D5C0E9",
 
 	pink: hue.softPink,
-	lightPink: "#EEBBFF",
+	lightPink: "#E5B1F7",
 	strongPink: hue.hotPink,
 	boldGreen: "#2ECC4B",
 	boldPink: "#F750AE",
@@ -91,7 +90,7 @@ export const darkColors: UiColors = {
 			// Text editor matching bracket border, text editor corrent indentation guide
 			//
 			// MONO_GUIDES: Bracket match guides
-			dark: "#F829A0",
+			dark: sem.accent,
 
 			// Codelens
 			//
@@ -104,12 +103,12 @@ export const darkColors: UiColors = {
 			alt1InlayBgA: a(hue.white, "07"),
 
 			// ACCENT_INLAY: Inlay hint text
-			alt2Inlay: f(a(hue.brightPink, "6A"), local.bg), // FF4C986A on primaryBg
+			alt2Inlay: f(a(sem.accent, "6A"), local.bg),
 
 			// ACCENT_BCKG_INLAY: Inlay hint text
-			alt3Inlay: f(a(hue.brightPink, "7A"), local.bg), // FF4C987A on primaryBg
+			alt3Inlay: f(a(sem.accent, "7A"), local.bg),
 			// ACCENT_BCKG_INLAY: Inlay hint background
-			alt3InlayBgA: a(hue.brightPink, "10"),
+			alt3InlayBgA: a(sem.accent, "10"),
 		},
 
 		// Text editor folded line, text editor hover over symbol background box
@@ -121,14 +120,14 @@ export const darkColors: UiColors = {
 
 		// Text editor selection background box, text editor matching text background box, text editor matching
 		// symbol background box, text editor selection boxes, general selection, input field, terminal selection,
-		selectionBg: a(hue.hotPink, "40"),
-		selectionBgA: a(hue.hotPink, "40"),
+		selectionBg: a(sem.accent, "40"),
+		selectionBgA: a(sem.accent, "40"),
 		// Text editor unfocused selection background box, text editor find current range background box, terminal
 		// unfocused selection
-		secondarySelectionBgA: a(hue.hotPink, "20"),
+		secondarySelectionBgA: a(sem.accent, "20"),
 
 		// Text editor tabstop background box
-		tabstopBgA: a(hue.brightPink, "1A"),
+		tabstopBgA: a(sem.accent, "1A"),
 
 		// Text editor & search sidebar find match background box, text editor match line background, peek view
 		// match background box, list filter widget background, list filter match background, terminal find match
@@ -161,8 +160,10 @@ export const darkColors: UiColors = {
 		// MINIMAL: list & command bar matching text, badge text
 		primary: sem.accent,
 		primaryHover: sem.accentHover,
-		link: hue.vividPink,
-		linkHover: hue.brightPink,
+		fill: sem.accentFill,
+		fillHover: sem.accentFillHover,
+		link: sem.accent,
+		linkHover: hue.softPink,
 
 		// Button background, codeblock text, (??? x1)
 		//
@@ -185,7 +186,7 @@ export const darkColors: UiColors = {
 		hint: sem.hint,
 		info: sem.info, // +(general peek view, status bar prominent if applicable)
 		warning: sem.warning, // +(list warning text)
-		error: sem.error, // +(general error text, bracket mismatch foreground, list error text, list invalid text, list no matches, confusing unicode highlighting border)
+		error: darkSyntax.red, // +(general error text, bracket mismatch foreground, list error text, list invalid text, list no matches, confusing unicode highlighting border)
 
 		// Error lens line background, peek view header background, input validation background, testing message
 		// line background (info+error),
@@ -195,13 +196,13 @@ export const darkColors: UiColors = {
 		infoBgA: a(sem.info, "20"), // +(general peek view)
 		warningBg: "#403530",
 		warningBgA: a(sem.warning, "20"),
-		errorBg: "#3E2A3B",
-		errorBgA: a(sem.error, "1A"), // +(confusing unicode highlighting)
+		errorBg: f(a(darkSyntax.red, "1A"), local.bg),
+		errorBgA: a(darkSyntax.red, "1A"), // +(confusing unicode highlighting)
 
 		// Testing status icons
 		testPassed: sem.success,
 		testQueued: sem.info,
-		testFailed: sem.error,
+		testFailed: darkSyntax.red,
 		testUnset: sem.warning,
 		testSkipped: local.gray,
 	},
@@ -254,7 +255,7 @@ export const darkColors: UiColors = {
 		// Debug console text
 		info: hue.brightBlue,
 		warning: sem.warning,
-		error: hue.hotPink,
+		error: darkSyntax.red,
 		source: hue.white,
 		input: hue.purple,
 	},
@@ -263,7 +264,7 @@ export const darkColors: UiColors = {
 		// Command decoration icons
 		default: local.gray, // +(SetMark sequence)
 		success: sem.success,
-		error: sem.accent,
+		error: darkSyntax.red,
 
 		ansi: {
 			foreground: local.boldFg, // 0m (default foreground)
@@ -323,7 +324,7 @@ export const darkColors: UiColors = {
 		inputBg: local.bg,
 
 		// Tab group, sidebar pane, panel section, terminal, list
-		primaryDropBg: a(hue.brightPink, "1A"),
+		primaryDropBg: a(sem.accent, "1A"),
 
 		// All borders
 		border: local.border,
@@ -332,11 +333,11 @@ export const darkColors: UiColors = {
 		separator: local.border,
 
 		// Input field foreground
-		// make faded text readable
-		placeholderText: "#B1A3BE",
+		// dimmer than descriptions (4.5:1)
+		placeholderText: "#857791",
 
 		// Menu disabled entry foreground
-		disabledText: "#B499B9",
+		disabledText: "#846A89",
 
 		// Little buttons, titlebar menu buttons, editor stick hover
 		//
@@ -349,7 +350,7 @@ export const darkColors: UiColors = {
 		// MINIMAL: List unfocused selected overlay
 		listHoverBgA: a(hue.white, "10"),
 		// DEFAULT: DISABLED_STATUS_BAR: List unfocused selected overlay
-		listInactiveBgA: a(hue.brightPink, "1A"),
+		listInactiveBgA: a(sem.accent, "1A"),
 
 		// Keybind background
 		selectedBgA: a(hue.white, "10"),
@@ -380,7 +381,7 @@ export const darkColors: UiColors = {
 		statusActiveBgA: a(hue.white, "4F"),
 
 		// Tab open but unfocused indicator
-		unfocusedTab: a(hue.brightPink, "80"),
+		unfocusedTab: a(sem.accent, "80"),
 
 		// Activity bar inactive icon
 		activityBarInactive: local.gray,
@@ -402,7 +403,7 @@ export const darkColors: UiColors = {
 		chartGreen: hue.brightGreen,
 		chartYellow: hue.yellow,
 		chartOrange: hue.coral,
-		chartRed: hue.hotPink,
+		chartRed: sem.accent,
 		chartPurple: hue.purple,
 
 		preformatText: sem.link,

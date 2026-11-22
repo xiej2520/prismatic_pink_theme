@@ -5,10 +5,10 @@ import type { UiColors, SyntaxColors } from "../src/theme";
 import { DEFAULT_CONFIG, type Config } from "../src/config";
 import { generateSemanticThemeColors } from "../src/theme/semantic";
 import { selectAnsiColors } from "../src/theme/terminal";
+import { alpha as a } from "../src/color";
 import { makeOutputFolder } from "./buildEnv";
 
 const themesFolder = makeOutputFolder("themes")
-const buildFolder = makeOutputFolder("build")
 
 const { version } = JSON.parse(
   fs.readFileSync(path.join(__dirname, "..", "package.json"), "utf8"),
@@ -16,11 +16,10 @@ const { version } = JSON.parse(
 
 const config = DEFAULT_CONFIG as unknown as Config;
 
-fs.writeFileSync(path.join(themesFolder, "cached_config.json"), JSON.stringify(config));
 createTheme("prismatic-pink-zed.json");
 
 function createTheme(file: string) {
-  const jsonPath = path.join(buildFolder, file);
+  const jsonPath = path.join(themesFolder, file);
 
   const ext = {
     $schema: "https://zed.dev/schema/themes/v0.2.0.json",
@@ -46,7 +45,7 @@ function generateTheme(
     appearance: type,
     style: {
       ...generateColors(color, type, config),
-      syntax: generateSyntax(syntax, config),
+      syntax: generateSyntax(color, syntax, config),
     },
   };
 }
@@ -61,8 +60,8 @@ function generateColors(color: UiColors, type: "light" | "dark", config: Config)
     "panel.background": color.ui.secondaryBg,
     "panel.focused_border": color.ui.border,
 
-    "panel.indent_guide": color.ui.treeIndent + "40",
-    "panel.indent_guide_hover": color.ui.treeIndent + "C0",
+    "panel.indent_guide": a(color.ui.treeIndent, "40"),
+    "panel.indent_guide_hover": a(color.ui.treeIndent, "C0"),
     "panel.indent_guide_active": color.ui.treeIndent,
 
     "panel.overlay_background": color.ui.secondaryBg,
@@ -98,7 +97,7 @@ function generateColors(color: UiColors, type: "light" | "dark", config: Config)
   const editor = {
     "editor.foreground": color.text.normal,
     "editor.background": color.ui.primaryBg,
-    "editor.gutter.background": color.ui.secondaryBg,
+    "editor.gutter.background": color.ui.primaryBg,
     "editor.active_line.background": color.text.currentLineBgA,
     "editor.highlighted_line.background": color.ui.secondaryBg,
     "editor.debugger_active_line.background": color.diag.hintBgA,
@@ -106,16 +105,16 @@ function generateColors(color: UiColors, type: "light" | "dark", config: Config)
     "editor.active_line_number": color.accent.primary,
     "editor.line_number": color.text.muted,
     // whitespace
-    "editor.invisible": color.text.decoration.alt2Inlay,
+    "editor.invisible": color.text.decoration.light,
     "editor.wrap_guide": color.ui.separator, // ?
     "editor.active_wrap_guide": color.ui.treeIndent, // ?
-    "editor.indent_guide": color.ui.treeIndent + "40", // ?
-    "editor.indent_guide_active": color.ui.treeIndent + "80", // ?
+    "editor.indent_guide": a(color.ui.treeIndent, "40"), // ?
+    "editor.indent_guide_active": a(color.ui.treeIndent, "80"), // ?
     "editor.document_highlight.read_background": null,
     "editor.document_highlight.write_background": null,
     "editor.document_highlight.bracket_background": null,
     "search.match_background": color.text.matchBg,
-    "search.active_match_background": color.text.matchBorder, // green
+    "search.active_match_background": a(color.text.matchBorder, "8A"), // green
   };
   const navigation = {
     "status_bar.background": color.ui.secondaryBg,
@@ -288,12 +287,14 @@ function generateColors(color: UiColors, type: "light" | "dark", config: Config)
   };
 }
 
-function generateSyntax(syntax: SyntaxColors, config: Config) {
-  const semantic = generateSemanticThemeColors(syntax);
+function generateSyntax(color: UiColors, syntax: SyntaxColors, config: Config) {
+  const semantic = generateSemanticThemeColors(syntax, config);
   const commentColor = config.mutedComments ? semantic.faded : semantic.comment;
   const comments = {
     comment: config.italicComments ? { color: commentColor, font_style: "italic" } : commentColor,
     "comment.doc": config.italicComments ? { color: commentColor, font_style: "italic" } : commentColor,
+    // Python docstrings
+    "string.doc": config.italicComments ? { color: commentColor, font_style: "italic" } : commentColor,
   };
   const literals = {
     string: semantic.string,
@@ -318,17 +319,27 @@ function generateSyntax(syntax: SyntaxColors, config: Config) {
     function: semantic.function,
     //"method": semantic.method,
     constructor: semantic.method,
+    "function.macro": semantic.macro,
     attribute: semantic.attribute,
   };
   const types = {
     type: semantic.struct,
+    "type.builtin": semantic.builtinType,
+    "type.interface": semantic.interface,
+    "type.parameter": semantic.typeParameter,
     enum: semantic.enum,
+    "type.enum": semantic.enum,
+    "type.enum.member": semantic.enumMember,
     namespace: semantic.namespace,
+    module: semantic.namespace,
     variant: semantic.enumMember,
+    lifetime: semantic.lifetime,
   };
   const variables = {
     variable: semantic.variable,
     "variable.special": semantic.selfKeyword,
+    "variable.builtin": semantic.selfKeyword,
+    "variable.parameter": semantic.parameter,
     property: semantic.property,
     label: semantic.label,
   };
@@ -357,8 +368,15 @@ function generateSyntax(syntax: SyntaxColors, config: Config) {
     },
     link_text: syntax.blue,
     link_uri: syntax.cornflower,
+    "markup.heading": { color: syntax.pink, font_weight: 500 },
+    "markup.link.url": syntax.cornflower,
     selector: syntax.yellow,
     "selector.pseudo": syntax.lime,
+  };
+  const diff = {
+    "diff.plus": color.git.addedOrStaged,
+    "diff.minus": color.git.removedOrConflicting,
+    "diff.delta": color.git.modified,
   };
   const other = {
     primary: semantic.text,
@@ -381,6 +399,7 @@ function generateSyntax(syntax: SyntaxColors, config: Config) {
     ...variables,
     ...punctuation,
     ...markup,
+    ...diff,
     ...other,
   };
   return Object.fromEntries(

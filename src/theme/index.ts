@@ -29,7 +29,7 @@ function generateTheme(
 	type: "light" | "dark",
 	config: Config,
 ) {
-	const semanticThemeColors = generateSemanticThemeColors(syntax);
+	const semanticThemeColors = generateSemanticThemeColors(syntax, config);
 	return {
 		name: name,
 		type: type,
@@ -183,6 +183,9 @@ export interface UiColors {
 		// MINIMAL: list & command bar matching text, badge text
 		primary: string;
 		primaryHover: string;
+		// Darker pink background behind white text: buttons, badges, selected list/menu rows, accent status bar.
+		fill: string;
+		fillHover: string;
 		link: string;
 		linkHover: string;
 

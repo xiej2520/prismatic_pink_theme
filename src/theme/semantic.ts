@@ -101,9 +101,13 @@ export interface SemanticThemeColors extends StandardTokenTypeColors {
 	faded: string;
 }
 
-export function generateSemanticThemeColors(syntax: SyntaxColors): SemanticThemeColors {
+export function generateSemanticThemeColors(
+	syntax: SyntaxColors,
+	config: Config,
+): SemanticThemeColors {
+	const builtinType = config.builtinTypeColor === "type" ? syntax.blue : syntax.pink;
 	const colors: StandardTokenTypeColors = {
-		type: syntax.pink,
+		type: syntax.blue,
 
 		operator: syntax.lightGreen,
 
@@ -142,7 +146,7 @@ export function generateSemanticThemeColors(syntax: SyntaxColors): SemanticTheme
 	return {
 		keyword: syntax.pink,
 		type: colors.type,
-		builtinType: syntax.pink,
+		builtinType,
 		selfKeyword: syntax.pink,
 		newOperator: syntax.pink,
 
@@ -240,11 +244,10 @@ export function generateSemanticTheme(
 			fontStyle: "underline",
 		},
 		"member:csharp": semantic.method, // Object method.
-		"type:typescript": semantic.type,
 		// types
 		"class.static:csharp": {
 			// Static class.
-			foreground: semantic.type,
+			foreground: semantic.class,
 			fontStyle: "underline",
 		},
 		// enums
@@ -276,6 +279,9 @@ export function generateSemanticTheme(
 			fontStyle: "underline",
 		},
 		"*.constant": semantic.constant,
+		// color const fns as functions
+		"function.constant": semantic.function,
+		"method.constant": semantic.method,
 		"variable.static:csharp": semantic.constant, // Constants
 		"variable.readonly:csharp": semantic.constant, // Constants
 		//
@@ -459,9 +465,41 @@ export function generateSemanticTheme(
 		// TOML - Even Better TOML only
 		tomlTableKey: semantic.enum, // ?? blue
 		tomlArrayKey: semantic.label, // ?? lime
-		// NIX - use a different color scheme for nix, otherwise everything is pinkish-purple
-		"parameter:nix": semantic.function,
-		"property:nix": semantic.struct,
+		// JAVA/KOTLIN - annotations are sent as decorators; color them like Rust/C# attributes
+		"decorator:java": semantic.attribute,
+		"decorator:kotlin": semantic.attribute,
+		"annotationMember:java": semantic.property,
+		"record:java": semantic.class,
+		"recordComponent:java": semantic.property,
+		//
+		// PYTHON - Pylance/basedpyright and ty
+		selfParameter: semantic.selfKeyword,
+		clsParameter: semantic.selfKeyword,
+		"class.builtin:python": semantic.builtinType, // `int`, `str`, `list`, ...
+		"variable.readonly:python": semantic.constant,
+		builtinConstant: semantic.constant, // ty: `True`, `False`, `None`
+		"string.documentation:python": commentSemanticStyle.comment, // ty: docstrings
+		//
+		// C/C++ - clangd sends standard library typedefs (`size_t`, `uint32_t`) as `type`
+		"type.defaultLibrary:c": semantic.builtinType,
+		"type.defaultLibrary:cpp": semantic.builtinType,
+		// NIX -  most nix is references, keep them plain otherwise everything is pink/purple.
+		// plain, since references are the bulk of Nix code; matches the TextMate colors.
+		// nil
+		"property:nix": semantic.variable, // `pkgs.stdenv.mkDerivation`
+		"property.definition:nix": semantic.property, // `pname = ...`
+		"variable.definition:nix": semantic.property, // `let version = ...`
+		"parameter:nix": semantic.variable,
+		"parameter.definition:nix": semantic.parameter, // `{ pkgs, lib }:`
+		"struct.builtin:nix": semantic.constant, // `builtins`
+		"path:nix": semantic.string,
+		// nixd reuses standard token types for these
+		"method:nix": semantic.property, // attribute name
+		"type:nix": semantic.variable, // attribute selection
+		"regexp:nix": semantic.parameter, // lambda argument/formal (and `null`)
+		"macro:nix": semantic.boolean, // `true`/`false`
+		"interface:nix": semantic.variable, // variable from `with`
+		"keyword.static:nix": semantic.function, // builtin like `import`, `toString`
 	};
 }
 

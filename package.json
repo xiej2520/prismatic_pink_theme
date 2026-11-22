@@ -2,7 +2,7 @@
 	"name": "theme-prismatic-pink",
 	"displayName": "Prismatic Pink Theme",
 	"description": "Color themes using every color of the rainbow and pink accents. Comes in a dark version and a very high contrast, high saturation black background version.",
-	"version": "0.1.7",
+	"version": "0.2.0",
 	"publisher": "xiej",
 	"contributors": [
 		"kuba_p",
@@ -101,13 +101,13 @@
 					"deprecationMessage": "Deprecated; use `theme-prismatic-pink.monochromeBracketGuides` instead."
 				},
 				"theme-prismatic-pink.inlayHintStyle": {
-					"type": "boolean",
+					"type": "string",
 					"scope": "application",
-					"default": false,
+					"default": "noBackground",
 					"deprecationMessage": "Deprecated; use `theme-prismatic-pink.inlayStyle` instead."
 				},
 				"theme-prismatic-pink.light.terminalColorScheme": {
-					"type": "boolean",
+					"type": "string",
 					"scope": "application",
 					"default": "normal+dark",
 					"deprecationMessage": "Deprecated; use `theme-prismatic-pink.lightTerminalColorScheme` instead."
@@ -155,7 +155,7 @@
 					"type": "boolean",
 					"scope": "application",
 					"default": false,
-					"description": "Controls whether mutable variables are bold in languages where they default to mutable, i.e. C++, Java."
+					"description": "Controls whether mutable variables (and Java's `this`) are bold in languages where variables default to mutable: C, C++ and Java. Explicitly mutable variables, Rust `mut` and JS/TS `let`/`var`, are always bold."
 				},
 				"theme-prismatic-pink.altCurrentLine": {
 					"type": "boolean",
@@ -226,6 +226,28 @@
 						"Darker (higher contrast) colors for the standard 30-37/40-47 ANSI colors, and normal theme colors for the \"bright\" 90-97 aixterm colors."
 					]
 				},
+				"theme-prismatic-pink.builtinTypeColor": {
+					"type": "string",
+					"scope": "application",
+					"default": "keyword",
+					"description": "Controls whether built-in types such as `i32`, `bool` and `string` use the keyword or the type color.",
+					"enum": [
+						"keyword",
+						"type"
+					],
+					"enumItemLabels": [
+						"Keyword color (pink)",
+						"Type color (blue)"
+					],
+					"markdownEnumDescriptions": [
+						"Built-in types use the keyword color; this is the *default* option.",
+						"Built-in types use the same color as other types."
+					],
+					"enumDescriptions": [
+						"Built-in types use the keyword color; this is the default option.",
+						"Built-in types use the same color as other types."
+					]
+				},
 				"theme-prismatic-pink.globalAccent": {
 					"type": "string",
 					"scope": "application",
@@ -258,11 +280,12 @@
 	"scripts": {
 		"clean": "node -e \"require('fs').rmSync('out',{recursive:true,force:true})\"",
 		"format": "prettier --write src test package.json",
-		"build": "npm run clean && tsc -p ./ && tsx ./build/buildTheme.ts",
+		"build": "npm run clean && npm run buildTs && npm run buildTheme && npm run buildZedTheme && npm run buildNvimTheme && npm run buildCssTheme",
 		"buildTheme": "tsx ./build/buildTheme.ts",
 		"buildZedTheme": "tsx ./build/buildZedTheme.ts",
 		"buildNvimTheme": "tsx ./build/buildNvimTheme.ts",
 		"buildCssTheme": "tsx ./build/buildCssTheme.ts",
+		"buildStylesDoc": "tsx ./build/buildStylesDoc.ts",
 		"buildTs": "tsc -p ./",
 		"watchTs": "tsc -watch -p ./",
 		"typecheck": "tsc -p ./tsconfig.build.json",
@@ -281,6 +304,7 @@
 		"chokidar": "^5.0.0",
 		"jimp": "^1.6.1",
 		"ovsx": "^1.1.1",
+		"prettier": "^3.10.1",
 		"tsx": "^4.23.12",
 		"typescript": "^7.0.2"
 	}

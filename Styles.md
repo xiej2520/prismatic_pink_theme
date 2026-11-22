@@ -1,1096 +1,1492 @@
 # Styles
 
-***OUT OF DATE***
-
-View this document inside of a text editor with hex colour highlighting support, otherwise you won't be able to see the colours in each sub-heading. For vscode, the [colorize](https://marketplace.visualstudio.com/items?itemName=kamikillerto.vscode-colorize) extension is a good one.
-
-- `- s:` represent *Semantic Highlighting* scopes.
-- `- tm:` represent *TextMate* scopes.
-
-## General
-
-### Keywords #F767BB #f85eb4
-- s: "newOperator" - `new`
-#### rust
-- s: "keyword"
-- tm: "keyword"
-- tm: "storage.modifier" - `mut` keyword
-- tm: "storage.type.rust" - `enum` and `struct` declarations, `let` keyword
-#### csharp
-- s: "plainKeyword"
-- s: "controlKeyword"
-- tm: "keyword"
-- tm: "storage.modifier.cs" - `public`, `static`, `override` etc.
-#### js
-- tm: "keyword"
-- tm: "keyword.operator.new.js" - `new`
-- tm: "keyword.operator.ternary.js" = `?`, `:`
-- tm: "keyword.control.import.js" - `import`
-- tm: "keyword.control.as.js" - `as`
-- tm: "keyword.control.from.js" - `from`
-- tm: "variable.language.this.js" - `this`
-- tm: "storage.type.js" - `var`, `const`, `let`
-- tm: "constant.language.null.js"
-- tm: "constant.language.undefined.js"
-#### ts
-- tm: "keyword"
-- tm: "keyword.operator.new.ts" - `new`
-- tm: "keyword.operator.ternary.ts" - `?`, `:`
-- tm: "keyword.operator.expression.typeof.ts" - `typeof`
-- tm: "keyword.operator.expression.of.ts" - `of`
-- tm: "keyword.operator.expression.in.ts" - `in`
-- tm: "keyword.operator.expression.instanceof.ts" - `instanceof`
-- tm: "keyword.operator.expression.is.ts" - `is`
-- tm: "keyword.operator.expression.keyof.ts" - `keyof`
-- tm: "keyword.operator.expression.infer.ts" - `keyof`
-- tm: "keyword.control.import.ts" - `import`
-- tm: "keyword.control.as.ts" - `as`
-- tm: "keyword.control.from.ts" - `from`
-- tm: "keyword.control.export.ts" - `export`
-- tm: "storage.type.ts" - `var`, `const`, `let`, `constructor`
-- tm: "storage.type.class.ts" - `class`
-- tm: "storage.type.enum.ts" - `enum`
-- tm: "storage.type.interface.ts" - `interface`
-- tm: "storage.type.namespace.ts" - `namespace`
-- tm: "storage.type.function.ts" - `function`
-- tm: "storage.type.function.arrow.ts" - `=>`
-- tm: "storage.type.numeric.bigint.ts" - `n` numeric suffix
-- tm: "storage.type.property.ts" - `get`, `set`
-- tm: "storage.modifier.ts" - `implements`, `static`, `public`, `private`, `extends`, `readonly`, `declare`, `protected`, `abstract`
-- tm: "storage.modifier.async.ts" - `async`
-- tm: "constant.language.null.ts" - `null`
-- tm: "constant.language.undefined.ts" - `undefined`
-
-### Self/This #F767BB #f85eb4
-#### rust
-- s: "selfKeyword"
-- tm: "variable.language.self.rust"
-#### csharp
-- s: "plainKeyword"
-- tm: "keyword.other.this.cs"
-#### js
-- tm: "variable.language.this.js"
-#### ts
-- tm: "variable.language.this.ts" - `this`
-- tm: "variable.language.super.ts" - `super.`, `super()`
-
-### Primitive Types #F767BB #f85eb4
-- s: "type"
-#### rust
-- s: "builtinType"
-- tm: "entity.name.type.numeric.rust" - All number types like `u32` etc.
-- tm: "entity.name.type.primitive.rust" - `char`, `str`, `bool`
-#### csharp
-- s: "plainKeyword"
-- tm: "keyword.type.cs"
-#### js
-- tm: "support.type.primitive.js"
-#### ts
-- tm: "support.type.primitive.ts" - `number`, `string`, `boolean`, `any`, `bigint`, `never`, `void`, `unknown`
-- tm: "support.type.builtin.ts" - `undefined`, `object`, `null`
-
-### Punctuation #777777 #828da0
-- s: "punctuation"
-- tm: "punctuation"
-#### rust
-- s: "parenthesis"
-- s: "brace"
-- s: "bracket"
-- s: "angle"
-- s: "colon"
-- s: "semicolon"
-- s: "comma"
-#### js
-- tm: "meta.brace.round.js" - For some reason not all braces/brackets have the punctuation token
-- tm: "meta.brace.square.js" - see above
-#### ts
-- tm: "meta.brace.round.ts" - see above
-- tm: "meta.brace.square.ts" - see above
-- tm: "keyword.operator.optional.ts" - `?` ⚠ This is not styled like the rust question mark because this is always used as part of `?:`, and vscode currently doesn't support mutliple colours in a single glyph which will be the case if you have a font with ligatures.
-- tm: "keyword.operator.rest.ts" - `...`
-
-### Operators #777777 #828da0
-- s: "operator"
-- tm: "keyword.operator"
-#### rust
-- s: "arithmetic"
-- s: "comparison"
-- s: "logical"
-- s: "bitwise"
-- tm: "keyword.operator"
-
-
-### Functions #09A1ED #10b1fe
-#### rust
-- s: "function"
-- tm: "entity.name.function.rust" ⚠ Cannot differentiate between functions and enum tuple variants. Cannot differentiate static functions from object methods.
-#### csharp
-- s: "member.static"
-- tm: "entity.name.function.cs" ⚠ Cannot differentiate static methods from object methods.
-#### js
-- s: "function"
-- tm: "entity.name.function.js"
-#### ts
-- s: "function"
-- tm: "entity.name.function.ts"
-
-### Methods #09A1ED #10b1fe
-#### rust
-- s: "method"
-- tm: "entity.name.function.rust"
-#### csharp
-- s: "member"
-- tm: "entity.name.function.cs"
-#### ts
-- s: "member"
-- tm: "entity.name.function.ts"
-
-
-### Namespaces #565869 #b9bfca
-#### rust
-- s: "namespace"
-- tm: "entity.name.namespace.rust"
-#### csharp
-- s: "namespace"
-- tm: "entity.name.type.namespace.cs" - ⚠ (Only for the using/namespace statements) Cannot differentiate namespaces, in function bodies, from other local variables.
-#### js
-- s: "namespace" - Only in code, not in imports header.
-
-
-### Non-primitive Types #2DAE58 #3fc56b
-#### rust
-- s: "struct"
-- s: "enum"
-- s: "union"
-- s: "typeAlias"
-- tm: "entity.name.type.rust" - Actual typename references
-- tm: "entity.name.type.struct.rust" - Struct declaration
-- tm: "entity.name.type.enum.rust" - Enum declaration
-- tm: "entity.name.type.union.rust" - Union declaration
-- tm: "entity.name.type.declaration.rust" - Type alias declaration
-#### csharp
-- s: "class"
-- s: "struct"
-- s: "enum"
-- tm: "storage.type.cs" - Actual typename references
-- tm: "entity.name.type.class.cs" - Class declaration
-- tm: "entity.name.type.struct.cs" - Struct declaration
-- tm: "entity.name.type.enum.cs" - Enum declaration
-#### js
-- s: "class"
-- tm: "entity.name.type.class.js" - Class declaration (⚠ Cannot differentiate between classes and functions outside of the class declaration).
-- tm: "support.class.builtin.js" - Classes from the std lib
-- tm: "support.class.component.js" - React "classes" (types)
-#### ts
-- s: "class - Types defined using `class`.
-- s: "enum" - Types defined using `enum`.
-- s: "type" - Types defined using `type`.
-- s: ".defaultLibrary" - Defined in the std lib
-- tm: "entity.name.type.class.ts" - Class declaration only (⚠ Cannot differentiate between classes and functions outside of the class declaration).
-
-### Enum Members #13BBB7 #15c9c5 ℹ Includes boolean `true/false`.
-#### rust
-- s: "enumMember"
-- s: "boolean"
-- tm: "constant.language.bool.rust"
-- tm: "support.enum.core.rust"
-- tm: "entity.name.type.option.rust"
-- tm: "entity.name.type.result.rust"
-#### csharp
-- s: "enumMember"
-- tm: "entity.name.variable.enum-member.cs" - Enum variant declarations only.
-- tm: "constant.language.boolean.true.cs"
-- tm: "constant.language.boolean.false.cs"
-#### js
-- tm: "constant.language.boolean.true.js"
-- tm: "constant.language.boolean.false.js"
-#### ts
-- s: "enumMember"
-- tm: "variable.other.enummember.ts" - Enum variant declarations only.
-- tm: "constant.language.boolean.true.ts"
-- tm: "constant.language.boolean.false.ts"
-
-### Interface/Inheritance #cd6bf4 #d177f5
-#### rust
-- s: "interface"
-- tm: "entity.name.type.trait.rust" - Trait declaration only
-#### ts
-- s: "interface"
-- tm: "entity.name.type.interface.ts" - Interface declaration only
-
-### Type Parameters #2DAE58 #3fc56b
-#### rust
-- s: "typeParameter"
-#### csharp
-- s: "typeParameter"
-- tm: "entity.name.type.type-parameter.cs" - In object declaration only.
-#### ts
-- s: "typeParameter"
-
-
-### Variables #565869 #b9bfca
-#### rust
-- s: "variable"
-- tm: "variable.other.rust" - ⚠ Cannot differentiate between variables and parameters/members
-#### csharp
-- s: "local"
-- tm: "entity.name.variable.local.cs" - Only for declarations, not later uses
-- tm: "variable.other.readwrite.cs" - For later uses.
-#### js
-- s: "variable"
-- tm: "variable.other.readwrite.js"
-#### ts
-- s: "variable"
-- tm: "variable.other.readwrite.ts"
-
-### Parameters #6e82a6 #97bccd
-#### rust
-- s: "parameter"
-#### csharp
-- s: "parameter"
-- tm: "entity.name.variable.parameter.cs" - Only for declarations in function header, not uses
-#### js
-- s: "parameter"
-- tm: "variable.parameter.js" - Only highlights within the function definition.
-#### ts
-- s: "parameter"
-- tm: "variable.parameter.ts" - Only highlights within the function definition.
-
-### Object members #a8759a #b58e95
-#### rust
-- s: "property"
-#### csharp
-- s: "field"
-- tm: "entity.name.variable.field.cs" - Only for declarations within class.
-- tm: "variable.other.object.property.cs" - Incorrectly highlights static objects in namespace paths.
-#### js
-- s: "property" - Only applies to static values inside a class.
-- tm: "variable.other.property.js"
-#### ts
-- s: "property"
-- tm: "variable.object.property.ts" - Only inside class declarations.
-- tm: "variable.other.property.ts" - Accessing through the dot notation, i.e. `obj.something`
-
-### Constants #13BBB7 #15c9c5
-#### rust
-- s: "*.constant"
-- tm: "constant.other.caps.rust"
-#### csharp
-- s: "variable.static" - Declarations of `const`.
-- s: "variable.readonly" - Later uses of the variable.
-- tm: "constant.language.null.cs"
-#### js
-- s: "variable.readonly"
-- tm: "variable.other.constant.js - Only applies to the declaration.
-#### ts
-- s: "variable.readonly"
-- tm: "variable.other.constant.ts" - Only applies to the declaration.
-
-
-
-### Strings #CF9C00 #f9c859
-#### rust
-- s: "string"
-- tm: "string.quoted.double.rust"
-- tm: "punctuation.definition.string.rust"
-#### csharp
-- s: "string"
-- tm: "string.quoted.double.cs"
-- tm: "punctuation.definition.string.begin.cs"
-- tm: "punctuation.definition.string.end.cs"
-#### js
-- tm: "string.quoted.single.js"
-- tm: "string.quoted.double.js"
-- tm: "string.template.js"
-- tm: "punctuation.definition.string.begin.js"
-- tm: "punctuation.definition.string.end.js"
-- tm: "punctuation.definition.string.template.begin.js"
-- tm: "punctuation.definition.string.template.end.js"
-#### ts
-- tm: "string.quoted.single.ts"
-- tm: "string.quoted.double.ts"
-- tm: "string.template.ts"
-- tm: "punctuation.definition.string.begin.ts"
-- tm: "punctuation.definition.string.end.ts"
-- tm: "punctuation.definition.string.template.begin.ts"
-- tm: "punctuation.definition.string.template.end.ts"
-
-### Raw Strings
-#### csharp
-- s: "stringVerbatim" - `@"..."`
-
-### Escape characters #FF5C57 #ff6b66
-#### rust
-- s: "escapeSequence"
-- tm: "constant.character.escape.rust"
-#### csharp
-- tm: "constant.character.escape.cs"
-#### js
-- tm: "constant.character.escape.js"
-#### ts
-- tm: "constant.character.escape.ts"
-
-### String Interpolation #cd6bf4 #d177f5
-#### rust
-- s: "formatSpecifier"
-- tm: "meta.interpolation.rust"
-- tm: "punctuation.definition.interpolation.rust
-#### csharp
-- tm: "punctuation.definition.interpolation.begin.cs"
-- tm: "punctuation.definition.interpolation.end.cs"
-#### js
-- tm: "punctuation.definition.template-expression.begin.js"
-- tm: "punctuation.definition.template-expression.end.js"
-#### ts
-- tm: "punctuation.definition.template-expression.begin.ts"
-- tm: "punctuation.definition.template-expression.end.ts"
-
-### Character Literals #FF5C57 #ff6b66
-#### rust
-- s: "character"
-- tm: "string.quoted.single.char.rust"
-- tm: "punctuation.definition.char.rust"
-#### csharp
-- tm: "string.quoted.single.cs"
-- tm: "punctuation.definition.char.begin.cs"
-- tm: "punctuation.definition.char.end.cs"
-
-### Number Literals #FF5C57 #ff6b66
-#### rust
-- s: "number"
-- tm: "constant.numeric.decimal.rust"
-- tm: "punctuation.separator.dot.decimal.rust",
-- tm: "constant.numeric.bin.rust"
-- tm: "constant.numeric.hex.rust"
-- tm: "constant.numeric.oct.rust"
-#### csharp
-- s: "number"
-- tm: "constant.numeric.decimal.cs"
-- tm: "constant.numeric.binary.cs"
-- tm: "constant.numeric.hex.cs"
-#### js
-- tm: "constant.numeric.decimal.js"
-- tm: "constant.numeric.binary.js"
-- tm: "constant.numeric.hex.js"
-- tm: "constant.numeric.octal.js"
-#### ts
-- tm: "constant.numeric.decimal.ts"
-- tm: "constant.numeric.binary.ts" - `0b...`
-- tm: "constant.numeric.hex.ts" - `0x...`
-- tm: "constant.numeric.octal.ts" - `0o...`
-- tm: "constant.language.nan.ts" - `NaN`
-
-### Comments #ADB1C2 #636d83
-#### rust
-- s: "comment"
-- tm: "comment"
-#### csharp
-- s: "comment"
-- s: "comment.documentation.cs"
-- tm: "comment.line.double-slash.cs"
-- tm: "comment.block.cs"
-#### js
-- tm: "comment.block.js"
-- tm: "comment.block.documentation.js"
-- tm: "comment.line.double-slash.js"
-#### ts
-- tm: "comment.block.ts"
-- tm: "comment.block.documentation.ts"
-- tm: "comment.line.double-slash.ts"
-
-
-### Attributes #FF5C57 #ff6b66
-#### rust
-- s: "attributeBracket.attribute" - The `#[` and `]`
-- s: "builtinAttribute.attribute" - `inline`, `cfg`, `allow`, etc.
-- s: "toolModule.attribute" - All things `rustfmt`
-- s: "decorator.attribute" - `derive`
-- s: "derive.attribute" - The actual derives, such as `Clone`, `Eq`, etc.
-- s: "generic.attribute" - Attribute args, such as `debug_assertions` or `always`
-- s: "parenthesis.attribute" - The `( )`
-- tm: "meta.attribute.rust" - General, including things like `inline`, `cfg`, etc.
-- tm: "meta.attribute.rust punctuation.definition.attribute.rust" - The `#`
-- tm: "meta.attribute.rust punctuation.brackets.attribute.rust" - The `[` and `]`
-- tm: "meta.attribute.rust punctuation.brackets.round.rust" - The `( )`
-- tm: "meta.attribute.rust entity.name.type.rust" - The actual derives
-Not used:
-- s: "operator.attribute" The `::` in `rustfmt::skip` for example.
-- s: "punctuation.attribute" The `( )`, but also things like commas `,`.
-- tm: "meta.attribute.rust punctuation.comma.rust"
-- tm: "meta.attribute.rust keyword.operator.namespace.rust" The `::`
-
-### Unresolved Symbol #FF1277 #ff2884
-#### rust
-- s: "unresolvedReference"
-#### csharp
-- tm: "invalid.illegal"
-
-
-## Rust
-
-### References (italicised)
-- s: "*.reference"
-  - "variable.reference" - Reference to a variable.
-  - "method.reference" - Method which takes `&self`.
-  - "parameter.reference" - Parameter of type `&T`.
-  - "selfKeyword.reference" - `&self`.
-
-### Mutability (bold)
-- s: "*.mutable"
-  - "variable.mutable" - Mutable variable.
-  - "method.mutable" - Method which takes `mut self`.
-  - "parameter.mutable" - Parameter of type `mut T`.
-  - "selfKeyword.mutable" - `mut self`.
-
-### Mutable References (bold italicised)
-- s: "*.mutable.reference"
-  - "variable.mutable.reference" - Mutable reference to a variable.
-  - "method.mutable.reference" - Method which takes `&mut self`.
-  - "parameter.mutable.reference" - Parameter of type `&mut T`.
-  - "selfKeyword.mutable.reference" - `&mut self`.
-
-### Try operator `?` #F767BB #f85eb4
-- s: "operator.controlFlow" 
-- tm: "keyword.operator.misc.question-mark.rust"
-- tm: "keyword.operator.question.rust"
-
-### Lifetimes `'a` #cd6bf4 #d177f5
-- s: "lifetime"
-- tm: "punctuation.definition.lifetime.rust"
-- tm: "entity.name.type.lifetime.rust"
-- tm: "storage.modifier.lifetime.rust"
-
-### Labels `'outer: while ...` #8cba10 #9acc12
-- s: "label"
-
-### Unsafe #FF5C57 #ff6b66 (above effects + underlined)
-- s: "*.unsafe"
-- s: "keyword.unsafe" - `unsafe` Bold underline
-
-### Macro declaration variable specifier `...:expr` #8cba10 #9acc12
-- tm: "variable.other.metavariable.specifier.rust"
-
-### Textmate limitations
-- No way to colour enum variants (empty enum variants appear like types and tuple enum variants appear like functions).
-- No way to colour trait constrains in generics.
-- No way to colour labels.
-- No support for distinguishing mutability, referencing, etc.
-- Only partial support for attributes.
-- No support for object members or function parameters.
-- No support for any unsafe highlighting.
-
-
-
-## C Sharp
-
-### Static Functions #09A1ED  #10b1fe (underlined)
-- s: "member.static"
-
-### Static Classes #2DAE58 #3fc56b (underlined)
-- s: "class.static"
-
-### Static Members #a8759a #b58e95 (underlined)
-- s: "field.static"
-
-### Properties #a8759a #b58e95 (bold)
-- s: "property"
-
-### Static Properties #a8759a #b58e95 (bold underlined)
-- s: "property.static"
-
-### Doc Tag #ADB1C2 #636d83
-- s: "xmlDocCommentName" - `<summary> ...`
-- s: "xmlDocCommentDelimiter" - `</para>`
-- tm: "entity.name.tag.cs" - `summary`
-- tm: "comment.block.documentation.cs punctuation.definition.tag.cs" - `<`, `/>`
-- tm: "comment.block.documentation.cs punctuation.separator.equals.cs" - `..=..`
-
-### Doc Tag Attribute #FF5C57 #ff6b66 - `<... type= ...`
-- s: "xmlDocCommentAttributeName"
-- tm: "entity.other.attribute-name.cs"
-
-### Doc Tag Attribute Value #CF9C00 #f9c859
-- s: "xmlDocCommentAttributeQuotes" - `="...."`
-- s: "xmlDocCommentAttributeValue" - `...="..."`
-
-### Doc Text #565869 #b9bfca
-- s: "xmlDocCommentText"
-- tm: "comment.block.documentation.cs"
-
-### Limitations
-- No way to differentiate base classes from inherited classes.
-- No way to colour booleans since they get overridden by the semantic "plainKeyword" token.
-- No distinction between character strings `''` and proper strings `""`.
-- No support for attributes.
-- No support for "unresolved" symbols.
-- No way to colour string interpolation delimiters.
-#### Textmate limitations
-- No support for enum members.
-- No support for constants.
-- No support for static functions or classes.
-- Syntax highlighting can get confused between object fields and namespace paths.
-- No distinction between parameters and local variables inside of function bodies.
-- No distinction between fields and properties.
-- No distinction between classes and inherited classes.
-
-
-
-## Powershell
-The official powershell language extension does not support semantic highlighting, but even within the traditional
-'Textmate' highlighting, it lacks a number of scopes which makes the results look a bit primitive and basic in places.
-
-Keywords #F767BB #f85eb4
-- "keyword.control.powershell" - `if`, `foreach`, `param`, `return`, etc.
-- "storage.type.powershell" - `function ... {}`
-- "keyword.operator.comparison.powershell" - `-eq`, `-gt`, etc.
-- "keyword.operator.logical.powershell" - `-not`
-
-Classes/Built-in types #F767BB #f85eb4
-- "storage.type.powershell" - `char`, `string`, `System.Collections.Generic.List`, etc.
-
-Operator/Punctuation #777777 #828da0
-- "keyword.operator"
-
-Cmdlet/Functions #09A1ED #10b1fe
-- "support.function.powershell" - `Get-Item`, etc.
-
-Variables #2DAE58 #3fc56b
-- "variable.other.readwrite.powershell" - `$variableName`
-- "punctuation.definition.variable.powershell" - The `$` beforehand
-
-Variable Scopes #2DAE58 #3fc56b (underlined)
-- "storage.modifier.scope.powershell" - `global:`, `script:`, etc.
-
-Storage Scopes #2DAE58 #3fc56b (underlined)
-- "support.variable.drive.powershell" - `env:`, `Temp:`, etc.
-
-Special/Built-In Variables #cd6bf4 #d177f5
-- "support.variable.automatic.powershell" - The `$_` in loops for example
-- "support.variable.automatic.powershell punctuation.definition.variable.powershell" - The `$` beforehand
-- "variable.language.powershell" - Built-in variables, e.g. `$WhatIfPreference`
-- "variable.language.powershell punctuation.definition.variable.powershell" - The `$` beforehand
-
-Members/Methods #a8759a #b58e95
-- "variable.other.member.powershell" - `.something`
-
-Constants/Booleans #13BBB7 #15c9c5
-- "constant.language.powershell" - `true`, `false`, `null`, etc.
-- "constant.language.powershell punctuation.definition.variable.powershell" - The `$` beforehand
-- "support.constant.variable.powershell" - Things like `$Host`, etc.
-- "support.constant.variable.powershell punctuation.definition.variable.powershell" - The `$` beforehand
-
-Strings #CF9C00 #f9c859
-- "string.quoted.double.powershell"
-- "string.quoted.single.powershell"
-- "punctuation.definition.string.begin.powershell"
-- "punctuation.definition.string.end.powershell"
-
-Escape characters #FF5C57 #ff6b66
-- "constant.character.escape.powershell" - `` `a``
-
-String Interpolation `$(...)` #cd6bf4 #d177f5
-- "punctuation.section.embedded.substatement.begin.powershell"
-- "punctuation.section.embedded.substatement.end.powershell"
-
-Number Literals #FF5C57 #ff6b66
-- "constant.numeric.integer.powershell"
-- "constant.numeric.hex.powershell"
-- "constant.numeric.octal.powershell"
-
-Attributes #FF5C57 #ff6b66
-- "support.function.attribute.powershell" - `[Parameter ...]`
-- "variable.parameter.attribute.powershell" - `[... Position ...]`
-
-Comments #ADB1C2 #636d83
-- "comment.line.powershell" - `# ...`
-
-Comment Keywords #565869 #b9bfca
-- "keyword.operator.documentation.powershell" - `.SYNOPSIS ...`
-
-### Limitations
-- No way to differentiate between function declaration and type/class, hence why types are in pink rather than green.
-- No way to colour booleans.
-- No support for differentiation between built-in types and classes.
-- No support for parameters, e.g. `-Path`.
-- No support for pipe `|`.
-
-
-
-## HTML/Css/Scss
-HTML/Css/Scss only support textmate highlighting.
-
-### Tags #F767BB #f85eb4
-- "entity.name.tag.html"
-- "entity.name.tag.css"
-
-### Classes #2DAE58 #3fc56b
-- "meta.attribute.class.html"
-- "entity.other.attribute-name.class.css"
-
-### IDs #FF5C57 #ff6b66 (bold)
-- "meta.attribute.id.html"
-- "entity.other.attribute-name.id.css"
-
-
-
-### Attributes (HTML) #13BBB7 #15c9c5 (italicised)
-- "entity.other.attribute-name.html"
-- "entity.other.attribute-name.css" - The "type" in `input[type="radio"]`
-
-### Attribute Values (HTML) #CF9C00 #f9c859
-- "string.quoted.double.html"
-- "meta.attribute-selector.css string.quoted.double.css"
-
-### Attribute Value Urls (HTML) #cd6bf4 #d177f5
-- "meta.attribute.href.html"
-- "meta.attribute.src.html"
-- "meta.attribute.unrecognized.xmlns.html"
-
-### Attribute Value Inline Styles (HTML) #8cba10 #9acc12
-- "meta.embedded.line.css"
-
-### String Quote Marks (HTML) #777777 #828da0
-- "punctuation.definition.string.begin.html"
-- "punctuation.definition.string.end.html"
-
-
-
-### Properties (CSS) #a8759a #b58e95
-- "support.type.property-name.css"
-- "meta.property-name.css"
-- "meta.property-name.scss"
-- "support.type.property-name.media.css"
-
-### Property Value Strings (CSS) #CF9C00 #f9c859
-- "string.quoted.double.css"
-- "string.quoted.double.scss"
-- "string.quoted.single.css"
-- "string.quoted.single.scss"
-- "support.constant.font-name.css"
-
-### Property Value Numbers (CSS) #FF5C57 #ff6b66
-- "constant.numeric.css"
-- "keyword.other.unit.rem.css"
-- "keyword.other.unit.em.css"
-- "keyword.other.unit.ex.css"
-- "keyword.other.unit.ch.css"
-- "keyword.other.unit.vw.css"
-- "keyword.other.unit.vh.css"
-- "keyword.other.unit.vmin.css"
-- "keyword.other.unit.vmax.css"
-- "keyword.other.unit.percentage.css"
-- "keyword.other.unit.mm.css"
-- "keyword.other.unit.in.css"
-- "keyword.other.unit.px.css"
-- "keyword.other.unit.pt.css"
-- "keyword.other.unit.pc.css"
-- "keyword.other.unit.deg.css"
-- "constant.other.scss"
-
-### Property Value Constants/Keys (CSS) #13BBB7 #15c9c5
-- "support.constant.property-value.css"
-
-### Pseudoclass/Attribute Selectors (CSS) #8cba10 #9acc12
-- "entity.other.attribute-name.pseudo-class.css"
-- "entity.other.attribute-name.pseudo-element.css"
-
-### Variables (CSS) #565869 #b9bfca
-- "variable.css"
-- "variable.argument.css"
-- "variable.scss"
-
-### Functions (CSS) #09A1ED #10b1fe
-- "support.function.misc.css"
-- "support.function.misc.scss"
-
-### Logical Operators (CSS) #F767BB #f85eb4
-- "keyword.operator.logical.and.media.css"
-- "keyword.operator.logical.not.media.css"
-- "keyword.operator.logical.only.media.css"
-
-### Media Query Types (CSS) #cd6bf4 #d177f5
-- "support.constant.media.css"
-
-### Special Symbols (SCSS) #F767BB #f85eb4
-- "entity.name.tag.reference.scss" - `&`
-- "punctuation.definition.keyword.scss" - `@`
-- "keyword.control.at-rule.include.scss" - `@`
-- "entity.name.tag.wildcard.scss" - `*`
-
-
-## Javascript
-
-### Regexp #cd6bf4 #d177f5 (Likely incomplete)
-- tm: "constant.other.character-class.regexp"
-- tm: "keyword.operator.quantifier.regexp"
-- tm: "keyword.control.anchor.regexp"
-- tm: "punctuation.definition.look-ahead.regexp"
-- tm: "meta.assertion.look-ahead.regexp"
-- tm: "meta.group.assertion.regexp"
-#### Brackets #565869 #b9bfca
-- tm: "punctuation.definition.group.regexp"
-- tm: "punctuation.definition.group.no-capture.regexp"
-
-#### JSX Embedded Code #FF5C57 #ff6b66 (bold)
-- tm: "punctuation.section.embedded.begin.js"
-- tm: "punctuation.section.embedded.end.js"
-
-#### JSX Attributes #cd6bf4 #d177f5 (italicised)
-- tm: "entity.other.attribute-name.js"
-
-### Limitations
-- Distinction between methods and functions only applies within classes; outside, a method is treated the same as a function, so there is no highlighting difference.
-#### Textmate limitations
-- Distinction between constants is pointless since constants are used differently in javascript compared to most languages, i.e. declaring a value or function as `const` is very common.
-- No way to differentiate between class constructor calls and function calls.
-- No support for parameter highlighting inside of the function body.
-
-
-
-## Typescript
-
-### Static Functions #09A1ED  #10b1fe (underlined)
-- s: "method.static"
-
-### Static Members #a8759a #b58e95 (underlined)
-- s: "property.static"
-
-### Textmate limitations
-- Distinction between constants is pointless since constants are used differently in javascript compared to most languages, i.e. declaring a value or function as `const` is very common.
-- No way to differentiate between class constructor calls and function calls.
-- No support for parameter highlighting inside of the function body.
-- No support for static functions or members.
-- No way to differentiate enum variants from object members outside of their declarations.
-- No support for interface usage.
-
-
-
-## XML
-XML only supports textmate highlighting; it has no semantic highlighting.
-
-### Tags #F767BB #f85eb4
-- "entity.name.tag.xml" - Global xml tags?
-- "entity.name.tag.localname.xml" - Normal xml tags
-
-### Attributes #13BBB7 #15c9c5 (italicised)
-- "entity.other.attribute-name.html"
-- "entity.other.attribute-name.localname.html"
-
-### String Values #CF9C00 #f9c859
-- "string.quoted.double.xml"
-- "string.quoted.single.xml"
-
-### Doctype #cd6bf4 #d177f5
-- "variable.language.documentroot.xml"
-
-### Namespaces #8cba10 #9acc12
-- "entity.name.tag.namespace.xml" - Tags
-- "entity.other.attribute-name.namespace.xml" - Attributes (italicised)
-
-### Escape Characters #FF5C57 #ff6b66
-- "punctuation.definition.constant.xml" - `&...`
-- "constant.character.entity.xml"
-
-### Comments #ADB1C2 #636d83
-- "comment.block.xml"
-- "punctuation.definition.comment.xml"
-
-### String Quote Marks #777777 #828da0
-- "punctuation.definition.string.begin.xml"
-- "punctuation.definition.string.end.xml"
-
-
-
-## Markdown
-Markdown only supports textmate highlighting; it has no semantic highlighting.
-
-For markdown `"traditonal"` and `"mutedPlaintext"` styles, any control characters (e.g. `*`, ``` ` ```) are styled the same as the text they surround. This is different from markdown `"alternate"` and asciidoc where the control characters are grayed-out.
-
-Root: `text.html.markdown` when inside of a markdown file
-
-- [tmGrammar definition](https://github.com/microsoft/vscode-markdown-tm-grammar/blob/main/markdown.tmLanguage.base.yaml)
-- [tmGrammar for the injected math tex](https://github.com/microsoft/vscode/blob/d5aa7c36486e51fafe074eb9327ae9196ca3759b/extensions/latex/syntaxes/TeX.tmLanguage.json)
-
-### Text #565869 #B9BFCA #d5c4a1 (alternatively #ADB1C2 #636d83 #928374)
-- `<none>`
-
-### Bold $inline #FF5C57 #ff6b66 #fe8019 (bold)
-- inline `markup.bold.markdown`, includes the actual bold text
-  - `punctuation.definition.bold.markdown`, the `**`
-
-### Italic $inline #09A1ED #10b1fe #839da5 (italic)
-- inline `markup.italic.markdown`, includes the actual italic text
-  - `punctuation.definition.italic.markdown`, the `*`
-
-### Strikethrough $inline #ADB1C2 #636D83 #928374 (strikethrough)
-- inline `markup.strikethrough.markdown`, includes the actual strikethrough text
-  - `punctuation.definition.strikethrough.markdown`, the `~~`
-
-### Inline Code $inline #565869 #B9BFCA #d5c4a1 (bold)
-- inline `markup.inline.raw.string.markdown`, includes the actual raw text
-  - `punctuation.definition.raw.markdown`, the ``` ` ```
-
-### Url $inline Link #cd6bf4 #d177f5 #bd86d3 (underline) and Title #8cba10 #9acc12 #b8bb26 and Description #CF9C00 #F9C859 #fabd2f
-- `meta.link.email.lt-gt.markdown`, a `<mailto:foo@bar.com>`
-  - `punctuation.definition.link.markdown`, the `<` and `>`
-  - `markup.underline.link.markdown`, the actual url text
-- `meta.link.inet.lt-gt.markdown`, a `<https://foo.com>` or `<ftp://bar.net>`
-  - `punctuation.definition.link.markdown`, the `<` and `>`
-  - `markup.underline.link.markdown`, the actual url text
-- `meta.link.inline.markdown`, a `[foo](bar "baz")`
-  - `punctuation.definition.link.title.begin.markdown`, the `[`
-  - `string.other.link.title.markdown`, the title within square brackets
-  - `punctuation.definition.link.title.end.markdown`, the `]`
-  - `punctuation.definition.metadata.markdown`, the `(` and `)`
-  - `markup.underline.link.markdown`, the actual url text
-  - `string.other.link.description.title.markdown`, the description text
-    - `punctuation.definition.string.begin.markdown`, the `"`, `'` or `(`
-    - `punctuation.definition.string.end.markdown`, the `"`, `'` or `)`
-- `meta.link.reference.markdown`, a `[foo][1]`
-  - `punctuation.definition.link.title.begin.markdown`, the `[`
-  - `string.other.link.title.markdown`, the title
-  - `punctuation.definition.link.title.end.markdown`, the `]`
-  - `punctuation.definition.constant.begin.markdown`, the `[`
-  - `constant.other.reference.link.markdown`, the reference
-  - `punctuation.definition.constant.end.markdown`, the `]`
-- `meta.link.reference.def.markdown`
-  - `punctuation.definition.constant.markdown`, the `[` and `]`
-  - `constant.other.reference.link.markdown`, the reference title
-  - `punctuation.separator.key-value.markdown`, the `:`
-  - `markup.underline.link.markdown`, if the text is a url
-- `meta.image.inline.markdown`, a `![image](foo.png "bar")`
-  - `punctuation.definition.link.description.begin.markdown`, the `![`
-  - `string.other.link.description.markdown`, the image title
-  - `punctuation.definition.link.description.end.markdown`, the `]`
-  - `punctuation.definition.metadata.markdown`, the `(` and `)`
-  - `markup.underline.link.image.markdown`, the actual url text
-  - `string.other.link.description.title.markdown`, the description text
-    - `punctuation.definition.string.begin.markdown`, the `"`, `'` or `(`
-    - `punctuation.definition.string.end.markdown`, the `"`, `'` or `)`
-- `meta.image.reference.markdown`, a `![image][1]`
-  - `punctuation.definition.link.description.begin.markdown`, the `![`
-  - `string.other.link.description.markdown`, the image title
-  - `punctuation.definition.link.description.end.markdown`, the `]`
-  - `punctuation.definition.constant.markdown`, the `[` and `]`
-  - `constant.other.reference.link.markdown`, the reference
-
-### Escape Character $inline #FF5C57 #ff6b66 #fe8019
+<!-- Generated by `npm run buildStylesDoc` from the theme sources; don't edit by hand. -->
+
+Which colors the theme gives each TextMate scope and semantic token, with the default settings.
+Colors are listed as dark · high contrast · light. Roles are the palette names in `src/dark.ts`,
+`src/black-contrast.ts` and `src/light.ts`.
+
+Semantic tokens come from language servers (rust-analyzer, tsserver, Pylance, ...) and take precedence
+over TextMate scopes where a server provides them.
+
+## Semantic tokens
+
+Selectors are `type.modifier:language`; `*` matches any type.
+
+| Selector | Role | Colors | Style |
+|---|---|---|---|
+| `keyword` | pink | `#F85EB4` · `#F85EB4` · `#EB5CB1` |  |
+| `type` | blue | `#10B1FE` · `#29BBFF` · `#0194DB` |  |
+| `builtinType` | pink | `#F85EB4` · `#F85EB4` · `#EB5CB1` |  |
+| `selfKeyword` | pink | `#F85EB4` · `#F85EB4` · `#EB5CB1` |  |
+| `newOperator` | pink | `#F85EB4` · `#F85EB4` · `#EB5CB1` |  |
+| `punctuation` | lightGreen | `#B3CCB7` · `#C8E2CC` · `#4A604E` |  |
+| `operator` | lightGreen | `#B3CCB7` · `#C8E2CC` · `#4A604E` |  |
+| `arithmetic` | lightGreen | `#B3CCB7` · `#C8E2CC` · `#4A604E` |  |
+| `comparison` | lightGreen | `#B3CCB7` · `#C8E2CC` · `#4A604E` |  |
+| `logical` | lightGreen | `#B3CCB7` · `#C8E2CC` · `#4A604E` |  |
+| `bitwise` | lightGreen | `#B3CCB7` · `#C8E2CC` · `#4A604E` |  |
+| `function` | green | `#3FC56B` · `#38CB5E` · `#19A24D` |  |
+| `method` | green | `#3FC56B` · `#38CB5E` · `#19A24D` |  |
+| `decorator` | green | `#3FC56B` · `#38CB5E` · `#19A24D` |  |
+| `attribute` | orange | `#FF8D5C` · `#FF8142` · `#F75703` |  |
+| `macro` | strongPink | `#FF2884` · `#FF2884` · `#FF1277` |  |
+| `lifetime` | purple | `#A177F5` · `#B3A4FE` · `#9177F4` |  |
+| `label` | lime | `#89E736` · `#89E736` · `#7BA403` |  |
+| `namespace` | fg | `#C0C4D0` · `#D6DAE0` · `#565869` |  |
+| `struct` | blue | `#10B1FE` · `#29BBFF` · `#0194DB` |  |
+| `class` | blue | `#10B1FE` · `#29BBFF` · `#0194DB` |  |
+| `typeAlias` | blue | `#10B1FE` · `#29BBFF` · `#0194DB` |  |
+| `enum` | blue | `#10B1FE` · `#29BBFF` · `#0194DB` |  |
+| `union` | blue | `#10B1FE` · `#29BBFF` · `#0194DB` |  |
+| `enumMember` | cyan | `#15C9C5` · `#16DAD5` · `#07A3A0` |  |
+| `interface` | cornflower | `#8AA5FF` · `#A3ACFF` · `#5270C7` |  |
+| `typeParameter` | skyBlue | `#5CA2ED` · `#77AFEE` · `#2E7DC4` |  |
+| `variable` | fg | `#C0C4D0` · `#D6DAE0` · `#565869` |  |
+| `parameter` | violet | `#DD99FF` · `#CF94FF` · `#9B53CA` |  |
+| `property` | lightPurple | `#D5C0E9` · `#D3C3EF` · `#8466AA` |  |
+| `constant` | orange | `#FF8D5C` · `#FF8142` · `#F75703` |  |
+| `boolean` | orange | `#FF8D5C` · `#FF8142` · `#F75703` |  |
+| `number` | orange | `#FF8D5C` · `#FF8142` · `#F75703` |  |
+| `string` | yellow | `#E3C24A` · `#F9D959` · `#B98B01` |  |
+| `regexp` | orange | `#FF8D5C` · `#FF8142` · `#F75703` |  |
+| `formatSpecifier` | purple | `#A177F5` · `#B3A4FE` · `#9177F4` |  |
+| `comment` | lightPink | `#E5B1F7` · `#EEBBFF` · `#8E6984` |  |
+| `event` | lime | `#89E736` · `#89E736` · `#7BA403` |  |
+| `plainKeyword:csharp` | pink | `#F85EB4` · `#F85EB4` · `#EB5CB1` |  |
+| `controlKeyword:csharp` | pink | `#F85EB4` · `#F85EB4` · `#EB5CB1` |  |
+| `member.static:csharp` | green | `#3FC56B` · `#38CB5E` · `#19A24D` | underline |
+| `method.static:typescript` | green | `#3FC56B` · `#38CB5E` · `#19A24D` | underline |
+| `member:csharp` | green | `#3FC56B` · `#38CB5E` · `#19A24D` |  |
+| `class.static:csharp` | blue | `#10B1FE` · `#29BBFF` · `#0194DB` | underline |
+| `local:csharp` | fg | `#C0C4D0` · `#D6DAE0` · `#565869` |  |
+| `field:csharp` | lightPurple | `#D5C0E9` · `#D3C3EF` · `#8466AA` |  |
+| `field.static:csharp` | lightPurple | `#D5C0E9` · `#D3C3EF` · `#8466AA` | underline |
+| `property:csharp` | lightPurple | `#D5C0E9` · `#D3C3EF` · `#8466AA` | bold |
+| `property.static:csharp` | lightPurple | `#D5C0E9` · `#D3C3EF` · `#8466AA` | bold underline |
+| `property.static:typescript` | lightPurple | `#D5C0E9` · `#D3C3EF` · `#8466AA` | underline |
+| `*.constant` | orange | `#FF8D5C` · `#FF8142` · `#F75703` |  |
+| `function.constant` | green | `#3FC56B` · `#38CB5E` · `#19A24D` |  |
+| `method.constant` | green | `#3FC56B` · `#38CB5E` · `#19A24D` |  |
+| `variable.static:csharp` | orange | `#FF8D5C` · `#FF8142` · `#F75703` |  |
+| `variable.readonly:csharp` | orange | `#FF8D5C` · `#FF8142` · `#F75703` |  |
+| `stringVerbatim:csharp` | yellow | `#E3C24A` · `#F9D959` · `#B98B01` |  |
+| `unresolvedReference` | red | `#F24646` · `#F35858` · `#E5484D` |  |
+| `macro:c` |  |  | underline |
+| `macro:cpp` |  |  | underline |
+| `xmlDocCommentText` | fg | `#C0C4D0` · `#D6DAE0` · `#565869` |  |
+| `xmlDocCommentName:csharp` | lightPink | `#E5B1F7` · `#EEBBFF` · `#8E6984` |  |
+| `xmlDocCommentDelimiter:csharp` | lightPink | `#E5B1F7` · `#EEBBFF` · `#8E6984` |  |
+| `xmlDocCommentAttributeName:csharp` | orange | `#FF8D5C` · `#FF8142` · `#F75703` |  |
+| `xmlDocCommentAttributeQuotes:csharp` | yellow | `#E3C24A` · `#F9D959` · `#B98B01` |  |
+| `xmlDocCommentAttributeValue:csharp` | yellow | `#E3C24A` · `#F9D959` · `#B98B01` |  |
+| `keyword.constant` | pink | `#F85EB4` · `#F85EB4` · `#EB5CB1` |  |
+| `operator.controlFlow:rust` | pink | `#F85EB4` · `#F85EB4` · `#EB5CB1` |  |
+| `label:rust` | lime | `#89E736` · `#89E736` · `#7BA403` |  |
+| `lifetime:rust` | purple | `#A177F5` · `#B3A4FE` · `#9177F4` |  |
+| `formatSpecifier:rust` | purple | `#A177F5` · `#B3A4FE` · `#9177F4` |  |
+| `macroBang:rust` | strongPink | `#FF2884` · `#FF2884` · `#FF1277` |  |
+| `variable.reference` |  |  | italic |
+| `method.reference` |  |  | italic |
+| `function.reference` |  |  | italic |
+| `parameter.reference` |  |  | italic |
+| `selfKeyword.reference` |  |  | italic |
+| `variable.mutable` | boldFg | `#B2B6C4` · `#C8CCD6` · `#6C6E83` | bold |
+| `method.mutable` | boldGreen | `#2ECC4B` · `#2BBF46` · `#28AA55` | bold |
+| `function.mutable` | boldGreen | `#2ECC4B` · `#2BBF46` · `#28AA55` | bold |
+| `parameter.mutable` | boldViolet | `#D88AFF` · `#D88AFF` · `#A059CF` | bold |
+| `variable.mutable.reference` | boldFg | `#B2B6C4` · `#C8CCD6` · `#6C6E83` | italic bold |
+| `method.mutable.reference` | boldGreen | `#2ECC4B` · `#2BBF46` · `#28AA55` | italic bold |
+| `function.mutable.reference` | boldGreen | `#2ECC4B` · `#2BBF46` · `#28AA55` | italic bold |
+| `parameter.mutable.reference` | boldViolet | `#D88AFF` · `#D88AFF` · `#A059CF` | italic bold |
+| `*.unsafe` | red | `#F24646` · `#F35858` · `#E5484D` |  |
+| `keyword.unsafe` |  |  | bold underline |
+| `function.unsafe` |  |  | underline |
+| `function.mutable.unsafe` |  |  | bold underline |
+| `function.mutable.reference.unsafe` |  |  | bold underline italic |
+| `method.unsafe` |  |  | underline |
+| `method.mutable.unsafe` |  |  | bold underline |
+| `method.mutable.reference.unsafe` |  |  | bold underline italic |
+| `variable:javascript` |  |  | bold |
+| `parameter:javascript` |  |  | bold |
+| `property:javascript` |  |  | bold |
+| `variable:typescript` |  |  | bold |
+| `parameter:typescript` |  |  | bold |
+| `property:typescript` |  |  | bold |
+| `attributeBracket.attribute:rust` | orange | `#FF8D5C` · `#FF8142` · `#F75703` |  |
+| `builtinAttribute.attribute:rust` | orange | `#FF8D5C` · `#FF8142` · `#F75703` |  |
+| `toolModule.attribute:rust` | orange | `#FF8D5C` · `#FF8142` · `#F75703` |  |
+| `decorator.attribute:rust` | orange | `#FF8D5C` · `#FF8142` · `#F75703` |  |
+| `derive.attribute:rust` | orange | `#FF8D5C` · `#FF8142` · `#F75703` |  |
+| `generic.attribute:rust` | orange | `#FF8D5C` · `#FF8142` · `#F75703` |  |
+| `parenthesis.attribute:rust` | orange | `#FF8D5C` · `#FF8142` · `#F75703` |  |
+| `tomlTableKey` | blue | `#10B1FE` · `#29BBFF` · `#0194DB` |  |
+| `tomlArrayKey` | lime | `#89E736` · `#89E736` · `#7BA403` |  |
+| `decorator:java` | orange | `#FF8D5C` · `#FF8142` · `#F75703` |  |
+| `decorator:kotlin` | orange | `#FF8D5C` · `#FF8142` · `#F75703` |  |
+| `annotationMember:java` | lightPurple | `#D5C0E9` · `#D3C3EF` · `#8466AA` |  |
+| `record:java` | blue | `#10B1FE` · `#29BBFF` · `#0194DB` |  |
+| `recordComponent:java` | lightPurple | `#D5C0E9` · `#D3C3EF` · `#8466AA` |  |
+| `selfParameter` | pink | `#F85EB4` · `#F85EB4` · `#EB5CB1` |  |
+| `clsParameter` | pink | `#F85EB4` · `#F85EB4` · `#EB5CB1` |  |
+| `class.builtin:python` | pink | `#F85EB4` · `#F85EB4` · `#EB5CB1` |  |
+| `variable.readonly:python` | orange | `#FF8D5C` · `#FF8142` · `#F75703` |  |
+| `builtinConstant` | orange | `#FF8D5C` · `#FF8142` · `#F75703` |  |
+| `string.documentation:python` | lightPink | `#E5B1F7` · `#EEBBFF` · `#8E6984` |  |
+| `type.defaultLibrary:c` | pink | `#F85EB4` · `#F85EB4` · `#EB5CB1` |  |
+| `type.defaultLibrary:cpp` | pink | `#F85EB4` · `#F85EB4` · `#EB5CB1` |  |
+| `property:nix` | fg | `#C0C4D0` · `#D6DAE0` · `#565869` |  |
+| `property.definition:nix` | lightPurple | `#D5C0E9` · `#D3C3EF` · `#8466AA` |  |
+| `variable.definition:nix` | lightPurple | `#D5C0E9` · `#D3C3EF` · `#8466AA` |  |
+| `parameter:nix` | fg | `#C0C4D0` · `#D6DAE0` · `#565869` |  |
+| `parameter.definition:nix` | violet | `#DD99FF` · `#CF94FF` · `#9B53CA` |  |
+| `struct.builtin:nix` | orange | `#FF8D5C` · `#FF8142` · `#F75703` |  |
+| `path:nix` | yellow | `#E3C24A` · `#F9D959` · `#B98B01` |  |
+| `method:nix` | lightPurple | `#D5C0E9` · `#D3C3EF` · `#8466AA` |  |
+| `type:nix` | fg | `#C0C4D0` · `#D6DAE0` · `#565869` |  |
+| `regexp:nix` | violet | `#DD99FF` · `#CF94FF` · `#9B53CA` |  |
+| `macro:nix` | orange | `#FF8D5C` · `#FF8142` · `#F75703` |  |
+| `interface:nix` | fg | `#C0C4D0` · `#D6DAE0` · `#565869` |  |
+| `keyword.static:nix` | green | `#3FC56B` · `#38CB5E` · `#19A24D` |  |
+
+## TextMate rules
+
+Later rules win over earlier ones when they match the same scope equally well.
+
+### Source Default
+
+fg: `#C0C4D0` · `#D6DAE0` · `#565869`
+
+- `source`
+
+### Keywords
+
+pink: `#F85EB4` · `#F85EB4` · `#EB5CB1`
+
+- `keyword`
+- `storage.type`
+- `storage.modifier`
+- `punctuation.definition.directive.c`
+- `punctuation.definition.directive.cpp`
+- `keyword.type.go`
+- `storage.class.d`
+- `markup.deleted.git_gutter`
+- `punctuation.definition.keyword.css`
+- `entity.name.tag.wildcard.css`
+- `storage.modifier.mut.rust`
+- `storage.modifier.type.rust`
+- `variable.language.self.rust`
+- `storage.modifier.cs`
+- `keyword.other.this.cs`
+- `keyword.control.powershell`
+- `storage.type.powershell`
+- `meta.function.powershell`
+- `variable.language.this.js`
+- `keyword.operator.new.js`
+- `keyword.operator.ternary.js`
+- `keyword.control.import.js`
+- `keyword.control.as.js`
+- `keyword.control.from.js`
+- `storage.type.js`
+- `variable.language.this.ts`
+- `variable.language.super.ts`
+- `keyword.operator.new.ts`
+- `keyword.operator.ternary.ts`
+- `keyword.operator.expression.typeof.ts`
+- `keyword.operator.expression.of.ts`
+- `keyword.operator.expression.in.ts`
+- `keyword.operator.expression.instanceof.ts`
+- `keyword.operator.expression.is.ts`
+- `keyword.operator.expression.keyof.ts`
+- `keyword.operator.expression.infer.ts`
+- `keyword.control.import.ts`
+- `keyword.control.as.ts`
+- `keyword.control.from.ts`
+- `keyword.control.export.ts`
+- `storage.type.ts`
+- `storage.type.class.ts`
+- `storage.type.enum.ts`
+- `storage.type.interface.ts`
+- `storage.type.namespace.ts`
+- `storage.type.function.ts`
+- `storage.type.numeric.bigint.ts`
+- `storage.type.property.ts`
+- `storage.modifier.ts`
+- `storage.modifier.async.ts`
+- `variable.language.this.cpp`
+- `variable.language.this.kotlin`
+- `variable.language.super.js`
+- `variable.language.special.self.python`
+- `variable.parameter.function.language.special.self.python`
+- `variable.language.special.cls.python`
+- `variable.parameter.function.language.special.cls.python`
+
+### Built-in Types
+
+pink: `#F85EB4` · `#F85EB4` · `#EB5CB1`
+
+- `entity.name.type.primitive.rust`
+- `entity.name.type.numeric.rust`
+- `keyword.type.cs`
+- `support.type.primitive.js`
+- `support.type.primitive.ts`
+- `support.type.builtin.ts`
+- `storage.type.primitive.java`
+- `storage.type.built-in.c`
+- `storage.type.built-in.primitive.c`
+- `storage.type.built-in.cpp`
+- `storage.type.built-in.primitive.cpp`
+- `storage.type.boolean.go`
+- `storage.type.byte.go`
+- `storage.type.error.go`
+- `storage.type.numeric.go`
+- `storage.type.rune.go`
+- `storage.type.string.go`
+- `storage.type.uintptr.go`
+- `storage.type.basic-type.d`
+- `support.type.python`
+- `basicTypes.nim`
+- `support.type.ocaml`
+
+### Punctuation & Operators
+
+lightGreen: `#B3CCB7` · `#C8E2CC` · `#4A604E`
+
+- `punctuation`
+- `keyword.operator`
+- `storage.type.function.arrow.js`
+- `storage.type.function.arrow.ts`
+- `entity.name.operator.cpp`
+- `keyword.operator.sigil.rust`
+- `keyword.operator.access.dot.rust`
+- `keyword.operator.key-value.rust`
+- `keyword.operator.attribute.inner.rust`
+- `punctuation.definition.tag`
+- `punctuation.definition.tag.html`
+- `punctuation.definition.tag.begin.html`
+- `punctuation.definition.tag.end.html`
+- `meta.brace.round.js`
+- `meta.brace.square.js`
+- `meta.brace.round.ts`
+- `meta.brace.square.ts`
+- `keyword.operator.optional.ts`
+- `keyword.operator.rest.ts`
+- `punctuation.definition.string.begin.html`
+- `punctuation.definition.string.end.html`
+- `punctuation.definition.string.begin.xml`
+- `punctuation.definition.string.end.xml`
+- `punctuation.definition.string.markdown`
+- `punctuation.support.type.property-name.begin.json`
+- `punctuation.support.type.property-name.end.json`
+- `punctuation.definition.string.begin.json`
+- `punctuation.definition.string.end.json`
+
+### Function and Methods
+
+green: `#3FC56B` · `#38CB5E` · `#19A24D`
+
+- `entity.name.function`
+- `meta.function-call`
+- `variable.function`
+- `support.function`
+- `keyword.other.special-method`
+- `keyword.other.common.function`
+- `entity.name.function.rust`
+- `entity.name.function.cs`
+- `support.function.powershell`
+- `entity.name.function.js`
+- `entity.name.function.ts`
+- `support.function.misc.css`
+- `support.function.misc.scss`
+- `punctuation.definition.decorator.python`
+- `punctuation.decorator.ts`
+- `punctuation.decorator.js`
+
+### Special functions, Hygienic Macros, etc
+
+strongPink: `#FF2884` · `#FF2884` · `#FF1277`
+
+- `support.function.macro.rust`
+- `support.function.macro.builtin.rust`
+- `support.function.macro.core.rust`
+- `entity.name.type.macro.rust`
+- `entity.name.function.macro.rust`
+- `entity.name.function.macro.rules.rust`
+- `support.function.macro.julia`
+- `support.function.builtin.zig`
+
+### Macros in C/C++
+
+strongPink: `#FF2884` · `#FF2884` · `#FF1277`, style: underline
+
+- `entity.name.function.preprocessor.c`
+- `entity.name.function.preprocessor.cpp`
+
+### Non-primitive Types
+
+blue: `#10B1FE` · `#29BBFF` · `#0194DB`
+
+- `support.type`
+- `support.class`
+- `support.other.namespace.use.php`
+- `meta.use.php`
+- `support.other.namespace.php`
+- `markup.changed.git_gutter`
+- `support.type.sys-types`
+- `variable.key.table.toml`
+- `storage.type.haskell`
+- `storage.type.java`
+- `storage.type.object.array.java`
+- `storage.type.c`
+- `meta.function.definition.parameters.c`
+- `entity.name.class.kotlin`
+- `storage.type.go`
+- `storage.type.concrete.nim`
+- `storage.type.d`
+- `meta.class.stanza.dune`
+- `storage.type.cs`
+- `entity.name.type`
+- `entity.name.type.cpp`
+- `entity.name.type.parameter.cpp`
+- `entity.name.type.enum.cpp`
+- `entity.name.type.rust`
+- `entity.name.type.struct.rust`
+- `entity.name.type.enum.rust`
+- `entity.name.type.union.rust`
+- `entity.name.type.declaration.rust`
+- `entity.name.type.class.cs`
+- `entity.name.type.struct.cs`
+- `entity.name.type.enum.cs`
+- `entity.name.type.class.js`
+- `support.class.builtin.js`
+- `support.class.component.js`
+- `entity.name.type.class.ts`
+- `entity.other.inherited-class.java`
+- `entity.other.inherited-class`
+
+### Enum variant, Sum Types, etc
+
+cyan: `#15C9C5` · `#16DAD5` · `#07A3A0`
+
+- `constant.other.haskell`
+- `variable.other.enummember.cpp`
+- `support.enum.core.rust`
+- `entity.name.type.option.rust`
+- `entity.name.type.result.rust`
+- `entity.name.variable.enum-member.cs`
+- `constant.language.powershell`
+- `constant.language.powershell punctuation.definition.variable.powershell`
+- `variable.other.enummember.ts`
+- `constant.language.capital-identifier.ocaml`
+
+### Interfaces
+
+cornflower: `#8AA5FF` · `#A3ACFF` · `#5270C7`
+
+- `entity.name.type.trait.rust`
+- `entity.name.type.interface.ts`
+
+### Type Parameters
+
+skyBlue: `#5CA2ED` · `#77AFEE` · `#2E7DC4`
+
+- `entity.name.type.template.cpp`
+- `entity.name.type.type-parameter.cs`
+- `storage.type.generic.java`
+- `storage.type.ocaml`
+- `variable.other.generic-type.haskell`
+- `meta.type.parameters.ts entity.name.type.ts`
+
+### Variables
+
+fg: `#C0C4D0` · `#D6DAE0` · `#565869`
+
+- `variable`
+- `meta.function-call.arguments`
+- `string constant.other.placeholder`
+- `meta.function-call.java`
+- `storage.modifier.import.java`
+- `variable.other.object`
+- `variable.other.rust`
+- `entity.name.variable.local.cs`
+- `variable.other.readwrite.cs`
+- `variable.other.readwrite.js`
+- `variable.other.constant.js`
+- `variable.other.readwrite.ts`
+- `variable.other.constant.ts`
+- `variable.argument.css`
+- `variable.scss`
+- `variable.parameter.name.nix`
+- `storage.modifier.package.java`
+
+### Parameters
+
+violet: `#DD99FF` · `#CF94FF` · `#9B53CA`
+
+- `variable.parameter`
+- `keyword.other.self.rust`
+- `meta.parens.block.c`
+- `variable.css`
+- `entity.name.variable.parameter.cs`
+- `variable.parameter.js`
+- `variable.parameter.ts`
+
+### Members
+
+lightPurple: `#D5C0E9` · `#D3C3EF` · `#8466AA`
+
+- `variable.other.object.property`
+- `entity.name.variable.field.cs`
+- `variable.other.object.property.cs`
+- `variable.other.member.powershell`
+- `variable.other.property.js`
+- `variable.object.property.ts`
+- `variable.other.property.ts`
+- `variable.object.property.js`
+- `variable.other.member.c`
+- `variable.other.member.cpp`
+- `meta.attribute.python`
+- `entity.other.attribute-name.multipart.nix`
+- `entity.other.attribute-name.single.nix`
+
+### Constants
+
+orange: `#FF8D5C` · `#FF8142` · `#F75703`
+
+- `constant`
+- `constant.other.caps.rust`
+- `constant.language.null.cs`
+- `support.constant.variable.powershell`
+- `support.constant.variable.powershell punctuation.definition.variable.powershell`
+- `constant.language.json`
+- `constant.other.boolean.toml`
+- `variable.upper-case.cpp`
+
+### Booleans
+
+orange: `#FF8D5C` · `#FF8142` · `#F75703`
+
+- `constant.language.bool`
+- `constant.language.bool.rust`
+- `constant.language.boolean.true.cs`
+- `constant.language.boolean.false.cs`
+- `constant.language.boolean.true.js`
+- `constant.language.boolean.false.js`
+- `constant.language.boolean.true.ts`
+- `constant.language.boolean.false.ts`
+- `constant.language.boolean.yaml`
+- `constant.language.boolean.toml`
+
+### String & character
+
+yellow: `#E3C24A` · `#F9D959` · `#B98B01`
+
+- `string`
+- `punctuation.definition.string`
+- `constant.other.symbol`
+- `constant.other.key`
+- `meta.group.braces.curly constant.other.object.key.js string.unquoted.label.js`
+- `string.quoted.double.rust`
+- `punctuation.definition.string.rust`
+- `string.quoted.double.cs`
+- `punctuation.definition.string.begin.cs`
+- `punctuation.definition.string.end.cs`
+- `string.quoted.double.powershell`
+- `string.quoted.single.powershell`
+- `punctuation.definition.string.begin.powershell`
+- `punctuation.definition.string.end.powershell`
+- `string.quoted.single.js`
+- `string.quoted.double.js`
+- `string.template.js`
+- `punctuation.definition.string.begin.js`
+- `punctuation.definition.string.end.js`
+- `punctuation.definition.string.template.begin.js`
+- `punctuation.definition.string.template.end.js`
+- `string.quoted.single.ts`
+- `string.quoted.double.ts`
+- `string.template.ts`
+- `punctuation.definition.string.begin.ts`
+- `punctuation.definition.string.end.ts`
+- `punctuation.definition.string.template.begin.ts`
+- `punctuation.definition.string.template.end.ts`
+- `string.quoted.double.css`
+- `string.quoted.double.scss`
+- `string.quoted.single.css`
+- `string.quoted.single.scss`
+- `string.quoted.single.xml`
+- `string.quoted.double.xml`
+- `string.quoted.double.json`
+- `string.unquoted.plain.out.yaml`
+- `string.unquoted.block.yaml`
+- `punctuation.definition.string.begin.yaml`
+- `punctuation.definition.string.end.yaml`
+- `string.quoted.single.yaml`
+- `string.quoted.double.yaml`
+- `string.quoted.single.basic.line.toml`
+- `string.quoted.triple.basic.block.toml`
+- `string.quoted.single.literal.line.toml`
+- `string.quoted.triple.literal.block.toml`
+- `string.quoted.single.ini`
+- `string.quoted.double.ini`
+- `punctuation.definition.string.begin.ini`
+- `punctuation.definition.string.end.ini`
+- `string.quoted.double.bnf`
+- `string.quoted.single.bnf`
+
+### Escape characters
+
+orange: `#FF8D5C` · `#FF8142` · `#F75703`
+
+- `constant.character.escape`
+- `constant.character.escape.rust`
+- `constant.character.escape.cs`
+- `constant.character.escape.powershell`
+- `constant.character.escape.js`
+- `constant.character.escape.ts`
+- `punctuation.definition.constant.xml`
+- `constant.character.entity.xml`
+- `constant.character.escape.yaml`
+- `constant.character.escape.toml`
+
+### Character literals
+
+orange: `#FF8D5C` · `#FF8142` · `#F75703`
+
+- `punctuation.definition.char.rust`
+- `string.quoted.single.char.rust`
+- `punctuation.definition.char.begin.cs`
+- `punctuation.definition.char.end.cs`
+- `string.quoted.single.cs`
+
+### Number literals
+
+orange: `#FF8D5C` · `#FF8142` · `#F75703`
+
+- `constant.numeric`
+- `constant.numeric.decimal.rust`
+- `constant.numeric.bin.rust`
+- `constant.numeric.hex.rust`
+- `constant.numeric.oct.rust`
+- `punctuation.separator.dot.decimal.rust`
+- `constant.numeric.binary.cs`
+- `constant.numeric.decimal.cs`
+- `constant.numeric.hex.cs`
+- `constant.numeric.integer.powershell`
+- `constant.numeric.hex.powershell`
+- `constant.numeric.octal.powershell`
+- `constant.numeric.binary.js`
+- `constant.numeric.decimal.js`
+- `constant.numeric.hex.js`
+- `constant.numeric.octal.js`
+- `constant.numeric.binary.ts`
+- `constant.numeric.decimal.ts`
+- `constant.numeric.hex.ts`
+- `constant.numeric.octal.ts`
+- `constant.numeric.css`
+- `constant.numeric.json`
+- `constant.numeric.integer.yaml`
+- `constant.numeric.float.yaml`
+- `constant.numeric.integer.toml`
+- `constant.numeric.float.toml`
+- `constant.numeric.bin.toml`
+- `constant.numeric.hex.toml`
+- `constant.numeric.oct.toml`
+- `constant.numeric.inf.toml`
+- `constant.numeric.nan.toml`
+- `constant.language.nan.ts`
+- `keyword.other.unit`
+
+### Comment
+
+lightPink: `#E5B1F7` · `#EEBBFF` · `#8E6984`
+
+- `comment`
+- `punctuation.definition.comment`
+- `comment.block.cs`
+- `comment.line.double-slash.cs`
+- `comment.line.powershell`
+- `comment.block.documentation.js`
+- `comment.line.double-slash.js`
+- `comment.block.documentation.ts`
+- `comment.line.double-slash.ts`
+- `comment.block.xml`
+- `punctuation.definition.comment.xml`
+- `comment.block.json`
+- `punctuation.definition.comment.yaml`
+- `comment.line.number-sign.yaml`
+- `punctuation.definition.comment.toml`
+- `comment.line.number-sign.toml`
+- `punctuation.definition.comment.ini`
+- `comment.line.semicolon.ini`
+- `comment.line.number-sign.ini`
+- `comment.line.bnf`
+- `comment.block.bnf`
+- `string.quoted.docstring`
+- `string.quoted.docstring punctuation.definition.string`
+
+### Attributes
+
+orange: `#FF8D5C` · `#FF8142` · `#F75703`
+
+- `meta.attribute.rust`
+- `meta.attribute.rust punctuation.definition.attribute.rust`
+- `meta.attribute.rust punctuation.brackets.attribute.rust`
+- `meta.attribute.rust punctuation.brackets.round.rust`
+- `meta.attribute.rust entity.name.type.rust`
+- `support.function.attribute.powershell`
+- `variable.parameter.attribute.powershell`
+- `storage.type.annotation.java`
+- `punctuation.definition.annotation.java`
+- `entity.name.type.annotation.kotlin`
+- `punctuation.definition.annotation.kotlin`
+
+### Unresolved Symbol
+
+red: `#F24646` · `#F35858` · `#E5484D`
+
+- `invalid`
+- `invalid.illegal`
+
+### URL
+
+style: underline
+
+- `*url*`
+- `*link*`
+- `*uri*`
+
+### ? Operator
+
+pink: `#F85EB4` · `#F85EB4` · `#EB5CB1`
+
+- `keyword.operator.misc.question-mark.rust`
+- `keyword.operator.question.rust`
+
+### Lifetimes
+
+purple: `#A177F5` · `#B3A4FE` · `#9177F4`
+
+- `punctuation.definition.lifetime.rust`
+- `entity.name.type.lifetime.rust`
+- `storage.modifier.lifetime.rust`
+
+### Format Specifier
+
+purple: `#A177F5` · `#B3A4FE` · `#9177F4`
+
+- `meta.interpolation.rust`
+- `punctuation.definition.interpolation.rust`
+- `constant.other.placeholder.c`
+- `constant.other.placeholder.cpp`
+- `constant.character.printf.ocaml`
+- `constant.character.format.placeholder.other.python`
+
+### Macro declaration variable specifier
+
+lime: `#89E736` · `#89E736` · `#7BA403`
+
+- `variable.other.metavariable.specifier.rust`
+
+### Csharp - Doc Tag
+
+fadedGray: `#636D83` · `#7A7A8A` · `#898D9D`
+
+- `entity.name.tag.cs`
+- `comment.block.documentation.cs punctuation.definition.tag.cs`
+- `comment.block.documentation.cs punctuation.separator.equals.cs`
+
+### Csharp - Doc Tag Attribute
+
+orange: `#FF8D5C` · `#FF8142` · `#F75703`
+
+- `entity.other.attribute-name.cs`
+
+### Csharp - Doc Text
+
+fg: `#C0C4D0` · `#D6DAE0` · `#565869`
+
+- `comment.block.documentation.cs`
+
+### Csharp - String Interpolation
+
+violet: `#DD99FF` · `#CF94FF` · `#9B53CA`
+
+- `punctuation.definition.interpolation.begin.cs`
+- `punctuation.definition.interpolation.end.cs`
+
+### Java - this
+
+pink: `#F85EB4` · `#F85EB4` · `#EB5CB1`
+
+- `variable.language.this.java`
+- `variable.language.java`
+
+### Java - mutable
+
+- `variables.language.java`
+- `variable.other.definition.java`
+- `variable.other.object.java`
+- `variable.other.object.property.java`
+- `variable.parameter.java`
+
+### Powershell Variables
+
+green: `#3FC56B` · `#38CB5E` · `#19A24D`
+
+- `variable.other.readwrite.powershell`
+- `punctuation.definition.variable.powershell`
+
+### Powershell Variable/Storage Scopes
+
+green: `#3FC56B` · `#38CB5E` · `#19A24D`, style: underline
+
+- `storage.modifier.scope.powershell`
+- `support.variable.drive.powershell`
+
+### Powershell Special/Built-In Variables
+
+violet: `#DD99FF` · `#CF94FF` · `#9B53CA`
+
+- `support.variable.automatic.powershell`
+- `support.variable.automatic.powershell punctuation.definition.variable.powershell`
+- `variable.language.powershell`
+- `variable.language.powershell punctuation.definition.variable.powershell`
+
+### Powershell Operators
+
+lightGreen: `#B3CCB7` · `#C8E2CC` · `#4A604E`
+
+- `keyword.operator.comparison.powershell`
+- `keyword.operator.logical.powershell`
+
+### Powershell Comment Keywords
+
+fg: `#C0C4D0` · `#D6DAE0` · `#565869`
+
+- `keyword.operator.documentation.powershell`
+
+### Powershell String Interpolation
+
+violet: `#DD99FF` · `#CF94FF` · `#9B53CA`
+
+- `punctuation.section.embedded.substatement.begin.powershell`
+- `punctuation.section.embedded.substatement.end.powershell`
+
+### JS - String Interpolation
+
+violet: `#DD99FF` · `#CF94FF` · `#9B53CA`
+
+- `punctuation.definition.template-expression.begin.js`
+- `punctuation.definition.template-expression.end.js`
+
+### Nix/Kotlin - String Interpolation
+
+violet: `#DD99FF` · `#CF94FF` · `#9B53CA`
+
+- `punctuation.section.embedded.begin.nix`
+- `punctuation.section.embedded.end.nix`
+- `meta.template.expression.kotlin`
+
+### JS - Regexp Group
+
+fg: `#C0C4D0` · `#D6DAE0` · `#565869`
+
+- `punctuation.definition.group.regexp`
+- `punctuation.definition.group.no-capture.regexp`
+
+### JS - Regexp Characters
+
+violet: `#DD99FF` · `#CF94FF` · `#9B53CA`
+
+- `constant.other.character-class.regexp`
+- `keyword.operator.quantifier.regexp`
+- `keyword.control.anchor.regexp`
+- `punctuation.definition.look-ahead.regexp`
+- `meta.assertion.look-ahead.regexp`
+- `meta.group.assertion.regexp`
+
+### JSX - Embedded Code
+
+orange: `#FF8D5C` · `#FF8142` · `#F75703`, style: bold
+
+- `punctuation.section.embedded.begin.js`
+- `punctuation.section.embedded.end.js`
+
+### JSX - Attributes
+
+cyan: `#15C9C5` · `#16DAD5` · `#07A3A0`, style: italic
+
+- `entity.other.attribute-name.js`
+
+### TS - String Interpolation
+
+violet: `#DD99FF` · `#CF94FF` · `#9B53CA`
+
+- `punctuation.definition.template-expression.begin.ts`
+- `punctuation.definition.template-expression.end.ts`
+
+### HTML - Tags
+
+pink: `#F85EB4` · `#F85EB4` · `#EB5CB1`
+
+- `entity.name.tag.html`
+
+### HTML - IDs
+
+orange: `#FF8D5C` · `#FF8142` · `#F75703`, style: bold
+
+- `meta.attribute.id.html string.quoted.double.html`
+- `entity.other.attribute-name.id.css`
+
+### HTML - Classes
+
+green: `#3FC56B` · `#38CB5E` · `#19A24D`
+
+- `meta.attribute.class.html string.quoted.double.html`
+- `entity.other.attribute-name.class.css`
+
+### HTML - Attributes
+
+cyan: `#15C9C5` · `#16DAD5` · `#07A3A0`, style: italic
+
+- `entity.other.attribute-name.html`
+- `entity.other.attribute-name.css`
+
+### HTML - Attribute Value
+
+yellow: `#E3C24A` · `#F9D959` · `#B98B01`
+
+- `meta.attribute`
+- `meta.attribute-selector.css string.quoted.double.css`
+
+### HTML - Links
+
+violet: `#DD99FF` · `#CF94FF` · `#9B53CA`
+
+- `meta.attribute.href.html string.quoted.double.html`
+- `meta.attribute.src.html string.quoted.double.html`
+- `meta.attribute.unrecognized.xmlns.html string.quoted.double.html`
+
+### HTML - Embedded CSS
+
+lime: `#89E736` · `#89E736` · `#7BA403`
+
+- `meta.embedded.line.css`
+
+### CSS - Tags
+
+pink: `#F85EB4` · `#F85EB4` · `#EB5CB1`
+
+- `entity.name.tag.css`
+
+### CSS - Properties
+
+lightPurple: `#D5C0E9` · `#D3C3EF` · `#8466AA`
+
+- `support.type.property-name.css`
+- `meta.property-name.css`
+- `meta.property-name.scss`
+- `support.type.property-name.media.css`
+
+### CSS - Property Values
+
+cyan: `#15C9C5` · `#16DAD5` · `#07A3A0`
+
+- `support.constant.property-value.css`
+
+### CSS - Fontname Selector
+
+yellow: `#E3C24A` · `#F9D959` · `#B98B01`
+
+- `support.constant.font-name.css`
+
+### CSS - Pseudoclass Selector
+
+lime: `#89E736` · `#89E736` · `#7BA403`
+
+- `entity.other.attribute-name.pseudo-class.css`
+- `entity.other.attribute-name.pseudo-element.css`
+
+### CSS - Units
+
+orange: `#FF8D5C` · `#FF8142` · `#F75703`
+
+- `keyword.other.unit.rem.css`
+- `keyword.other.unit.em.css`
+- `keyword.other.unit.ex.css`
+- `keyword.other.unit.ch.css`
+- `keyword.other.unit.vw.css`
+- `keyword.other.unit.vh.css`
+- `keyword.other.unit.vmin.css`
+- `keyword.other.unit.vmax.css`
+- `keyword.other.unit.percentage.css`
+- `keyword.other.unit.mm.css`
+- `keyword.other.unit.in.css`
+- `keyword.other.unit.px.css`
+- `keyword.other.unit.pt.css`
+- `keyword.other.unit.pc.css`
+- `keyword.other.unit.deg.css`
+- `constant.other.scss`
+
+### CSS - Logical Operators
+
+lightGreen: `#B3CCB7` · `#C8E2CC` · `#4A604E`
+
+- `keyword.operator.logical.and.media.css`
+- `keyword.operator.logical.not.media.css`
+- `keyword.operator.logical.only.media.css`
+
+### CSS - Media Query Types
+
+violet: `#DD99FF` · `#CF94FF` · `#9B53CA`
+
+- `support.constant.media.css`
+
+### SCSS - Symbols
+
+pink: `#F85EB4` · `#F85EB4` · `#EB5CB1`
+
+- `punctuation.definition.keyword.scss`
+- `keyword.control.at-rule.include.scss`
+- `entity.name.tag.reference.scss`
+- `entity.name.tag.wildcard.scss`
+
+### XML - Tags
+
+pink: `#F85EB4` · `#F85EB4` · `#EB5CB1`
+
+- `entity.name.tag.xml`
+- `entity.name.tag.localname.xml`
+
+### XML - Attributes
+
+cyan: `#15C9C5` · `#16DAD5` · `#07A3A0`, style: italic
+
+- `entity.other.attribute-name.xml`
+- `entity.other.attribute-name.localname.xml`
+
+### XML - Tag Namespace
+
+lime: `#89E736` · `#89E736` · `#7BA403`
+
+- `entity.name.tag.namespace.xml`
+
+### XML - Attribute Namespace
+
+lime: `#89E736` · `#89E736` · `#7BA403`, style: italic
+
+- `entity.other.attribute-name.namespace.xml`
+
+### XML - Attribute Namespace :
+
+style: italic
+
+- `entity.other.attribute-name.xml punctuation.separator.namespace.xml`
+
+### XML - Doctype
+
+violet: `#DD99FF` · `#CF94FF` · `#9B53CA`
+
+- `variable.language.documentroot.xml`
+
+### Markdown - Text
+
+fg: `#C0C4D0` · `#D6DAE0` · `#565869`
+
+- `text.html.markdown`
+
+### Markup - Bold $inline
+
+boldGreen: `#2ECC4B` · `#2BBF46` · `#28AA55`, style: bold
+
+- `markup.bold.markdown`
+- `markup.bold.markdown punctuation.definition.bold.markdown`
+
+### Markup - Italic $inline
+
+lightPink: `#E5B1F7` · `#EEBBFF` · `#8E6984`, style: italic
+
+- `markup.italic.markdown`
+- `markup.italic.markdown punctuation.definition.italic.markdown`
+
+### Markup - Strikethrough $inline
+
+fadedGray: `#636D83` · `#7A7A8A` · `#898D9D`, style: strikethrough
+
+- `markup.strikethrough.markdown`
+- `markup.strikethrough.markdown punctuation.definition.strikethrough.markdown`
+
+### Markdown - Inline Code $inline
+
+fg: `#C0C4D0` · `#D6DAE0` · `#565869`, style: bold
+
+- `markup.inline.raw.string.markdown`
+- `markup.inline.raw.string.markdown punctuation.definition.raw.markdown`
+
+### Markdown - Bold > Italic $inline
+
+boldPink: `#F750AE` · `#F750AE` · `#F565BA`, style: italic bold
+
+- `markup.bold.markdown markup.italic.markdown`
+- `markup.bold.markdown markup.italic.markdown punctuation.definition.italic.markdown`
+
+### Markdown - Italic > Bold $inline
+
+boldPink: `#F750AE` · `#F750AE` · `#F565BA`, style: italic bold
+
+- `markup.italic.markdown markup.bold.markdown`
+- `markup.italic.markdown markup.bold.markdown punctuation.definition.bold.markdown`
+
+### Markdown - Bold > Strikethrough $inline
+
+boldGreen: `#2ECC4B` · `#2BBF46` · `#28AA55`, style: bold strikethrough
+
+- `markup.bold.markdown markup.strikethrough.markdown`
+- `markup.bold.markdown markup.strikethrough.markdown punctuation.definition.strikethrough.markdown`
+
+### Markdown - Strikethrough > Bold $inline
+
+boldGreen: `#2ECC4B` · `#2BBF46` · `#28AA55`, style: bold strikethrough
+
+- `markup.strikethrough.markdown markup.bold.markdown`
+- `markup.strikethrough.markdown markup.bold.markdown punctuation.definition.bold.markdown`
+
+### Markdown - Italic > Strikethrough $inline
+
+fadedGray: `#636D83` · `#7A7A8A` · `#898D9D`, style: italic strikethrough
+
+- `markup.italic.markdown markup.strikethrough.markdown`
+- `markup.italic.markdown markup.strikethrough.markdown punctuation.definition.strikethrough.markdown`
+
+### Markdown - Strikethrough > Italic $inline
+
+lightPink: `#E5B1F7` · `#EEBBFF` · `#8E6984`, style: italic strikethrough
+
+- `markup.strikethrough.markdown markup.italic.markdown`
+- `markup.strikethrough.markdown markup.italic.markdown punctuation.definition.italic.markdown`
+
+### Markdown - Bold > Italic > Strikethrough $inline
+
+strongPink: `#FF2884` · `#FF2884` · `#FF1277`, style: bold italic strikethrough
+
+- `markup.bold.markdown markup.italic.markdown markup.strikethrough.markdown`
+- `markup.bold.markdown markup.italic.markdown markup.strikethrough.markdown punctuation.definition.strikethrough.markdown`
+
+### Markdown - Bold > Strikethrough > Italic $inline
+
+strongPink: `#FF2884` · `#FF2884` · `#FF1277`, style: bold italic strikethrough
+
+- `markup.bold.markdown markup.strikethrough.markdown markup.italic.markdown`
+- `markup.bold.markdown markup.strikethrough.markdown markup.italic.markdown punctuation.definition.italic.markdown`
+
+### Markdown - Italic > Bold > Strikethrough $inline
+
+strongPink: `#FF2884` · `#FF2884` · `#FF1277`, style: bold italic strikethrough
+
+- `markup.italic.markdown markup.bold.markdown markup.strikethrough.markdown`
+- `markup.italic.markdown markup.bold.markdown markup.strikethrough.markdown punctuation.definition.strikethrough.markdown`
+
+### Markdown - Italic > Strikethrough > Bold $inline
+
+strongPink: `#FF2884` · `#FF2884` · `#FF1277`, style: bold italic strikethrough
+
+- `markup.italic.markdown markup.strikethrough.markdown markup.bold.markdown`
+- `markup.italic.markdown markup.strikethrough.markdown markup.bold.markdown punctuation.definition.bold.markdown`
+
+### Markdown - Strikethrough > Bold > Italic $inline
+
+strongPink: `#FF2884` · `#FF2884` · `#FF1277`, style: bold italic strikethrough
+
+- `markup.strikethrough.markdown markup.bold.markdown markup.italic.markdown`
+- `markup.strikethrough.markdown markup.bold.markdown markup.italic.markdown punctuation.definition.italic.markdown`
+
+### Markdown - Strikethrough > Italic > Bold $inline
+
+strongPink: `#FF2884` · `#FF2884` · `#FF1277`, style: bold italic strikethrough
+
+- `markup.strikethrough.markdown markup.italic.markdown markup.bold.markdown`
+- `markup.strikethrough.markdown markup.italic.markdown markup.bold.markdown punctuation.definition.bold.markdown`
+
+### Markdown - Bold > Inline Code $inline
+
+boldFg: `#B2B6C4` · `#C8CCD6` · `#6C6E83`, style: bold
+
+- `markup.bold.markdown markup.inline.raw.string.markdown`
+- `markup.bold.markdown markup.inline.raw.string.markdown punctuation.definition.raw.markdown`
+
+### Markdown - Italic > Inline Code $inline
+
+fg: `#C0C4D0` · `#D6DAE0` · `#565869`, style: italic
+
+- `markup.italic.markdown markup.inline.raw.string.markdown`
+- `markup.italic.markdown markup.inline.raw.string.markdown punctuation.definition.raw.markdown`
+
+### Markdown - Strikethrough > Inline Code $inline
+
+fg: `#C0C4D0` · `#D6DAE0` · `#565869`, style: strikethrough
+
+- `markup.strikethrough.markdown markup.inline.raw.string.markdown`
+- `markup.strikethrough.markdown markup.inline.raw.string.markdown punctuation.definition.raw.markdown`
+
+### Markdown - Url $inline Link
+
+cornflower: `#8AA5FF` · `#A3ACFF` · `#5270C7`, style: underline
+
+- `meta.link.email.lt-gt.markdown markup.underline.link.markdown`
+- `meta.link.inet.markdown markup.underline.link.markdown`
+- `meta.link.inline.markdown markup.underline.link.markdown`
+- `meta.link.reference.markdown constant.other.reference.link.markdown`
+- `meta.link.reference.def.markdown markup.underline.link.markdown`
+- `meta.image.inline.markdown markup.underline.link.image.markdown`
+- `meta.image.reference.markdown constant.other.reference.link.markdown`
+
+### Markdown - Url $inline Title
+
+blue: `#10B1FE` · `#29BBFF` · `#0194DB`
+
+- `meta.link.inline.markdown string.other.link.title.markdown`
+- `meta.link.reference.markdown string.other.link.title.markdown`
+- `meta.link.reference.def.markdown constant.other.reference.link.markdown`
+- `meta.image.inline.markdown string.other.link.description.markdown`
+- `meta.image.reference.markdown string.other.link.description.markdown`
+
+### Markdown - Url $inline Description
+
+yellow: `#E3C24A` · `#F9D959` · `#B98B01`
+
+- `meta.link.inline.markdown string.other.link.description.title.markdown`
+- `meta.image.inline.markdown string.other.link.description.title.markdown`
+
+### Markdown - Escape $inline
+
+lime: `#89E736` · `#89E736` · `#7BA403`
+
 - `constant.character.escape.markdown`
 
-### Math $inline/$block Delimiter #8CBA10 #9ACC12 #91c043
-- `markup.math.inline.markdown`/`markup.math.block.markdown`
-  - `punctuation.definition.math.begin.markdown`, the `$`
-  - `punctuation.definition.math.end.markdown`, the `$`
-  - `meta.embedded.math.markdown`, the actual math text
-    - `constant.numeric.math.tex`, numbers `4`, `1.0`
+### Markdown - Math Delimiter $inline/$block
 
-### Heading #F767BB #f85eb4
+orange: `#FF8D5C` · `#FF8142` · `#F75703`
+
+- `markup.math.inline.markdown punctuation.definition.math.begin.markdown`
+- `markup.math.inline.markdown punctuation.definition.math.end.markdown`
+- `markup.math.block.markdown punctuation.definition.math.begin.markdown`
+- `markup.math.block.markdown punctuation.definition.math.end.markdown`
+
+### Markdown - Heading
+
+pink: `#F85EB4` · `#F85EB4` · `#EB5CB1`
+
 - `markup.heading.markdown`
-  - `heading.$x.markdown`, where `1 <= $x <= 6`
-    - `punctuation.definition.heading.markdown`, the `#`, `##`, etc.
-    - `entity.name.section.markdown`, the actual heading text
-- `markup.heading.setext.1.markdown`, a heading by underlining with `=`
-- `markup.heading.setext.2.markdown`, a heading by underlining with `-`
+- `markup.heading.markdown punctuation.definition.heading.markdown`
+- `markup.heading.markdown entity.name.section.markdown`
+- `markup.heading.setext.1.markdown`
+- `markup.heading.setext.2.markdown`
 
-### Fenced Code Block Delimiter/Language #565869 #B9BFCA #d5c4a1 and Attributes #CF9C00 #F9C859 #fabd2f
+### Markdown - Fenced Code Block
+
+fg: `#C0C4D0` · `#D6DAE0` · `#565869`
+
 - `markup.fenced_code.block.markdown`
-  - `punctuation.definition.markdown`, the ` ``` `
-  - `fenced_code.block.language.markdown`, the language
-  - `fenced_code.block.language.attributes.markdown`, anything after the language
-  - `meta.embedded.block.$x`, where `$x` is the language
+- `markup.fenced_code.block.markdown punctuation.definition.markdown`
 
-### Raw Block #565869 #B9BFCA #d5c4a1
+### Markdown - Fenced Code Block Language
+
+fg: `#C0C4D0` · `#D6DAE0` · `#565869`, style: bold
+
+- `markup.fenced_code.block.markdown fenced_code.block.language.markdown`
+
+### Markdown - Fenced Code Block Attributes
+
+yellow: `#E3C24A` · `#F9D959` · `#B98B01`
+
+- `markup.fenced_code.block.markdown fenced_code.block.language.attributes.markdown`
+
+### Markdown - Raw Block
+
+fg: `#C0C4D0` · `#D6DAE0` · `#565869`
+
 - `markup.raw.block.markdown`
 
-### Block Quote #CF9C00 #F9C859 #fabd2f (italic)
-- `markup.quote.markdown`
-  - `punctuation.definition.quote.begin.markdown`, the `>`
-  - `meta.paragraph.markdown`, the actual quote paragraph text
+### Markdown - Block Quote
 
-### Separator #565869 #B9BFCA #d5c4a1 (bold)
+yellow: `#E3C24A` · `#F9D959` · `#B98B01`, style: italic
+
+- `markup.quote.markdown`
+- `markup.quote.markdown punctuation.definition.quote.begin.markdown`
+- `markup.quote.markdown meta.paragraph.markdown`
+
+### Markdown - Separator
+
+pink: `#F85EB4` · `#F85EB4` · `#EB5CB1`, style: bold
+
 - `meta.separator.markdown`
 
-### List Point #13BBB7 #15c9c5 #7cc091
-- `markup.list.numbered.markdown`
-  - `punctuation.definition.list.begin.markdown`, the `1.`, `1)`
-- `markup.list.unnumbered.markdown`
-  - `punctuation.definition.list.begin.markdown`, the `-`, `*`, `+`
+### Markdown - Unordered List Point
 
-### Table (inherits Text)
-- `markup.table.markdown`, all text within table
-  - `punctuation.definition.table.markdown`, the `|`
-  - `punctuation.separator.table.markdown`, the `-`, `:`
+cyan: `#15C9C5` · `#16DAD5` · `#07A3A0`
 
-### Comments
-See HTML styles.
+- `markup.list.unnumbered.markdown punctuation.definition.list.begin.markdown`
 
-### Inline HTML
-See HTML styles.
+### Markdown - Ordered List Point
 
+orange: `#FF8D5C` · `#FF8142` · `#F75703`
 
+- `markup.list.numbered.markdown punctuation.definition.list.begin.markdown`
 
-## JSON
-JSON only supports textmate highlighting; it has no semantic highlighting.
+### Markdown - Punctuation
 
-### Keys #F767BB #f85eb4
-- "support.type.property-name.json"
+lightGreen: `#B3CCB7` · `#C8E2CC` · `#4A604E`
 
-### String Values #CF9C00 #f9c859
-- "string.quoted.double.json"
+- `meta.link.email.lt-gt.markdown punctuation.definition.link.markdown`
+- `meta.link.inet.markdown punctuation.definition.link.markdown`
+- `meta.link.inline.markdown punctuation.definition.link.title.begin.markdown`
+- `meta.link.inline.markdown punctuation.definition.link.title.end.markdown`
+- `meta.link.inline.markdown punctuation.definition.metadata.markdown`
+- `meta.link.reference.markdown punctuation.definition.link.title.begin.markdown`
+- `meta.link.reference.markdown punctuation.definition.link.title.end.markdown`
+- `meta.link.reference.markdown punctuation.definition.constant.begin.markdown`
+- `meta.link.reference.markdown punctuation.definition.constant.end.markdown`
+- `meta.link.reference.def.markdown punctuation.definition.constant.markdown`
+- `meta.link.reference.def.markdown punctuation.separator.key-value.markdown`
+- `meta.image.inline.markdown punctuation.definition.link.description.begin.markdown`
+- `meta.image.inline.markdown punctuation.definition.link.description.end.markdown`
+- `meta.image.inline.markdown punctuation.definition.metadata.markdown`
+- `meta.image.reference.markdown punctuation.definition.link.description.begin.markdown`
+- `meta.image.reference.markdown punctuation.definition.constant.markdown`
 
-### String Values #FF5C57 #ff6b66
-- "constant.numeric.json"
+### Markdown - Punctuation - Table Definition
 
-### Constant Values #13BBB7 #15c9c5
-- "constant.language.json"
+lime: `#89E736` · `#89E736` · `#7BA403`
 
-### Comments #ADB1C2 #636d83
-- "comment"
-- "comment.line.double-slash.js"
-- "comment.block.json"
+- `punctuation.definition.table.markdown`
+- `punctuation.separator.table.markdown`
 
-### String Quote Marks #777777 #828da0
-- "punctuation.definition.string.begin.json"
-- "punctuation.definition.string.end.json"
-- "punctuation.support.type.property-name.begin.json"
-- "punctuation.support.type.property-name.end.json"
+### Markdown - Table Text
 
+fg: `#C0C4D0` · `#D6DAE0` · `#565869`
 
+- `markup.table.markdown`
 
-## YAML
-YAML only supports textmate highlighting; it has no semantic highlighting.
+### Asciidoc - Text
 
-### Keys #F767BB #f85eb4
-- "entity.name.tag.yaml"
+fg: `#C0C4D0` · `#D6DAE0` · `#565869`
 
-### String Values #CF9C00 #f9c859
-- "string.unquoted.plain.out.yaml"
-- "string.unquoted.block.yaml"
-- "punctuation.definition.string.begin.yaml"
-- "punctuation.definition.string.end.yaml"
-- "string.quoted.single.yaml"
-- "string.quoted.double.yaml"
+- `text.asciidoc`
 
-### Number Values #FF5C57 #ff6b66
-- "constant.numeric.integer.yaml"
-- "constant.numeric.float.yaml"
+### Asciidoc - Headings
 
-### Boolean Values #13BBB7 #15c9c5
-- "constant.language.boolean.yaml"
+pink: `#F85EB4` · `#F85EB4` · `#EB5CB1`, style: bold
 
-### Timestamp Values #2DAE58 #3fc56b
-- "constant.other.timestamp.yaml"
+- `markup.heading.heading-0.asciidoc`
+- `markup.heading.heading-1.asciidoc`
+- `markup.heading.heading-2.asciidoc`
+- `markup.heading.heading-3.asciidoc`
+- `markup.heading.heading-4.asciidoc`
+- `markup.heading.heading-5.asciidoc`
 
-### Null Values #F767BB #f85eb4
-- "constant.language.null.yaml"
+### Asciidoc - Bold Text
 
-### Types #F767BB #f85eb4
-- "storage.type.tag-handle.yaml"
+boldGreen: `#2ECC4B` · `#2BBF46` · `#28AA55`, style: bold
 
-### Anchors #8cba10 #9acc12
-- "entity.name.type.anchor.yaml"
-- "punctuation.definition.anchor.yaml"
-- "variable.other.alias.yaml"
-- "keyword.control.flow.alias.yaml punctuation.definition.alias.yaml"
+- `markup.bold.asciidoc`
 
-### Escape Characters #FF5C57 #ff6b66
-- "constant.character.escape.yaml"
+### Asciidoc - Italic Text
 
-### Comments #ADB1C2 #636d83
-- "punctuation.definition.comment.yaml"
-- "comment.line.number-sign.yaml"
+lightPink: `#E5B1F7` · `#EEBBFF` · `#8E6984`, style: italic
 
+- `markup.italic.asciidoc`
 
+### Asciidoc - Mark Text
 
-## TOML
-TOML has some support for semantic highlighting.
+green: `#3FC56B` · `#38CB5E` · `#19A24D`
 
-### Keys #F767BB #f85eb4
-- tm: "keyword.key.toml",
-- tm: "support.type.property-name.toml"
+- `markup.mark.asciidoc`
 
-### String Values #CF9C00 #f9c859
-- tm: "string.quoted.single.basic.line.toml"
-- tm: "string.quoted.single.literal.line.toml"
-- tm: "string.quoted.triple.basic.block.toml"
-- tm: "string.quoted.triple.literal.block.toml"
+### Asciidoc - Punctuation
 
-### Number Values #FF5C57 #ff6b66
-- tm: "constant.numeric.integer.toml"
-- tm: "constant.numeric.float.toml"
-- tm: "constant.numeric.bin.toml"
-- tm: "constant.numeric.hex.toml"
-- tm: "constant.numeric.oct.toml"
-- tm: "constant.numeric.inf.toml"
-- tm: "constant.numeric.nan.toml"
+lightGreen: `#B3CCB7` · `#C8E2CC` · `#4A604E`
 
-### Boolean Values #13BBB7 #15c9c5
-- tm: "constant.language.boolean.toml"
-- tm: "constant.other.boolean.toml"
+- `punctuation.separator.asciidoc`
+- `callout.asciidoc constant.other.symbol.asciidoc`
+- `callout.source.code.asciidoc constant.other.symbol.asciidoc`
+- `callout.source.code.asciidoc`
+- `markup.macro.kbd.asciidoc`
+- `markup.other.menu.asciidoc`
+- `markup.macro.btn.asciidoc`
 
-### Timestamp Values #2DAE58 #3fc56b
-- tm: "constant.other.date.toml"
-- tm: "constant.other.datetime.toml"
-- tm: "constant.other.datetime-with-timezone.toml"
-- tm: "constant.other.time.date.toml"
-- tm: "constant.other.time.time.toml"
-- tm: "constant.other.time.datetime.local.toml"
-- tm: "constant.other.time.datetime.offset.toml"
+### Asciidoc - Inline Punctuation
 
-### Tables #8cba10 #9acc12
-- s: "tomlTableKey"
-- tm: "entity.other.attribute-name.table.toml"
-- tm: "support.type.property-name.table.toml"
+lightGreen: `#B3CCB7` · `#C8E2CC` · `#4A604E`
 
-### Array Tables #cd6bf4 #d177f5
-- s: "tomlArrayKey"
-- tm: "entity.other.attribute-name.table.array.toml"
-- tm: "support.type.property-name.array.toml"
+- `markup.super.superscript.asciidoc punctuation.definition.asciidoc`
+- `markup.sub.subscript.asciidoc punctuation.definition.asciidoc`
+- `markup.bold.asciidoc punctuation.definition.asciidoc`
+- `markup.italic.asciidoc punctuation.definition.asciidoc`
+- `markup.highlight.asciidoc punctuation.definition.asciidoc`
+- `markup.mark.constrained.asciidoc markup.meta.attribute-list.asciidoc`
+- `markup.mark.asciidoc punctuation.definition.asciidoc`
 
-### Escape Characters #FF5C57 #ff6b66
-- tm: "constant.character.escape.toml"
+### Asciidoc - Highlight
 
-### Comments #ADB1C2 #636d83
-- tm: "punctuation.definition.comment.toml"
-- tm: "comment.line.number-sign.toml"
+yellow: `#E3C24A` · `#F9D959` · `#B98B01`, style: bold
 
+- `markup.highlight.asciidoc`
 
+### Asciidoc - Attribute
 
-## INI
-INI only supports textmate highlighting; it has no semantic highlighting.
+gray: `#828DA0` · `#828DA0` · `#747474`, style: italic
 
-### Keys #F767BB #f85eb4
-- "keyword.other.definition.ini"
+- `markup.meta.attribute-list.asciidoc`
+- `markup.heading.block-attribute.asciidoc`
+- `markup.heading.block-attribute.asciidoc punctuation.separator.asciidoc`
 
-### Headings #8cba10 #9acc12
-- "entity.name.section.group-title.ini"
+### Asciidoc - Document Attribute
 
-### String Values #CF9C00 #f9c859
-- "string.quoted.single.ini"
-- "string.quoted.double.ini"
-- "punctuation.definition.string.begin.ini"
-- "punctuation.definition.string.end.ini"
+lime: `#89E736` · `#89E736` · `#7BA403`
 
-### Comments #ADB1C2 #636d83
-- "punctuation.definition.comment.ini"
-- "comment.line.semicolon.ini"
-- "comment.line.number-sign.ini"
+- `support.constant.attribute-name.asciidoc`
+- `markup.substitution.attribute-reference.asciidoc`
 
+### Asciidoc - List
 
+cyan: `#15C9C5` · `#16DAD5` · `#07A3A0`, style: bold
 
-## Backus-Naur Form
-BNF only supports textmate highlighting; it has no semantic highlighting.
+- `markup.list.asciidoc`
+- `callout.source.code.asciidoc constant.numeric.asciidoc`
+- `callout.asciidoc constant.numeric.asciidoc`
+- `markup.list.bullet.asciidoc`
 
-### Symbols #2DAE58 #3fc56b
-- "entity.name.class.bnf"
+### Asciidoc - Link
 
-### Strings #CF9C00 #f9c859
-- "string.quoted.double.bnf"
-- "string.quoted.single.bnf"
+cornflower: `#8AA5FF` · `#A3ACFF` · `#5270C7`, style: underline
 
-### Built-in #13BBB7 #15c9c5
-- "support.variable.bnf"
+- `markup.link.asciidoc`
+- `markup.link.email.asciidoc`
+- `markup.reference.xref.asciidoc string.unquoted.asciidoc`
 
-### Comments #ADB1C2 #636d83
-- "comment.line.bnf"
-- "comment.block.bnf"
+### Asciidoc - Table
+
+gray: `#828DA0` · `#828DA0` · `#747474`, style: italic
+
+- `markup.table.delimiter.asciidoc`
+- `markup.table.cell.delimiter.asciidoc`
+
+### Asciidoc - Footnote
+
+gray: `#828DA0` · `#828DA0` · `#747474`, style: italic
+
+- `markup.other.footnote.asciidoc`
+
+### Asciidoc - Macro
+
+blue: `#10B1FE` · `#29BBFF` · `#0194DB`
+
+- `entity.name.function.asciidoc`
+
+### Asciidoc - Macro content
+
+yellow: `#E3C24A` · `#F9D959` · `#B98B01`
+
+- `string.unquoted.asciidoc`
+
+### Asciidoc - Ruler
+
+pink: `#F85EB4` · `#F85EB4` · `#EB5CB1`, style: bold
+
+- `constant.other.symbol.horizontal-rule.asciidoc`
+
+### JSON - Key
+
+lightPurple: `#D5C0E9` · `#D3C3EF` · `#8466AA`
+
+- `support.type.property-name.json`
+
+### YAML - Keys
+
+lightPurple: `#D5C0E9` · `#D3C3EF` · `#8466AA`
+
+- `entity.name.tag.yaml`
+
+### YAML - Timestamp Values
+
+green: `#3FC56B` · `#38CB5E` · `#19A24D`
+
+- `constant.other.timestamp.yaml`
+
+### YAML - Null Values
+
+orange: `#FF8D5C` · `#FF8142` · `#F75703`
+
+- `constant.language.null.yaml`
+
+### YAML - Types
+
+blue: `#10B1FE` · `#29BBFF` · `#0194DB`
+
+- `storage.type.tag-handle.yaml`
+
+### YAML - Anchors
+
+lime: `#89E736` · `#89E736` · `#7BA403`
+
+- `entity.name.type.anchor.yaml`
+- `punctuation.definition.anchor.yaml`
+- `variable.other.alias.yaml`
+- `keyword.control.flow.alias.yaml punctuation.definition.alias.yaml`
+
+### TOML - Keys
+
+lightPurple: `#D5C0E9` · `#D3C3EF` · `#8466AA`
+
+- `keyword.key.toml`
+- `support.type.property-name.toml`
+
+### TOML - Timestamp Values
+
+green: `#3FC56B` · `#38CB5E` · `#19A24D`
+
+- `constant.other.date.toml`
+- `constant.other.datetime.toml`
+- `constant.other.datetime-with-timezone.toml`
+- `constant.other.time.date.toml`
+- `constant.other.time.time.toml`
+- `constant.other.time.datetime.local.toml`
+- `constant.other.time.datetime.offset.toml`
+
+### TOML - Tables
+
+blue: `#10B1FE` · `#29BBFF` · `#0194DB`
+
+- `entity.other.attribute-name.table.toml`
+- `support.type.property-name.table.toml`
+
+### TOML - Array Tables
+
+lime: `#89E736` · `#89E736` · `#7BA403`
+
+- `entity.other.attribute-name.table.array.toml`
+- `support.type.property-name.array.toml`
+
+### INI - Keys
+
+lightPurple: `#D5C0E9` · `#D3C3EF` · `#8466AA`
+
+- `keyword.other.definition.ini`
+
+### INI - Headings
+
+blue: `#10B1FE` · `#29BBFF` · `#0194DB`
+
+- `entity.name.section.group-title.ini`
+
+### BNF - Symbol
+
+green: `#3FC56B` · `#38CB5E` · `#19A24D`
+
+- `entity.name.class.bnf`
+
+### BNF - Builtin
+
+cyan: `#15C9C5` · `#16DAD5` · `#07A3A0`
+
+- `support.variable.bnf`
