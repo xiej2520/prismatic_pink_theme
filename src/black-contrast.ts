@@ -33,7 +33,7 @@ export const blackContrastSyntax: SyntaxColors = {
 	purple: "#B3A4FE",
 	violet: "#CF94FF",
 
-	lightGreen: "#D6FFD6",
+	lightGreen: "#C8E2CC",
 	lightBlue: hue.paleBlue,
 	lightPurple: "#D3C3EF",
 	lightPink: "#EEBBFF",

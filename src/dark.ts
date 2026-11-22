@@ -28,8 +28,7 @@ export const darkSyntax: SyntaxColors = {
 	yellow: "#E3C24A",
 
 	lime: "#89E736",
-	// operators are short, extremely high contrast but low saturation should be fine
-	lightGreen: "#D6FFD6",
+	lightGreen: "#B3CCB7",
 	green: hue.brightGreen,
 
 	//deepBlue: "#5C79ED",
@@ -44,7 +43,7 @@ export const darkSyntax: SyntaxColors = {
 	lightPurple: "#D5C0E9",
 
 	pink: hue.softPink,
-	lightPink: "#EEBBFF",
+	lightPink: "#E5B1F7",
 	strongPink: hue.hotPink,
 	boldGreen: "#2ECC4B",
 	boldPink: "#F750AE",
