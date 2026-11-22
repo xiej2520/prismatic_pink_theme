@@ -6,32 +6,37 @@ import { lightColors, lightSyntax } from "../src/light";
 import type { UiColors, SyntaxColors } from "../src/theme";
 import { DEFAULT_CONFIG, type Config } from "../src/config";
 import { selectAnsiColors } from "../src/theme/terminal";
+import { generateSemanticThemeColors } from "../src/theme/semantic";
 
 import { alpha as a, flatten as f } from "../src/color";
 import { makeOutputFolder } from "./buildEnv";
 
 const config = DEFAULT_CONFIG as unknown as Config;
 
-const folder = makeOutputFolder("themes/nvim");
-createTheme(path.join(folder, "prismatic-pink.lua"), "prismatic-pink", "dark", darkColors, darkSyntax);
-createTheme(path.join(folder, "prismatic-pink-contrast.lua"), "prismatic-pink-contrast", "dark", blackContrastColors, blackContrastSyntax);
-createTheme(path.join(folder, "prismatic-pink-light.lua"), "prismatic-pink-light", "light", lightColors, lightSyntax);
+// Only write the files when run as a script, tests import `generateLua`.
+if (require.main === module) {
+  const folder = makeOutputFolder("themes/nvim");
+  createTheme(path.join(folder, "prismatic-pink.lua"), "prismatic-pink", "dark", darkColors, darkSyntax);
+  createTheme(path.join(folder, "prismatic-pink-contrast.lua"), "prismatic-pink-contrast", "dark", blackContrastColors, blackContrastSyntax);
+  createTheme(path.join(folder, "prismatic-pink-light.lua"), "prismatic-pink-light", "light", lightColors, lightSyntax);
+}
 
 function createTheme(filePath: string, colorsName: string, background: "light" | "dark", color: UiColors, syntax: SyntaxColors) {
   console.log(`Writing Neovim colors "${colorsName}" to ${filePath}`);
   fs.writeFileSync(filePath, generateLua(colorsName, background, color, syntax));
 }
 
-function hi(group: string, opts: Record<string, string | boolean>): string {
+function hi(group: string, opts: Record<string, string | boolean | number>): string {
   const fields = Object.entries(opts)
     .map(([key, value]) => (typeof value === "string" ? `${key} = "${value}"` : `${key} = ${value}`))
     .join(", ");
   return `hi("${group}", { ${fields} })`;
 }
 
-function generateLua(colorsName: string, background: "dark" | "light", color: UiColors, syntax: SyntaxColors): string {
+export function generateLua(colorsName: string, background: "dark" | "light", color: UiColors, syntax: SyntaxColors): string {
   const ansi = selectAnsiColors(color, background, config);
   const builtinType = config.builtinTypeColor === "type" ? syntax.blue : syntax.pink;
+  const sem = generateSemanticThemeColors(syntax, config);
   const terminalColors = [
     ansi.black, ansi.red, ansi.green, ansi.yellow, ansi.blue, ansi.magenta, ansi.cyan, ansi.white,
     ansi.brightBlack, ansi.brightRed, ansi.brightGreen, ansi.brightYellow, ansi.brightBlue, ansi.brightMagenta, ansi.brightCyan, ansi.brightWhite,
@@ -121,6 +126,8 @@ function generateLua(colorsName: string, background: "dark" | "light", color: Ui
     hi("DiagnosticSignWarn", { fg: color.diag.warning }),
     hi("DiagnosticSignInfo", { fg: color.diag.info }),
     hi("DiagnosticSignHint", { fg: color.diag.hint }),
+    hi("DiagnosticOk", { fg: color.diag.testPassed }),
+    hi("OkMsg", { fg: color.diag.testPassed }),
     hi("DiagnosticDeprecated", { strikethrough: true }),
     // VS Code fades unused code to 75% opacity; approximate it on plain text
     hi("DiagnosticUnnecessary", { fg: f(a(syntax.fg, "C0"), color.ui.primaryBg) }),
@@ -251,9 +258,10 @@ function generateLua(colorsName: string, background: "dark" | "light", color: Ui
     // markup/docs
     hi("@comment", { fg: syntax.lightPink }),
     hi("@comment.documentation", { fg: syntax.lightPink }),
+    hi("@string.documentation", { fg: syntax.lightPink }), // Python docstrings
 
     hi("@markup.heading", { fg: syntax.pink, bold: true }),
-    hi("@markup.strong", { fg: syntax.green, bold: true }),
+    hi("@markup.strong", { fg: syntax.boldGreen, bold: true }),
     hi("@markup.italic", { fg: syntax.lightPink, italic: true }),
     hi("@markup.underline", { underline: true }),
     hi("@markup.strikethrough", { strikethrough: true }),
@@ -279,63 +287,8 @@ function generateLua(colorsName: string, background: "dark" | "light", color: Ui
     hi("@tag.attribute", { fg: syntax.cyan, italic: true }),
     hi("@tag.delimiter", { fg: syntax.lightGreen }),
 
-    // LSP semantic token fallbacks
-
-    //- Standard LSP token types
-    hi("@lsp.type.namespace", { fg: syntax.fg }),
-
-    hi("@lsp.type.type", { fg: syntax.blue }),
-    hi("@lsp.type.class", { fg: syntax.blue }),
-    hi("@lsp.type.struct", { fg: syntax.blue }),
-    hi("@lsp.type.enum", { fg: syntax.blue }),
-    hi("@lsp.type.interface", { fg: syntax.cornflower }),
-    hi("@lsp.type.typeParameter", { fg: syntax.skyBlue }),
-
-    hi("@lsp.type.parameter", { fg: syntax.violet }),
-    hi("@lsp.type.variable", { fg: syntax.fg }),
-    hi("@lsp.type.property", { fg: syntax.lightPurple }),
-    hi("@lsp.type.enumMember", { fg: syntax.cyan }),
-
-    hi("@lsp.type.function", { fg: syntax.green }),
-    hi("@lsp.type.method", { fg: syntax.green }),
-    hi("@lsp.type.decorator", { fg: syntax.green }),
-    hi("@lsp.type.macro", { fg: syntax.strongPink }),
-
-    hi("@lsp.type.modifier", { fg: syntax.pink }),
-
-    hi("@lsp.type.keyword", { fg: syntax.pink }),
-    hi("@lsp.type.operator", { fg: syntax.lightGreen }),
-
-    hi("@lsp.type.string", { fg: syntax.yellow }),
-    hi("@lsp.type.number", { fg: syntax.orange }),
-    hi("@lsp.type.regexp", { fg: syntax.orange }),
-
-    hi("@lsp.type.comment", { fg: syntax.lightPink }),
-    hi("@lsp.type.event", { fg: syntax.lime }),
-
-    //- Standard LSP modifiers
-    hi("@lsp.mod.abstract", {}),
-    hi("@lsp.mod.async", {}),
-    hi("@lsp.mod.declaration", {}),
-    hi("@lsp.mod.defaultLibrary", {}),
-    hi("@lsp.mod.definition", {}),
+    // deprecated symbols keep Neovim's strikethrough; the other LSP groups are at the end
     hi("@lsp.mod.deprecated", { link: "DiagnosticDeprecated" }),
-    hi("@lsp.mod.documentation", {}),
-    hi("@lsp.mod.modification", {}),
-    hi("@lsp.mod.readonly", {}),
-    hi("@lsp.mod.static", {}),
-
-    //- LSP extensions
-    hi("@lsp.type.builtinType", { fg: builtinType }),
-    hi("@lsp.type.label", { fg: syntax.lime }),
-    //// rust-analyzer
-    hi("@lsp.type.lifetime", { fg: syntax.purple }),
-    hi("@lsp.type.selfKeyword", { fg: syntax.pink }),
-    hi("@lsp.type.formatSpecifier", { fg: syntax.purple }),
-
-    hi("@lsp.mod.mutable", { bold: true }),
-    hi("@lsp.mod.reference", { italic: true }),
-    hi("@lsp.mod.unsafe", { fg: syntax.red }),
 
     // telescope
 
@@ -403,6 +356,140 @@ function generateLua(colorsName: string, background: "dark" | "light", color: Ui
     hi("lualine_a_normal", { fg: color.ui.primaryBg, bg: color.accent.primary, bold: true }),
     hi("lualine_b_normal", { fg: syntax.fg, bg: color.ui.secondaryBg }),
     hi("lualine_c_normal", { fg: color.text.muted, bg: color.ui.primaryBg }),
+
+    // groups Neovim defines with its own palette
+    hi("CursorColumn", { bg: f(color.text.currentLineBgA, color.ui.primaryBg) }),
+    hi("FloatShadow", { bg: "#000000", blend: 80 }),
+    hi("FloatShadowThrough", { bg: "#000000", blend: 100 }),
+    hi("lCursor", { link: "Cursor" }),
+    // inlay hints and code lens
+    hi("LspInlayHint", { fg: color.text.decoration.codelens }),
+    hi("LspCodeLens", { fg: color.text.decoration.codelens }),
+
+    // LSP semantic tokens, matching `semanticTokenColors` in src/theme/semantic.ts (checked by test/nvim.test.ts).
+    // Neovim adds font styles of overlapping groups and can't remove them, so type-level bold that VS Code
+    // turns off for some modifiers (JS/TS variables vs `readonly`) is left out.
+    "",
+    "-- LSP semantic tokens",
+    hi("@lsp.type.keyword", { fg: sem.keyword }),
+    hi("@lsp.type.type", { fg: sem.type }),
+    hi("@lsp.type.builtinType", { fg: sem.builtinType }),
+    hi("@lsp.type.selfKeyword", { fg: sem.selfKeyword }),
+    hi("@lsp.type.newOperator", { fg: sem.newOperator }),
+    hi("@lsp.type.punctuation", { fg: sem.punctuation }),
+    hi("@lsp.type.operator", { fg: sem.operator }),
+    hi("@lsp.type.arithmetic", { fg: sem.arithmetic }),
+    hi("@lsp.type.comparison", { fg: sem.comparison }),
+    hi("@lsp.type.logical", { fg: sem.logical }),
+    hi("@lsp.type.bitwise", { fg: sem.bitwise }),
+    hi("@lsp.type.function", { fg: sem.function }),
+    hi("@lsp.type.method", { fg: sem.method }),
+    hi("@lsp.type.decorator", { fg: sem.decorator }),
+    hi("@lsp.type.attribute", { fg: sem.attribute }),
+    hi("@lsp.type.macro", { fg: sem.macro }),
+    hi("@lsp.type.lifetime", { fg: sem.lifetime }),
+    hi("@lsp.type.label", { fg: sem.label }),
+    hi("@lsp.type.namespace", { fg: sem.namespace }),
+    hi("@lsp.type.struct", { fg: sem.struct }),
+    hi("@lsp.type.class", { fg: sem.class }),
+    hi("@lsp.type.typeAlias", { fg: sem.typeAlias }),
+    hi("@lsp.type.enum", { fg: sem.enum }),
+    hi("@lsp.type.union", { fg: sem.union }),
+    hi("@lsp.type.enumMember", { fg: sem.enumMember }),
+    hi("@lsp.type.interface", { fg: sem.interface }),
+    hi("@lsp.type.typeParameter", { fg: sem.typeParameter }),
+    hi("@lsp.type.variable", { fg: sem.variable }),
+    hi("@lsp.type.parameter", { fg: sem.parameter }),
+    hi("@lsp.type.property", { fg: sem.property }),
+    hi("@lsp.type.constant", { fg: sem.constant }),
+    hi("@lsp.type.boolean", { fg: sem.boolean }),
+    hi("@lsp.type.number", { fg: sem.number }),
+    hi("@lsp.type.string", { fg: sem.string }),
+    hi("@lsp.type.regexp", { fg: sem.regexp }),
+    hi("@lsp.type.formatSpecifier", { fg: sem.formatSpecifier }),
+    hi("@lsp.type.comment", { fg: sem.comment }),
+    hi("@lsp.type.event", { fg: sem.event }),
+    hi("@lsp.type.plainKeyword.cs", { fg: sem.keyword }),
+    hi("@lsp.type.controlKeyword.cs", { fg: sem.keyword }),
+    hi("@lsp.typemod.member.static.cs", { fg: sem.function, underline: true }),
+    hi("@lsp.typemod.method.static.typescript", { fg: sem.method, underline: true }),
+    hi("@lsp.type.member.cs", { fg: sem.method }),
+    hi("@lsp.typemod.class.static.cs", { fg: sem.class, underline: true }),
+    hi("@lsp.type.local.cs", { fg: sem.variable }),
+    hi("@lsp.type.field.cs", { fg: sem.property }),
+    hi("@lsp.typemod.field.static.cs", { fg: sem.property, underline: true }),
+    hi("@lsp.type.property.cs", { fg: sem.property, bold: true }),
+    hi("@lsp.typemod.property.static.cs", { fg: sem.property, bold: true, underline: true }),
+    hi("@lsp.typemod.property.static.typescript", { fg: sem.property, underline: true }),
+    hi("@lsp.mod.constant", { fg: sem.constant }),
+    hi("@lsp.typemod.function.constant", { fg: sem.function }),
+    hi("@lsp.typemod.method.constant", { fg: sem.method }),
+    hi("@lsp.typemod.variable.static.cs", { fg: sem.constant }),
+    hi("@lsp.typemod.variable.readonly.cs", { fg: sem.constant }),
+    hi("@lsp.type.stringVerbatim.cs", { fg: sem.string }),
+    hi("@lsp.type.unresolvedReference", { fg: sem.error }),
+    hi("@lsp.type.macro.c", { underline: true }),
+    hi("@lsp.type.macro.cpp", { underline: true }),
+    hi("@lsp.type.xmlDocCommentText", { fg: sem.text }),
+    hi("@lsp.type.xmlDocCommentName.cs", { fg: sem.comment }),
+    hi("@lsp.type.xmlDocCommentDelimiter.cs", { fg: sem.comment }),
+    hi("@lsp.type.xmlDocCommentAttributeName.cs", { fg: sem.attribute }),
+    hi("@lsp.type.xmlDocCommentAttributeQuotes.cs", { fg: sem.string }),
+    hi("@lsp.type.xmlDocCommentAttributeValue.cs", { fg: sem.string }),
+    hi("@lsp.typemod.keyword.constant", { fg: sem.keyword }),
+    hi("@lsp.typemod.operator.controlFlow.rust", { fg: sem.keyword }),
+    hi("@lsp.type.label.rust", { fg: sem.label }),
+    hi("@lsp.type.lifetime.rust", { fg: sem.lifetime }),
+    hi("@lsp.type.formatSpecifier.rust", { fg: sem.formatSpecifier }),
+    hi("@lsp.type.macroBang.rust", { fg: sem.macro }),
+    hi("@lsp.typemod.variable.reference", { italic: true }),
+    hi("@lsp.typemod.method.reference", { italic: true }),
+    hi("@lsp.typemod.function.reference", { italic: true }),
+    hi("@lsp.typemod.parameter.reference", { italic: true }),
+    hi("@lsp.typemod.selfKeyword.reference", { italic: true }),
+    hi("@lsp.typemod.variable.mutable", { fg: sem.mutVariable, bold: true }),
+    hi("@lsp.typemod.method.mutable", { fg: sem.mutMethod, bold: true }),
+    hi("@lsp.typemod.function.mutable", { fg: sem.mutFunction, bold: true }),
+    hi("@lsp.typemod.parameter.mutable", { fg: sem.mutParameter, bold: true }),
+    hi("@lsp.mod.unsafe", { fg: sem.unsafe }),
+    hi("@lsp.typemod.keyword.unsafe", { bold: true, underline: true }),
+    hi("@lsp.typemod.function.unsafe", { underline: true }),
+    hi("@lsp.typemod.method.unsafe", { underline: true }),
+    hi("@lsp.typemod.attributeBracket.attribute.rust", { fg: sem.attribute }),
+    hi("@lsp.typemod.builtinAttribute.attribute.rust", { fg: sem.attribute }),
+    hi("@lsp.typemod.toolModule.attribute.rust", { fg: sem.attribute }),
+    hi("@lsp.typemod.decorator.attribute.rust", { fg: sem.attribute }),
+    hi("@lsp.typemod.derive.attribute.rust", { fg: sem.attribute }),
+    hi("@lsp.typemod.generic.attribute.rust", { fg: sem.attribute }),
+    hi("@lsp.typemod.parenthesis.attribute.rust", { fg: sem.attribute }),
+    hi("@lsp.type.tomlTableKey", { fg: sem.enum }),
+    hi("@lsp.type.tomlArrayKey", { fg: sem.label }),
+    hi("@lsp.type.decorator.java", { fg: sem.attribute }),
+    hi("@lsp.type.decorator.kotlin", { fg: sem.attribute }),
+    hi("@lsp.type.annotationMember.java", { fg: sem.property }),
+    hi("@lsp.type.record.java", { fg: sem.class }),
+    hi("@lsp.type.recordComponent.java", { fg: sem.property }),
+    hi("@lsp.type.selfParameter", { fg: sem.selfKeyword }),
+    hi("@lsp.type.clsParameter", { fg: sem.selfKeyword }),
+    hi("@lsp.typemod.class.builtin.python", { fg: sem.builtinType }),
+    hi("@lsp.typemod.variable.readonly.python", { fg: sem.constant }),
+    hi("@lsp.type.builtinConstant", { fg: sem.constant }),
+    hi("@lsp.typemod.string.documentation.python", { fg: sem.comment }),
+    hi("@lsp.typemod.type.defaultLibrary.c", { fg: sem.builtinType }),
+    hi("@lsp.typemod.type.defaultLibrary.cpp", { fg: sem.builtinType }),
+    hi("@lsp.type.property.nix", { fg: sem.variable }),
+    hi("@lsp.typemod.property.definition.nix", { fg: sem.property }),
+    hi("@lsp.typemod.variable.definition.nix", { fg: sem.property }),
+    hi("@lsp.type.parameter.nix", { fg: sem.variable }),
+    hi("@lsp.typemod.parameter.definition.nix", { fg: sem.parameter }),
+    hi("@lsp.typemod.struct.builtin.nix", { fg: sem.constant }),
+    hi("@lsp.type.path.nix", { fg: sem.string }),
+    hi("@lsp.type.method.nix", { fg: sem.property }),
+    hi("@lsp.type.type.nix", { fg: sem.variable }),
+    hi("@lsp.type.regexp.nix", { fg: sem.parameter }),
+    hi("@lsp.type.macro.nix", { fg: sem.boolean }),
+    hi("@lsp.type.interface.nix", { fg: sem.variable }),
+    hi("@lsp.typemod.keyword.static.nix", { fg: sem.function }),
   ];
 
   // Neovim highlight groups can't have alpha, so composite any #RRGGBBAA color over editor background
