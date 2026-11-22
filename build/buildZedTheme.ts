@@ -45,7 +45,7 @@ function generateTheme(
     appearance: type,
     style: {
       ...generateColors(color, type, config),
-      syntax: generateSyntax(syntax, config),
+      syntax: generateSyntax(color, syntax, config),
     },
   };
 }
@@ -287,7 +287,7 @@ function generateColors(color: UiColors, type: "light" | "dark", config: Config)
   };
 }
 
-function generateSyntax(syntax: SyntaxColors, config: Config) {
+function generateSyntax(color: UiColors, syntax: SyntaxColors, config: Config) {
   const semantic = generateSemanticThemeColors(syntax, config);
   const commentColor = config.mutedComments ? semantic.faded : semantic.comment;
   const comments = {
@@ -317,18 +317,27 @@ function generateSyntax(syntax: SyntaxColors, config: Config) {
     function: semantic.function,
     //"method": semantic.method,
     constructor: semantic.method,
+    "function.macro": semantic.macro,
     attribute: semantic.attribute,
   };
   const types = {
     type: semantic.struct,
     "type.builtin": semantic.builtinType,
+    "type.interface": semantic.interface,
+    "type.parameter": semantic.typeParameter,
     enum: semantic.enum,
+    "type.enum": semantic.enum,
+    "type.enum.member": semantic.enumMember,
     namespace: semantic.namespace,
+    module: semantic.namespace,
     variant: semantic.enumMember,
+    lifetime: semantic.lifetime,
   };
   const variables = {
     variable: semantic.variable,
     "variable.special": semantic.selfKeyword,
+    "variable.builtin": semantic.selfKeyword,
+    "variable.parameter": semantic.parameter,
     property: semantic.property,
     label: semantic.label,
   };
@@ -357,8 +366,15 @@ function generateSyntax(syntax: SyntaxColors, config: Config) {
     },
     link_text: syntax.blue,
     link_uri: syntax.cornflower,
+    "markup.heading": { color: syntax.pink, font_weight: 500 },
+    "markup.link.url": syntax.cornflower,
     selector: syntax.yellow,
     "selector.pseudo": syntax.lime,
+  };
+  const diff = {
+    "diff.plus": color.git.addedOrStaged,
+    "diff.minus": color.git.removedOrConflicting,
+    "diff.delta": color.git.modified,
   };
   const other = {
     primary: semantic.text,
@@ -381,6 +397,7 @@ function generateSyntax(syntax: SyntaxColors, config: Config) {
     ...variables,
     ...punctuation,
     ...markup,
+    ...diff,
     ...other,
   };
   return Object.fromEntries(
