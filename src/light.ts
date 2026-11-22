@@ -23,45 +23,46 @@ import { TerminalAnsiPalette } from "./theme/terminal";
 //};
 
 export const lightSyntax: SyntaxColors = {
+	// Keep at least 3:1 contrast on background. Bold are just below.
 	fg: "#565869",
-	gray: "#777777",
+	gray: "#747474",
 	fadedGray: "#ADB1C2",
 
-	pink: "#F767BB",
+	pink: "#EB5CB1",
 	strongPink: "#FF1277",
 
 	red: "#E5484D",
-	orange: "#FF5C57",
-	yellow: "#C69613",
-	lime: "#85AF1A",
-	green: "#2DAE58",
-	cyan: "#27B0AC",
-	cornflower: "#3E5FC0",
+	orange: "#F75703",
+	yellow: "#B98B01",
+	lime: "#7BA403",
+	green: "#19A24D",
+	cyan: "#07A3A0",
+	cornflower: "#5270C7",
 	skyBlue: "#2E7DC4",
-	blue: "#09A1ED",
-	purple: "#C75AF3",
-	violet: "#9040C4",
+	blue: "#0194DB",
+	purple: "#9177F4",
+	violet: "#9B53CA",
 
-	boldGreen: "#178040",
-	boldPink: "#F871C0",
-	boldViolet: "#7C34C0",
+	boldGreen: "#28AA55",
+	boldPink: "#F565BA",
+	boldViolet: "#A059CF",
 	boldFg: "#6C6E83",
 
-	lightPink: "#946E8A",
-	lightGreen: "#5E8A5E",
+	lightPink: "#8E6984",
+	lightGreen: "#4A604E",
 	lightBlue: "#97BCCD",
-	lightPurple: "#7E5EA6",
+	lightPurple: "#8466AA",
 };
 
-// three sets of colors: dark --- normal --- light
+// three sets of colors: dark (higher contrast) --- normal (the syntax colors, at least 3:1) --- light (lower contrast)
 const terminalNormal: TerminalAnsiPalette = {
-	black: "#A0A0A8",
-	red: "#ff5c57",
-	green: "#2dae58",
-	yellow: "#c69613",
-	blue: "#09a1ed",
-	magenta: "#c75af3",
-	cyan: "#27b0ac",
+	black: "#919199",
+	red: "#E5484D",
+	green: "#19A24D",
+	yellow: "#B98B01",
+	blue: "#0194DB",
+	magenta: "#C75AF3",
+	cyan: "#07A3A0",
 	white: "#565869",
 };
 
@@ -172,8 +173,8 @@ export const lightColors: UiColors = {
 
 		// Text editor & search sidebar find match border, peek view match border, list filter match border,
 		// terminal find match border,
-		matchBorder: "#11C678",
-		matchBorderA: "#11C67820",
+		matchBorder: "#03863C",
+		matchBorderA: "#03863C20",
 	},
 
 	accent: {
@@ -201,8 +202,8 @@ export const lightColors: UiColors = {
 		// Button background, codeblock text, (??? x1)
 		//
 		// DEFAULT: status bar remote background
-		secondary: "#09A1ED",
-		secondaryHover: "#0784C2",
+		secondary: "#057AB6",
+		secondaryHover: "#036CA2",
 	},
 
 	diag: {
@@ -216,51 +217,51 @@ export const lightColors: UiColors = {
 		// minimap markers, notification icons,
 		//
 		// DISABLED_STATUS_BAR: MINIMAL: Status bar text & icons,
-		hint: "#11C678",
-		info: "#00B7E4", // +(general peek view, status bar prominent if applicable)
-		warning: "#FF942F", // +(list warning text)
+		hint: "#03863C",
+		info: "#057AB6", // +(general peek view, status bar prominent if applicable)
+		warning: "#BB5704", // +(list warning text)
 		error: "#FF1277", // +(general error text, bracket mismatch foreground, list error text, list invalid text, list no matches, confusing unicode highlighting border)
 
 		// Error lens line background, peek view header background, input validation background, testing message
 		// line background (info+error),
-		hintBg: "#DCF5EB",
-		hintBgA: "#11C67820",
-		infoBg: "#DAF3F9", // +(general peek view)
-		infoBgA: "#00B7E420", // +(general peek view)
-		warningBg: "#FBEEE1",
-		warningBgA: "#FF942F20",
+		hintBg: "#DBECE4",
+		hintBgA: "#03863C20",
+		infoBg: "#DBEBF3", // +(general peek view)
+		infoBgA: "#057AB620", // +(general peek view)
+		warningBg: "#F2E6DD",
+		warningBgA: "#BB570420",
 		errorBg: "#FBE3EE",
 		errorBgA: "#FF12771A", // +(confusing unicode highlighting)
 
 		// Test status icons
-		testPassed: "#11C678",
-		testQueued: "#00B7E4",
+		testPassed: "#03863C",
+		testQueued: "#057AB6",
 		testFailed: "#FF1277",
-		testUnset: "#FF942F",
+		testUnset: "#BB5704",
 		testSkipped: "#ADB1C2",
 	},
 
 	git: {
 		// Ruler markers, minimap markers, gutter markers, file names
-		addedOrStaged: "#11C678",
-		modified: "#00B7E4",
-		renamed: "#13BBB7",
-		untracked: "#C75AF3",
+		addedOrStaged: "#03863C",
+		modified: "#057AB6",
+		renamed: "#03827F",
+		untracked: "#AE3FD8",
 		removedOrConflicting: "#FF1277",
 		ignoredOrSubmodule: "#ADB1C2",
-		current: "#11C678",
-		incoming: "#00B7E4",
+		current: "#03863C",
+		incoming: "#057AB6",
 
 		// Diff viewer line backgrounds, refactor preview text backgrounds
-		insertedBgA: "#11C6782A", // Entire modified line #d3f2e6 Specifically added #b2ead3
+		insertedBgA: "#03863C2A", // Entire modified line #d3f2e6 Specifically added #b2ead3
 		removedBgA: "#FF127720", // Entire modified line #fbddea Specifically removed #fcc2db
 		diffDiagonal: "#ADB1C288",
 
 		// Conflict viewer line backgrounds
-		currentBgA: "#11C6782A",
-		currentHeaderBgA: "#11C6786A",
-		incomingBgA: "#09A1ED2A",
-		incomingHeaderBgA: "#09A1ED6A",
+		currentBgA: "#03863C2A",
+		currentHeaderBgA: "#03863C6A",
+		incomingBgA: "#057AB62A",
+		incomingHeaderBgA: "#057AB66A",
 
 		// Merge editor backgrounds
 		mergeWordChangeBgA: "#EFF3282A",
@@ -273,9 +274,9 @@ export const lightColors: UiColors = {
 
 	debug: {
 		// Debug toolbar icons
-		start: "#11C678",
-		pause: "#FF942F",
-		step: "#00B7E4",
+		start: "#03863C",
+		pause: "#BB5704",
+		step: "#057AB6",
 		stop: "#FF1277",
 
 		// Gutter icons
@@ -286,16 +287,16 @@ export const lightColors: UiColors = {
 		exceptionBg: "#F7F9CB",
 
 		// Debug console text
-		info: "#09A1ED",
-		warning: "#FF5C57",
-		error: "#FF2E87",
+		info: "#057AB6",
+		warning: "#BB5704",
+		error: "#E30068",
 		source: "#000000",
-		input: "#C75AF3",
+		input: "#AE3FD8",
 	},
 
 	terminal: {
 		default: "#ADB1C2",
-		success: "#11C678",
+		success: "#03863C",
 		error: "#FF1277",
 
 		// normal+dark: darker (higher contrast) colors for bright,
@@ -395,7 +396,7 @@ export const lightColors: UiColors = {
 		shadow: "#0000002F",
 
 		// Status bar during debugging background
-		statusDebugBg: "#11C678",
+		statusDebugBg: "#03863C",
 		// Status bar when no folder is open background
 		statusEmptyBg: "#E5E5E5",
 		// DEFAULT: Status bar hover/active button overlays
@@ -414,52 +415,52 @@ export const lightColors: UiColors = {
 
 		// Extension badge icons
 		star: "#FFC104",
-		remote: "#09A1ED",
-		verified: "#11C678",
-		prerelease: "#FF942F",
+		remote: "#057AB6",
+		verified: "#03863C",
+		prerelease: "#BB5704",
 		sponsor: "#FF1277",
 
 		// Chart colours
 		chartLine: "#565869",
-		chartBlue: "#09A1ED",
-		chartGreen: "#2DAE58",
-		chartYellow: "#CF9C00",
-		chartOrange: "#FF5C57",
+		chartBlue: "#0194DB",
+		chartGreen: "#19A24D",
+		chartYellow: "#B98B01",
+		chartOrange: "#F75703",
 		chartRed: "#FF1277",
 		chartPurple: "#C75AF3",
 
-		preformatText: "#0896dd",
+		preformatText: "#057AB6",
 	},
 
 	brackets: {
-		one: "#2DAE58",
-		two: "#09A1ED",
-		three: "#CF9C00",
-		four: "#FF5C57",
+		one: "#19A24D",
+		two: "#0194DB",
+		three: "#B98B01",
+		four: "#E5484D",
 		five: "#C75AF3",
 		six: "#A8759A",
 	},
 
 	gitGraph: [
-		"#F767BB",
-		"#09A1ED",
-		"#2DAE58",
-		"#CF9C00",
-		"#FF5C57",
+		"#EB5CB1",
+		"#0194DB",
+		"#19A24D",
+		"#B98B01",
+		"#E5484D",
 		"#C75AF3",
 		"#A8759A",
 		"#6E82A6",
-		"#13BBB7",
-		"#8CBA10",
+		"#07A3A0",
+		"#7BA403",
 	],
 
 	todo: {
 		todo: "#565869",
-		fixme: "#FF5C57",
+		fixme: "#E5484D",
 		bug: "#FF1277",
-		hack: "#CF9C00",
-		maybe: "#13BBB7",
+		hack: "#B98B01",
+		maybe: "#07A3A0",
 		unchecked: "#565869",
-		checked: "#2DAE58",
+		checked: "#19A24D",
 	},
 };
