@@ -1,5 +1,6 @@
 import type { Config } from "../config";
 import type { SyntaxColors, UiColors } from ".";
+import { alpha as a } from "../color";
 
 export function generateEditorTheme(
 	color: UiColors,
@@ -80,12 +81,18 @@ export function generateEditorTheme(
 			"editorBracketHighlight.foreground4": color.text.decoration.dark,
 			"editorBracketHighlight.foreground5": color.text.decoration.dark,
 			"editorBracketHighlight.foreground6": color.text.decoration.dark,
-			"editorBracketPairGuide.foreground1": color.text.decoration.dark,
-			"editorBracketPairGuide.foreground2": color.text.decoration.dark,
-			"editorBracketPairGuide.foreground3": color.text.decoration.dark,
-			"editorBracketPairGuide.foreground4": color.text.decoration.dark,
-			"editorBracketPairGuide.foreground5": color.text.decoration.dark,
-			"editorBracketPairGuide.foreground6": color.text.decoration.dark,
+			"editorBracketPairGuide.background1": color.text.decoration.light,
+			"editorBracketPairGuide.background2": color.text.decoration.light,
+			"editorBracketPairGuide.background3": color.text.decoration.light,
+			"editorBracketPairGuide.background4": color.text.decoration.light,
+			"editorBracketPairGuide.background5": color.text.decoration.light,
+			"editorBracketPairGuide.background6": color.text.decoration.light,
+			"editorBracketPairGuide.activeBackground1": color.text.decoration.dark,
+			"editorBracketPairGuide.activeBackground2": color.text.decoration.dark,
+			"editorBracketPairGuide.activeBackground3": color.text.decoration.dark,
+			"editorBracketPairGuide.activeBackground4": color.text.decoration.dark,
+			"editorBracketPairGuide.activeBackground5": color.text.decoration.dark,
+			"editorBracketPairGuide.activeBackground6": color.text.decoration.dark,
 		};
 	} else {
 		brackets = {
@@ -95,12 +102,18 @@ export function generateEditorTheme(
 			"editorBracketHighlight.foreground4": color.brackets.four,
 			"editorBracketHighlight.foreground5": color.brackets.five,
 			"editorBracketHighlight.foreground6": color.brackets.six,
-			"editorBracketPairGuide.foreground1": color.brackets.one,
-			"editorBracketPairGuide.foreground2": color.brackets.two,
-			"editorBracketPairGuide.foreground3": color.brackets.three,
-			"editorBracketPairGuide.foreground4": color.brackets.four,
-			"editorBracketPairGuide.foreground5": color.brackets.five,
-			"editorBracketPairGuide.foreground6": color.brackets.six,
+			"editorBracketPairGuide.background1": a(color.brackets.one, "50"),
+			"editorBracketPairGuide.background2": a(color.brackets.two, "50"),
+			"editorBracketPairGuide.background3": a(color.brackets.three, "50"),
+			"editorBracketPairGuide.background4": a(color.brackets.four, "50"),
+			"editorBracketPairGuide.background5": a(color.brackets.five, "50"),
+			"editorBracketPairGuide.background6": a(color.brackets.six, "50"),
+			"editorBracketPairGuide.activeBackground1": color.brackets.one,
+			"editorBracketPairGuide.activeBackground2": color.brackets.two,
+			"editorBracketPairGuide.activeBackground3": color.brackets.three,
+			"editorBracketPairGuide.activeBackground4": color.brackets.four,
+			"editorBracketPairGuide.activeBackground5": color.brackets.five,
+			"editorBracketPairGuide.activeBackground6": color.brackets.six,
 		};
 	}
 
@@ -692,7 +705,7 @@ export function generateEditorTheme(
 		"editorGroup.dropBackground": color.ui.primaryDropBg, // Background for re-organising tab panes.
 		"editorGroupHeader.tabsBackground": color.ui.secondaryBg, // Background of tab row.
 		"editorGroupHeader.noTabsBackground": color.ui.secondaryBg, // Background of no-tab row.
-		"editorGroup.tabsBorder": "#00000000", // Border below the tab row.
+		"editorGroupHeader.tabsBorder": "#00000000", // Border below the tab row.
 		"editorGroupHeader.border": "#00000000", // Border underneath the tabs & breadcrumbs, if enabled.
 		//
 		"editorGroup.emptyBackground": color.ui.primaryBg, // Background of empty editor pane.
@@ -777,9 +790,6 @@ export function generateEditorTheme(
 		"extensionButton.prominentBackground": color.accent.primary,
 		"extensionButton.prominentHoverBackground": color.accent.primaryHover,
 		//
-		// VCS SIDEBAR [x]
-		"scm.providerBorder": color.ui.border,
-		//
 		// SETTINGS PAGE [x]
 		"settings.headerForeground": color.text.bold, // Titles and headings
 		"settings.modifiedItemIndicator": color.accent.primary, // Strip at the side of any modified settings.
@@ -793,7 +803,6 @@ export function generateEditorTheme(
 		"welcomePage.progress.background": color.ui.primaryBg,
 		"welcomePage.tileBackground": color.ui.secondaryBg,
 		"welcomePage.tileHoverBackground": color.ui.selectedSecondaryBg,
-		"welcomePage.tileShadow": color.ui.shadow,
 		"walkThrough.embeddedEditorBackground": color.ui.primaryBg,
 		//
 		// PANEL [x]
