@@ -5,8 +5,9 @@ import { hue, sem, brackets, gitGraph, todo } from "./shared";
 const local = {
 	gray: "#7A7A8A",
 	border: "#222228",
-	bg: "#000000", // primary/tertiary/dropdown background
+	bg: "#000000", // primary/dropdown background
 	bgAlt: "#040406", // secondary background
+	bg3: "#0C0C10", // tertiary, slightly lighter than the black surfaces
 	inputBg: "#181818",
 	uiNormal: "#E8EBF2",
 };
@@ -307,7 +308,7 @@ export const blackContrastColors: UiColors = {
 
 		// Sidebar section header background
 		// Dark gray rather than black, so the modern UI cards and sidebar section headers stand out
-		tertiaryBg: "#16161C",
+		tertiaryBg: local.bg3,
 
 		// Breadcrumb, menu, any button which dropdowns
 		dropdownBg: local.bg,

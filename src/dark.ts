@@ -9,7 +9,7 @@ const local = {
 	border: "#3D434F",
 	bg: "#1E1E22", // primary bg
 	bg2: "#1C1C20", // secondary, darker
-	bg3: "#121218", // tertiary, darkest
+	bg3: "#18181C", // tertiary, darkest
 	uiNormal: "#CFD7E6", // brighter, blue tinted
 };
 
