@@ -29,7 +29,7 @@ function generateTheme(
 	type: "light" | "dark",
 	config: Config,
 ) {
-	const semanticThemeColors = generateSemanticThemeColors(syntax);
+	const semanticThemeColors = generateSemanticThemeColors(syntax, config);
 	return {
 		name: name,
 		type: type,

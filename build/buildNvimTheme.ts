@@ -31,6 +31,7 @@ function hi(group: string, opts: Record<string, string | boolean>): string {
 
 function generateLua(colorsName: string, background: "dark" | "light", color: UiColors, syntax: SyntaxColors): string {
   const ansi = selectAnsiColors(color, background, config);
+  const builtinType = config.builtinTypeColor === "type" ? syntax.blue : syntax.pink;
   const terminalColors = [
     ansi.black, ansi.red, ansi.green, ansi.yellow, ansi.blue, ansi.magenta, ansi.cyan, ansi.white,
     ansi.brightBlack, ansi.brightRed, ansi.brightGreen, ansi.brightYellow, ansi.brightBlue, ansi.brightMagenta, ansi.brightCyan, ansi.brightWhite,
@@ -232,7 +233,7 @@ function generateLua(colorsName: string, background: "dark" | "light", color: Ui
 
     // types
     hi("@type", { fg: syntax.blue }),
-    hi("@type.builtin", { fg: syntax.pink }),
+    hi("@type.builtin", { fg: builtinType }),
     hi("@type.definition", { fg: syntax.blue }),
     hi("@attribute", { fg: syntax.orange }),
 
@@ -325,7 +326,7 @@ function generateLua(colorsName: string, background: "dark" | "light", color: Ui
     hi("@lsp.mod.static", {}),
 
     //- LSP extensions
-    hi("@lsp.type.builtinType", { fg: syntax.pink }),
+    hi("@lsp.type.builtinType", { fg: builtinType }),
     hi("@lsp.type.label", { fg: syntax.lime }),
     //// rust-analyzer
     hi("@lsp.type.lifetime", { fg: syntax.purple }),

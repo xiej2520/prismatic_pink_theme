@@ -101,9 +101,13 @@ export interface SemanticThemeColors extends StandardTokenTypeColors {
 	faded: string;
 }
 
-export function generateSemanticThemeColors(syntax: SyntaxColors): SemanticThemeColors {
+export function generateSemanticThemeColors(
+	syntax: SyntaxColors,
+	config: Config,
+): SemanticThemeColors {
+	const builtinType = config.builtinTypeColor === "type" ? syntax.blue : syntax.pink;
 	const colors: StandardTokenTypeColors = {
-		type: syntax.pink,
+		type: builtinType,
 
 		operator: syntax.lightGreen,
 
@@ -142,7 +146,7 @@ export function generateSemanticThemeColors(syntax: SyntaxColors): SemanticTheme
 	return {
 		keyword: syntax.pink,
 		type: colors.type,
-		builtinType: syntax.pink,
+		builtinType,
 		selfKeyword: syntax.pink,
 		newOperator: syntax.pink,
 

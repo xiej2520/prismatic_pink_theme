@@ -147,7 +147,7 @@ export function generateTextMateTheme(syntax: SyntaxColors, config: Config) {
 					"support.type.builtin.ts",
 				],
 				settings: {
-					foreground: syntax.pink,
+					foreground: config.builtinTypeColor === "type" ? syntax.blue : syntax.pink,
 				},
 			},
 			{

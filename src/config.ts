@@ -73,6 +73,11 @@ export const SETTINGS: SettingDef<any>[] = [
 		default: false,
 		isValid: isBoolean,
 	},
+	{
+		key: "builtinTypeColor",
+		default: "keyword",
+		isValid: stringEnum("keyword", "type"),
+	},
 ];
 
 export const DEFAULT_CONFIG = Object.fromEntries(SETTINGS.map((s) => [s.key, s.default])) as {
@@ -85,6 +90,7 @@ export const DEFAULT_CONFIG = Object.fromEntries(SETTINGS.map((s) => [s.key, s.d
 	lightTerminalColorScheme: "normal+dark" | "normal+light" | "dark+normal";
 	globalAccent: "everywhere" | "disabledStatusBar" | "minimal";
 	boldDefaultMutableVariables: boolean;
+	builtinTypeColor: "keyword" | "type";
 };
 
 export type ConfigValues = typeof DEFAULT_CONFIG;
@@ -118,6 +124,9 @@ export class Config {
 	}
 	get boldDefaultMutableVariables() {
 		return this.values.boldDefaultMutableVariables;
+	}
+	get builtinTypeColor() {
+		return this.values.builtinTypeColor;
 	}
 
 	/**

@@ -226,6 +226,28 @@
 						"Darker (higher contrast) colors for the standard 30-37/40-47 ANSI colors, and normal theme colors for the \"bright\" 90-97 aixterm colors."
 					]
 				},
+				"theme-prismatic-pink.builtinTypeColor": {
+					"type": "string",
+					"scope": "application",
+					"default": "keyword",
+					"description": "Controls whether built-in types such as `i32`, `bool` and `string` use the keyword or the type color.",
+					"enum": [
+						"keyword",
+						"type"
+					],
+					"enumItemLabels": [
+						"Keyword color (pink)",
+						"Type color (blue)"
+					],
+					"markdownEnumDescriptions": [
+						"Built-in types use the keyword color; this is the *default* option.",
+						"Built-in types use the same color as other types."
+					],
+					"enumDescriptions": [
+						"Built-in types use the keyword color; this is the default option.",
+						"Built-in types use the same color as other types."
+					]
+				},
 				"theme-prismatic-pink.globalAccent": {
 					"type": "string",
 					"scope": "application",

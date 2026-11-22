@@ -288,7 +288,7 @@ function generateColors(color: UiColors, type: "light" | "dark", config: Config)
 }
 
 function generateSyntax(syntax: SyntaxColors, config: Config) {
-  const semantic = generateSemanticThemeColors(syntax);
+  const semantic = generateSemanticThemeColors(syntax, config);
   const commentColor = config.mutedComments ? semantic.faded : semantic.comment;
   const comments = {
     comment: config.italicComments ? { color: commentColor, font_style: "italic" } : commentColor,
@@ -321,6 +321,7 @@ function generateSyntax(syntax: SyntaxColors, config: Config) {
   };
   const types = {
     type: semantic.struct,
+    "type.builtin": semantic.builtinType,
     enum: semantic.enum,
     namespace: semantic.namespace,
     variant: semantic.enumMember,
