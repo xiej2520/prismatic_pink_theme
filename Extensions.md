@@ -6,16 +6,16 @@ Copy and paste the following snippet into your `settings.json` file:
 
 ```json
 "git-graph.graph.colours": [
-    "#F767BB",
-    "#09A1ED",
-    "#2DAE58",
-    "#CF9C00",
-    "#FF5C57",
+    "#EB5CB1",
+    "#0194DB",
+    "#19A24D",
+    "#B98B01",
+    "#E5484D",
     "#C75AF3",
     "#A8759A",
     "#6E82A6",
-    "#13BBB7",
-    "#8CBA10"
+    "#07A3A0",
+    "#7BA403"
 ],
 ```
 
@@ -42,30 +42,30 @@ Copy and paste the following snippet into your `settings.json` file:
     },
     "FIXME": {
         "foreground": "#fafbfc",
-        "background": "#FF5C57",
+        "background": "#E5484D",
         "icon": "tools",
-        "iconColour": "#FF5C57",
+        "iconColour": "#E5484D",
         "gutterIcon": true
     },
     "BUG": {
         "foreground": "#ffffff",
-        "background": "#ff1277",
+        "background": "#FF1277",
         "icon": "alert",
-        "iconColour": "#ff1278",
+        "iconColour": "#FF1277",
         "gutterIcon": true
     },
     "HACK": {
         "foreground": "#fafbfc",
-        "background": "#CF9C00",
+        "background": "#B98B01",
         "icon": "flame",
-        "iconColour": "#CF9C00",
+        "iconColour": "#B98B01",
         "gutterIcon": true
     },
     "MAYBE": {
         "foreground": "#fafbfc",
-        "background": "#13BBB7",
+        "background": "#07A3A0",
         "icon": "info",
-        "iconColour": "#13BBB7",
+        "iconColour": "#07A3A0",
         "gutterIcon": true
     },
     "[ ]": {
@@ -76,10 +76,10 @@ Copy and paste the following snippet into your `settings.json` file:
         "gutterIcon": true
     },
     "[x]": {
-        "foreground": "#2DAE58",
+        "foreground": "#19A24D",
         "background": "#fafbfc",
         "icon": "checklist",
-        "iconColour": "#2DAE58",
+        "iconColour": "#19A24D",
         "gutterIcon": true
     }
 },

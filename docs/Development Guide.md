@@ -15,13 +15,12 @@ all extension versions published before the change).
 |`.vscode`|VS Code-related mainfests|
 |`.vscodeignore`|Describes which files/directories to ignore when packaging the extension.|
 |`build`|Build scripts|
-|`colors`|Build output for Neovim colorscheme file.|
-|`css`|Build output for CSS custom-property stylesheet|
 |`docs`|Developer documentation|
 |`out`|The build output for the typescript project.|
 |`package`|The packaging output.|
 |`src`|The typescript project.|
-|`themes`|The build output for theme files.|
+|`test`|Unit tests (`node:test`).|
+|`themes`|The build output for theme files: VS Code, Zed, Neovim (`themes/nvim`) and the CSS stylesheet.|
 
 ## Development
 
@@ -38,6 +37,7 @@ The extension manifest defines the following npm scripts:
 - `buildZedTheme` - Builds the Zed theme `themes/prismatic-pink-zed.json`.
 - `buildNvimTheme` - Builds the Neovim themes `themes/nvim/prismatic-pink*.lua`.
 - `buildCssTheme` - Builds the CSS custom property stylesheet `themes/prismatic-pink.css`.
+- `buildStylesDoc` - Regenerates `Styles.md` from the theme sources.
 - `buildTs` - Build the typescript project.
 - `watchTs` - Watch the typescript project.
 - `typecheck` - Type-check `src/`, `build/`, and `test/`.
@@ -84,6 +84,14 @@ The packaged extension will be located at `./package/theme-prismatic-pink-${vers
 
 When adding a new file or directory at the repository root, make sure to update
 `.vscodeignore` and `/build/Pre-Package.ps1` to add it to the exclusion list.
+
+## Changing syntax colors
+
+- [ ] Palette colors are in `src/dark.ts`, `src/black-contrast.ts` and `src/light.ts`.
+  TextMate rules in `src/theme/textmate.ts`. semantic token rules in `src/theme/semantic.ts`.
+- [ ] When adding or changing a semantic token rule, update the matching `@lsp` group in
+  `build/buildNvimTheme.ts`. `npm test` fails if the two differ (`test/nvim.test.ts`).
+- [ ] Run `npm run buildStylesDoc` to regenerate `Styles.md`.
 
 ## Adding a new setting
 
